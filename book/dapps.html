@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>hexo-theme-doc-seed |  </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/images/favicon.ico">
+
+    
+
+  </head>
+  <body>
+
+   <script>window.__INITIAL_STATE__ = {"page":{"path":"book/dapps.html","title":""},"data":{"navigation":{"logo":{"text":"Mastering Ethereum. Русский перевод","type":"link","path":"index.html"},"main":[{"text":"Оглавление","type":"label"},{"text":"Предисловие","type":"link","path":"book/preface.html"},{"text":"Глоссарий","type":"link","path":"book/glossary.html"},{"text":"Что такое Ethereum","type":"link","path":"book/what-is.html"},{"text":"Введение","type":"link","path":"book/intro.html"},{"text":"Клиенты Ethereum","type":"link","path":"book/clients.html"},{"text":"Тестнет Ethereum","type":"link","path":"book/ethereum-testnets.html"},{"text":"Ключи и Адреса","type":"link","path":"book/keys-addresses.html"},{"text":"Кошельки","type":"link","path":"book/wallets.html"},{"text":"Транзакции","type":"link","path":"book/transactions.html"},{"text":"Смарт контракты","type":"link","path":"book/smart-contracts.html"},{"text":"Инструменты разработчика и фреймворки","type":"link","path":"book/dev-tools.html"},{"text":"Токены","type":"link","path":"book/tokens.html"},{"text":"DApps","type":"link","path":"book/dapps.html"},{"text":"Ораклы","type":"link","path":"book/oracles.html"},{"text":"Accounting & Gas","type":"link","path":"book/gas.html"},{"text":"EVM","type":"link","path":"book/evm.html"},{"text":"Консенсус","type":"link","path":"book/consensus.html"},{"text":"Vyper","type":"link","path":"book/vyper.html"},{"text":"Протокол DevP2P","type":"link","path":"book/devp2p-protocol.html"},{"text":"Стандарты Ethereum (EIPs/ERCs)","type":"link","path":"book/standards-eip-erc.html"},{"text":"История форков (DAO/ETC)","type":"link","path":"book/forks-history.html"},{"text":"Дополнительно","type":"label"},{"text":"Комментировать на Github","type":"link","path":"https://github.com/ethereumbook-ru/ethereumbook-ru.github.io/issues/new"}]}},"config":{"timezone":"UTC","root":"/","time_format":"HH:mm:ss","theme":"../node_modules/hexo-theme-doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">Mastering Ethereum. Русский перевод</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <p>[[decentralized_applications_chap]]<br>== Decentralized Applications (DApps)</p>
+<p>The peer-to-peer movement has enabled millions of Internet users to connect together. USENET, a distributed messaging system that is described as the first peer-to-peer architecture was established in 1979 as the successor of the first ‘Internet’, ARPANET. ARPANET was a client-server network where participants ran nodes requesting and serving content but as it lacked the ability to provide any means for context beyond simple address-based routing, USENET emerged promising to enforce a decentralized model of control which was a client-server model from the user or client perspective that offered a self-organizing approach to newsgroup servers. However, news servers communicate with one another as peers to propagate USENET news articles over the entire group of network servers (like SMTP email in which the core e-mail-relaying network of mail transfer agents has a peer-to-peer character, and not like the periphery of e-mail clients and their direct connections which is strictly a client-server relationship).</p>
+<p>In 1999 the famous music and file-sharing application called Napster arose. Napster was the beginning of the peer-to-peer networks movement evolving into BitTorrent where participating users established a virtual network, entirely independent from the physical network and without having to obey any administrative authorities or restrictions. </p>
+<p>As peer-to-Peer mechanisms can be used to access any kind of distributed resources, they play a central role in decentralized applications.</p>
+<p>////<br>Source: <a href="https://en.wikipedia.org/wiki/Peer-to-peer" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Peer-to-peer</a><br>License: CC0<br>Added by: @dcoldeira<br>////</p>
+<p>[[what_is_a_dapp_sec]]<br>=== What is a DApp?</p>
+<p>Unlike a traditional application, a Decentralized Application (DApp) does not belong only to one single provider or server, but the whole stack would be deployed and operated in a distributed fashion on a peer-to-peer network.</p>
+<p>A typical DApp stack would consist of Front-end, Back-end and Data Storage. There are many advantages to creating a DApp that a typical centralized architecture could not provide:</p>
+<p>1) Resiliency: Having the business-logic written on a smart contract means that a DApp backend will be fully distributed and managed on the Blockchain. Unlike deploying an application on a centralized server, a DApp will have no downtime and will continue to persist as long as the Blockchain is still operating.</p>
+<p>2) Transparency: The open source nature of a DApp allows anyone to fork the code and have the same application running on the Blockchain. On the same note, any interaction with the Blockchain will be stored forever and anyone with a copy of the Blockchain can gain access to it. It’s worth noting that it may not be possible to de-compile the bytecodes into the source and fully understand the contract’s code. Developers who seek to offer full transparency about the contract behavior must publish the source code for users to read, compile and verify.</p>
+<p>3) Censorship Resistance: As long as a user has access to an Ethereum node, the user will always be able to interact with a DApp without interference from a centralized control. No service provider, or even the owner of the smart contract, could alter the code once it is deployed on the network.</p>
+<p>[[components_of_a_dapp_sec]]<br>=== Components of a DApp</p>
+<p>////<br>TODO: add paragraph<br>////</p>
+<p>[[blockchain_smart_contracts_sec]]<br>==== Blockchain (Smart Contracts)</p>
+<p>The smart contract is used to store the business logic, the state and the computation of your decentralized application; think of a smart contract as a server-side component in a regular application.</p>
+<p>One advantage of deploying server-side logic on Ethereum smart contracts is that you could build a more complex architecture in which a smart contract could read and write data off one another. After deploying your smart contract, your business logic could well be used by many other developers in the future, without ever requiring you to manage and maintain the code.</p>
+<p>One major problem of running smart contract as core business logic functionality is the inability to change the code once it is deployed. Furthermore, a really large monolithic smart contract may cost a lot of gas to deploy and function. Therefore some applications may choose to have off chain computation and external data source. Keep in mind, however that having core business logic of the DApp be dependent on external data or server would mean your users will have to trust these externalities.</p>
+<p>[[front_end_web_ui_cec]]<br>==== Front end (Web User Interface (UI))</p>
+<p>Unlike the business logic of the DApp that requires a developer to understand EVM and new languages such as Solidity, the client side interface of a DApp uses basic web front end technologies (HTML, CSS, JavaScript). This allows a traditional web developer to utilize the tools, libraries and frameworks they are familiar with using on a regular basis. Interactions with the DApp such as signing messages, sending transactions and key management are often conducted through the browser itself using tools such as Mist browser or the Metamask browser extension.</p>
+<p>Although it is possible to create a mobile DApp as well, currently there are no best practices to create mobile DApp front-ends due to the lack of mobile clients that can serve as a light client with key management functionality.</p>
+<p>[[data_storage_sec]]<br>==== Data storage</p>
+<p>Due to high gas costs, smart contracts are currently not suited to store large amounts of data. Hence, most DApps will utilize decentralized storages such as IPFS or Swarm for storing and distributing large static assets such as images, videos, and client side application (HTML, CSS, JavaScript).</p>
+<p>The hashes of the content are often stored as bytes within the smart contract, using key value mapping. The asset would then be retrieved through your front end applications calling on the smart contract for urls of each asset.</p>
+<p>[[on_chain_vs_off_chain_data_sec]]<br>===== On chain vs. off chain</p>
+<p>////<br>TODO: add paragraph<br>////</p>
+<p>[[ipfs_sec]]<br>===== IPFS</p>
+<p>////<br>TODO: add paragraph<br>////</p>
+<p>[[swarm_sec]]<br>===== Swarm</p>
+<p>Swarm home page; <a href="http://swarm-gateways.net/bzz:/theswarm.eth/" target="_blank" rel="noopener">http://swarm-gateways.net/bzz:/theswarm.eth/</a></p>
+<p>Read the docs; <a href="https://swarm-guide.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener">https://swarm-guide.readthedocs.io/en/latest/index.html</a></p>
+<p>Swarm developer’s onboarding guide; <a href="https://github.com/ethersphere/swarm/wiki/swarm" target="_blank" rel="noopener">https://github.com/ethersphere/swarm/wiki/swarm</a></p>
+<p>The swarm engine room; <a href="https://gitter.im/ethersphere/orange-lounge" target="_blank" rel="noopener">https://gitter.im/ethersphere/orange-lounge</a></p>
+<p>Similarities/differences between Ethereum’s Swarm and IPFS; <a href="https://github.com/ethersphere/go-ethereum/wiki/IPFS-&amp;-SWARM" target="_blank" rel="noopener">https://github.com/ethersphere/go-ethereum/wiki/IPFS-&amp;-SWARM</a></p>
+<p>[[centralized_db_sec]]<br>===== Centralized db</p>
+<p>Centralized databases is data storage on a server characterized and associate by its description. They use client-server network architecture, this allows clients or users to modify the data that is stored on the centralized server. Control of the database remains with a designated administrator, which authenticates the credentials of the client before providing access to the database. If the security of the administrator is compromised, the data can be altered or even deleted as the administrator is the only one responsible for the administration of the database.</p>
+<p>////<br>Source:<br><a href="https://dcoldeira.github.io/database-the-decentralized-control-revolution.html" target="_blank" rel="noopener">https://dcoldeira.github.io/database-the-decentralized-control-revolution.html</a><br>License: CC0<br>Added by: @dcoldeira<br>////</p>
+<p>[[oracle_sec]]<br>===== Oracle</p>
+<p>////<br>TODO: add paragraph<br>////</p>
+<p>[[interdapp_coammunications_protocol_sec]]<br>==== Inter-DApp communications protocol</p>
+<p>[[whisper_sec]]<br>===== Whisper</p>
+<p>////<br>TODO: add paragraph<br>////<br><a href="https://github.com/ethereum/wiki/wiki/Whisper" target="_blank" rel="noopener">https://github.com/ethereum/wiki/wiki/Whisper</a></p>
+<p><a href="https://github.com/ethereum/wiki/wiki/Whisper-Overview" target="_blank" rel="noopener">https://github.com/ethereum/wiki/wiki/Whisper-Overview</a></p>
+<p>[[dapp_frameworks_sec]]<br>=== DApp frameworks</p>
+<p>There are many different Development frameworks and libraries written in many languages which allows for a better developer experience in creating and deploying a DApp.</p>
+<p>[[truffle_sec]]<br>==== Truffle<br>Truffle is a popular choice and provides a manageable development environment, testing framework and asset pipeline for Ethereum.</p>
+<p>With Truffle, you get:</p>
+<ul>
+<li>Built-in smart contract compilation, linking, deployment and binary management.</li>
+<li>Automated contract testing with Mocha and Chai.</li>
+<li>Configurable build pipeline with support for custom build processes.</li>
+<li>Scriptable deployment &amp; migrations framework.</li>
+<li>Network management for deploying to many public &amp; private networks.</li>
+<li>Interactive console for direct contract communication.</li>
+<li>Instant rebuilding of assets during development.</li>
+<li>External script runner that executes scripts within a Truffle environment.</li>
+</ul>
+<p>Getting started &amp; documentation; <a href="http://truffleframework.com/docs" target="_blank" rel="noopener">http://truffleframework.com/docs</a></p>
+<p>Github link; <a href="https://github.com/trufflesuite/truffle" target="_blank" rel="noopener">https://github.com/trufflesuite/truffle</a></p>
+<p>Website link; <a href="https://truffleframework.com" target="_blank" rel="noopener">https://truffleframework.com</a></p>
+<p>[[embark_sec]]<br>==== Embark<br>The Embark Framework focuses on serverless Decentralized Applications using Ethereum, IPFS and other platforms. Embark currently integrates with EVM blockchains (Ethereum), Decentralized Storages (IPFS), and Decentralized communication platforms (Whisper and Orbit).</p>
+<p>With Embark you can:</p>
+<p>** Blockchain (Ethereum)</p>
+<ul>
+<li>Automatically deploy contracts and make them available in your JS code. Embark watches for changes, and if you update a contract, Embark will automatically redeploy the contracts (if needed) and the DApp.</li>
+<li>Contracts are available in JS with Promises.</li>
+<li>Do Test Driven Development with Contracts using Javascript.</li>
+<li>Keep track of deployed contracts; deploy only when truly needed.</li>
+<li>Manage different chains (e.g testnet, private net, livenet)</li>
+<li>Easily manage complex systems of interdependent contracts.</li>
+</ul>
+<p>** Decentralized storage (IPFS)</p>
+<ul>
+<li>Easily store &amp; retrieve data on the DApp through EmbarkJS, including uploading and retrieving files.</li>
+<li>Deploy the full application to IPFS or Swarm.</li>
+</ul>
+<p>** Decentralized Communication (Whisper, Orbit)</p>
+<ul>
+<li>Easily send/receive messages through channels in P2P through Whisper or Orbit.</li>
+</ul>
+<p>** Web Technologies</p>
+<ul>
+<li>Integrate with any web technology including React, Foundation, etc.</li>
+<li>Use any build pipeline or tool you wish, including grunt, gulp and webpack.</li>
+</ul>
+<p>Getting started &amp; documentation; <a href="https://embark.readthedocs.io" target="_blank" rel="noopener">https://embark.readthedocs.io</a></p>
+<p>Github link; <a href="https://github.com/embark-framework/embark" target="_blank" rel="noopener">https://github.com/embark-framework/embark</a></p>
+<p>Website link; <a href="https://github.com/embark-framework/embark" target="_blank" rel="noopener">https://github.com/embark-framework/embark</a></p>
+<p>==== Emerald</p>
+<p>Emerald Platform is a framework and set of tools to simplify development of a Dapps and integration of existing services with Ethereum based blockchain.</p>
+<p>Emerald provides:</p>
+<ul>
+<li>Javascript library and React components to build a Dapp</li>
+<li>SVG icons common for blockchain projects</li>
+<li>Rust library to manage private keys, including hardware wallets, and sign transactions</li>
+<li>Ready to use components/services that can be integrated into existing app thought command line or JSON RPC API</li>
+<li>Accompanied with SputnikVM, a standalone EVM implementation that can be used for development and testing</li>
+</ul>
+<p>It’s platform agnostic and provides tools for various targets:</p>
+<ul>
+<li>Desktop app bundled with Electron</li>
+<li>Mobile apps</li>
+<li>Web apps</li>
+<li>Command line apps and scripting tools</li>
+</ul>
+<p>Getting started &amp; documentation; <a href="https://docs.etcdevteam.com" target="_blank" rel="noopener">https://docs.etcdevteam.com</a></p>
+<p>Github link; <a href="https://github.com/etcdevteam/emerald-platform" target="_blank" rel="noopener">https://github.com/etcdevteam/emerald-platform</a></p>
+<p>Website link; <a href="https://emeraldplatform.io" target="_blank" rel="noopener">https://emeraldplatform.io</a></p>
+<p>[[dapp_develotment_tool_sec]<br>==== DApp (development tool)<br>DApp is a simple command line tool for smart contract development. It supports these common use cases:</p>
+<ul>
+<li>Package management</li>
+<li>Source code building</li>
+<li>Unit testing</li>
+<li>Simple contract deployments</li>
+</ul>
+<p>Getting started &amp; documentation; <a href="https://dapp.readthedocs.io/en/latest/" target="_blank" rel="noopener">https://dapp.readthedocs.io/en/latest/</a></p>
+<p>[[populous_sec]]<br>==== Populous</p>
+<p>////<br>TODO: add paragraph<br>////</p>
+<p>[[live_dapps_sec]]<br>=== Live DApps</p>
+<p>Here are listed different live DApps on the Ethereum network:</p>
+<p>////<br>TODO: add paragraph<br>////</p>
+<p>[[ethpm_sec]]<br>==== EthPM<br>A project aimed at bringing package management to the Ethereum ecosystem.</p>
+<p>Website link; <a href="https://www.ethpm.com/" target="_blank" rel="noopener">https://www.ethpm.com/</a></p>
+<p>[[radar_relay_sec]]<br>==== Radar Relay<br>DEX (Decentralized Exchange) focused on trading ethereum-tokens directly from wallet to wallet.</p>
+<p>Website link; <a href="https://radarrelay.com/" target="_blank" rel="noopener">https://radarrelay.com/</a></p>
+<p>[[cryptokitties_sec]]<br>==== CryptoKitties<br>A game deployed on Ethereum that allows players to purchase, collect, breed and sell various types of virtual cats<br>It represents one of the earliest attempts to deploy blockchain technology for recreational and leisurely purposes.</p>
+<p>Website link; <a href="https://www.cryptokitties.co" target="_blank" rel="noopener">https://www.cryptokitties.co</a></p>
+<p>[[ethlance_sec]]<br>==== Ethlance<br>Ethlance is a platform for connecting freelancers and developers, both paying and receiving ether.</p>
+<p>Website link; <a href="https://ethlance.com/" target="_blank" rel="noopener">https://ethlance.com/</a></p>
+<p>[[decentraland_sec]]<br>==== Decentraland<br>Decentraland is a virtual reality platform powered by the Ethereum blockchain. Users can create, experience, and monetize content and applications.</p>
+<p>Website link; <a href="https://decentraland.org/" target="_blank" rel="noopener">https://decentraland.org/</a></p>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script>
+
+    
+
+  </body>
+</html>

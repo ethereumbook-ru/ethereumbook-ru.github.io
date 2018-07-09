@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>hexo-theme-doc-seed |  </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="/style/doc.css">
+
+    <!-- favicon -->
+    <link rel="icon" href="/images/favicon.ico">
+
+    
+
+  </head>
+  <body>
+
+   <script>window.__INITIAL_STATE__ = {"page":{"path":"book/devp2p-protocol.html","title":""},"data":{"navigation":{"logo":{"text":"Mastering Ethereum. Русский перевод","type":"link","path":"index.html"},"main":[{"text":"Оглавление","type":"label"},{"text":"Предисловие","type":"link","path":"book/preface.html"},{"text":"Глоссарий","type":"link","path":"book/glossary.html"},{"text":"Что такое Ethereum","type":"link","path":"book/what-is.html"},{"text":"Введение","type":"link","path":"book/intro.html"},{"text":"Клиенты Ethereum","type":"link","path":"book/clients.html"},{"text":"Тестнет Ethereum","type":"link","path":"book/ethereum-testnets.html"},{"text":"Ключи и Адреса","type":"link","path":"book/keys-addresses.html"},{"text":"Кошельки","type":"link","path":"book/wallets.html"},{"text":"Транзакции","type":"link","path":"book/transactions.html"},{"text":"Смарт контракты","type":"link","path":"book/smart-contracts.html"},{"text":"Инструменты разработчика и фреймворки","type":"link","path":"book/dev-tools.html"},{"text":"Токены","type":"link","path":"book/tokens.html"},{"text":"DApps","type":"link","path":"book/dapps.html"},{"text":"Ораклы","type":"link","path":"book/oracles.html"},{"text":"Accounting & Gas","type":"link","path":"book/gas.html"},{"text":"EVM","type":"link","path":"book/evm.html"},{"text":"Консенсус","type":"link","path":"book/consensus.html"},{"text":"Vyper","type":"link","path":"book/vyper.html"},{"text":"Протокол DevP2P","type":"link","path":"book/devp2p-protocol.html"},{"text":"Стандарты Ethereum (EIPs/ERCs)","type":"link","path":"book/standards-eip-erc.html"},{"text":"История форков (DAO/ETC)","type":"link","path":"book/forks-history.html"},{"text":"Дополнительно","type":"label"},{"text":"Комментировать на Github","type":"link","path":"https://github.com/ethereumbook-ru/ethereumbook-ru.github.io/issues/new"}]}},"config":{"timezone":"UTC","root":"/","time_format":"HH:mm:ss","theme":"../node_modules/hexo-theme-doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+
+    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">Mastering Ethereum. Русский перевод</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
+    <div class="doc-content">
+  <div class="dc-page">
+    <div class="dc-card">
+      <div id="react-search-results-root"></div>
+      <div id="page-content" class="doc-formatting">
+        <p>////<br>Source:<br><a href="https://github.com/ethereum/devp2p/blob/master/rlpx.md#node-discovery" target="_blank" rel="noopener">https://github.com/ethereum/devp2p/blob/master/rlpx.md#node-discovery</a><br><a href="https://github.com/ethereum/wiki/wiki/%C3%90%CE%9EVp2p-Wire-Protocol" target="_blank" rel="noopener">https://github.com/ethereum/wiki/wiki/%C3%90%CE%9EVp2p-Wire-Protocol</a><br><a href="https://github.com/ethereum/wiki/wiki/Ethereum-Wire-Protocol" target="_blank" rel="noopener">https://github.com/ethereum/wiki/wiki/Ethereum-Wire-Protocol</a><br><a href="https://github.com/ethereum/wiki/wiki/Adaptive-Message-IDs" target="_blank" rel="noopener">https://github.com/ethereum/wiki/wiki/Adaptive-Message-IDs</a><br>License: Not defined yet<br>Added By: @fjrojasgarcia<br>////</p>
+<p>[[communications_between_nodes]]<br>== Communications between nodes - A simplified vision</p>
+<p>Ethereum nodes communicate among themselves using a simple wire protocol forming a virtual or overlay <em>well-formed network</em>.<br>To achieve this goal, this protocol called <em>ÐΞVp2p</em>, uses technologies and standards such as <em>RLP</em>.</p>
+<p>[[transport_protocol]]<br>=== Transport protocol<br>In order to provide confidentiality and protect against network disruption, <em>ÐΞVp2p</em> nodes use <em>RLPx</em> messages, an encrypted and authenticated <em>transport protocol</em>.<br><em>RLPx</em> utilizes a routing algorithm similar to <em>Kademlia</em>, which is a distributed hash table (<em>DHT</em>) for decentralized peer-to-peer computer networks.</p>
+<p><em>RLPx</em>, as an underlying transport protocol, allows among other, <em>“Node Discovery and Network Formation”</em>.<br>Another remarkable feature of <em>RLPx</em> is the support of <em>multiple protocols</em> over a single connection.</p>
+<p>When <em>ÐΞVp2p</em> nodes communicate via Internet (as they usually do), they use TCP, which provides a connection-oriented medium, but actually <em>ÐΞVp2p</em> nodes communicate in terms of packets, using the so-called facilities (or messages) provided by the underlying transport protocol <em>RLPx</em>, allowing them to communicate sending and receiving packets.</p>
+<p>Packets are <em>dynamically framed</em>, prefixed with an <em>RLP</em> encoded header, encrypted and authenticated. Multiplexing is achieved via the frame header which specifies the destination protocol of a packet.</p>
+<p>==== Encrypted Handshake<br>Connections are established via a handshake and, once established, packets are encrypted and encapsulated as frames.</p>
+<p>This handshake will be carried out in two phases, the first phase involves the keys exchange and the second phase will perform authentication, and as a part of <em>DEVp2p</em>, will also exchange the capabilities of each node.</p>
+<p>==== Security - Basic considerations</p>
+<p>All cryptographic operations are based on <em>secp256k1</em> and each node is expected to maintain a static private key which is saved and restored between sessions.</p>
+<p>Until encryption is implemented, packets have a timestamp property to reduce the window of time for carrying out replay attacks.<br>It is recommended that the receiver only accepts packets created within the last 3 seconds.</p>
+<p>Packets are signed. Verification is performed by recovering the public key from the signature and checking that it matches an expected value.</p>
+<p>[[devp2p_messages_subprotocols]]<br>=== ÐΞVp2p messages and Sub-protocols<br>With <em>RLP</em> we can encode different types of payloads, whose types are determined by the integer value used in the first entry of the RLP.<br>In this way, <em>ÐΞVp2p</em>, the <em>basic wire protocol</em>, support <em>arbitrary sub-protocols</em>.</p>
+<p><em>Message IDs</em> between <code>0x00-0x10</code> are reserved for <em>ÐΞVp2p</em> messages. Therefore, the message IDs of <em>sub-protocols</em>  are assumed to be from <code>0x10</code> onwards.</p>
+<p>Sub-protocols that are not shared between peers are <em>ignored</em>.<br>If multiple versions of the same (equal name) sub-protocol are shared, <em>the numerically highest wins</em>.</p>
+<p>==== Basic establishment of communication - Basic ÐΞVp2p message</p>
+<p>As a very basic example, when two peers initiate their communication, each one greets the other with a special <em>ÐΞVp2p</em> message called <em>“Hello”</em>, which is identified by the <code>0x00</code> message ID.<br>Through this particular <em>ÐΞVp2p</em> <em>“Hello”</em> message, each node will disclose to its peer relevant data that will allow the communication to begin at a very basic level.</p>
+<p>In this step, each peer will know the following information about his peer.</p>
+<ul>
+<li>The implemented <em>version</em> of the P2P protocol. Now must be <code>1</code>.</li>
+<li>The <em>client software identity</em>, as a human-readable string (e.g. <code>Ethereum(++)/1.0.0</code>).</li>
+<li>Peer <em>capability name</em> as an ASCII string of length 3. Currently supported capability names are <code>eth</code> and <code>shh</code>.</li>
+<li>Peer <em>capability version</em> as a positive integer. Currently supported versions are <code>34</code> for <code>eth</code>, and <code>1</code> for <code>shh</code>.</li>
+<li>The <em>port</em> that the client is listening on. If <code>0</code> it indicates the client is not listening.</li>
+<li>The <em>Unique Identity of the node</em> specified as a 512-bit hash.</li>
+</ul>
+<p>==== Disconnection - Basic ÐΞVp2p message<br>To carry out an ordered disconnection, the node that wants to disconnect, will send a <em>ÐΞVp2p</em> message called <em>“Disconnect”</em>, which is identified by the <em>“0x01”</em> message id. Furthermore, the node specifies the reason for the disconnection using the parameter <em>“reason”</em>.</p>
+<p>The <em>“reason”</em> parameter can take values from <code>0x00</code> to <code>0x10</code>, e.g. <code>0x00</code> represents the reason <em>“Disconnect requested”</em> and <code>0x04</code> represents <em>“Too many peers”</em>.</p>
+<p>==== Status - Ethereum sub-protocol example<br>This sub-protocol is identified by the <code>+0x00</code> message-id.</p>
+<p>This message should be sent after the initial handshake and prior to any Ethereum related messages and inform of its current state.</p>
+<p>To do this, the node disclose to its peer the following data;</p>
+<ul>
+<li>The <em>Protocol version</em>.</li>
+<li>The <em>Network Id</em>.</li>
+<li>The <em>Total Difficulty of the best chain</em>.</li>
+<li>The <em>Hash of the best known block</em>.</li>
+<li>The <em>Hash of the Genesis block</em>.</li>
+</ul>
+<p>[[known_current_networks]]<br>===== Known current network Ids<br>About networks ids here is a list of those currently known;</p>
+<ul>
+<li>0: <em>Olympic</em>; Ethereum public pre-release testnet</li>
+<li>1: <em>Frontier</em>; Homestead, Metropolis, the Ethereum public main network</li>
+<li>1: <em>Classic</em>; The (un)forked public Ethereum Classic main network, chain ID 61</li>
+<li>1: <em>Expanse</em>; An alternative Ethereum implementation, chain ID 2</li>
+<li>2: <em>Morden</em>; The public Ethereum testnet, now Ethereum Classic testnet</li>
+<li>3: <em>Ropsten</em>; The public cross-client Ethereum testnet</li>
+<li>4: <em>Rinkeby</em>: The public Geth Ethereum testnet</li>
+<li>42: <em>Kovan</em>; The public Parity Ethereum testnet</li>
+<li>77: <em>Sokol</em>; The public POA testnet</li>
+<li>99: <em>POA</em>; The public Proof of Authority Ethereum network</li>
+<li>7762959: <em>Musicoin</em>; The music blockchain</li>
+</ul>
+<p>==== GetBlocks - Another sub-protocol example<br>This sub-protocol is identified by the <code>+0x05</code> message-id.</p>
+<p>With this message the node requests its peer the specified blocks each by its own hash.</p>
+<p>The way to request the nodes is through a list with all the hashes of them, taking the message the following form;<br>….<br>[+0x05: P, hash_0: B_32, hash_1: B_32, …]<br>….</p>
+<p>The requesting node must not have a response message containing all the requested blocks, in which case it must request again those that have not been sent by its peer.</p>
+<p>=== Node identity and reputation<br>The identity of a <em>ÐΞVp2p</em> node is a <em>secp256k1</em> public key.</p>
+<p>Clients are free to mark down new nodes and use the node ID as a means of <em>determining a node’s reputation</em>.</p>
+<p>They can store ratings for given IDs and give preference accordingly.</p>
+
+        <div id="react-support-footer-root"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+    
+
+    <!-- js vendors -->
+    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+
+    <!-- js source  -->
+    <script src="/script/doc.js"></script>
+
+    
+
+  </body>
+</html>
