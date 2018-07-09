@@ -1,1 +1,0 @@
-# ethereumbook-ru.github.io
