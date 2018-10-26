@@ -1,221 +1,188 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
+    <head>
+        <meta charset="UTF-8">
+        <title>Доп: опкоды EVM - Освоение Ethereum - Mastering Ethereum</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
 
-    <title>hexo-theme-doc-seed |  </title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <base href="">
 
-    
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
-    <!-- fonts -->
-    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,600,700" rel="stylesheet">
+        <link rel="shortcut icon" href="favicon.png">
 
-    <!-- stylesheets -->
-    <link rel="stylesheet" href="/style/doc.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-    <!-- favicon -->
-    <link rel="icon" href="/images/favicon.ico">
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
-    
+        <!-- Custom theme -->
+        
 
-  </head>
-  <body>
+        
 
-   <script>window.__INITIAL_STATE__ = {"page":{"path":"book/appdx-evm-opcodes-gas.html","title":""},"data":{"navigation":{"logo":{"text":"Mastering Ethereum. Русский перевод","type":"link","path":"index.html"},"main":[{"text":"Оглавление","type":"label"},{"text":"Предисловие","type":"link","path":"book/preface.html"},{"text":"Глоссарий","type":"link","path":"book/glossary.html"},{"text":"Что такое Ethereum","type":"link","path":"book/what-is.html"},{"text":"Введение","type":"link","path":"book/intro.html"},{"text":"Клиенты Ethereum","type":"link","path":"book/clients.html"},{"text":"Тестнет Ethereum","type":"link","path":"book/ethereum-testnets.html"},{"text":"Ключи и Адреса","type":"link","path":"book/keys-addresses.html"},{"text":"Кошельки","type":"link","path":"book/wallets.html"},{"text":"Транзакции","type":"link","path":"book/transactions.html"},{"text":"Смарт контракты","type":"link","path":"book/smart-contracts.html"},{"text":"Инструменты разработчика и фреймворки","type":"link","path":"book/dev-tools.html"},{"text":"Токены","type":"link","path":"book/tokens.html"},{"text":"DApps","type":"link","path":"book/dapps.html"},{"text":"Ораклы","type":"link","path":"book/oracles.html"},{"text":"Accounting & Gas","type":"link","path":"book/gas.html"},{"text":"EVM","type":"link","path":"book/evm.html"},{"text":"Консенсус","type":"link","path":"book/consensus.html"},{"text":"Vyper","type":"link","path":"book/vyper.html"},{"text":"Протокол DevP2P","type":"link","path":"book/devp2p-protocol.html"},{"text":"Стандарты Ethereum (EIPs/ERCs)","type":"link","path":"book/standards-eip-erc.html"},{"text":"История форков (DAO/ETC)","type":"link","path":"book/forks-history.html"},{"text":"Дополнительно","type":"label"},{"text":"Комментировать на Github","type":"link","path":"https://github.com/ethereumbook-ru/ethereumbook-ru.github.io/issues/new"}]}},"config":{"timezone":"UTC","root":"/","time_format":"HH:mm:ss","theme":"../node_modules/hexo-theme-doc","theme_config":{"swagger_ui":{"version":2,"permalinks":true,"api_explorer":true,"download":"Download specification","show_extensions":false,"deep_linking":true,"display_operation_id":false,"doc_expansion":"none"},"search":{"skip":false,"background":false,"route":"/lunr.json"},"favicon":"images/favicon.ico"}}}</script>
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
 
-    <div id="react-navigation-root"><div class="doc-navigation" data-reactroot=""><nav class="doc-navbar"><a href="/index.html" class="doc-navbar__logo"><img src="/images/logo.png" class="doc-navbar__logo__img"/><span class="doc-navbar__logo__text">Mastering Ethereum. Русский перевод</span></a><i class="dc-icon dc-icon--close dc-icon--interactive doc-sidebar-close doc-navbar__sidebar-close doc-navbar__sidebar-close--desktop"></i><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-navbar__sidebar-toggle"></i></nav><nav class="doc-sidebar"><div class="doc-sidebar__vertical-menu"><i class="dc-icon dc-icon--menu dc-icon--interactive doc-sidebar-toggle doc-sidebar-toggle--primary doc-sidebar__vertical-menu__item"></i><i class="dc-icon dc-icon--search dc-icon--interactive doc-sidebar__vertical-menu__item doc-sidebar__vertical-menu__item--primary"></i></div><div class="doc-sidebar-content"><div class="doc-sidebar__search-form"></div><ul class="doc-sidebar-list"></ul></div></nav></div></div>
-    <div class="doc-content">
-  <div class="dc-page">
-    <div class="dc-card">
-      <div id="react-search-results-root"></div>
-      <div id="page-content" class="doc-formatting">
-        <p>[[me-evm-opcodes-gas-header]]<br>[appendix]</p>
-<p>== Ethereum EVM Opcodes and gas consumption</p>
-<p>This appendix is based on the consolidation work done by the people of <a href="https://github.com/trailofbits/evm-opcodes" target="_blank" rel="noopener">https://github.com/trailofbits/evm-opcodes</a> as a Reference for Ethereum VM (EVM) Opcodes and Instruction information with the following LICENSE <a href="https://github.com/trailofbits/evm-opcodes/blob/master/LICENSE" target="_blank" rel="noopener">https://github.com/trailofbits/evm-opcodes/blob/master/LICENSE</a>.</p>
-<p>Table<br><del>~</del></p>
-<p>[cols=”,,,,”,options=”header”,]<br>|=======================================================================================================================================================================================================<br>|Opcode |Name |Description |Extra Info |Gas<br>|<code>0x00</code> |STOP |Halts execution |- |0</p>
-<p>|<code>0x01</code> |ADD |Addition operation |- |3</p>
-<p>|<code>0x02</code> |MUL |Multiplication operation |- |5</p>
-<p>|<code>0x03</code> |SUB |Subtraction operation |- |3</p>
-<p>|<code>0x04</code> |DIV |Integer division operation |- |5</p>
-<p>|<code>0x05</code> |SDIV |Signed integer division operation (truncated) |- |5</p>
-<p>|<code>0x06</code> |MOD |Modulo remainder operation |- |5</p>
-<p>|<code>0x07</code> |SMOD |Signed modulo remainder operation |- |5</p>
-<p>|<code>0x08</code> |ADDMOD |Modulo addition operation |- |8</p>
-<p>|<code>0x09</code> |MULMOD |Modulo multiplication operation |- |8</p>
-<p>|<code>0x0a</code> |EXP |Exponential operation |- |10***</p>
-<p>|<code>0x0b</code> |SIGNEXTEND |Extend length of two’s complement signed integer |- |5</p>
-<p>|<code>0x0c</code> - <code>0x0f</code> |Unused |Unused |- |</p>
-<p>|<code>0x10</code> |LT |Less-than comparison |- |3</p>
-<p>|<code>0x11</code> |GT |Greater-than comparison |- |3</p>
-<p>|<code>0x12</code> |SLT |Signed less-than comparison |- |3</p>
-<p>|<code>0x13</code> |SGT |Signed greater-than comparison |- |3</p>
-<p>|<code>0x14</code> |EQ |Equality comparison |- |3</p>
-<p>|<code>0x15</code> |ISZERO |Simple not operator |- |3</p>
-<p>|<code>0x16</code> |AND |Bitwise AND operation |- |3</p>
-<p>|<code>0x17</code> |OR |Bitwise OR operation |- |3</p>
-<p>|<code>0x18</code> |XOR |Bitwise XOR operation |- |3</p>
-<p>|<code>0x19</code> |NOT |Bitwise NOT operation |- |3</p>
-<p>|<code>0x1a</code> |BYTE |Retrieve single byte from word |- |3</p>
-<p>|<code>0x20</code> |SHA3 |Compute Keccak-256 hash |- |30</p>
-<p>|<code>0x21</code> - <code>0x2f</code> |Unused |Unused |- |</p>
-<p>|<code>0x30</code> |ADDRESS |Get address of currently executing account |- |2</p>
-<p>|<code>0x31</code> |BALANCE |Get balance of the given account |- |400</p>
-<p>|<code>0x32</code> |ORIGIN |Get execution origination address |- |2</p>
-<p>|<code>0x33</code> |CALLER |Get caller address |- |2</p>
-<p>|<code>0x34</code> |CALLVALUE |Get deposited value by the instruction/transaction responsible for this execution |- |2</p>
-<p>|<code>0x35</code> |CALLDATALOAD |Get input data of current environment |- |3</p>
-<p>|<code>0x36</code> |CALLDATASIZE |Get size of input data in current environment |- |2</p>
-<p>|<code>0x37</code> |CALLDATACOPY |Copy input data in current environment to memory |- |3</p>
-<p>|<code>0x38</code> |CODESIZE |Get size of code running in current environment |- |2</p>
-<p>|<code>0x39</code> |CODECOPY |Copy code running in current environment to memory |- |3</p>
-<p>|<code>0x3a</code> |GASPRICE |Get price of gas in current environment |- |2</p>
-<p>|<code>0x3b</code> |EXTCODESIZE |Get size of an account’s code |- |700</p>
-<p>|<code>0x3c</code> |EXTCODECOPY |Copy an account’s code to memory |- |700</p>
-<p>|<code>0x3d</code> |RETURNDATASIZE |Pushes the size of the return data buffer onto the stack |<a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-211.md[EIP" target="_blank" rel="noopener">https://github.com/ethereum/EIPs/blob/master/EIPS/eip-211.md[EIP</a> 211] |2</p>
-<p>|<code>0x3e</code> |RETURNDATACOPY |Copies data from the return data buffer to memory |<a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-211.md[EIP" target="_blank" rel="noopener">https://github.com/ethereum/EIPs/blob/master/EIPS/eip-211.md[EIP</a> 211] |3</p>
-<p>|<code>0x3f</code> |Unused |- |- |</p>
-<p>|<code>0x40</code> |BLOCKHASH |Get the hash of one of the 256 most recent complete blocks |- |20</p>
-<p>|<code>0x41</code> |COINBASE |Get the block’s beneficiary address |- |2</p>
-<p>|<code>0x42</code> |TIMESTAMP |Get the block’s timestamp |- |2</p>
-<p>|<code>0x43</code> |NUMBER |Get the block’s number |- |2</p>
-<p>|<code>0x44</code> |DIFFICULTY |Get the block’s difficulty |- |2</p>
-<p>|<code>0x45</code> |GASLIMIT |Get the block’s gas limit |- |2</p>
-<p>|<code>0x46</code> - <code>0x4f</code> |Unused |- |- |</p>
-<p>|<code>0x50</code> |POP |Remove word from stack |- |2</p>
-<p>|<code>0x51</code> |MLOAD |Load word from memory |- |3</p>
-<p>|<code>0x52</code> |MSTORE |Save word to memory |- |3*</p>
-<p>|<code>0x53</code> |MSTORE8 |Save byte to memory |- |3</p>
-<p>|<code>0x54</code> |SLOAD |Load word from storage |- |200</p>
-<p>|<code>0x55</code> |SSTORE |Save word to storage |- |0*</p>
-<p>|<code>0x56</code> |JUMP |Alter the program counter |- |8</p>
-<p>|<code>0x57</code> |JUMPI |Conditionally alter the program counter |- |10</p>
-<p>|<code>0x58</code> |GETPC |Get the value of the program counter prior to the increment |- |2</p>
-<p>|<code>0x59</code> |MSIZE |Get the size of active memory in bytes |- |2</p>
-<p>|<code>0x5a</code> |GAS |Get the amount of available gas, including the corresponding reduction the amount of available gas |- |2</p>
-<p>|<code>0x5b</code> |JUMPDEST |Mark a valid destination for jumps |- |1</p>
-<p>|<code>0x5c</code> - <code>0x5f</code> |Unused |- |- |</p>
-<p>|<code>0x60</code> |PUSH1 |Place 1 byte item on stack |- |3</p>
-<p>|<code>0x61</code> |PUSH2 |Place 2-byte item on stack |- |3</p>
-<p>|<code>0x62</code> |PUSH3 |Place 3-byte item on stack |- |3</p>
-<p>|<code>0x63</code> |PUSH4 |Place 4-byte item on stack |- |3</p>
-<p>|<code>0x64</code> |PUSH5 |Place 5-byte item on stack |- |3</p>
-<p>|<code>0x65</code> |PUSH6 |Place 6-byte item on stack |- |3</p>
-<p>|<code>0x66</code> |PUSH7 |Place 7-byte item on stack |- |3</p>
-<p>|<code>0x67</code> |PUSH8 |Place 8-byte item on stack |- |3</p>
-<p>|<code>0x68</code> |PUSH9 |Place 9-byte item on stack |- |3</p>
-<p>|<code>0x69</code> |PUSH10 |Place 10-byte item on stack |- |3</p>
-<p>|<code>0x6a</code> |PUSH11 |Place 11-byte item on stack |- |3</p>
-<p>|<code>0x6b</code> |PUSH12 |Place 12-byte item on stack |- |3</p>
-<p>|<code>0x6c</code> |PUSH13 |Place 13-byte item on stack |- |3</p>
-<p>|<code>0x6d</code> |PUSH14 |Place 14-byte item on stack |- |3</p>
-<p>|<code>0x6e</code> |PUSH15 |Place 15-byte item on stack |- |3</p>
-<p>|<code>0x6f</code> |PUSH16 |Place 16-byte item on stack |- |3</p>
-<p>|<code>0x70</code> |PUSH17 |Place 17-byte item on stack |- |3</p>
-<p>|<code>0x71</code> |PUSH18 |Place 18-byte item on stack |- |3</p>
-<p>|<code>0x72</code> |PUSH19 |Place 19-byte item on stack |- |3</p>
-<p>|<code>0x73</code> |PUSH20 |Place 20-byte item on stack |- |3</p>
-<p>|<code>0x74</code> |PUSH21 |Place 21-byte item on stack |- |3</p>
-<p>|<code>0x75</code> |PUSH22 |Place 22-byte item on stack |- |3</p>
-<p>|<code>0x76</code> |PUSH23 |Place 23-byte item on stack |- |3</p>
-<p>|<code>0x77</code> |PUSH24 |Place 24-byte item on stack |- |3</p>
-<p>|<code>0x78</code> |PUSH25 |Place 25-byte item on stack |- |3</p>
-<p>|<code>0x79</code> |PUSH26 |Place 26-byte item on stack |- |3</p>
-<p>|<code>0x7a</code> |PUSH27 |Place 27-byte item on stack |- |3</p>
-<p>|<code>0x7b</code> |PUSH28 |Place 28-byte item on stack |- |3</p>
-<p>|<code>0x7c</code> |PUSH29 |Place 29-byte item on stack |- |3</p>
-<p>|<code>0x7d</code> |PUSH30 |Place 30-byte item on stack |- |3</p>
-<p>|<code>0x7e</code> |PUSH31 |Place 31-byte item on stack |- |3</p>
-<p>|<code>0x7f</code> |PUSH32 |Place 32-byte (full word) item on stack |- |3</p>
-<p>|<code>0x80</code> |DUP1 |Duplicate 1st stack item |- |3</p>
-<p>|<code>0x81</code> |DUP2 |Duplicate 2nd stack item |- |3</p>
-<p>|<code>0x82</code> |DUP3 |Duplicate 3rd stack item |- |3</p>
-<p>|<code>0x83</code> |DUP4 |Duplicate 4th stack item |- |3</p>
-<p>|<code>0x84</code> |DUP5 |Duplicate 5th stack item |- |3</p>
-<p>|<code>0x85</code> |DUP6 |Duplicate 6th stack item |- |3</p>
-<p>|<code>0x86</code> |DUP7 |Duplicate 7th stack item |- |3</p>
-<p>|<code>0x87</code> |DUP8 |Duplicate 8th stack item |- |3</p>
-<p>|<code>0x88</code> |DUP9 |Duplicate 9th stack item |- |3</p>
-<p>|<code>0x89</code> |DUP10 |Duplicate 10th stack item |- |3</p>
-<p>|<code>0x8a</code> |DUP11 |Duplicate 11th stack item |- |3</p>
-<p>|<code>0x8b</code> |DUP12 |Duplicate 12th stack item |- |3</p>
-<p>|<code>0x8c</code> |DUP13 |Duplicate 13th stack item |- |3</p>
-<p>|<code>0x8d</code> |DUP14 |Duplicate 14th stack item |- |3</p>
-<p>|<code>0x8e</code> |DUP15 |Duplicate 15th stack item |- |3</p>
-<p>|<code>0x8f</code> |DUP16 |Duplicate 16th stack item |- |3</p>
-<p>|<code>0x90</code> |SWAP1 |Exchange 1st and 2nd stack items |- |3</p>
-<p>|<code>0x91</code> |SWAP2 |Exchange 1st and 3rd stack items |- |3</p>
-<p>|<code>0x92</code> |SWAP3 |Exchange 1st and 4th stack items |- |3</p>
-<p>|<code>0x93</code> |SWAP4 |Exchange 1st and 5th stack items |- |3</p>
-<p>|<code>0x94</code> |SWAP5 |Exchange 1st and 6th stack items |- |3</p>
-<p>|<code>0x95</code> |SWAP6 |Exchange 1st and 7th stack items |- |3</p>
-<p>|<code>0x96</code> |SWAP7 |Exchange 1st and 8th stack items |- |3</p>
-<p>|<code>0x97</code> |SWAP8 |Exchange 1st and 9th stack items |- |3</p>
-<p>|<code>0x98</code> |SWAP9 |Exchange 1st and 10th stack items |- |3</p>
-<p>|<code>0x99</code> |SWAP10 |Exchange 1st and 11th stack items |- |3</p>
-<p>|<code>0x9a</code> |SWAP11 |Exchange 1st and 12th stack items |- |3</p>
-<p>|<code>0x9b</code> |SWAP12 |Exchange 1st and 13th stack items |- |3</p>
-<p>|<code>0x9c</code> |SWAP13 |Exchange 1st and 14th stack items |- |3</p>
-<p>|<code>0x9d</code> |SWAP14 |Exchange 1st and 15th stack items |- |3</p>
-<p>|<code>0x9e</code> |SWAP15 |Exchange 1st and 16th stack items |- |3</p>
-<p>|<code>0x9f</code> |SWAP16 |Exchange 1st and 17th stack items |- |3</p>
-<p>|<code>0xa0</code> |LOG0 |Append log record with no topics |- |375</p>
-<p>|<code>0xa1</code> |LOG1 |Append log record with one topic |- |750</p>
-<p>|<code>0xa2</code> |LOG2 |Append log record with two topics |- |1125</p>
-<p>|<code>0xa3</code> |LOG3 |Append log record with three topics |- |1500</p>
-<p>|<code>0xa4</code> |LOG4 |Append log record with four topics |- |1875</p>
-<p>|<code>0xa5</code> - <code>0xaf</code> |Unused |- |- |</p>
-<p>|<code>0xb0</code> |JUMPTO |Tentative <a href="https://github.com/ethereum/solidity/blob/c61610302aa2bfa029715b534719d25fe3949059/libevmasm/Instruction.h#L176[libevmasm" target="_blank" rel="noopener">https://github.com/ethereum/solidity/blob/c61610302aa2bfa029715b534719d25fe3949059/libevmasm/Instruction.h#L176[libevmasm</a> has different numbers] | <a href="https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP" target="_blank" rel="noopener">https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP</a> 615] |</p>
-<p>|<code>0xb1</code> |JUMPIF |Tentative |<a href="https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP" target="_blank" rel="noopener">https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP</a> 615] |</p>
-<p>|<code>0xb2</code> |JUMPSUB |Tentative |<a href="https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP" target="_blank" rel="noopener">https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP</a> 615] |</p>
-<p>|<code>0xb4</code> |JUMPSUBV |Tentative |<a href="https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP" target="_blank" rel="noopener">https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP</a> 615] |</p>
-<p>|<code>0xb5</code> |BEGINSUB |Tentative |<a href="https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP" target="_blank" rel="noopener">https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP</a> 615] |</p>
-<p>|<code>0xb6</code> |BEGINDATA |Tentative |<a href="https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP" target="_blank" rel="noopener">https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP</a> 615] |</p>
-<p>|<code>0xb8</code> |RETURNSUB |Tentative |<a href="https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP" target="_blank" rel="noopener">https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP</a> 615] |</p>
-<p>|<code>0xb9</code> |PUTLOCAL |Tentative |<a href="https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP" target="_blank" rel="noopener">https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP</a> 615] |</p>
-<p>|<code>0xba</code> |GETLOCAL |Tentative |<a href="https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP" target="_blank" rel="noopener">https://github.com/ethereum/EIPs/blob/606405b5ab7aa28d8191958504e8aad4649666c9/EIPS/eip-615.md[EIP</a> 615] |</p>
-<p>|<code>0xbb</code> - <code>0xe0</code> |Unused |- |- |</p>
-<p>|<code>0xe1</code> |SLOADBYTES |Only referenced in pyethereum |- |-</p>
-<p>|<code>0xe2</code> |SSTOREBYTES |Only referenced in pyethereum |- |-</p>
-<p>|<code>0xe3</code> |SSIZE |Only referenced in pyethereum |- |-</p>
-<p>|<code>0xe4</code> - <code>0xef</code> |Unused |- |- |</p>
-<p>|<code>0xf0</code> |CREATE |Create a new account with associated code |- |32000</p>
-<p>|<code>0xf1</code> |CALL |Message-call into an account |- |Complicated</p>
-<p>|<code>0xf2</code> |CALLCODE |Message-call into this account with alternative account’s code |- |Complicated</p>
-<p>|<code>0xf3</code> |RETURN |Halt execution returning output data |- |0</p>
-<p>|<code>0xf4</code> |DELEGATECALL |Message-call into this account with an alternative account’s code, but persisting into this account with an alternative account’s code |- |Complicated</p>
-<p>|<code>0xf5</code> |CALLBLACKBOX |- |- |40</p>
-<p>|<code>0xf6</code> - <code>0xf9</code> |Unused |- |- |</p>
-<p>|<code>0xfa</code> |STATICCALL |Similar to CALL, but does not modify state |- |40</p>
-<p>|<code>0xfb</code> |CREATE2 |Create a new account and set creation address to <code>sha3(sender + sha3(init code)) % 2**160</code> |- |</p>
-<p>|<code>0xfc</code> |TXEXECGAS |Not in yellow paper FIXME |- |-</p>
-<p>|<code>0xfd</code> |REVERT |Stop execution and revert state changes, without consuming all provided gas and providing a reason |- |0</p>
-<p>|<code>0xfe</code> |INVALID |Designated invalid instruction |- |0</p>
-<p>|<code>0xff</code> |SELFDESTRUCT |Halt execution and register account for later deletion |- |5000*<br>|=======================================================================================================================================================================================================</p>
-<p>Thanks again to <a href="https://github.com/trailofbits/evm-opcodes" target="_blank" rel="noopener">https://github.com/trailofbits/evm-opcodes</a> for their contribution.</p>
+    </head>
+    <body class="light">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
 
-        <div id="react-support-footer-root"></div>
-      </div>
-    </div>
-  </div>
-</div>
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
 
-    
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            document.querySelector('html').classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="preface.html"><strong aria-hidden="true">1.</strong> Предисловие</a></li><li><a href="glossary.html"><strong aria-hidden="true">2.</strong> Глоссарий</a></li><li><a href="1-what-is.html"><strong aria-hidden="true">3.</strong> Что такое Ethereum?</a></li><li><a href="2-intro.html"><strong aria-hidden="true">4.</strong> Введение</a></li><li><a href="3-clients.html"><strong aria-hidden="true">5.</strong> Клиенты</a></li><li><a href="4-keys-addresses.html"><strong aria-hidden="true">6.</strong> Адреса</a></li><li><a href="5-wallets.html"><strong aria-hidden="true">7.</strong> Кошельки</a></li><li><a href="6-transactions.html"><strong aria-hidden="true">8.</strong> Транзакции</a></li><li><a href="7-smart-contracts-solidity.html"><strong aria-hidden="true">9.</strong> Смарт-контракты Solidity</a></li><li><a href="8-smart-contracts-vyper.html"><strong aria-hidden="true">10.</strong> смарт-контракты vyper</a></li><li><a href="9-smart-contracts-security.html"><strong aria-hidden="true">11.</strong> Безопасность смарт контрактов</a></li><li><a href="10-tokens.html"><strong aria-hidden="true">12.</strong> Токены</a></li><li><a href="11-oracles.html"><strong aria-hidden="true">13.</strong> Оракулы</a></li><li><a href="12-dapps.html"><strong aria-hidden="true">14.</strong> Dapp</a></li><li><a href="13-evm.html"><strong aria-hidden="true">15.</strong> EVM</a></li><li><a href="14-consensus.html"><strong aria-hidden="true">16.</strong> Консенсус</a></li><li><a href="appdx-forks-history.html"><strong aria-hidden="true">17.</strong> Доп: История форков</a></li><li><a href="appdx-standards-eip-erc.html"><strong aria-hidden="true">18.</strong> Доп: Стандарты EIP, ERC</a></li><li><a href="appdx-evm-opcodes-gas.html" class="active"><strong aria-hidden="true">19.</strong> Доп: опкоды EVM</a></li><li><a href="appdx-dev-tools.html"><strong aria-hidden="true">20.</strong> Доп: Инструменты разработчика</a></li><li><a href="appdx-web3js-tutorial.html"><strong aria-hidden="true">21.</strong> Доп: Руководство по web3js</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="submenu">
+                                <li><button class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li><button class="theme" id="rust">Rust</button></li>
+                                <li><button class="theme" id="coal">Coal</button></li>
+                                <li><button class="theme" id="navy">Navy</button></li>
+                                <li><button class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                        </div>
+
+                        <h1 class="menu-title">Освоение Ethereum - Mastering Ethereum</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="appdx-evm-opcodes-gas.html#Доп-опкоды-evm" id="Доп-опкоды-evm"><h1>Доп: опкоды EVM</h1></a>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="appdx-standards-eip-erc.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="appdx-dev-tools.html" class="mobile-nav-chapters next" title="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="appdx-standards-eip-erc.html" class="nav-chapters previous" title="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="appdx-dev-tools.html" class="nav-chapters next" title="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
 
 
-    
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if (getComputedStyle(document.querySelector(".fa")).fontFamily !== "FontAwesome") {
+                var link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = '_FontAwesome/css/font-awesome.css';
+                document.head.insertBefore(link, document.head.firstChild)
+            }
+        </script>
 
-    <!-- js vendors -->
-    <script src="//code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/lunr.js/2.1.0/lunr.min.js"></script>
+        
 
-    <!-- js source  -->
-    <script src="/script/doc.js"></script>
+        
 
-    
+        
 
-  </body>
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
 </html>

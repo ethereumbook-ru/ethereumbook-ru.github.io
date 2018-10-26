@@ -1,0 +1,5 @@
+[book]
+multilingual = false
+src = "src"
+title = "Освоение Ethereum - Mastering Ethereum"
+author = "Andreas M. Antonopoulos и Gavin Wood"
