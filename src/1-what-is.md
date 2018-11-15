@@ -5,15 +5,14 @@
 - Переводчик: [Илья Дружинин](https://github.com/ilyadruzhinin)
 - GitHub перевода: [https://github.com/ethereumbook-ru](https://github.com/ethereumbook-ru)
 
-Ethereum часто описывается как "мировой компьютер". Но что же это значит? 
-Let's start with a computer science–focused description, and then try to decipher that with a more practical analysis of Ethereum's capabilities and characteristics, while comparing it to Bitcoin and other decentralized information exchange platforms (or "blockchains" for short).
+Ethereum часто описывается как "мировой компьютер". Но что же это значит?
+Давайте начнем с описания, которое ближе к компьютерным наукам,  а затем постараемся расшифровать используя практический анализ возможностей и характеристик платформы Ethereum. А также сравнивая его с Bitcoin и другими децентрализованными платформами обмена информации (их будем называть блокчейнами).
 
-From a computer science perspective, Ethereum is a deterministic but practically unbounded state machine, consisting of a globally accessible singleton state and a virtual machine that applies changes to that state.
+С точки зрения компьютерных наук, Ethereum это детерминированная, но практически неограниченная машина состояний (state machine), состоящей из глобально доступного singleton состояния и вирутальной машины, которая применяет изменения к этому состоянию.
 
-From a more practical perspective, Ethereum is an open source, globally decentralized computing infrastructure that executes programs called _smart contracts_. It uses a blockchain to synchronize and store the system’s state changes, along with a cryptocurrency called _ether_ to meter and constrain execution resource costs.
+С более практической точки зрения, Ethereum это открытая, глобально децентрализованная вычислительная инфраструктура, которая выполняет программы, которые таже называют _умные контракты_. Он использует блокчейн для синхронизации и сохранения изменений состояния системы, а также криптовалюту, казываемую _эфир (ether)_ для измерения и ограничения расходов вычислительных ресурсов.
 
-Платформа Ethereum позволяет разработчикам создавать мощные, децентрализованные приложения со встроенными экономическими функциями. 
-While providing high availability, auditability, transparency, and neutrality, it also reduces or eliminates censorship and reduces certain counterparty risks.
+Платформа Ethereum позволяет разработчикам создавать мощные, децентрализованные приложения со встроенными экономическими функциями. Обеспечивая высокую доступность, аудитоспособность, прозрачность и нейтральность, Ethereum также уменьшает или устраняет цензуру и уменьшает риски работы с контрагентами.
 
 ## Сравнение с Биткоином
 
