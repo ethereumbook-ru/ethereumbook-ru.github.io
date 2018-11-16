@@ -16,13 +16,13 @@ Ethereum часто описывается как "мировой компьют
 
 ## Сравнение с Биткоином
 
-Many people will come to Ethereum with some prior experience of cryptocurrencies, specifically Bitcoin. Ethereum shares many common elements with other open blockchains: a peer-to-peer network connecting participants, a Byzantine fault-tolerant consensus algorithm for synchronization of state updates (a proof-of-work blockchain), the use of cryptographic primitives such as digital signatures and hashes, and a digital currency (ether).
+Много людей приходят в Ethereum с уже имеющимся опытом в криптовалютах, особенно с Биткоином. В Ethereum'e много общих элементов с другими открытыми блокчейнами: одноранговая коммуникация между участниками, алгоритм консенсуса BFT (Byzantine fault-tolerant) для синхронизации обновлений состояния (т.н. proof-of-work блокчейн), используемые криптографические примитивы, такие как цифровые подписи, хеши и конечно цифровая валюта (эфир).
 
-Yet in many ways, both the purpose and construction of Ethereum are strikingly different from those of the open blockchains that preceded it, including Bitcoin.
+Однако, во многих отношениях, цель и постороение Ethereum'a поразительно отличается от других открытых блокчейнов, которые предшествовали ему, включая Биткоин.
 
-Ethereum's purpose is not primarily to be a digital currency payment network. While the digital currency ether is both integral to and necessary for the operation of Ethereum, ether is intended as a _utility currency_ to pay for use of the Ethereum platform as the world computer.
+Цель Ethereum'a не заключается быть просто сетью цифровой валюты. Хотя цифровая валюта эфир является неотъемлемой и необходимой для работы Ethereum'a. Валюта Ether предназначена является скорее _утилитарной валютой_ , нужная чтобы оплачивать работу на мировом комьютере и его использовать.
 
-Unlike Bitcoin, which has a very limited scripting language, Ethereum is designed to be a general-purpose programmable blockchain that runs a _virtual machine_ capable of executing code of arbitrary and unbounded complexity. Where Bitcoin's Script language is, intentionally, constrained to simple true/false evaluation of spending conditions, Ethereum's language is _Turing complete_, meaning that Ethereum can straightforwardly function as a general-purpose computer.
+В отличии от Биткоина, который имеет очень ограниченный скриптовый язык, Ethereum проектировался как программируемый блокчейн общего назначения, запущенный на _виртуальной машине_ способный исполнять код произвольной и неограниченной сложности. Скриптовый язык Биткоина намеренно ограничивается простыми _true_/_false_ оценками условий расходов, язык Ethereum является _Тьюринг полным_, имея ввиду, что Ethereum может работать как комьютер общего назначения.
 
 ### Компоненты Блокчейна
 
