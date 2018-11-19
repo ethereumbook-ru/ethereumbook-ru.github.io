@@ -28,20 +28,20 @@ Ethereum часто описывается как "мировой компьют
 
 Компоненты открытых, публичных блокчейнов (обычно):
 
-* A peer-to-peer (P2P) network connecting participants and propagating transactions and blocks of verified transactions, based on a standardized "gossip" protocol
-* Messages, in the form of transactions, representing state transitions
-* A set of consensus rules, governing what constitutes a transaction and what makes for a valid state transition
-* A state machine that processes transactions according to the consensus rules
-* A chain of cryptographically secured blocks that acts as a journal of all the verified and accepted state transitions
-* A consensus algorithm that decentralizes control over the blockchain, by forcing participants to cooperate in the enforcement of the consensus rules
-* A game-theoretically sound incentivization scheme (e.g., proof-of-work costs plus block rewards) to economically secure the state machine in an open environment
-* One or more open source software implementations of the above ("clients")
+* Одноранговая (P2P) сеть, соединяющая участников и распространнению транзакций и блоков верифицированных транзакций, основанная на стандартизированном "gossip" протоколе
+* Сообщения в форме транзакции, представляющие изменения состояния
+* Набор правил консенсуса, определяющих, что является транзакцией и что делает возможным правильный пререход состояния из одного в другое
+* Машина состояний, конечный автомат, обрабатывающий транзакции в соотвествии с правилами консенсуса
+* Цепь из криптографически защищеных блоков, которая является своеобразным журналом для всех проверенных и принятых транзакций
+* Консенсусный алгоритм, который обеспечивает децентрализованный контроль над блокчейном, завставляя участников сотрудничать для обеспечения правил консенсуса
+* Теоретически обоснованныя схема стумулирования (например затраты на обеспечение pow консенсуса и награда за блок) экономической защиты машины состояний в открытой среде.
+* Один и более реализаций программного обеспечения с открытым исходным кодом ("клиенты").
 
-All or most of these components are usually combined in a single software client. For example, in Bitcoin, the reference implementation is developed by the _Bitcoin Core_ open source project and implemented as the _bitcoind_ client. In Ethereum, rather than a reference implementation there is a _reference specification_, a mathematical description of the system in the Yellow Paper (see Further Reading). There are a number of clients, which are built according to the reference specification.
+Все или большинство из этих компонентов, обычно, объединено в одном программном клиенте. Для примера, в Биткоине, эталонной реализацией является проект с открытым исходным кодом _Bitcoin Core_ и реализован как _bitcoind_ клиента. В Ethereum, вместо эталонной реализации есть т.н. _reference specification_, математическое описание системы в Желтой Бумаге (Yellow Paper) (см. Further Reading). Существует несколько клиентов, которые построены согласно данной спецификации.
 
-In the past, we used the term "blockchain" to represent all of the components just listed, as a shorthand reference to the combination of technologies that encompass all of the characteristics described. Today, however, there are a huge variety of blockchains with different properties. We need qualifiers to help us understand the characteristics of the blockchain in question, such as _open, public, global, decentralized, neutral,_ and _censorship-resistant_, to identify the important emergent characteristics of a "blockchain" system that these components allow.
+В прошлом, мы использовали термин "blockchain" для представления всех только что перечислиных компонентов, как на комбинация технологий, которые включают все описанные характеристики. Однако, сегодня, существует огромное разнообразие блокчейнов с отличными свойствами. Нам нужны квалификаторы, которые помогут нам понять характетрисики рассматриваемого блоккчейна, например такие как _open, public, global, decentralized, neutral,_ и _censorship-resistant_, для определения важных для блокчейна характеристик, на которые влияют данные компоенты.
 
-Not all blockchains are created equal. When someone tells you that something is a blockchain, you have not received an answer; rather, you need to start asking a lot of questions to clarify what they mean when they use the word "blockchain." Start by asking for a description of the components in the preceding list, then ask whether this "blockchain" exhibits the characteristics of being _open, public_, etc.
+Не все блокчейны созданы равными. Когда кто-то говорит вам. что что-то является блокчейном, вы скорее всего не получите ответа, вам необходимо задать множество вопросов, чтобы уточнить, что они означают, когда они использубт слово "блокчейн". Начните с вопроса про описание компонентов в предыдущем списке, затем спросите обладает ли этот блокчейн характеристиками _open, public_, и так далее.
 
 ### Рождение Ethereum
 
