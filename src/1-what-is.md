@@ -49,27 +49,26 @@ Ethereum часто описывается как "мировой компьют
 
 К концу 2013 года, Виталик Бутерин, юный программист и энтузиаст биткоинов, начал думать о дальнейшем расширении возможностей Bitcoin и Mastercoin (для наложения протокола, который расширил биткоин, предалгающие рудиментарные умные контракты). В октябре того года, Виталик предложил более обощенный подход к команде Mastercoin, один из которых позщволяет гибкий и доступный скриптовые (но не Тьюринг полные) контракты для замены специализирлованно языка контрактов в Mastercoin. В то время, пока команда Mastercoin была впечатлена, это предложение было слишком радикально, чтобы вписаться в их план развития.
 
-In December 2013, Vitalik started sharing a whitepaper that outlined the idea behind Ethereum: a Turing-complete, general-purpose blockchain. A few dozen people saw this early draft and offered feedback, helping Vitalik evolve the proposal.
+В декабре 2013, Виталик начал делиться своей белой ьумагой, в которой была изложена идея Ethereum: Тьюринг-полный, блокчейн общего назначения. Несколько десятков человек увидили ранный вариант и дали свой фдбек, помогая Виталику разработать приложение.
 
-Both of the authors of this book received an early draft of the whitepaper and commented on it. Andreas M. Antonopoulos was intrigued by the idea and asked Vitalik many questions about the use of a separate blockchain to enforce consensus rules on smart contract execution and the implications of a Turing-complete language. Andreas continued to follow Ethereum's progress with great interest but was in the early stages of writing his book _Mastering Bitcoin_, and did not participate directly in Ethereum until much later. Gavin Wood, however, was one of the first people to reach out to Vitalik and offer to help with his C++ programming skills. Gavin became Ethereum's cofounder, codesigner, and CTO.
+Оба автора этой книги получили ранний вариант документа и прокоментировали его. Andreas M. Antonopoulos был заинтригован идеей и задал Виталику множество вопросов о испольщовании отдельного блокчейна для обеспечения соблюдения правил консенсуса при исполнении умных контрактов и реализации Тьюринг полного языка. Andreas с большим интересом продолжил следить за развитием Ethereum, но был занят написанием книги _Mastering Bitcoin_, поэтому не принимал непосредственного участия позже. Gavin Wood, однако, был один из первых людей, кто обратился к Виталику и предложил ему помощь со своими навыками программирования на C++. Gavin стал соучередителем, разработчиком и техническим директором Ethereum'а.
 
-As Vitalik recounts in his ["Ethereum Prehistory" post](https://vitalik.ca/general/2017/09/14/prehistory.html): 
+Как говорит Виталик в своём [посте "Ethereum Предыстория"](https://vitalik.ca/general/2017/09/14/prehistory.html): 
 
-    This was the time when the Ethereum protocol was entirely my own creation. From here on, however, new participants started to join the fold. By far the most prominent on the protocol side was Gavin Wood...
+    Это было время, когда протокол Ethereum был полностью моим собственным творением. С этого момента, однако, новые участники начали объединяться. Самым выдающимся со стороны протокола был Gavin Wood...
 
-    Gavin can also be largely credited for the subtle change in vision from viewing Ethereum as a platform for building programmable money, with blockchain-based contracts that can hold digital assets and transfer them according to pre-set rules, to a general-purpose computing platform. This started with subtle changes in emphasis and terminology, and later this influence became stronger with the increasing emphasis on the “Web 3” ensemble, which saw Ethereum as being one piece of a suite of decentralized technologies, the other two being Whisper and Swarm.
+    Gavin также может быть в ряды тех, кто повлиял на общую философию Ethereum, как на платформу программируемых денег с основанными на блокчейне контрактами, которые могут хранить цифровые активы и передавать их с заранее установленными правилами в универсальной вычислительной платформе. Это началось с тонких изменений в концептах и терминологии, и позже это влияние усилилось с увелицением акцента на “Web 3”, в котором Ethereum представлял собой одну из частей набор децентрализованных технологий, а два других Whisper и Swarm.
 
-Starting in December 2013, Vitalik and Gavin refined and evolved the idea, together building the protocol layer that became Ethereum.
+Начиная с декабря 2013, Виталик и Gavin усовершенствовали и развили идею, вместе создавая протокольный уровень, который и стал Ethereum.
 
-Ethereum's founders were thinking about a blockchain without a specific purpose, that could support a broad variety of applications by being _programmed_. The idea was that by using a general-purpose blockchain like Ethereum, a developer could program their particular application without having to implement the underlying mechanisms of peer-to-peer networks, blockchains, consensus algorithms, etc. The Ethereum platform was designed to abstract these details and provide a deterministic and secure programming environment for decentralized blockchain applications.
+Основатели Ethereum думали о блокчейне без конкретной цели, который могу бы поддерживать широкий спектр приложений, будучи _программируеммым_. Идея заключалась в том, что используя блокчейн общего назначения, такой как Ethereum, разработчик может запрограммирование своё конкретногое приложение бещ реализации нижележащих механизмов, например одноранговой сети, блокчейнв, алгоритмов консенсуа и так далее. Платформа Ethereum была спректрована, чтобы абстрагировать эти детали и предоставить детерминированную и безопасную среду программирования для децентрализованных блокчейн приложений.
 
-Much like Satoshi, Vitalik and Gavin didn't just invent a new technology; they combined new inventions with existing technologies in a novel way and delivered the prototype code to prove their ideas to the world.
+Подобно Satoshi, Виталик и Gavin не просто изобрели новую технологию, они по новому соеденили новые изобретения с существующими технологиями и сделали прототип для проверки идемонстрации своих идей миру.
 
-The founders worked for years, building and refining the vision. And on July 30, 2015, the first Ethereum block was mined. The world's computer started serving the world.
+Основатели работали годы и уточняли видение. И 30 июля 2015, первый Ethereum блок был смайнен. Мировой компьютер начал служить миру.
 
-__Заметка__ \
-Vitalik Buterin's article "A Prehistory of Ethereum" was published in September 2017 and provides a fascinating first-person view of Ethereum's earliest moments.\
-You can read it at [https://vitalik.ca/general/2017/09/14/prehistory.html](https://vitalik.ca/general/2017/09/14/prehistory.html).
+__Заметка__ 
+Статья Виталика Бутерина "Предыстория Ethereum'a" была опубликвана в Сентябре 2017 и показывает захватывающий вид от первого лица о самых ранних моментах Ethereum'а. Вы можете прочитать её здесь: [https://vitalik.ca/general/2017/09/14/prehistory.html](https://vitalik.ca/general/2017/09/14/prehistory.html).
 
 ### Четыре стадии разработки Ethereum
 
