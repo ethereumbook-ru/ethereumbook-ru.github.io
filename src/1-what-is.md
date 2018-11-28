@@ -72,33 +72,33 @@ __Заметка__
 
 ### Четыре стадии разработки Ethereum
 
-Ethereum's development was planned over four distinct stages, with major changes occurring at each stage. A stage may include subreleases, known as "hard forks," that change functionality in a way that is not backward compatible.
+Развитие Ethereum'а запланировано на четыре различных стадии, причем в каждой стадии происходят значительные изменения. Стадия может включать подрелизы, известные как "жесткие форки", которые изменяют функциональность таким образом, что они становятся обратно несовместимыми.
 
-The four main development stages are codenamed _Frontier_, _Homestead_, _Metropolis_, and _Serenity_. The intermediate hard forks that have occurred (or are planned) to date are codenamed _Ice Age_, _DAO_, _Tangerine Whistle_, _Spurious Dragon_, _Byzantium_, and _Constantinople_. Both the development stages and the intermediate hard forks are shown on the following timeline, which is "dated" by  block number:
+Четыре основных этапа разработки имеют кодовые имена - _Frontier_, _Homestead_, _Metropolis_, и _Serenity_. Промежуточные жесткие форки, которые произошли (или запланированны) имеют кодовые названия _Ice Age_, _DAO_, _Tangerine Whistle_, _Spurious Dragon_, _Byzantium_, и _Constantinople_. Как и стадии разработки, так и промежуточные жесткие форки показаны на следющей временной шкале, которая датируется номером блока:
 
 
 __Block #0__\
-*Frontier* -- The initial stage of Ethereum, lasting from July 30, 2015, to March 2016.
+*Frontier* -- начальный этап Ethereum, который длился с 30 июля 2015 по март 2016.
 
 __Block #200,000__\
-*Ice Age* -- A hard fork to introduce an exponential difficulty increase, to motivate a transition to PoS when ready.
+*Ice Age* -- Жесткий форк для увеличения экспонциональной сложности, чтобы мотивировать переход на PoS, когда он будет готов.
 
 __Block #1,150,000__\
-*Homestead* -- The second stage of Ethereum, launched in March 2016.
+*Homestead* -- Вторая стадия Ethereum, запущен в марте 2016.
 
 __Block #1,192,000__\
-*DAO* -- A hard fork that reimbursed victims of the hacked DAO contract and caused Ethereum and Ethereum Classic to split into two competing systems.
+*DAO* -- Жетский форк, который возместил средства жертвам взломанного контракта DAO и разделил Ethereum и Ethereum Classic на две конкурирующие системы.
 
 __Block #2,463,000__\
-*Tangerine Whistle* -- A hard fork to change the gas calculation for certain I/O-heavy operations and to clear the accumulated state from a denial-of-service (DoS) attack that exploited the low gas cost of those operations.
+*Tangerine Whistle* -- Жесткий форк, который изменит расчет газа для определенных операций ввода и вывода и очистит накопленное состояние от атаки denial-of-service (DoS), которая использовала низкую стоимость газа для этой атаки.
 
 __Block #2,675,000__\
-*Spurious Dragon* -- A hard fork to address more DoS attack vectors, and another state clearing. Also, a replay attack protection mechanism.
+*Spurious Dragon* -- Жесткий форк, чтобы различные векторы DoS атак и другие очистки состояния. Кроме того, механизм защиты от повторных атак.
 
 __Block #4,370,000__\
-*Metropolis Byzantium* -- Metropolis is the third stage of Ethereum, current at the time of writing this book, launched in October 2017. Byzantium is the first of two hard forks planned for Metropolis.
+*Metropolis Byzantium* -- Метрополис это третяя стадия развития Ethereum, существующий на момент написания данной книги, запущен в октябре 2017. Byzantium это первый из двух жетских форков, запланированных для Metropolis.
 
-After Byzantium, there is one more hard fork planned for Metropolis: Constantinople. Metropolis will be followed by the final stage of Ethereum's deployment, codenamed Serenity.
+После Byzantium в Metropolis есть ещё один жесткий форк: Constantinople. За Metropolis последует заключительный этап развития Ethereum под кодовым названием Serenity.
 
 ### Ethereum: главная цель блокчейна
 
