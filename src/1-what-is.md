@@ -108,16 +108,16 @@ Ethereum is also a distributed state machine. But instead of tracking only the s
 
 ### Компоненты Ethereum'a
 
-In Ethereum, the components of a blockchain system described in `Compopnents of a Blockchain` are, more specifically:
+В Ethereum, компоненты блокчейн системы описаны в `Blockchain компоненты` и особенно:
 
 __P2P сеть__\
-Ethereum runs on the _Ethereum main network_, which is addressable on TCP port 30303, and runs a protocol called _ÐΞVp2p_.
+Ethereum запускается на _Ethereum main network_, который адресуется на TCP порт 30303 и запускает протокол с именем _ÐΞVp2p_.
 
 __Правила консенсуса__\
-Ethereum's consensus rules are defined in the reference specification, the Yellow Paper (see `Further Reading`).
+Правила консенсуса Ethereum описаны в спецификации the Yellow Paper (см.see `Дополнительное чтение`).
 
 __Транзакции__\
-Ethereum transactions are network messages that include (among other things) a sender, recipient, value, and data payload.
+Транзакции Ethereum представляют собой сетевые сообщения, которые включают (помимо всего прочего) отправителя, получателя, значение и полезную нагрузку.
 
 __State machine__\
 Ethereum state transitions are processed by the _Ethereum Virtual Machine_ (EVM), a stack-based virtual machine that executes _bytecode_ (machine-language instructions). EVM programs, called "smart contracts," are written in high-level languages (e.g., Solidity) and compiled to bytecode for execution on the EVM.
@@ -138,7 +138,7 @@ Ethereum has several interoperable implementations of the client software, the m
 
 The following references provide additional information on the technologies mentioned here:
 
-* The Ethereum Yellow Paper: https://ethereum.github.io/yellowpaper/paper.pdf
+* Желтая бумага Ethereum: https://ethereum.github.io/yellowpaper/paper.pdf
 * The Beige Paper, a rewrite of the Yellow Paper for a broader audience in less formal language: https://github.com/chronaeon/beigepaper
 * ÐΞVp2p network protocol: https://github.com/ethereum/wiki/wiki/%C3%90%CE%9EVp2p-Wire-Protocol
 * Ethereum Virtual Machine list of resources: https://github.com/ethereum/wiki/wiki/Ethereum-Virtual-Machine-(EVM)-Awesome-List
@@ -146,8 +146,8 @@ The following references provide additional information on the technologies ment
 * Merkle Patricia trees: https://github.com/ethereum/wiki/wiki/Patricia-Tree
 * Ethash PoW algorithm: https://github.com/ethereum/wiki/wiki/Ethash
 * Casper PoS v1 Implementation Guide: https://github.com/ethereum/research/wiki/Casper-Version-1-Implementation-Guide
-* Go-Ethereum (Geth) client: https://geth.ethereum.org/
-* Parity Ethereum client: https://parity.io/
+* Клиент Go-Ethereum (Geth): https://geth.ethereum.org/
+* Клиент Parity Ethereum: https://parity.io/
 
 ### Ethereum и полнота по Тьюрингу
 
