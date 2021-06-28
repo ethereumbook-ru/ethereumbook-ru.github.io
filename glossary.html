@@ -1,25 +1,30 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js">
+<html lang="en" class="sidebar-visible no-js light">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Глоссарий - Освоение Ethereum - Mastering Ethereum</title>
+                
+
+        <!-- Custom HTML head -->
+        
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
+                <link rel="icon" href="favicon.svg">
+                        <link rel="shortcut icon" href="favicon.png">
+                <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
         <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
-
+                <link rel="stylesheet" href="css/print.css" media="print">
+        
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
-
+                <link rel="stylesheet" href="fonts/fonts.css">
+        
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
@@ -27,12 +32,13 @@
 
         <!-- Custom theme stylesheets -->
         
-
-        
-    </head>
-    <body class="light">
+            </head>
+    <body>
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">var path_to_root = "";</script>
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
@@ -53,10 +59,13 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
-            if (theme === null || theme === undefined) { theme = 'light'; }
-            document.body.className = theme;
-            document.querySelector('html').className = theme + ' js';
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
@@ -72,50 +81,49 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="preface.html"><strong aria-hidden="true">1.</strong> Предисловие</a></li><li><a href="glossary.html" class="active"><strong aria-hidden="true">2.</strong> Глоссарий</a></li><li><a href="1-what-is.html"><strong aria-hidden="true">3.</strong> Что такое Ethereum?</a></li><li><a href="2-intro.html"><strong aria-hidden="true">4.</strong> Введение</a></li><li><a href="3-clients.html"><strong aria-hidden="true">5.</strong> Клиенты</a></li><li><a href="4-keys-addresses.html"><strong aria-hidden="true">6.</strong> Адреса</a></li><li><a href="5-wallets.html"><strong aria-hidden="true">7.</strong> Кошельки</a></li><li><a href="6-transactions.html"><strong aria-hidden="true">8.</strong> Транзакции</a></li><li><a href="7-smart-contracts-solidity.html"><strong aria-hidden="true">9.</strong> Смарт-контракты Solidity</a></li><li><a href="8-smart-contracts-vyper.html"><strong aria-hidden="true">10.</strong> смарт-контракты vyper</a></li><li><a href="9-smart-contracts-security.html"><strong aria-hidden="true">11.</strong> Безопасность смарт контрактов</a></li><li><a href="10-tokens.html"><strong aria-hidden="true">12.</strong> Токены</a></li><li><a href="11-oracles.html"><strong aria-hidden="true">13.</strong> Оракулы</a></li><li><a href="12-dapps.html"><strong aria-hidden="true">14.</strong> Dapp</a></li><li><a href="13-evm.html"><strong aria-hidden="true">15.</strong> EVM</a></li><li><a href="14-consensus.html"><strong aria-hidden="true">16.</strong> Консенсус</a></li><li><a href="appdx-forks-history.html"><strong aria-hidden="true">17.</strong> Доп: История форков</a></li><li><a href="appdx-standards-eip-erc.html"><strong aria-hidden="true">18.</strong> Доп: Стандарты EIP, ERC</a></li><li><a href="appdx-evm-opcodes-gas.html"><strong aria-hidden="true">19.</strong> Доп: опкоды EVM</a></li><li><a href="appdx-dev-tools.html"><strong aria-hidden="true">20.</strong> Доп: Инструменты разработчика</a></li><li><a href="appdx-web3js-tutorial.html"><strong aria-hidden="true">21.</strong> Доп: Руководство по web3js</a></li></ol>
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="preface.html"><strong aria-hidden="true">1.</strong> Предисловие</a></li><li class="chapter-item expanded "><a href="glossary.html" class="active"><strong aria-hidden="true">2.</strong> Глоссарий</a></li><li class="chapter-item expanded "><a href="1-what-is.html"><strong aria-hidden="true">3.</strong> Что такое Ethereum?</a></li><li class="chapter-item expanded "><a href="2-intro.html"><strong aria-hidden="true">4.</strong> Введение</a></li><li class="chapter-item expanded "><a href="3-clients.html"><strong aria-hidden="true">5.</strong> Клиенты</a></li><li class="chapter-item expanded "><a href="4-keys-addresses.html"><strong aria-hidden="true">6.</strong> Адреса</a></li><li class="chapter-item expanded "><a href="5-wallets.html"><strong aria-hidden="true">7.</strong> Кошельки</a></li><li class="chapter-item expanded "><a href="6-transactions.html"><strong aria-hidden="true">8.</strong> Транзакции</a></li><li class="chapter-item expanded "><a href="7-smart-contracts-solidity.html"><strong aria-hidden="true">9.</strong> Смарт-контракты Solidity</a></li><li class="chapter-item expanded "><a href="8-smart-contracts-vyper.html"><strong aria-hidden="true">10.</strong> смарт-контракты vyper</a></li><li class="chapter-item expanded "><a href="9-smart-contracts-security.html"><strong aria-hidden="true">11.</strong> Безопасность смарт контрактов</a></li><li class="chapter-item expanded "><a href="10-tokens.html"><strong aria-hidden="true">12.</strong> Токены</a></li><li class="chapter-item expanded "><a href="11-oracles.html"><strong aria-hidden="true">13.</strong> Оракулы</a></li><li class="chapter-item expanded "><a href="12-dapps.html"><strong aria-hidden="true">14.</strong> Dapp</a></li><li class="chapter-item expanded "><a href="13-evm.html"><strong aria-hidden="true">15.</strong> EVM</a></li><li class="chapter-item expanded "><a href="14-consensus.html"><strong aria-hidden="true">16.</strong> Консенсус</a></li><li class="chapter-item expanded "><a href="appdx-forks-history.html"><strong aria-hidden="true">17.</strong> Доп: История форков</a></li><li class="chapter-item expanded "><a href="appdx-standards-eip-erc.html"><strong aria-hidden="true">18.</strong> Доп: Стандарты EIP, ERC</a></li><li class="chapter-item expanded "><a href="appdx-evm-opcodes-gas.html"><strong aria-hidden="true">19.</strong> Доп: опкоды EVM</a></li><li class="chapter-item expanded "><a href="appdx-dev-tools.html"><strong aria-hidden="true">20.</strong> Доп: Инструменты разработчика</a></li><li class="chapter-item expanded "><a href="appdx-web3js-tutorial.html"><strong aria-hidden="true">21.</strong> Доп: Руководство по web3js</a></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                 
-                <div id="menu-bar" class="menu-bar">
-                    <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
-                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                                <i class="fa fa-paint-brush"></i>
-                            </button>
-                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                            </ul>
-                            
-                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            
-                        </div>
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
 
-                        <h1 class="menu-title">Освоение Ethereum - Mastering Ethereum</h1> 
+                    <h1 class="menu-title">Освоение Ethereum - Mastering Ethereum</h1>
 
-                        <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
-                                <i id="print-button" class="fa fa-print"></i>
-                            </a>
-                        </div>
+                    <div class="right-buttons">
+                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        
                     </div>
                 </div>
 
-                
-                <div id="search-wrapper" class="hidden">
+                                <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -124,7 +132,6 @@
                     </div>
                 </div>
                 
-
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -136,7 +143,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#aКраткий-глоссарий" id="aКраткий-глоссарий"><h1>Краткий глоссарий</h1></a>
+                        <h1 id="Краткий-глоссарий"><a class="header" href="#Краткий-глоссарий">Краткий глоссарий</a></h1>
 <ul>
 <li>Дата актуальности: ноябрь 2018</li>
 <li><a href="https://github.com/ethereumbook/ethereumbook/blob/develop/01what-is.asciidoc">Англоязычный исходник</a></li>
@@ -144,7 +151,7 @@
 <li>GitHub перевода: <a href="https://github.com/ethereumbook-ru">https://github.com/ethereumbook-ru</a></li>
 </ul>
 <p>Этот краткий глоссарий содержит множество терминов используемых в сообществе и экосистеме Ethereum. Эти термины используются на протяжении всей книги, так что сделайте закладку на глоссарии, чтобы обращаться за справкой.</p>
-<p><strong><em>Аккаунт (Account)</em></strong> <br />
+<p><em><strong>Аккаунт (Account)</strong></em> <br />
 Этот объект содержит <code>адрес (address)</code>, <code>баланс (balance)</code>, <code>нонс (nonce)</code>, дополнительное хранилище и код. Аккаунтом может быть аккаунт смарт-контракта или EOA (внешние аккаунты).</p>
 <p><strong>Адрес (Address)</strong> <br />
 В большинстве своём, адрес представляет из себя EOA или смарт-контракт, который может принимать (как адрес назначения) или отправлять (как адрес отправителя) транзакции в блокчейн. Если говорить более конкретно, это крайних правых 160 бит хеша Keccak у ECDSA публичного ключа.</p>
@@ -263,7 +270,7 @@ Mastering Ethereum Token. ERC20 токен используемый для де�
 <p><strong>Майнер (Miner)</strong> <br />
 Узел сети, который ищет валидый новый блок, посредством перебора хешей.</p>
 <p><strong>Мист (Mist)</strong> <br />
-<em>TODO: доперевести</em> Mist первый браузер сети Ethereum, создаваемый Ethereum Foundation. It also contains a browser based wallet that was the first ever implementation of the ERC20 token standard (Fabian Vogelsteller, author of ERC20 was also the main developer in Mist). Mist was also the first wallet to introduce the camelCase checksum (EIP-155, see &lt;&lt;eip-155&gt;&gt;). Mist runs a full node, and offers a full DApp browser with support for Swarm based storage and ENS addresses.&lt;/eip-155&gt;</p>
+<em>TODO: доперевести</em> Mist первый браузер сети Ethereum, создаваемый Ethereum Foundation. It also contains a browser based wallet that was the first ever implementation of the ERC20 token standard (Fabian Vogelsteller, author of ERC20 was also the main developer in Mist). Mist was also the first wallet to introduce the camelCase checksum (EIP-155, see &lt;<eip-155>&gt;). Mist runs a full node, and offers a full DApp browser with support for Swarm based storage and ENS addresses.</eip-155></p>
 <p><strong>Сеть (Network)</strong> <br />
 Одноранговая сеть, по которой распространяются транзакции и блоки в каждый Ethereum узел (участник сети).</p>
 <p><strong>Узел (Node)</strong> <br />
@@ -291,12 +298,10 @@ Paralysis Proofs помогают справится с распростране
 <p><strong>Reentrancy Attack</strong> <br />
 Эта атака может быть воспроизведена, когда атакующий контракт вызывает функцию контракта жертвы, назовем её <code>victim.withdraw()</code>, таким образом, чтобы до завершения первоначального вызова этой функции контракта, он снова вызвал метод <code>victim.withdraw()</code> который продолжает рекурсивно вызывать себя. Этот рекурсивный вызов может быть реализован в <code>fallback</code> функции атакующего контракта. Единственный трюк, который должен выполнить атакующий - это разбить этот рекурсивный вызов до истечения срока действия газа, потому что иначе краденый эфир можно вернуть.</p>
 <p><strong>Require</strong> <br />
-В Солидити, <code>require(false)</code> компилируется в <code>0xfd</code> который является кодом операции <code>REVERT</code>. Инструкция REVERT предоставляет возможность остановить выполнение и вернуть изменения состояния, не потребляя весь предоставленный газ и возможность вернуть причину.</p>
-<ul>
-<li>Функция require должна использоваться для обеспечения допустимых условий, таких как входные данные или переменные состояния контракта или для проверки возвращаемых значений из вызовов внешних контрактов.</li>
-<li>До обновления сети Byzantium было два практических способа возврата транзакций: запуск <code>out of gas</code> или выполнение неверной инструкции. Оба эти варианта потребляли оставшийся газ.</li>
-<li>когда вы просматриваете этот код операции в <code>Yellow Paper</code> до обновления сети <code>Byzantium</code>, вы не сможете найти его, потому что для этого кода операции не было никакой спецификации, когда EVM достигала её, она выбрасывала ошибку <code>invalid opcode error</code>.</li>
-</ul>
+В Солидити, <code>require(false)</code> компилируется в <code>0xfd</code> который является кодом операции <code>REVERT</code>. Инструкция REVERT предоставляет возможность остановить выполнение и вернуть изменения состояния, не потребляя весь предоставленный газ и возможность вернуть причину.
++ Функция require должна использоваться для обеспечения допустимых условий, таких как входные данные или переменные состояния контракта или для проверки возвращаемых значений из вызовов внешних контрактов.
++ До обновления сети Byzantium было два практических способа возврата транзакций: запуск <code>out of gas</code> или выполнение неверной инструкции. Оба эти варианта потребляли оставшийся газ.
++ когда вы просматриваете этот код операции в <code>Yellow Paper</code> до обновления сети <code>Byzantium</code>, вы не сможете найти его, потому что для этого кода операции не было никакой спецификации, когда EVM достигала её, она выбрасывала ошибку <code>invalid opcode error</code>.</p>
 <p><strong>Revert</strong> <br />
 Используйте <code>revert()</code> когда вам нужно обрабатывать ситуации такого же типа, как &lt;&lt;require-sentence, require()&gt;&gt; но с наиболее сложной логикой. Для экземпляров, если ваш код имеет некоторый вложенный логический поток if/else, то вы обнаружите, что имеет смысл использовать &lt;&lt;require-sentence, require()&gt;&gt; вместо require().</p>
 <p><strong>Награда (Reward)</strong> <br />
@@ -357,59 +362,49 @@ Gavin Wood британский программист, который явля�
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
-                            <a rel="prev" href="preface.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                                    <a rel="prev" href="preface.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
-
-                        
-                            <a rel="next" href="1-what-is.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                                    <a rel="next" href="1-what-is.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
-
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
-                    <a href="preface.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                    <a rel="prev" href="preface.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
-
-                
-                    <a href="1-what-is.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                    <a rel="next" href="1-what-is.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
-            </nav>
+                            </nav>
 
         </div>
 
         
-
         
-
         
-
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
         
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        
+                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
         
-
         <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         
-
         
-
     </body>
 </html>
