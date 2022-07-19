@@ -1,0 +1,403 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Глоссарий - Осваиваем Ethereum - Mastering Ethereum</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Руководство по Ethereum и разработке смарт-контрактов">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="1_предисловие.html">Предисловие</a></li><li class="chapter-item expanded affix "><a href="2_глоссарий.html" class="active">Глоссарий</a></li><li class="chapter-item expanded affix "><li class="part-title">Книга</li><li class="chapter-item expanded "><a href="kniga/что_такое_ethereum.html"><strong aria-hidden="true">1.</strong> Что такое Ethereum?</a></li><li class="chapter-item expanded "><a href="kniga/введение.html"><strong aria-hidden="true">2.</strong> Введение</a></li><li class="chapter-item expanded "><a href="kniga/клиенты.html"><strong aria-hidden="true">3.</strong> Клиенты</a></li><li class="chapter-item expanded "><a href="kniga/ключи_и_адреса.html"><strong aria-hidden="true">4.</strong> Ключи и адреса</a></li><li class="chapter-item expanded "><a href="kniga/кошельки.html"><strong aria-hidden="true">5.</strong> Кошельки</a></li><li class="chapter-item expanded "><a href="kniga/транзакции.html"><strong aria-hidden="true">6.</strong> Транзакции</a></li><li class="chapter-item expanded "><a href="kniga/смарт_контракты_на_solidity.html"><strong aria-hidden="true">7.</strong> Смарт-контракты на Solidity</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Смарт-контракты на Vyper</div></li><li class="chapter-item expanded "><a href="kniga/безопаность_смарт_контрактов.html"><strong aria-hidden="true">9.</strong> Безопаность смарт-контрактов</a></li><li class="chapter-item expanded "><a href="kniga/токены.html"><strong aria-hidden="true">10.</strong> Токены</a></li><li class="chapter-item expanded "><a href="kniga/оракулы.html"><strong aria-hidden="true">11.</strong> Оракулы</a></li><li class="chapter-item expanded "><a href="kniga/децентрализованные_приложения.html"><strong aria-hidden="true">12.</strong> Децентрализованные приложения</a></li><li class="chapter-item expanded "><a href="kniga/виртуальная_машина_ethereum.html"><strong aria-hidden="true">13.</strong> Виртуальная машина Ethereum</a></li><li class="chapter-item expanded "><a href="kniga/консенсус.html"><strong aria-hidden="true">14.</strong> Консенсус</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Доп 1. История ветвлений</div></li><li class="chapter-item expanded "><a href="kniga/дополнение_2_стандарты_eip_erc.html"><strong aria-hidden="true">16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li class="chapter-item expanded "><a href="kniga/дополнение_3_коды_evm_и_gas.html"><strong aria-hidden="true">17.</strong> Доп 3. Коды EVM и газ</a></li><li class="chapter-item expanded "><a href="kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong aria-hidden="true">18.</strong> Доп 4. Инструменты разработчика</a></li><li class="chapter-item expanded "><a href="kniga/дополнение_5_руководство_по_web3js.html"><strong aria-hidden="true">19.</strong> Доп 5. Руководство по web3js</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="support.html">Поддержка проекта</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Осваиваем Ethereum - Mastering Ethereum</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="Краткий-глоссарий"><a class="header" href="#Краткий-глоссарий">Краткий глоссарий</a></h1>
+<p>Этот глоссарий содержит часто используемые термины в Ethereum сообществе. Эти термины используются во всей книге, поэтому занесите его в закладки для быстрого поиска.</p>
+<h2 id="account-счет"><a class="header" href="#account-счет">Account (счет)</a></h2>
+<p>Объект, содержащий адрес, баланс, nonce, а также необязательные хранилище и код. Счет может быть счетом контракта или счетом, принадлежащим внешнему владельцу (EOA, externally owned account).</p>
+<h2 id="address-адрес"><a class="header" href="#address-адрес">Address (адрес)</a></h2>
+<p>В самом общем случае представляет собой EOA или контракт, который может принимать (адрес получателя) или отправлять (адрес отправителя) транзакции. Более конкретно, это крайние правые 160 бит хэша (см. Keccak) открытого ключа (см. ECDSA).</p>
+<h2 id="assert"><a class="header" href="#assert">Assert</a></h2>
+<p>В Solidity <em>assert(false)</em> компилируется в <strong>0xfe</strong>, недопустимый опкод, который расходует весь оставшийся газ и отменяет все изменения. Если оператор <em>assert()</em> не срабатывает, значит, происходит что-то неправильное, непредусмотренное или неожиданное. Поэтому вам необходимо исправить свой код. Вы должны использовать assert(), чтобы избегать ситуаций, которые никогда не должны возникать.</p>
+<h2 id="От-старшего-к-младшему-big-endian"><a class="header" href="#От-старшего-к-младшему-big-endian">От старшего к младшему (Big-endian)</a></h2>
+<p>Позиционное представление чисел, при котором старший разряд стоит первым. Противоположность little-endian, где первой стоит младшая цифра.</p>
+<h2 id="Предложение-по-улучшению-Биткоина-bitcoin-improvement-proposals-bip"><a class="header" href="#Предложение-по-улучшению-Биткоина-bitcoin-improvement-proposals-bip">Предложение по улучшению Биткоина (Bitcoin Improvement Proposals, BIP)</a></h2>
+<p>Набор предложений, которые сделали участники сообщества Биткойн для улучшения Биткойна. Например, BIP-21 - это предложение по улучшению схемы унифицированного идентификатора ресурсов (URI) Биткойна.</p>
+<h2 id="Блок-block"><a class="header" href="#Блок-block">Блок (block)</a></h2>
+<p>Набор необходимой информации (заголовок блока) о входящих в блок транзакциях, а также набор других заголовков блока, известных как оммеры. Блоки добавляются в сеть Ethereum майнерами.</p>
+<h2 id="Блокчейн-blockchain"><a class="header" href="#Блокчейн-blockchain">Блокчейн (blockchain)</a></h2>
+<p>В Ethereum - последовательность блоков, подтвержденных системой доказательств выполнения работы (proof of work), каждый из которых связан со своим предшественником вплоть до первоначального блока. Отличие от протокола Bitcoin в том, что в нем нет ограничения на размер блока; вместо этого используются различные ограничения на газ.</p>
+<h2 id="Байткод-bytecode"><a class="header" href="#Байткод-bytecode">Байткод (bytecode)</a></h2>
+<p>Абстрактный набор инструкций, предназначенный для эффективного выполнения программным интерпретатором или виртуальной машиной. В отличие от человекочитаемого исходного кода, байткод выражается в числовом формате.</p>
+<h2 id="Византийское-разветвление"><a class="header" href="#Византийское-разветвление">Византийское разветвление</a></h2>
+<p>Первый из двух жестких разветвлений на стадии разработки Metropolis. Он включал EIP-649: Metropolis Difficulty Bomb Delay и Block Reward Reduction, где Ледниковый период (см. ниже) был отложен на 1 год, а вознаграждение за блок было уменьшено с 5 до 3 eth.</p>
+<h2 id="Компиляция"><a class="header" href="#Компиляция">Компиляция</a></h2>
+<p>Преобразование кода, написанного на языке программирования высокого уровня (например, Solidity), в язык более низкого уровня (например, байткод EVM).</p>
+<h2 id="Консенсус"><a class="header" href="#Консенсус">Консенсус</a></h2>
+<p>Ситуация когда множество узлов - обычно большинство узлов в сети - имеют одинаковые блоки в локально проверенном блокчейне. Не следует путать с правилами консенсуса.</p>
+<h2 id="Правила-консенсуса"><a class="header" href="#Правила-консенсуса">Правила консенсуса</a></h2>
+<p>Правила проверки блоков, которым следуют полные узлы, чтобы оставаться в консенсусе с другими узлами. Не следует путать с консенсусом.</p>
+<h2 id="Константинопольское-разветвление"><a class="header" href="#Константинопольское-разветвление">Константинопольское разветвление</a></h2>
+<p>Вторая часть этапа Metropolis, первоначально запланированная на середину 2018 года. Ожидается, что среди прочих изменений будет переход на гибридный алгоритм консенсуса proof-of-work/proof-of-stake.</p>
+<h2 id="Счёт-смарт-контракта-contract-account"><a class="header" href="#Счёт-смарт-контракта-contract-account">Счёт смарт-контракта (Contract account)</a></h2>
+<p>Счет, содержащий код, который выполняется всякий раз, когда он получает транзакцию от другого счета (EOA или контракта).</p>
+<h2 id="Транзакция-создания-контракта"><a class="header" href="#Транзакция-создания-контракта">Транзакция создания контракта</a></h2>
+<p>Специальная транзакция с &quot;нулевым адресом&quot; в качестве получателя, которая используется для регистрации контракта и записи его в блокчейн Ethereum (см. &quot;нулевой адрес&quot;).</p>
+<h2 id="Децентрализованная-автономная-организация-decentralized-autonomous-organization-dao"><a class="header" href="#Децентрализованная-автономная-организация-decentralized-autonomous-organization-dao">Децентрализованная автономная организация (Decentralized Autonomous Organization, DAO)</a></h2>
+<p>Компания или другая организация, которая работает без иерархического управления. Также термин может относиться к контракту под названием &quot;The DAO&quot;, запущенному 30 апреля 2016 года, который затем был взломан в июне 2016 года; в конечном итоге это послужило причиной жесткого разветвления (кодовое название DAO) на блоке №1,192,000, который отменил взломанный контракт DAO и привел к разделению Ethereum и Ethereum Classic на две конкурирующие системы.</p>
+<h2 id="Децентрализованное-приложение-decentralized-application-dapp"><a class="header" href="#Децентрализованное-приложение-decentralized-application-dapp">Децентрализованное приложение (Decentralized application, DApp)</a></h2>
+<p>Как минимум, это смарт-контракт и пользовательский веб-интерфейс. В более широком смысле DApp - это веб-приложение, построенное поверх открытых, децентрализованных, одноранговых инфраструктурных сервисов. Кроме того, многие DApp включают децентрализованное хранилище и/или протокол сообщений и платформу.</p>
+<h2 id="deed"><a class="header" href="#deed">Deed</a></h2>
+<p>Стандарт неразменных токенов (NFT), введенный предложением ERC721. В отличие от токенов ERC20, deed подтверждают право собственности и не являются взаимозаменяемыми, хотя они не признаются в качестве юридических документов ни в одной юрисдикции - по крайней мере, в настоящее время (см. также &quot;NFT&quot;).</p>
+<h2 id="Сложность"><a class="header" href="#Сложность">Сложность</a></h2>
+<p>Общесетевая настройка, определяющая, какой объем вычислений требуется для создания доказательства работы.</p>
+<h2 id="Цифровая-подпись"><a class="header" href="#Цифровая-подпись">Цифровая подпись</a></h2>
+<p>Короткая строка данных, которую пользователь создает для документа с помощью закрытого ключа таким образом, что любой человек, имеющий соответствующий открытый ключ, подпись и документ, может проверить, что (1) документ был &quot;подписан&quot; владельцем данного закрытого ключа, и (2) документ не был изменен после его подписания.</p>
+<h2 id="ecdsa"><a class="header" href="#ecdsa">ECDSA</a></h2>
+<p>Алгоритм цифровой подписи с эллиптической кривой. Криптографический алгоритм, используемый в Ethereum для обеспечения того, что средства могут быть потрачены только их владельцами.</p>
+<h2 id="Предложение-по-усовершенствованию-ethereum-ethereum-improvement-proposal-eip"><a class="header" href="#Предложение-по-усовершенствованию-ethereum-ethereum-improvement-proposal-eip">Предложение по усовершенствованию Ethereum (Ethereum Improvement Proposal, EIP)</a></h2>
+<p>Предложение по усовершенствованию Ethereum. Проектный документ, предоставляющий информацию сообществу Ethereum и описывающий предлагаемую новую функцию, ее процессы или среду. Для получения дополнительной информации см. https://github.com/ethereum/EIPs (см. также &quot;ERC&quot;).</p>
+<h2 id="Служба-имен-ethereum-ethereum-name-service-ens"><a class="header" href="#Служба-имен-ethereum-ethereum-name-service-ens">Служба имен Ethereum (Ethereum Name Service, ENS)</a></h2>
+<p>Служба имен Ethereum. Дополнительную информацию см. на сайте https://github.com/ethereum/ens/.</p>
+<h2 id="Энтропия"><a class="header" href="#Энтропия">Энтропия</a></h2>
+<p>В контексте криптографии отсутствие предсказуемости или уровень случайности. При генерации секретной информации, такой как закрытые ключи, алгоритмы обычно полагаются на источник высокой энтропии для обеспечения непредсказуемости выходных данных.</p>
+<h2 id="Счёт-с-внешним-управлением-externally-owned-account-eoa"><a class="header" href="#Счёт-с-внешним-управлением-externally-owned-account-eoa">Счёт с внешним управлением (Externally Owned Account, EOA)</a></h2>
+<p>Учетная запись, принадлежащая внешним пользователям. Учетная запись, созданная человеческими пользователями сети Ethereum или для них.</p>
+<h2 id="Запрос-на-комментарии-ethereum-ethereum-request-for-comments-erc"><a class="header" href="#Запрос-на-комментарии-ethereum-ethereum-request-for-comments-erc">Запрос на комментарии Ethereum (Ethereum Request for Comments, ERC)</a></h2>
+<p>Обозначение, присвоенное некоторым EIP, которые пытаются определить конкретный стандарт использования Ethereum.</p>
+<h2 id="ethash"><a class="header" href="#ethash">Ethash</a></h2>
+<p>Алгоритм proof-of-work для Ethereum 1.0. Для получения дополнительной информации см. https://github.com/ethereum/wiki/wiki/Ethash.</p>
+<h2 id="Эфир-ether"><a class="header" href="#Эфир-ether">Эфир (Ether)</a></h2>
+<p>Родная криптовалюта, используемая в экосистеме Ethereum, которая покрывает расходы на газ при выполнении смарт-контрактов. Ее символ - Ξ, греческий прописной символ Xi.</p>
+<h2 id="Событие-event"><a class="header" href="#Событие-event">Событие (Event)</a></h2>
+<p>Позволяет использовать средства протоколирования EVM. Децентраилизованные приложения могут прослушивать события и использовать их для запуска обратных вызовов JavaScript в пользовательском интерфейсе. Для получения дополнительной информации см. http://solidity.readthedocs.io/en/develop/contracts.html#events.</p>
+<h2 id="Виртуальная-машина-ethereum-ethereum-virtual-machine-evm"><a class="header" href="#Виртуальная-машина-ethereum-ethereum-virtual-machine-evm">Виртуальная машина Ethereum (Ethereum Virtual Machine, EVM)</a></h2>
+<p>Виртуальная машина на основе стека, выполняющая байткод. В Ethereum модель выполнения определяет, как изменяется состояние системы при выполнении серии инструкций байткода и небольшого кортежа данных об окружающей среде. Это задается с помощью формальной модели виртуальной машины состояний.</p>
+<h2 id="Язык-ассемблера-evm"><a class="header" href="#Язык-ассемблера-evm">Язык ассемблера EVM</a></h2>
+<p>Человекочитаемая форма байткода EVM.</p>
+<h2 id="Вспомогательная-функция-функци-fallback"><a class="header" href="#Вспомогательная-функция-функци-fallback">Вспомогательная функция (функци Fallback)</a></h2>
+<p>Функция по умолчанию, вызываемая при отсутствии данных или объявленного имени функции.</p>
+<h2 id="Кран-faucet"><a class="header" href="#Кран-faucet">Кран (faucet)</a></h2>
+<p>Служба, предоставляющая средства в виде бесплатного тестового эфира, который можно использовать в тестовой сети.</p>
+<h2 id="Финни-finney"><a class="header" href="#Финни-finney">Финни (Finney)</a></h2>
+<p>Номинал эфира. 1 финни = 1015 вей, 103 финни = 1 эфир.</p>
+<h2 id="Ветка-или-вилка-или-fork"><a class="header" href="#Ветка-или-вилка-или-fork">Ветка (или вилка или fork)</a></h2>
+<p>Изменение в протоколе, приводящее к созданию альтернативной цепочки, или временное расхождение двух потенциальных путей блока во время майнинга.</p>
+<h2 id="frontier"><a class="header" href="#frontier">Frontier</a></h2>
+<p>Начальный этап тестовой разработки Ethereum, длившийся с июля 2015 года по март 2016 года.</p>
+<h2 id="ganache"><a class="header" href="#ganache">Ganache</a></h2>
+<p>Персональный блокчейн Ethereum, который можно использовать для запуска тестов, выполнения команд и проверки состояния, контролируя при этом работу цепи.</p>
+<h2 id="Газ"><a class="header" href="#Газ">Газ</a></h2>
+<p>Виртуальное топливо, используемое в Ethereum для выполнения смарт-контрактов. EVM использует механизм учета для измерения потребления газа и ограничения потребления вычислительных ресурсов (см. &quot;Turing complete&quot;).</p>
+<h2 id="Лимит-газа"><a class="header" href="#Лимит-газа">Лимит газа</a></h2>
+<p>Максимальное количество газа, которое может израсходовать транзакция или блок.</p>
+<h2 id="Гэвин-Вуд"><a class="header" href="#Гэвин-Вуд">Гэвин Вуд</a></h2>
+<p>Британский программист, сооснователь и бывший технический директор Ethereum. В августе 2014 года он предложил Solidity, контрактно-ориентированный язык программирования для написания смарт-контрактов.</p>
+<h2 id="Первичный-блок-genesis-блок"><a class="header" href="#Первичный-блок-genesis-блок">Первичный блок (Genesis блок)</a></h2>
+<p>Первый блок в блокчейне, используемый для инициализации конкретной сети и её криптовалюты.</p>
+<h2 id="geth"><a class="header" href="#geth">Geth</a></h2>
+<p>Go Ethereum. Одна из самых известных реализаций протокола Ethereum, написанная на языке Go.</p>
+<h2 id="Жесткое-разветвление"><a class="header" href="#Жесткое-разветвление">Жесткое разветвление</a></h2>
+<p>Обычно возникает, когда не обновленные узлы не могут подтвердить блоки, созданные обновленными узлами, которые следуют новым правилам консенсуса. Не следует путать с мягким разветвлением, программным разветвлением или Git-веткой.</p>
+<h2 id="Хэш"><a class="header" href="#Хэш">Хэш</a></h2>
+<p>Отпечаток фиксированной длины входных данных переменного размера, создаваемый хэш-функцией.</p>
+<h2 id="hd-кошелек"><a class="header" href="#hd-кошелек">HD-кошелек</a></h2>
+<p>Кошелек, использующий иерархический детерминированный (HD) протокол создания и передачи ключей (BIP-32).</p>
+<h2 id="Семя-hd-кошелька"><a class="header" href="#Семя-hd-кошелька">Семя HD-кошелька</a></h2>
+<p>Значение, используемое для генерации главного закрытого ключа и главного кода цепочки для кошелька HD. Семя кошелька может быть представлено мнемоническими словами, что облегчает копирование, резервное копирование и восстановление закрытых ключей.</p>
+<h2 id="homestead"><a class="header" href="#homestead">Homestead</a></h2>
+<p>Вторая стадия развития Ethereum, запущенная в марте 2016 года на блоке № 1 150 000.</p>
+<h2 id="Протокол-межбиржевых-клиентских-адресов-inter-exchange-client-address-protocol-icap"><a class="header" href="#Протокол-межбиржевых-клиентских-адресов-inter-exchange-client-address-protocol-icap">Протокол межбиржевых клиентских адресов (Inter-exchange Client Address Protocol, ICAP)</a></h2>
+<p>Кодировка адресов Ethereum, частично совместимая с кодировкой международного номера банковского счета (IBAN), обеспечивающая универсальность, контрольную сумму и совместимость кодировки адресов Ethereum. В адресах ICAP используется новый псевдокод страны IBAN: XE, обозначающий &quot;eXtended Ethereum&quot;, который используется в неюрисдикционных валютах (например, XBT, XRP, XCP).</p>
+<h2 id="Ледниковый-период"><a class="header" href="#Ледниковый-период">Ледниковый период</a></h2>
+<p>Жесткое разветвление Ethereum на блоке № 200,000 для введения экспоненциального увеличения сложности (он же Difficulty Bomb), мотивирующего переход к доказательству доли.</p>
+<h2 id="Интегрированная-среда-разработки-integrated-development-environment-ide"><a class="header" href="#Интегрированная-среда-разработки-integrated-development-environment-ide">Интегрированная среда разработки (Integrated Development Environment, IDE)</a></h2>
+<p>Пользовательский интерфейс, который обычно сочетает в себе редактор кода, компилятор, среду выполнения и отладчик.</p>
+<h2 id="Проблема-неизменяемого-развернутого-кода"><a class="header" href="#Проблема-неизменяемого-развернутого-кода">Проблема неизменяемого развернутого кода</a></h2>
+<p>После развертывания кода контракта (или библиотеки) он становится неизменяемым. Стандартная практика разработки программного обеспечения предполагает возможность исправления возможных ошибок и добавления новых функций, поэтому это представляет собой проблему для разработки смарт-контрактов.</p>
+<h2 id="Внутренняя-транзакция-также-сообщение"><a class="header" href="#Внутренняя-транзакция-также-сообщение">Внутренняя транзакция (также &quot;сообщение&quot;)</a></h2>
+<p>Транзакция, отправленная со счета контракта на другой счет контракта или EOA.</p>
+<h2 id="Межпланетная-файловая-система-interplanetary-file-system-ipfs"><a class="header" href="#Межпланетная-файловая-система-interplanetary-file-system-ipfs">Межпланетная файловая система (InterPlanetary File System, IPFS)</a></h2>
+<p>Протокол, сеть и проект с открытым исходным кодом, разработанный для создания однорангового метода хранения и обмена гипермедиа в распределенной файловой системе с возможностью адресации содержимого.</p>
+<h2 id="Функция-производных-ключей-key-derivation-function-kdf"><a class="header" href="#Функция-производных-ключей-key-derivation-function-kdf">Функция производных ключей (Key Derivation Function, KDF)</a></h2>
+<p>Также известна как &quot;алгоритм растягивания пароля&quot;, используется форматами хранилищ ключей для защиты от атак перебора, словаря и радужной таблицы при шифровании парольной фразы путем многократного хэширования парольной фразы.</p>
+<h2 id="keccak-256"><a class="header" href="#keccak-256">Keccak-256</a></h2>
+<p>Криптографическая хэш-функция, используемая в Ethereum. Keccak-256 была стандартизирована как SHA-3.</p>
+<h2 id="Файл-хранилища-ключей"><a class="header" href="#Файл-хранилища-ключей">Файл хранилища ключей</a></h2>
+<p>Закодированный в JSON файл, содержащий один (случайно сгенерированный) закрытый ключ, зашифрованный парольной фразой для дополнительной безопасности.</p>
+<h2 id="leveldb"><a class="header" href="#leveldb">LevelDB</a></h2>
+<p>Хранилище типа &quot;ключ-значение&quot;с открытым исходным кодом, реализованное в виде легковесной универсальной библиотеки с привязкой ко многим платформам.</p>
+<h2 id="Библиотека-library"><a class="header" href="#Библиотека-library">Библиотека (library)</a></h2>
+<p>Особый тип контракта, который не имеет ни оплачиваемых функций, ни функции отката, ни хранилища данных. Поэтому он не может получать или удерживать эфир, а также хранить данные. Библиотека служит в качестве ранее развернутого кода, который другие контракты могут вызывать для вычислений только для чтения.</p>
+<h2 id="Облегченный-клиент"><a class="header" href="#Облегченный-клиент">Облегченный клиент</a></h2>
+<p>Клиент Ethereum, который не хранит локальную копию блокчейна и не проверяет блоки и транзакции. Он предлагает функции кошелька и может создавать и транслировать транзакции.</p>
+<h2 id="Дерево-Меркла--Патрициа-merkle-patricia-tree"><a class="header" href="#Дерево-Меркла--Патрициа-merkle-patricia-tree">Дерево Меркла  Патрициа (Merkle Patricia Tree)</a></h2>
+<p>Структура данных, используемая в Ethereum для эффективного хранения пар ключ-значение.</p>
+<h2 id="Сообщение"><a class="header" href="#Сообщение">Сообщение</a></h2>
+<p>Внутренняя транзакция, которая никогда не сериализуется и отправляется только внутри EVM.</p>
+<h2 id="Вызов-сообщения"><a class="header" href="#Вызов-сообщения">Вызов сообщения</a></h2>
+<p>Акт передачи сообщения от одного счета к другому. Если счет назначения связан с кодом EVM, то виртуальная машина будет запущена с состоянием этого объекта, и сообщение будет обработано.</p>
+<h2 id="metoken"><a class="header" href="#metoken">METoken</a></h2>
+<p>Токен Mastering Ethereum. Токен ERC20, используемый для демонстрации в этой книге.</p>
+<h2 id="metropolis"><a class="header" href="#metropolis">Metropolis</a></h2>
+<p>Третья стадия разработки Ethereum, запущенная в октябре 2017 года.</p>
+<h2 id="Майнер"><a class="header" href="#Майнер">Майнер</a></h2>
+<p>Узел сети, который находит достоверные доказательства работы новых блоков путем повторного хеширования.</p>
+<h2 id="mist"><a class="header" href="#mist">Mist</a></h2>
+<p>Первый браузер с поддержкой Ethereum, созданный Ethereum Foundation. Он содержит браузерный кошелек, который стал первой реализацией стандарта токенов ERC20 (Фабиан Фогельштеллер, автор ERC20, также был главным разработчиком Mist). Mist также был первым кошельком, который ввел контрольную сумму camelCase (EIP-55; см. [EIP55]). Mist работает на полном узле и предлагает браузер с поддержкой хранилища на основе Swarm и адресов ENS.</p>
+<h2 id="Сеть"><a class="header" href="#Сеть">Сеть</a></h2>
+<p>Ссылаясь на сеть Ethereum, одноранговую сеть, которая распространяет транзакции и блоки на каждый узел Ethereum (участник сети).</p>
+<h2 id="Неразменный-токен-non-fungible-token-nft"><a class="header" href="#Неразменный-токен-non-fungible-token-nft">Неразменный токен (Non-fungible token, NFT)</a></h2>
+<p>Неразменный токен (также известный как &quot;deed&quot;). Это стандарт токенов, введенный предложением ERC721. NFT можно отслеживать и обменивать, но каждый токен уникален и отличен; они не взаимозаменяемы, как токены ERC20. NFT могут представлять право собственности на цифровые или физические активы.</p>
+<h2 id="Узел"><a class="header" href="#Узел">Узел</a></h2>
+<p>Программный клиент, участвующий в работе сети.</p>
+<h2 id="nonce"><a class="header" href="#nonce">Nonce</a></h2>
+<p>В криптографии значение, которое может быть использовано только один раз. В Ethereum используются два типа nonce: account nonce - это счетчик транзакций в каждом счете, который используется для предотвращения атак воспроизведения; proof-of-work nonce - это случайное значение в блоке, которое было использовано для доказательства работы.</p>
+<h2 id="Оммер"><a class="header" href="#Оммер">Оммер</a></h2>
+<p>Дочерний блок предка, который сам не является предком. Когда майнер находит действующий блок, другой майнер может опубликовать конкурирующий блок, который добавляется в вершину блокчейна. В отличие от Биткойна, осиротевшие блоки в Ethereum могут быть включены более новыми блоками как оммеры и получить вознаграждение за частичный блок. Термин &quot;оммер&quot; является предпочтительным гендерно-нейтральным термином для обозначения брата или сестры родительского блока, но иногда его также называют &quot;дядей&quot;.</p>
+<h2 id="parity"><a class="header" href="#parity">Parity</a></h2>
+<p>Одна из наиболее известных интероперабельных реализаций клиентского программного обеспечения Ethereum.</p>
+<h2 id="Доказательство-доли-pos"><a class="header" href="#Доказательство-доли-pos">Доказательство доли (PoS)</a></h2>
+<p>Метод, с помощью которого протокол криптовалютного блокчейна стремится достичь распределенного консенсуса. PoS просит пользователей доказать владение определенным количеством криптовалюты (их &quot;доля&quot; в сети), чтобы иметь возможность участвовать в подтверждении транзакций.</p>
+<h2 id="Доказательство-работы-pow"><a class="header" href="#Доказательство-работы-pow">Доказательство работы (PoW)</a></h2>
+<p>Часть данных (доказательство), для нахождения которой требуются значительные вычисления. В Ethereum майнеры должны найти числовое решение алгоритма Ethash, которое соответствует заданной в масштабах сети сложности.</p>
+<h2 id="Открытый-ключ"><a class="header" href="#Открытый-ключ">Открытый ключ</a></h2>
+<p>Число, полученное с помощью односторонней функции от закрытого ключа, которое может быть открыто для общего доступа и использоваться любым человеком для проверки цифровой подписи, сделанной с помощью соответствующего закрытого ключа.</p>
+<h2 id="Квитанция"><a class="header" href="#Квитанция">Квитанция</a></h2>
+<p>Данные, возвращаемые клиентом Ethereum в качестве результата конкретной транзакции, включая хэш транзакции, номер ее блока, количество использованного газа и, в случае развертывания смарт-контракта, адрес контракта.</p>
+<h2 id="Атака-с-повторным-вхождением-re-entrancy"><a class="header" href="#Атака-с-повторным-вхождением-re-entrancy">Атака с повторным вхождением (Re-entrancy)</a></h2>
+<p>Атака, заключающаяся в том, что атакующий контракт вызывает функцию контракта-жертвы таким образом, что в процессе выполнения жертва снова рекурсивно вызывает атакующий контракт. Это может привести, например, к краже средств путем пропуска частей контракта жертвы, которые обновляют балансы или подсчитывают суммы снятия.</p>
+<h2 id="Вознаграждение"><a class="header" href="#Вознаграждение">Вознаграждение</a></h2>
+<p>Количество эфира, включаемое в каждый новый блок в качестве вознаграждения от сети майнеру, нашедшему решение для доказательства работы.</p>
+<h2 id="Рекурсивный-префикс-длины-recursive-length-prefix-rlp"><a class="header" href="#Рекурсивный-префикс-длины-recursive-length-prefix-rlp">Рекурсивный префикс длины (Recursive Length Prefix, RLP)</a></h2>
+<p>Рекурсивный префикс длины. Стандарт кодирования, разработанный разработчиками Ethereum для кодирования и сериализации объектов (структур данных) произвольной сложности и длины.</p>
+<h2 id="Сатоси-Накамото"><a class="header" href="#Сатоси-Накамото">Сатоси Накамото</a></h2>
+<p>Имя, используемое человеком или людьми, которые разработали Биткойн, создали его оригинальную эталонную реализацию и первыми решили проблему двойной траты для цифровой валюты. Их настоящая личность остается неизвестной.</p>
+<h2 id="Секретный-ключ-он-же-закрытый-ключ"><a class="header" href="#Секретный-ключ-он-же-закрытый-ключ">Секретный ключ (он же закрытый ключ)</a></h2>
+<p>Секретное число, которое позволяет пользователям Ethereum подтвердить право собственности на счет или контракты путем создания цифровой подписи (см. &quot;открытый ключ&quot;, &quot;адрес&quot;, &quot;ECDSA&quot;).</p>
+<h2 id="serenity"><a class="header" href="#serenity">Serenity</a></h2>
+<p>Четвертая и последняя стадия разработки Ethereum. Serenity пока не имеет запланированной даты выпуска.</p>
+<h2 id="serpent"><a class="header" href="#serpent">Serpent</a></h2>
+<p>Процедурный (императивный) язык программирования смарт-контрактов с синтаксисом, похожим на Python.</p>
+<h2 id="sha"><a class="header" href="#sha">SHA</a></h2>
+<p>Алгоритм безопасного хэширования. Семейство криптографических хэш-функций, опубликованных Национальным институтом стандартов и технологий (NIST).</p>
+<h2 id="Синглтон"><a class="header" href="#Синглтон">Синглтон</a></h2>
+<p>Термин компьютерного программирования, описывающий объект, который может существовать только в единственном экземпляре.</p>
+<h2 id="Смарт-контракт-СмК"><a class="header" href="#Смарт-контракт-СмК">Смарт-контракт (СмК)</a></h2>
+<p>Программа, выполняемая на вычислительной инфраструктуре Ethereum.</p>
+<h2 id="solidity"><a class="header" href="#solidity">Solidity</a></h2>
+<p>Процедурный (императивный) язык программирования с синтаксисом, похожим на JavaScript, C++ или Java. Самый популярный и наиболее часто используемый язык для смарт-контрактов Ethereum. Создан доктором Гэвином Вудом (соавтором этой книги).</p>
+<h2 id="Встраиваемый-ассемблер-solidity"><a class="header" href="#Встраиваемый-ассемблер-solidity">Встраиваемый ассемблер Solidity</a></h2>
+<p>Язык ассемблера EVM в программе Solidity. Поддержка встроенного ассемблера в Solidity облегчает написание некоторых операций.</p>
+<h2 id="spurious-dragon"><a class="header" href="#spurious-dragon">Spurious Dragon</a></h2>
+<p>Жесткое разветвление блокчейна Ethereum, произошедший в блоке № 2,675,000 для решения проблемы увеличения числа векторов атак типа &quot;отказ в обслуживании&quot; и очищения состояния (см. также &quot;Мандариновый свисток&quot;). Кроме того, механизм защиты от атак повторного воспроизведения.</p>
+<h2 id="swarm"><a class="header" href="#swarm">Swarm</a></h2>
+<p>Децентрализованная (P2P) сеть хранения данных, используемая вместе с Web3 и Whisper для создания децентрализованных приложений.</p>
+<h2 id="Сабо-szabo"><a class="header" href="#Сабо-szabo">Сабо (Szabo)</a></h2>
+<p>Деноминация эфира. 1 сабо = 1012 вей, 106 сабо = 1 эфир.</p>
+<h2 id="Мандариновый-свисток"><a class="header" href="#Мандариновый-свисток">Мандариновый свисток</a></h2>
+<p>Жесткий форк блокчейна Ethereum, который произошел в блоке № 2,463,000, чтобы изменить расчет газа для определенных операций ввода-вывода и очистить накопленное состояние от атаки типа &quot;отказ в обслуживании&quot;, которая использовала низкую стоимость газа для этих операций.</p>
+<h2 id="testnet"><a class="header" href="#testnet">Testnet</a></h2>
+<p>Сокращение от &quot;тестовая сеть&quot;, сеть, используемая для имитации поведения основной сети Ethereum.</p>
+<h2 id="Транзакция"><a class="header" href="#Транзакция">Транзакция</a></h2>
+<p>Данные, зафиксированные в блокчейне Ethereum, подписанные учетной записью, указавшей конкретный адрес. Транзакция содержит метаданные, такие как лимит газа для данной транзакции.</p>
+<h2 id="truffle"><a class="header" href="#truffle">Truffle</a></h2>
+<p>Один из наиболее часто используемых фреймворков для разработки Ethereum.</p>
+<h2 id="Тьюринг-полный"><a class="header" href="#Тьюринг-полный">Тьюринг-полный</a></h2>
+<p>Понятие, названное в честь английского математика Алана Тьюринга: система правил манипулирования данными (например, набор команд компьютера, язык программирования или клеточный автомат) считается &quot;полной по Тьюрингу&quot; или &quot;вычислительно универсальной&quot;, если она может быть использована для моделирования любой машины Тьюринга.</p>
+<h2 id="Виталик-Бутерин"><a class="header" href="#Виталик-Бутерин">Виталик Бутерин</a></h2>
+<p>Российско-канадский программист, известный в первую очередь как соучредитель Ethereum и журнала Bitcoin.</p>
+<h2 id="Вайпер-vyper"><a class="header" href="#Вайпер-vyper">Вайпер (Vyper)</a></h2>
+<p>Высокоуровневый язык программирования, похожий на Serpent, с синтаксисом, подобным Python. Предназначен для приближения к чисто функциональному языку. Создан Виталиком Бутериным.</p>
+<h2 id="Кошелек"><a class="header" href="#Кошелек">Кошелек</a></h2>
+<p>Программное обеспечение, в котором хранятся секретные ключи. Используется для доступа и управления счетами Ethereum и взаимодействия со смарт-контрактами. Ключи не обязательно хранить в кошельке, вместо этого их можно получить из автономного хранилища (например, с карты памяти или бумаги) для повышения безопасности. Несмотря на название, кошельки никогда не хранят фактические монеты или токены.</p>
+<h2 id="web3"><a class="header" href="#web3">Web3</a></h2>
+<p>Третья версия интернета. Впервые предложенная доктором Гэвином Вудом, Web3 представляет собой новое видение и фокус для веб-приложений: от централизованных и управляемых приложений к приложениям, построенным на децентрализованных протоколах.</p>
+<h2 id="Вэй-wei"><a class="header" href="#Вэй-wei">Вэй (wei)</a></h2>
+<p>Наименьший номинал эфира. 1018 вэев = 1 эфир.</p>
+<h2 id="whisper"><a class="header" href="#whisper">Whisper</a></h2>
+<p>Децентрализованная (P2P) служба обмена сообщениями. Используется вместе с Web3 и Swarm для создания DApps.</p>
+<h2 id="Нулевой-адрес"><a class="header" href="#Нулевой-адрес">Нулевой адрес</a></h2>
+<p>Специальный адрес Ethereum, полностью состоящий из нулей, который указывается в качестве адреса назначения транзакции создания контракта.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="1_предисловие.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="kniga/что_такое_ethereum.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="1_предисловие.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="kniga/что_такое_ethereum.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>

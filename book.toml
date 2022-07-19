@@ -1,5 +1,7 @@
 [book]
+title = "Осваиваем Ethereum - Mastering Ethereum"
+authors = ["Andreas M. Antonopoulos", "Gavin Wood"]
+description = "Руководство по Ethereum и разработке смарт-контрактов"
+language = "ru"
 multilingual = false
 src = "src"
-title = "Освоение Ethereum - Mastering Ethereum"
-author = "Andreas M. Antonopoulos и Gavin Wood"
