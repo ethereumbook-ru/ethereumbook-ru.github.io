@@ -19,5 +19,4 @@ Web3 телеграм канал: https://t.me/druzhcom
 
 ## Лого
 
-<p><img src="book/kniga/kartinki/druzhcom_logo.png" alt="Дружининъ" /></p>
-<p><a href="https://t.me/druzhcom" alt="Дружининъ" />Телеграм канал</p>
+<p><a href="https://t.me/druzhcom" alt="Дружининъ"><img src="book/kniga/kartinki/druzhcom_logo.png" alt="Дружининъ" /></a></p>
