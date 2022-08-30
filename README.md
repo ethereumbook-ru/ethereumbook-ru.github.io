@@ -3,11 +3,11 @@
 
 Оригинал книги: https://github.com/ethereumbook
 
-Проектируемый репозиторий книги: https://github.com/ethereumbook-ru
+Репозиторий книги: https://github.com/ethereumbook-ru
 
 ## Подписаться
 
-Telegram канал со свежим и уникальным по web3: https://t.me/druzhcom
+Telegram канал про web3: https://t.me/druzhcom
 
 ## Поддержать Перевод
 
