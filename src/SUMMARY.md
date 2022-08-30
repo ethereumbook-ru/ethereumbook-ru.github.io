@@ -28,3 +28,4 @@
 -----------
 
 [Поддержка проекта](./support.md)
+![Дружининъ](./kniga//kartinki/druzhcom_logo.png)
