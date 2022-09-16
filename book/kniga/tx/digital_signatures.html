@@ -1,0 +1,310 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Цифровые подписи - Осваиваем Ethereum - Mastering Ethereum</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="Руководство по Ethereum и разработке смарт-контрактов">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../1_предисловие.html">Предисловие</a></li><li class="chapter-item expanded affix "><a href="../../2_глоссарий.html">Глоссарий</a></li><li class="chapter-item expanded affix "><li class="part-title">Книга</li><li class="chapter-item expanded "><a href="../../kniga/что_такое_ethereum.html"><strong aria-hidden="true">1.</strong> Что такое Ethereum?</a></li><li class="chapter-item expanded "><a href="../../kniga/введение.html"><strong aria-hidden="true">2.</strong> Введение</a></li><li class="chapter-item expanded "><a href="../../kniga/клиенты.html"><strong aria-hidden="true">3.</strong> Клиенты</a></li><li class="chapter-item expanded "><a href="../../kniga/ключи_и_адреса.html"><strong aria-hidden="true">4.</strong> Ключи и адреса</a></li><li class="chapter-item expanded "><a href="../../kniga/кошельки.html"><strong aria-hidden="true">5.</strong> Кошельки</a></li><li class="chapter-item expanded "><a href="../../kniga/транзакции.html"><strong aria-hidden="true">6.</strong> Транзакции</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kniga/tx/structure.html"><strong aria-hidden="true">6.1.</strong> Структура транзакции</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/nonce.html"><strong aria-hidden="true">6.2.</strong> Nonce транзакции</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/gas.html"><strong aria-hidden="true">6.3.</strong> Топливо (Gas)</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/recipient.html"><strong aria-hidden="true">6.4.</strong> Получатель</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/value_data.html"><strong aria-hidden="true">6.5.</strong> Value и Data</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/create_contract_tx.html"><strong aria-hidden="true">6.6.</strong> Тразакция создания контракта</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/digital_signatures.html" class="active"><strong aria-hidden="true">6.7.</strong> Цифровые подписи</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/sign_prifix_value.html"><strong aria-hidden="true">6.8.</strong> Восстановление открытого ключа</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/sign_transmission.html"><strong aria-hidden="true">6.9.</strong> Раздельное подписание и передача</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/tx_propagation.html"><strong aria-hidden="true">6.10.</strong> Распространение транзакций</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/recording_on_blockchain.html"><strong aria-hidden="true">6.11.</strong> Запись в блокчейне</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/multisig.html"><strong aria-hidden="true">6.12.</strong> Мультиподпись</a></li></ol></li><li class="chapter-item expanded "><a href="../../kniga/смарт_контракты_на_solidity.html"><strong aria-hidden="true">7.</strong> Смарт-контракты на Solidity</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Смарт-контракты на Vyper</div></li><li class="chapter-item expanded "><a href="../../kniga/безопаность_смарт_контрактов.html"><strong aria-hidden="true">9.</strong> Безопаность смарт-контрактов</a></li><li class="chapter-item expanded "><a href="../../kniga/токены.html"><strong aria-hidden="true">10.</strong> Токены</a></li><li class="chapter-item expanded "><a href="../../kniga/оракулы.html"><strong aria-hidden="true">11.</strong> Оракулы</a></li><li class="chapter-item expanded "><a href="../../kniga/децентрализованные_приложения.html"><strong aria-hidden="true">12.</strong> Децентрализованные приложения</a></li><li class="chapter-item expanded "><a href="../../kniga/виртуальная_машина_ethereum.html"><strong aria-hidden="true">13.</strong> Виртуальная машина Ethereum</a></li><li class="chapter-item expanded "><a href="../../kniga/консенсус.html"><strong aria-hidden="true">14.</strong> Консенсус</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Доп 1. История ветвлений</div></li><li class="chapter-item expanded "><a href="../../kniga/дополнение_2_стандарты_eip_erc.html"><strong aria-hidden="true">16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li class="chapter-item expanded "><a href="../../kniga/дополнение_3_коды_evm_и_gas.html"><strong aria-hidden="true">17.</strong> Доп 3. Коды EVM и газ</a></li><li class="chapter-item expanded "><a href="../../kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong aria-hidden="true">18.</strong> Доп 4. Инструменты разработчика</a></li><li class="chapter-item expanded "><a href="../../kniga//дополнение_5_руководство_по_web3js.html"><strong aria-hidden="true">19.</strong> Доп 5. Руководство по web3js</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../../support.html">Поддержка проекта</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Осваиваем Ethereum - Mastering Ethereum</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="Цифровые-подписи"><a class="header" href="#Цифровые-подписи">Цифровые подписи</a></h2>
+<p>До сих пор мы не вдавались в подробности о цифровых подписях. В этом разделе мы рассмотрим, как работают цифровые подписи и как их можно использовать для представления доказательства владения закрытым ключом без раскрытия этого закрытого ключа.</p>
+<h3 id="Алгоритм-эллиптической-кривой-цифровой-подписи"><a class="header" href="#Алгоритм-эллиптической-кривой-цифровой-подписи">Алгоритм эллиптической кривой цифровой подписи</a></h3>
+<p>Алгоритм цифровой подписи, используемый в Ethereum, - это алгоритм цифровой подписи на основе эллиптической кривой (ECDSA). Он основан на парах закрытых и открытых ключей с эллиптической кривой, как описано в [elliptic_curve].</p>
+<p>Цифровая подпись служит трем целям в Ethereum. </p>
+<ol>
+<li>Во-первых, подпись доказывает, что владелец закрытого ключа, который по косвенным признакам является владельцем счета в Ethereum, санкционировал расходование ether или выполнение контракта. </li>
+<li>Во-вторых, она гарантирует неотказуемость: доказательство авторизации является неоспоримым. </li>
+<li>В-третьих, подпись доказывает, что данные транзакции не были и не могут быть изменены кем-либо после подписания транзакции.</li>
+</ol>
+<p><strong>Определение цифровой подписи в Википедии:</strong> Цифровая подпись - это математическая схема для подтверждения подлинности цифровых сообщений или документов. Действительная цифровая подпись дает получателю основания полагать, что сообщение было создано известным отправителем (аутентификация), что отправитель не может отрицать факт отправки сообщения (неотрицание) и что сообщение не было изменено при передаче (целостность).</p>
+<h3 id="Как-работают-цифровые-подписи"><a class="header" href="#Как-работают-цифровые-подписи">Как работают цифровые подписи</a></h3>
+<p>Цифровая подпись - это математическая схема, состоящая из двух частей. </p>
+<ol>
+<li>Алгоритм создания подписи с помощью закрытого ключа (ключа подписи) из сообщения (в нашем случае это транзакция). </li>
+<li>Алгоритм, который позволяет любому человеку проверить подпись, используя только сообщение и открытый ключ.</li>
+</ol>
+<h4 id="Создание-цифровой-подписи"><a class="header" href="#Создание-цифровой-подписи">Создание цифровой подписи</a></h4>
+<p>В реализации ECDSA в Ethereum <strong>транзакция</strong> это &quot;сообщение&quot;, которое подписывается. А точнее, хэш Keccak-256 данных транзакции, закодированных в RLP. Ключом подписи 
+закрытый ключ EOA. Результатом является подпись:</p>
+<p>Sig = Fsig(Fkeccak256 (m), k)</p>
+<p>где:</p>
+<ul>
+<li>k - закрытый ключ подписи</li>
+<li>m - транзакция, закодированная в RLP</li>
+<li>Fkeccak256 - хэш-функция Keccak-256</li>
+<li>Fsig - алгоритм подписи</li>
+<li>Sig - результирующая подпись</li>
+</ul>
+<p>Функция Fsig создает подпись Sig, состоящую из двух значений, обычно называемых <strong>r</strong> и <strong>s</strong>:
+Sig = (r, s)</p>
+<h4 id="Проверка-подписи"><a class="header" href="#Проверка-подписи">Проверка подписи</a></h4>
+<p>Чтобы проверить подпись, необходимо иметь подпись (<strong>r</strong> и <strong>s</strong>), <strong>сериализованную транзакцию</strong> и <strong>открытый ключ</strong>, соответствующий закрытому ключу, использованному для создания подписи. По сути, проверка подписи означает, что &quot;только владелец закрытого ключа, создавшего этот открытый ключ, мог создать эту подпись на данной транзакции&quot;.</p>
+<p>Алгоритм проверки подписи принимает <strong>сообщение</strong> (т.е. хэш транзакции для нашего использования), <strong>открытый ключ подписанта</strong> и <strong>подпись</strong> (значения r и s) и возвращает true, если подпись действительна для данного сообщения и открытого ключа.</p>
+<h4 id="Математика-ecdsa"><a class="header" href="#Математика-ecdsa">Математика ECDSA</a></h4>
+<p>Как упоминалось ранее, подписи создаются с помощью математической функции <strong>Fsig</strong>, которая производит подпись, состоящую из двух значений, <strong>r</strong> и <strong>s</strong>. В этом разделе мы рассмотрим функцию <strong>Fsig</strong> более подробно.</p>
+<p>Алгоритм подписи сначала генерирует эфемерный (временный) закрытый ключ криптографически безопасным способом. Этот временный ключ используется при вычислении значений <strong>r</strong> и <strong>s</strong>, чтобы гарантировать, что реальный личный ключ отправителя не может быть вычислен злоумышленниками, наблюдающими за подписанными транзакциями в сети Ethereum.</p>
+<p>Как мы знаем из [pubkey], эфемерный закрытый ключ используется для получения соответствующего (эфемерного) открытого ключа, поэтому мы имеем:</p>
+<ul>
+<li>криптографически безопасное случайное число <strong>q</strong>, которое используется в качестве эфемерного закрытого ключа</li>
+<li>Соответствующий эфемерный открытый ключ <strong>Q</strong>, сгенерированный из <strong>q</strong> и точки генератора эллиптической кривой <strong>G</strong></li>
+</ul>
+<p>В этом случае значение r цифровой подписи является координатой <strong>x</strong> эфемерного открытого ключа <strong>Q</strong>.</p>
+<p>Далее алгоритм вычисляет значение s подписи, такое, что:</p>
+<p>s ≡ q^-1(Keccak256(m) + r * k) (mod p)</p>
+<p>где:</p>
+<ul>
+<li>q - эфемерный закрытый ключ</li>
+<li>r - координата x эфемерного открытого ключа</li>
+<li>k - закрытый ключ подписывающего (владельца EOA)</li>
+<li>m - данные транзакции</li>
+<li>p - простой порядок эллиптической кривой.</li>
+</ul>
+<p>Проверка - это обратная функция генерации подписи, использующая значения <strong>r</strong> и <strong>s</strong> и <strong>открытый ключ отправителя</strong> для вычисления значения <strong>Q</strong>, которое является точкой на эллиптической кривой (эфемерный открытый ключ, использованный при создании подписи). </p>
+<p>Этапы работы следующие:</p>
+<ol>
+<li>Проверьте правильность формирования всех входов</li>
+<li>Вычислите w = s^-1 mod p</li>
+<li>Рассчитайте u1 = Keccak256(m) * w mod p</li>
+<li>Рассчитайте u2 = r * w mod p</li>
+<li>Наконец, вычислите точку на эллиптической кривой Q ≡ u1 * G + u2 * K (mod p).</li>
+</ol>
+<p>где:</p>
+<ul>
+<li>r и s - значения подписи</li>
+<li>K - открытый ключ подписанта (владельца EOA)</li>
+<li>m - данные транзакции, которая была подписана</li>
+<li>G - точка генератора эллиптической кривой</li>
+<li>p - простой порядок эллиптической кривой.</li>
+</ul>
+<p>Если координата <strong>x</strong> вычисленной точки <strong>Q</strong> равна __r, то проверяющий может сделать вывод, что подпись действительна.</p>
+<p>Обратите внимание, что при проверке подписи закрытый ключ не известен и не раскрыт.</p>
+<p><strong>Совет:</strong> ECDSA - это довольно сложная математика; полное объяснение выходит за рамки этой книги. В Интернете можно найти множество замечательных руководств, в которых все объясняется шаг за шагом: наберите в поисковике &quot;ECDSA explained&quot; или попробуйте вот это: <a href="https://www.instructables.com/Understanding-how-ECDSA-protects-your-data">Understanding How ECDSA Protects Your Data</a> .</p>
+<h4 id="Подписание-транзакций-на-практике"><a class="header" href="#Подписание-транзакций-на-практике">Подписание транзакций на практике</a></h4>
+<p>Чтобы транзакция была действительной, отправитель должен подписать сообщение цифровой подписью, используя алгоритм цифровой подписи с эллиптической кривой. Когда мы говорим &quot;подписать транзакцию&quot;, мы на самом деле имеем в виду &quot;подписать хэш Keccak-256 данных RLP-сериализованной транзакции&quot;. Подпись применяется к хэшу данных транзакции, а не к самой транзакции.</p>
+<p>Чтобы подписать транзакцию в Ethereum, инициатор должен:</p>
+<ol>
+<li>Создайте структуру данных транзакции, содержащую девять полей: nonce, gasPrice, gasLimit, to, value, data, chainID, 0, 0.</li>
+<li>Создать RLP-кодированное сериализованное сообщение структуры данных транзакции.</li>
+<li>Вычислите хэш Keccak-256 этого сериализованного сообщения.</li>
+<li>Вычислите подпись ECDSA, подписав хэш закрытым ключом отправителя EOA.</li>
+<li>Добавьте вычисленные значения v, r и s подписи ECDSA к транзакции.</li>
+</ol>
+<p>Специальная переменная подписи <strong>v</strong> указывает на две вещи: идентификатор цепочки и идентификатор восстановления, чтобы помочь функции <strong>ECDSArecover</strong> проверить подпись. Она вычисляется как одно из 27 или 28, либо как удвоенный идентификатор цепочки плюс 35 или 36. Дополнительную информацию об идентификаторе цепочки см. в разделе Создание необработанной транзакции с помощью EIP-155. Идентификатор восстановления (27 или 28 в подписях &quot;старого стиля&quot; или 35 или 36 в полных транзакциях в стиле Spurious Dragon) используется для указания четности y-компонента открытого ключа (подробнее см. раздел Значение префикса подписи (v) и восстановление открытого ключа).</p>
+<p><strong>Примечание:</strong> В блоке № 2,675,000 Ethereum реализовал хард форк &quot;Spurious Dragon&quot;, который, среди прочих изменений, ввел новую схему подписания, включающую защиту от воспроизведения транзакций (предотвращение воспроизведения транзакций, предназначенных для одной сети, в других). Эта новая схема подписания указана в EIP-155. Это изменение влияет на форму транзакции и ее подпись, поэтому необходимо обратить внимание на первую из трех переменных подписи (т.е. v), которая принимает одну из двух форм и указывает на поля данных, включенные в хэшируемое сообщение транзакции.</p>
+<h4 id="Создание-и-подписание-необработанных-транзакций"><a class="header" href="#Создание-и-подписание-необработанных-транзакций">Создание и подписание необработанных транзакций</a></h4>
+<p>В этом разделе мы создадим необработанную транзакцию и подпишем ее, используя библиотеку <strong>ethereumjs-tx</strong>, которую можно установить с помощью <strong>npm</strong>. Это демонстрирует функции, которые обычно используются в кошельке или приложении, подписывающем транзакции от имени пользователя. </p>
+<p>Исходный код этого примера находится в файле raw_tx_demo.js в репозитории GitHub книги:
+<code>link:code/web3js/raw_tx/raw_tx_demo.js[]</code></p>
+<p>Выполнение кода примера дает следующие результаты:</p>
+<pre><code>$ node raw_tx_demo.js
+RLP-Encoded Tx: 0xe6808609184e72a0008303000094b0920c523d582040f2bcb1bd7fb1c7c1...
+Tx Hash: 0xaa7f03f9f4e52fcf69f836a6d2bbc7706580adce0a068ff6525ba337218e6992
+Signed Raw Transaction: 0xf866808609184e72a0008303000094b0920c523d582040f2bcb1...
+</code></pre>
+<h4 id="Создание-необработанных-транзакций-с-помощью-eip-155"><a class="header" href="#Создание-необработанных-транзакций-с-помощью-eip-155">Создание необработанных транзакций с помощью EIP-155</a></h4>
+<p>Стандарт EIP-155 &quot;Простая защита от атак повторного воспроизведения&quot; определяет кодирование транзакций с защитой от атак повторного воспроизведения, которое включает идентификатор цепочки внутри данных транзакции перед подписанием. Это гарантирует, что транзакции, созданные для одного блокчейна (например, основной сети Ethereum), будут недействительны на другом блокчейне (например, Ethereum Classic или тестовой сети Ropsten). Таким образом, транзакции, транслируемые в одной сети, не могут быть воспроизведены в другой, отсюда и название стандарта.</p>
+<p>EIP-155 добавляет три поля к основным шести полям структуры данных транзакции, а именно: идентификатор цепочки, 0 и 0. Эти три поля добавляются к данным транзакции до их кодирования и хэширования. Таким образом, они изменяют хэш транзакции, к которому впоследствии применяется подпись. Включая идентификатор цепочки в подписываемые данные, подпись транзакции предотвращает любые изменения, поскольку при изменении идентификатора цепочки подпись становится недействительной. Таким образом, EIP-155 делает невозможным воспроизведение транзакции на другой цепи, поскольку действительность подписи зависит от идентификатора цепи.</p>
+<p>Поле идентификатора цепи принимает значение в соответствии с сетью, для которой предназначена транзакция, как описано в разделе Идентификаторы цепи.</p>
+<p>Таблица 1. Идентификаторы цепей</p>
+<div class="table-wrapper"><table><thead><tr><th>Цепь</th><th>Идентификатор цепи</th></tr></thead><tbody>
+<tr><td>Ethereum mainnet</td><td>1</td></tr>
+<tr><td>Morden (устаревшее), Expanse</td><td>2</td></tr>
+<tr><td>Ropsten</td><td>3</td></tr>
+<tr><td>Rinkeby</td><td>4</td></tr>
+<tr><td>Основная сеть Rootstock</td><td>30</td></tr>
+<tr><td>Испытательная сеть Rootstock</td><td>31</td></tr>
+<tr><td>Kovan</td><td>42</td></tr>
+<tr><td>Ethereum Classic mainnet</td><td>61</td></tr>
+<tr><td>Ethereum Classic testnet</td><td>62</td></tr>
+<tr><td>Geth частные сети</td><td>1337</td></tr>
+</tbody></table>
+</div>
+<p>Полученная структура транзакции кодируется RLP, хэшируется и подписывается. Алгоритм подписи немного модифицирован, чтобы кодировать идентификатор цепочки в префиксе v.</p>
+<p>Более подробную информацию см. в спецификации EIP-155.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../kniga/tx/create_contract_tx.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../kniga/tx/sign_prifix_value.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../kniga/tx/create_contract_tx.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../kniga/tx/sign_prifix_value.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </body>
+</html>
