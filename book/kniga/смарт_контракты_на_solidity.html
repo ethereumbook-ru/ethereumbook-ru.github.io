@@ -1,168 +1,112 @@
 <!DOCTYPE HTML>
-<html lang="ru" class="sidebar-visible no-js light">
+<html lang="en">
     <head>
-        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Смарт-контракты на Solidity - Осваиваем Ethereum - Mastering Ethereum</title>
-
-
-        <!-- Custom HTML head -->
-        
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="Руководство по Ethereum и разработке смарт-контрактов">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="../favicon.svg">
-        <link rel="shortcut icon" href="../favicon.png">
-        <link rel="stylesheet" href="../css/variables.css">
-        <link rel="stylesheet" href="../css/general.css">
-        <link rel="stylesheet" href="../css/chrome.css">
-        <link rel="stylesheet" href="../css/print.css" media="print">
+        <base href="../">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="../fonts/fonts.css">
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
-        <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="../highlight.css">
-        <link rel="stylesheet" href="../tomorrow-night.css">
-        <link rel="stylesheet" href="../ayu-highlight.css">
+        <link rel="shortcut icon" href="favicon.png">
 
-        <!-- Custom theme stylesheets -->
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
 
     </head>
-    <body>
-        <!-- Provide site root to javascript -->
-        <script type="text/javascript">
-            var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
-
-        <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
-            try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
-
-                if (theme.startsWith('"') && theme.endsWith('"')) {
-                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
-                }
-
-                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
-                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
-                }
-            } catch (e) { }
-        </script>
-
+    <body class="light">
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
-            var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
-            if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
-            html.classList.remove('light')
-            html.classList.add(theme);
-            html.classList.add('js');
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
-            if (document.body.clientWidth >= 1080) {
-                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
-                sidebar = sidebar || 'visible';
-            }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../1_предисловие.html">Предисловие</a></li><li class="chapter-item expanded affix "><a href="../2_глоссарий.html">Глоссарий</a></li><li class="chapter-item expanded affix "><li class="part-title">Книга</li><li class="chapter-item expanded "><a href="../kniga/что_такое_ethereum.html"><strong aria-hidden="true">1.</strong> Что такое Ethereum?</a></li><li class="chapter-item expanded "><a href="../kniga/введение.html"><strong aria-hidden="true">2.</strong> Введение</a></li><li class="chapter-item expanded "><a href="../kniga/клиенты.html"><strong aria-hidden="true">3.</strong> Клиенты</a></li><li class="chapter-item expanded "><a href="../kniga/ключи_и_адреса.html"><strong aria-hidden="true">4.</strong> Ключи и адреса</a></li><li class="chapter-item expanded "><a href="../kniga/кошельки.html"><strong aria-hidden="true">5.</strong> Кошельки</a></li><li class="chapter-item expanded "><a href="../kniga/транзакции.html"><strong aria-hidden="true">6.</strong> Транзакции</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../kniga/tx/structure.html"><strong aria-hidden="true">6.1.</strong> Структура транзакции</a></li><li class="chapter-item expanded "><a href="../kniga/tx/nonce.html"><strong aria-hidden="true">6.2.</strong> Nonce транзакции</a></li><li class="chapter-item expanded "><a href="../kniga/tx/gas.html"><strong aria-hidden="true">6.3.</strong> Топливо (Gas)</a></li><li class="chapter-item expanded "><a href="../kniga/tx/recipient.html"><strong aria-hidden="true">6.4.</strong> Получатель</a></li><li class="chapter-item expanded "><a href="../kniga/tx/value_data.html"><strong aria-hidden="true">6.5.</strong> Value и Data</a></li><li class="chapter-item expanded "><a href="../kniga/tx/create_contract_tx.html"><strong aria-hidden="true">6.6.</strong> Тразакция создания контракта</a></li><li class="chapter-item expanded "><a href="../kniga/tx/digital_signatures.html"><strong aria-hidden="true">6.7.</strong> Цифровые подписи</a></li><li class="chapter-item expanded "><a href="../kniga/tx/sign_prifix_value.html"><strong aria-hidden="true">6.8.</strong> Восстановление открытого ключа</a></li><li class="chapter-item expanded "><a href="../kniga/tx/sign_transmission.html"><strong aria-hidden="true">6.9.</strong> Раздельное подписание и передача</a></li><li class="chapter-item expanded "><a href="../kniga/tx/tx_propagation.html"><strong aria-hidden="true">6.10.</strong> Распространение транзакций</a></li><li class="chapter-item expanded "><a href="../kniga/tx/recording_on_blockchain.html"><strong aria-hidden="true">6.11.</strong> Запись в блокчейне</a></li><li class="chapter-item expanded "><a href="../kniga/tx/multisig.html"><strong aria-hidden="true">6.12.</strong> Мультиподпись</a></li></ol></li><li class="chapter-item expanded "><a href="../kniga/смарт_контракты_на_solidity.html" class="active"><strong aria-hidden="true">7.</strong> Смарт-контракты на Solidity</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Смарт-контракты на Vyper</div></li><li class="chapter-item expanded "><a href="../kniga/безопаность_смарт_контрактов.html"><strong aria-hidden="true">9.</strong> Безопаность смарт-контрактов</a></li><li class="chapter-item expanded "><a href="../kniga/токены.html"><strong aria-hidden="true">10.</strong> Токены</a></li><li class="chapter-item expanded "><a href="../kniga/оракулы.html"><strong aria-hidden="true">11.</strong> Оракулы</a></li><li class="chapter-item expanded "><a href="../kniga/децентрализованные_приложения.html"><strong aria-hidden="true">12.</strong> Децентрализованные приложения</a></li><li class="chapter-item expanded "><a href="../kniga/виртуальная_машина_ethereum.html"><strong aria-hidden="true">13.</strong> Виртуальная машина Ethereum</a></li><li class="chapter-item expanded "><a href="../kniga/консенсус.html"><strong aria-hidden="true">14.</strong> Консенсус</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Доп 1. История ветвлений</div></li><li class="chapter-item expanded "><a href="../kniga/дополнение_2_стандарты_eip_erc.html"><strong aria-hidden="true">16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li class="chapter-item expanded "><a href="../kniga/дополнение_3_коды_evm_и_gas.html"><strong aria-hidden="true">17.</strong> Доп 3. Коды EVM и газ</a></li><li class="chapter-item expanded "><a href="../kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong aria-hidden="true">18.</strong> Доп 4. Инструменты разработчика</a></li><li class="chapter-item expanded "><a href="../kniga//дополнение_5_руководство_по_web3js.html"><strong aria-hidden="true">19.</strong> Доп 5. Руководство по web3js</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../support.html">Поддержка проекта</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
-        </nav>
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="./1_предисловие.html">Предисловие</a></li><li class="affix"><a href="./2_глоссарий.html">Глоссарий</a></li><li><a href="./kniga/что_такое_ethereum.html"><strong>1.</strong> Что такое Ethereum?</a></li><li><a href="./kniga/введение.html"><strong>2.</strong> Введение</a></li><li><a href="./kniga/клиенты.html"><strong>3.</strong> Клиенты</a></li><li><a href="./kniga/ключи_и_адреса.html"><strong>4.</strong> Ключи и адреса</a></li><li><a href="./kniga/кошельки.html"><strong>5.</strong> Кошельки</a></li><li><a href="./kniga/транзакции.html"><strong>6.</strong> Транзакции</a></li><li><ul class="section"><li><a href="./kniga/tx/structure.html"><strong>6.1.</strong> Структура_транзакции</a></li><li><a href="./kniga/tx/nonce.html"><strong>6.2.</strong> Nonce транзакции</a></li><li><a href="./kniga/tx/gas.html"><strong>6.3.</strong> Топливо (Gas)</a></li><li><a href="./kniga/tx/recipient.html"><strong>6.4.</strong> Получатель</a></li><li><a href="./kniga/tx/value_data.html"><strong>6.5.</strong> Value и Data</a></li><li><a href="./kniga/tx/create_contract_tx.html"><strong>6.6.</strong> Тразакция создания контракта</a></li><li><a href="./kniga/tx/digital_signatures.html"><strong>6.7.</strong> Цифровые подписи</a></li><li><a href="./kniga/tx/sign_prifix_value.html"><strong>6.8.</strong> Восстановление открытого ключа</a></li><li><a href="./kniga/tx/sign_transmission.html"><strong>6.9.</strong> Раздельное подписание и передача</a></li><li><a href="./kniga/tx/tx_propagation.html"><strong>6.10.</strong> Распространение транзакций</a></li><li><a href="./kniga/tx/recording_on_blockchain.html"><strong>6.11.</strong> Запись в блокчейне</a></li><li><a href="./kniga/tx/multisig.html"><strong>6.12.</strong> Мультиподпись</a></li></ul></li><li><a href="./kniga/смарт_контракты_на_solidity.html" class="active"><strong>7.</strong> Смарт-контракты на Solidity</a></li><li><strong>8.</strong> Смарт-контракты на Vyper</li><li><a href="./kniga/безопаность_смарт_контрактов.html"><strong>9.</strong> Безопаность смарт-контрактов</a></li><li><a href="./kniga/токены.html"><strong>10.</strong> Токены</a></li><li><a href="./kniga/оракулы.html"><strong>11.</strong> Оракулы</a></li><li><a href="./kniga/децентрализованные_приложения.html"><strong>12.</strong> Децентрализованные приложения</a></li><li><a href="./kniga/виртуальная_машина_ethereum.html"><strong>13.</strong> Виртуальная машина Ethereum</a></li><li><a href="./kniga/консенсус.html"><strong>14.</strong> Консенсус</a></li><li><strong>15.</strong> Доп 1. История ветвлений</li><li><a href="./kniga/дополнение_2_стандарты_eip_erc.html"><strong>16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li><a href="./kniga/дополнение_3_коды_evm_и_gas.html"><strong>17.</strong> Доп 3. Коды EVM и газ</a></li><li><a href="./kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong>18.</strong> Доп 4. Инструменты разработчика</a></li><li><a href="./kniga/дополнение_5_руководство_по_web3js.html"><strong>19.</strong> Доп 5. Руководство по web3js</a></li><li class="spacer"></li><li class="affix"><a href="./support.html">Поддержка проекта</a></li></ul>
+        </div>
 
         <div id="page-wrapper" class="page-wrapper">
 
-            <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
-                        </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                        </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
                     </div>
 
                     <h1 class="menu-title">Осваиваем Ethereum - Mastering Ethereum</h1>
 
                     <div class="right-buttons">
-                        <a href="../print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
                         </a>
-
                     </div>
                 </div>
-
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                    </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
-                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
-                    });
-                </script>
 
                 <div id="content" class="content">
-                    <main>
-                        <h1 id="Смарт-контракты-на-solidity"><a class="header" href="#Смарт-контракты-на-solidity">Смарт-контракты на Solidity</a></h1>
+                    <a class="header" href="./kniga/смарт_контракты_на_solidity.html#Смарт-контракты-на-solidity" id="Смарт-контракты-на-solidity"><h1>Смарт-контракты на Solidity</h1></a>
 <p>Как мы уже говорили в [intro_chapter], в Ethereum существует два различных типа счетов: счета, принадлежащие внешним пользователям (EOA), и счета контрактов. EOA контролируются пользователями, часто с помощью программного обеспечения, например, приложения-кошелька, которое является внешним по отношению к платформе Ethereum. В отличие от них, счета контрактов контролируются программным кодом (также часто называемым &quot;смарт-контрактами&quot;), который выполняется виртуальной машиной Ethereum. Одним словом, EOA - это простые счета без какого-либо связанного кода или хранилища данных, в то время как счета контрактов имеют и связанный код, и хранилище данных. EOA контролируются транзакциями, созданными и криптографически подписанными закрытым ключом в &quot;реальном мире&quot;, внешнем по отношению к протоколу и независимом от него, в то время как счета контрактов не имеют закрытых ключей и поэтому &quot;контролируют себя&quot; заранее определенным образом, предписанным кодом их смарт-контракта. Оба типа счетов идентифицируются адресом Ethereum. В этой главе мы рассмотрим контрактные счета и программный код, который ими управляет.</p>
-<h2 id="Что-такое-смарт-контракт"><a class="header" href="#Что-такое-смарт-контракт">Что такое смарт-контракт?</a></h2>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Что-такое-смарт-контракт" id="Что-такое-смарт-контракт"><h2>Что такое смарт-контракт?</h2></a>
 <p>Термин &quot;умный контракт&quot; на протяжении многих лет использовался для описания самых разных вещей. В 1990-х годах криптограф Ник Сабо придумал этот термин и определил его как &quot;набор обещаний, указанных в цифровой форме, включая протоколы, в рамках которых стороны выполняют другие обещания&quot;. С тех пор концепция смарт-контрактов развивалась, особенно после появления децентрализованных блокчейн-платформ с изобретением Bitcoin в 2009 году. В контексте Ethereum этот термин на самом деле является немного неправильным, учитывая, что смарт-контракты Ethereum не являются ни смарт-контрактами, ни юридическими контрактами, но термин прижился. В этой книге мы используем термин &quot;умные контракты&quot; для обозначения неизменяемых компьютерных программ, которые детерминированно выполняются в контексте виртуальной машины Ethereum как части сетевого протокола Ethereum - то есть на децентрализованном мировом компьютере Ethereum.</p>
 <p>Давайте распакуем это определение:</p>
-<h4 id="Компьютерные-программы"><a class="header" href="#Компьютерные-программы">Компьютерные программы</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Компьютерные-программы" id="Компьютерные-программы"><h4>Компьютерные программы</h4></a>
 <p>Умные контракты - это просто компьютерные программы. Слово &quot;контракт&quot; не имеет юридического значения в данном контексте.</p>
-<h4 id="Неизменный"><a class="header" href="#Неизменный">Неизменный</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Неизменный" id="Неизменный"><h4>Неизменный</h4></a>
 <p>После развертывания код смарт-контракта не может быть изменен. В отличие от традиционного программного обеспечения, единственный способ изменить смарт-контракт - это развернуть новый экземпляр.</p>
-<h4 id="Детерминированный"><a class="header" href="#Детерминированный">Детерминированный</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Детерминированный" id="Детерминированный"><h4>Детерминированный</h4></a>
 <p>Результат выполнения смарт-контракта одинаков для всех, кто его запускает, с учетом контекста транзакции, инициировавшей его выполнение, и состояния блокчейна Ethereum в момент выполнения.</p>
-<h4 id="Контекст-evm"><a class="header" href="#Контекст-evm">Контекст EVM</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Контекст-evm" id="Контекст-evm"><h4>Контекст EVM</h4></a>
 <p>Умные контракты работают с очень ограниченным контекстом исполнения. Они могут получить доступ к собственному состоянию, контексту транзакции, которая их вызвала, и некоторой информации о последних блоках.</p>
-<h4 id="Децентрализованный-всемирный-компьютер"><a class="header" href="#Децентрализованный-всемирный-компьютер">Децентрализованный всемирный компьютер</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Децентрализованный-всемирный-компьютер" id="Децентрализованный-всемирный-компьютер"><h4>Децентрализованный всемирный компьютер</h4></a>
 <p>EVM работает как локальный экземпляр на каждом узле Ethereum, но поскольку все экземпляры EVM работают с одним и тем же начальным состоянием и создают одно и то же конечное состояние, система в целом работает как единый &quot;мировой компьютер&quot;.</p>
-<h2 id="Жизненный-цикл-смарт-контракта"><a class="header" href="#Жизненный-цикл-смарт-контракта">Жизненный цикл смарт-контракта</a></h2>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Жизненный-цикл-смарт-контракта" id="Жизненный-цикл-смарт-контракта"><h2>Жизненный цикл смарт-контракта</h2></a>
 <p>Умные контракты обычно пишутся на языке высокого уровня, таком как Solidity. Но для запуска их необходимо скомпилировать в низкоуровневый байткод, который выполняется в EVM. После компиляции они развертываются на платформе Ethereum с помощью специальной транзакции по созданию контракта, которая идентифицируется как таковая путем отправки на специальный адрес создания контракта, а именно 0x0 (см. [contract_reg]). Каждый контракт идентифицируется Ethereum-адресом, который формируется из транзакции создания контракта как функция счета-источника и nonce. Ethereum-адрес контракта может быть использован в транзакции в качестве получателя, отправляя средства на контракт или вызывая одну из функций контракта. Обратите внимание, что, в отличие от EOA, не существует ключей, связанных с аккаунтом, созданным для нового смарт-контракта. Как создатель контракта, вы не получаете никаких особых привилегий на уровне протокола (хотя вы можете явно прописать их в смарт-контракте). Вы, конечно, не получаете закрытый ключ для учетной записи контракта, которого на самом деле не существует - мы можем сказать, что учетные записи смарт-контрактов владеют сами собой.</p>
 <p>Важно отметить, что контракты выполняются только в том случае, если они вызваны транзакцией. Все смарт-контракты в Ethereum выполняются, в конечном счете, благодаря транзакции, инициированной из EOA. Контракт может вызвать другой контракт, который может вызвать другой контракт, и так далее, но первый контракт в такой цепочке выполнения всегда будет вызван транзакцией из EOA. Контракты никогда не выполняются &quot;сами по себе&quot; или &quot;в фоновом режиме&quot;. Контракты фактически находятся в спящем состоянии до тех пор, пока транзакция не инициирует их выполнение, прямо или косвенно, как часть цепочки вызовов контрактов. Стоит также отметить, что смарт-контракты не выполняются &quot;параллельно&quot; ни в каком смысле - мировой компьютер Ethereum можно считать однопоточной машиной.</p>
 <p>Транзакции атомарны, они либо успешно завершаются, либо отменяются. Успешное завершение транзакции означает разные вещи при разных сценариях: (1) если транзакция отправляется из EOA в другой EOA, то любые изменения в глобальном состоянии (например, остатки на счетах), сделанные транзакцией, записываются; (2) если транзакция отправляется из EOA в контракт, который не вызывает никаких других контрактов, то любые изменения в глобальном состоянии записываются (например.например, остатки на счетах, переменные состояния контрактов) (3) если транзакция отправляется от EOA к контракту, который вызывает другие контракты только таким образом, что распространяет ошибки, то любые изменения глобального состояния записываются (например, остатки на счетах, переменные состояния контрактов).например, остатки на счетах, переменные состояния контрактов); и (4) если транзакция отправляется из EOA в контракт, который вызывает другие контракты способом, который не распространяет ошибки, то могут быть записаны только некоторые изменения глобального состояния (например, остатки на счетах, переменные состояния не ошибающихся контрактов), тогда как другие изменения глобального состояния не записываются (например, переменные состояния ошибающихся контрактов). В противном случае, если транзакция отменяется, все ее последствия (изменения в состоянии) &quot;откатываются&quot;, как если бы транзакция никогда не выполнялась. Неудавшаяся транзакция все равно записывается как попытка, и эфир, потраченный на газ для ее выполнения, списывается со счета создателя, но в остальном она не имеет никаких других эффектов на состояние контракта или счета.</p>
 <p>Как уже упоминалось ранее, важно помнить, что код контракта не может быть изменен. Однако контракт можно &quot;удалить&quot;, удалив код и его внутреннее состояние (хранилище) из его адреса, оставив пустой счет. Любые транзакции, отправленные на этот адрес счета после удаления контракта, не приводят к выполнению кода, поскольку там больше нет кода для выполнения. Чтобы удалить контракт, вы выполняете операционный код EVM под названием SELFDESTRUCT (ранее называвшийся SUICIDE). Эта операция стоит &quot;отрицательный газ&quot;, возврат газа, тем самым стимулируя освобождение ресурсов клиента сети от удаления сохраненного состояния. Удаление контракта таким образом не приводит к удалению истории транзакций (прошлого) контракта, поскольку сам блокчейн неизменяем. Важно также отметить, что возможность SELFDESTRUCT будет доступна только в том случае, если автор контракта запрограммировал смарт-контракт на такую функциональность. Если в коде контракта отсутствует опкод SELFDESTRUCT или он недоступен, смарт-контракт не может быть удален.</p>
-<h2 id="Введение-в-языки-высокого-уровня-ethereum"><a class="header" href="#Введение-в-языки-высокого-уровня-ethereum">Введение в языки высокого уровня Ethereum</a></h2>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Введение-в-языки-высокого-уровня-ethereum" id="Введение-в-языки-высокого-уровня-ethereum"><h2>Введение в языки высокого уровня Ethereum</h2></a>
 <p>EVM - это виртуальная машина, которая выполняет специальную форму кода, называемую EVM bytecode, аналогично процессору вашего компьютера, который выполняет машинный код, такой как x86_64. Мы рассмотрим работу и язык EVM гораздо более подробно в [evm_chapter]. В этом разделе мы рассмотрим, как пишутся смарт-контракты для запуска на EVM.</p>
 <p>Хотя можно программировать смарт-контракты непосредственно в байткоде, байткод EVM довольно громоздкий и очень сложный для чтения и понимания программистами. Вместо этого большинство разработчиков Ethereum используют язык высокого уровня для написания программ и компилятор для их преобразования в байткод.</p>
 <p>Хотя любой язык высокого уровня может быть адаптирован для написания смарт-контрактов, адаптация произвольного языка для компиляции в байткод EVM является довольно громоздким занятием и в целом приведет к некоторой путанице. Умные контракты работают в сильно ограниченной и минималистичной среде исполнения (EVM). Кроме того, необходимо иметь специальный набор системных переменных и функций, специфичных для EVM. Поэтому проще создать язык смарт-контрактов с нуля, чем язык общего назначения, подходящий для написания смарт-контрактов. В результате появилось несколько специализированных языков для программирования смарт-контрактов. В Ethereum есть несколько таких языков, а также компиляторы, необходимые для создания байткода, исполняемого EVM.</p>
@@ -170,28 +114,28 @@
 <p>Хотя императивное программирование чаще всего используется программистами, бывает очень трудно писать программы, которые выполняются именно так, как ожидается. Способность любой части программы изменять состояние любой другой части затрудняет рассуждения о выполнении программы и создает множество возможностей для ошибок. Декларативное программирование, для сравнения, позволяет легче понять, как поведет себя программа: поскольку оно не имеет побочных эффектов, любую часть программы можно понять изолированно.</p>
 <p>В смарт-контрактах ошибки буквально стоят денег. Поэтому критически важно составлять смарт-контракты без непредвиденных последствий. Для этого вы должны быть в состоянии четко сформулировать ожидаемое поведение программы. Таким образом, декларативные языки играют гораздо большую роль в смарт-контрактах, чем в программах общего назначения. Тем не менее, как вы увидите, наиболее широко используемый язык для смарт-контрактов (Solidity) является императивным. Программисты, как и большинство людей, сопротивляются изменениям!</p>
 <p>В настоящее время поддерживаются следующие языки программирования высокого уровня для смарт-контрактов (в порядке возрастания):</p>
-<h4 id="lll"><a class="header" href="#lll">LLL</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#lll" id="lll"><h4>LLL</h4></a>
 <p>Функциональный (декларативный) язык программирования с синтаксисом, похожим на Lisp. Это был первый язык высокого уровня для смарт-контрактов Ethereum, но сегодня он используется редко.</p>
-<h4 id="serpent"><a class="header" href="#serpent">Serpent</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#serpent" id="serpent"><h4>Serpent</h4></a>
 <p>Процедурный (императивный) язык программирования с синтаксисом, похожим на Python. Может также использоваться для написания функционального (декларативного) кода, хотя он не полностью свободен от побочных эффектов.</p>
-<h4 id="solidity"><a class="header" href="#solidity">Solidity</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#solidity" id="solidity"><h4>Solidity</h4></a>
 <p>Процедурный (императивный) язык программирования с синтаксисом, похожим на JavaScript, C++ или Java. Самый популярный и часто используемый язык для смарт-контрактов Ethereum.</p>
-<h4 id="vyper"><a class="header" href="#vyper">Vyper</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#vyper" id="vyper"><h4>Vyper</h4></a>
 <p>Недавно разработанный язык, похожий на Serpent и снова с Python-подобным синтаксисом. Предназначен для приближения к чисто функциональному Python-подобному языку, чем Serpent, но не для замены Serpent.</p>
-<h4 id="bamboo"><a class="header" href="#bamboo">Bamboo</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#bamboo" id="bamboo"><h4>Bamboo</h4></a>
 <p>Новый язык, разработанный под влиянием Erlang, с явными переходами состояний и без итеративных потоков (циклов). Предназначен для уменьшения побочных эффектов и повышения проверяемости. Очень новый и еще не получил широкого распространения.</p>
 <p>Как видите, существует множество языков, из которых можно выбирать. Однако из всех них Solidity, безусловно, является самым популярным, вплоть до того, что де-факто является языком высокого уровня Ethereum и даже других EVM-подобных блокчейнов. Мы проведем большую часть нашего времени, используя Solidity, но также изучим некоторые примеры на других языках высокого уровня, чтобы получить представление об их различных философиях.</p>
-<h2 id="Создание-смарт-контракта-с-помощью-solidity"><a class="header" href="#Создание-смарт-контракта-с-помощью-solidity">Создание смарт-контракта с помощью Solidity</a></h2>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Создание-смарт-контракта-с-помощью-solidity" id="Создание-смарт-контракта-с-помощью-solidity"><h2>Создание смарт-контракта с помощью Solidity</h2></a>
 <p>Solidity был создан доктором Гэвином Вудом (соавтором этой книги) как язык, специально предназначенный для написания смарт-контрактов с функциями, непосредственно поддерживающими выполнение в децентрализованной среде мирового компьютера Ethereum. Полученные в результате атрибуты являются достаточно общими, поэтому в итоге он стал использоваться для кодирования смарт-контрактов на нескольких других платформах блокчейн. Он был разработан Кристианом Рейтивесснером, а затем также Алексом Берегзасци, Лианой Хусикян, Йоичи Хираи и несколькими бывшими участниками ядра Ethereum. Сейчас Solidity разрабатывается и поддерживается как независимый проект на GitHub.</p>
 <p>Основным &quot;продуктом&quot; проекта Solidity является компилятор Solidity, solc, который преобразует программы, написанные на языке Solidity, в байткод EVM. Проект также управляет важным стандартом бинарного интерфейса приложений (ABI) для смарт-контрактов Ethereum, который мы подробно рассмотрим в этой главе. Каждая версия компилятора Solidity соответствует и компилирует определенную версию языка Solidity.</p>
 <p>Для начала работы мы загрузим двоичный исполняемый файл компилятора Solidity. Затем мы разработаем и скомпилируем простой контракт, следуя примеру, с которого мы начали в [intro_chapter].</p>
-<h3 id="Выбор-версии-solidity"><a class="header" href="#Выбор-версии-solidity">Выбор версии Solidity</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Выбор-версии-solidity" id="Выбор-версии-solidity"><h3>Выбор версии Solidity</h3></a>
 <p>Solidity использует модель версионности, называемую семантической версионностью, которая определяет номера версий в виде трех чисел, разделенных точками: MAJOR.MINOR.PATCH. Номер &quot;major&quot; увеличивается для основных и обратно несовместимых изменений, номер &quot;minor&quot; увеличивается по мере добавления обратно совместимых функций между основными выпусками, а номер &quot;patch&quot; увеличивается для обратно совместимых исправлений.</p>
 <p>На момент написания статьи Solidity находится на версии 0.6.4. Правила для основной версии 0, которая предназначена для начальной разработки проекта, другие: все может измениться в любой момент. На практике Solidity рассматривает номер &quot;minor&quot; как основную версию, а номер &quot;patch&quot; - как основную версию. Поэтому в версии 0.6.4 6 считается основной версией, а 4 - минорной.</p>
 <p>Выход основной версии Solidity 0.5 ожидается в ближайшее время.</p>
 <p>Как вы видели в [intro_chapter], ваши программы Solidity могут содержать директиву pragma, которая определяет минимальную и максимальную версии Solidity, с которыми они совместимы, и может быть использована для компиляции вашего контракта.</p>
 <p>Поскольку Solidity быстро развивается, часто лучше установить последнюю версию.</p>
-<h3 id="Скачать-и-установить"><a class="header" href="#Скачать-и-установить">Скачать и установить</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Скачать-и-установить" id="Скачать-и-установить"><h3>Скачать и установить</h3></a>
 <p>Существует несколько способов загрузки и установки Solidity, либо в виде бинарного релиза, либо путем компиляции из исходного кода. Подробные инструкции можно найти в документации по Solidity.</p>
 <p>Вот как установить последний бинарный релиз Solidity на операционную систему Ubuntu/Debian, используя менеджер пакетов apt:</p>
 <pre><code>$ sudo add-apt-repository ppa:ethereum/ethereum
@@ -204,16 +148,16 @@ solc, the solidity compiler commandline interface
 Version: 0.6.4+commit.1dca32f3.Linux.g++
 </code></pre>
 <p>Существует несколько других способов установки Solidity, в зависимости от вашей операционной системы и требований, включая компиляцию из исходного кода напрямую. Для получения дополнительной информации см. https://github.com/ethereum/solidity.</p>
-<h3 id="Среда-развития"><a class="header" href="#Среда-развития">Среда развития</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Среда-развития" id="Среда-развития"><h3>Среда развития</h3></a>
 <p>Для разработки в Solidity вы можете использовать любой текстовый редактор и solc в командной строке. Однако вы можете обнаружить, что некоторые текстовые редакторы, предназначенные для разработки, такие как Emacs, Vim и Atom, предлагают дополнительные возможности, такие как подсветка синтаксиса и макросы, которые облегчают разработку Solidity.</p>
 <p>Существуют также веб-среды разработки, такие как Remix IDE и EthFiddle.</p>
 <p>Используйте те инструменты, которые делают вас продуктивными. В конечном счете, программы Solidity - это обычные текстовые файлы. Хотя модные редакторы и среды разработки могут облегчить работу, вам не нужно ничего больше, чем простой текстовый редактор, такой как nano (Linux/Unix), TextEdit (macOS) или даже NotePad (Windows). Просто сохраните исходный код вашей программы с расширением .sol, и он будет распознан компилятором Solidity как программа Solidity.</p>
-<h3 id="Написание-простой-программы-solidity"><a class="header" href="#Написание-простой-программы-solidity">Написание простой программы Solidity</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Написание-простой-программы-solidity" id="Написание-простой-программы-solidity"><h3>Написание простой программы Solidity</h3></a>
 <p>В [intro_chapter] мы написали нашу первую программу на Solidity. Когда мы впервые создали контракт Faucet, мы использовали IDE Remix для компиляции и развертывания контракта. В этом разделе мы вернемся к Faucet, улучшим и приукрасим его.</p>
 <p>Наша первая попытка выглядела как Faucet.sol: Контракт Solidity, реализующий кран.</p>
 <p>Пример 1. Faucet.sol: Контракт Solidity, реализующий смеситель
 <code>link:code/Solidity/Faucet.sol[]</code></p>
-<h3 id="Компиляция-с-помощью-компилятора-solidity-solc"><a class="header" href="#Компиляция-с-помощью-компилятора-solidity-solc">Компиляция с помощью компилятора Solidity (solc)</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Компиляция-с-помощью-компилятора-solidity-solc" id="Компиляция-с-помощью-компилятора-solidity-solc"><h3>Компиляция с помощью компилятора Solidity (solc)</h3></a>
 <p>Теперь мы будем использовать компилятор Solidity в командной строке для непосредственной компиляции нашего контракта. Компилятор Solidity solc предлагает множество опций, которые вы можете увидеть, передав аргумент --help.</p>
 <p>Мы используем аргументы --bin и --optimize в solc для создания оптимизированного двоичного файла нашего примера контракта:</p>
 <pre><code>$ solc --optimize --bin Faucet.sol
@@ -227,7 +171,7 @@ Binary:
 6c77b5fb127bceec1276b6f76ca71b5f95330ce598564736f6c63430006040033
 </code></pre>
 <p>Результат, который производит solc, представляет собой шестнадцатеричный двоичный файл, который может быть отправлен в блокчейн Ethereum.</p>
-<h2 id="abi-контракта-ethereum"><a class="header" href="#abi-контракта-ethereum">ABI контракта Ethereum</a></h2>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#abi-контракта-ethereum" id="abi-контракта-ethereum"><h2>ABI контракта Ethereum</h2></a>
 <p>В компьютерном программном обеспечении двоичный интерфейс приложения - это интерфейс между двумя программными модулями; часто между операционной системой и пользовательскими программами. ABI определяет, как структуры данных и функции доступны в машинном коде; это не следует путать с API, который определяет этот доступ в высокоуровневом, часто человекочитаемом формате в виде исходного кода. Таким образом, ABI является основным способом кодирования и декодирования данных в машинный код и из него.</p>
 <p>В Ethereum ABI используется для кодирования вызовов контракта для EVM и для считывания данных из транзакций. Цель ABI - определить функции в контракте, которые могут быть вызваны, и описать, как каждая функция будет принимать аргументы и возвращать результат.</p>
 <p>ABI контракта задается в виде JSON-массива описаний функций (см. Функции) и событий (см. События). Описание функции - это объект JSON с полями type, name, inputs, outputs, constant и payable. Объект описания события имеет поля type, name, inputs и anonymous.</p>
@@ -241,7 +185,7 @@ Contract JSON ABI
 </code></pre>
 <p>Как вы можете видеть, компилятор создает массив JSON, описывающий две функции, которые определены в Faucet.sol. Этот JSON может быть использован любым приложением, которое хочет получить доступ к контракту Faucet после его развертывания. Используя ABI, такое приложение, как кошелек или браузер DApp, может создавать транзакции, вызывающие функции Faucet с правильными аргументами и типами аргументов. Например, кошелек может знать, что для вызова функции withdraw ему необходимо предоставить аргумент uint256 с именем withdraw_amount. Кошелек может попросить пользователя предоставить это значение, затем создать транзакцию, которая закодирует его и выполнит функцию withdraw.</p>
 <p>Все, что необходимо приложению для взаимодействия с контрактом, - это ABI и адрес, по которому контракт был развернут.</p>
-<h3 id="Выбор-компилятора-solidity-и-версии-языка"><a class="header" href="#Выбор-компилятора-solidity-и-версии-языка">Выбор компилятора Solidity и версии языка</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Выбор-компилятора-solidity-и-версии-языка" id="Выбор-компилятора-solidity-и-версии-языка"><h3>Выбор компилятора Solidity и версии языка</h3></a>
 <p>Как мы видели в предыдущем коде, наш контракт Faucet успешно компилируется с Solidity версии 0.6.4. Но что, если бы мы использовали другую версию компилятора Solidity? Язык все еще находится в постоянном движении, и все может измениться неожиданным образом. Наш контракт довольно прост, но что если бы наша программа использовала функцию, которая была добавлена только в версии Solidity 0.6.1, а мы попытались бы скомпилировать ее в версии 0.6.0?</p>
 <p>Для решения таких проблем Solidity предлагает директиву компилятора, известную как прагма версии, которая указывает компилятору, что программа ожидает определенную версию компилятора (и языка). Давайте рассмотрим пример:</p>
 <p><code>pragma solidity ^0.6.0;</code></p>
@@ -250,136 +194,136 @@ Contract JSON ABI
 <p>Пример 2. Faucet2.sol: Добавление прагмы версии в Faucet
 <code>link:code/Solidity/Faucet2.sol[]</code></p>
 <p>Добавление прагмы версии - это лучшая практика, поскольку она позволяет избежать проблем с несоответствием версий компилятора и языка. В этой главе мы рассмотрим другие лучшие практики и продолжим совершенствовать контракт Faucet.</p>
-<h2 id="Программирование-с-помощью-solidity"><a class="header" href="#Программирование-с-помощью-solidity">Программирование с помощью Solidity</a></h2>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Программирование-с-помощью-solidity" id="Программирование-с-помощью-solidity"><h2>Программирование с помощью Solidity</h2></a>
 <p>В этом разделе мы рассмотрим некоторые возможности языка Solidity. Как мы упоминали в [intro_chapter], наш первый пример контракта был очень простым и к тому же несовершенным в различных отношениях. Здесь мы будем постепенно улучшать его, одновременно изучая возможности использования Solidity. Однако это не будет полным учебником по Solidity, поскольку Solidity довольно сложна и быстро развивается. Мы рассмотрим основы и дадим вам достаточную базу, чтобы вы могли самостоятельно изучить остальное. Документацию по Solidity можно найти на сайте проекта.</p>
-<h3 id="Типы-данных"><a class="header" href="#Типы-данных">Типы данных</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Типы-данных" id="Типы-данных"><h3>Типы данных</h3></a>
 <p>Сначала рассмотрим некоторые из основных типов данных, предлагаемых в Solidity:</p>
-<h4 id="Булево-bool"><a class="header" href="#Булево-bool">Булево (bool)</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Булево-bool" id="Булево-bool"><h4>Булево (bool)</h4></a>
 <p>Булево значение, истина или ложь, с логическими операторами ! (не), &amp;&amp; (и), || (или), == (равно) и != (не равно).</p>
-<h4 id="integer-int-uint"><a class="header" href="#integer-int-uint">Integer (int, uint)</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#integer-int-uint" id="integer-int-uint"><h4>Integer (int, uint)</h4></a>
 <p>Знаковые (int) и беззнаковые (uint) целые числа, объявленные с шагом в 8 бит от int8 до uint256. Без суффикса size используются 256-битные величины, чтобы соответствовать размеру слова EVM.</p>
-<h4 id="Фиксированная-точка-fixed-ufixed"><a class="header" href="#Фиксированная-точка-fixed-ufixed">Фиксированная точка (fixed, ufixed)</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Фиксированная-точка-fixed-ufixed" id="Фиксированная-точка-fixed-ufixed"><h4>Фиксированная точка (fixed, ufixed)</h4></a>
 <p>Числа с фиксированной точкой, объявленные с помощью (u)fixedMxN, где M - размер в битах (с шагом 8 до 256), а N - количество десятичных знаков после точки (до 18); например, ufixed32x2.</p>
-<h4 id="Адрес"><a class="header" href="#Адрес">Адрес</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Адрес" id="Адрес"><h4>Адрес</h4></a>
 <p>20-байтовый адрес Ethereum. Объект адреса имеет множество полезных функций-членов, основными из которых являются balance (возвращает баланс счета) и transfer (переводит эфир на счет).</p>
-<h4 id="Массив-байтов-фиксированный"><a class="header" href="#Массив-байтов-фиксированный">Массив байтов (фиксированный)</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Массив-байтов-фиксированный" id="Массив-байтов-фиксированный"><h4>Массив байтов (фиксированный)</h4></a>
 <p>Массивы байтов фиксированного размера, объявленные с байт1 до байт32.</p>
-<h4 id="Массив-байтов-динамический"><a class="header" href="#Массив-байтов-динамический">Массив байтов (динамический)</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Массив-байтов-динамический" id="Массив-байтов-динамический"><h4>Массив байтов (динамический)</h4></a>
 <p>Массивы байтов переменного размера, объявленные с помощью bytes или string.</p>
-<h4 id="enum"><a class="header" href="#enum">Enum</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#enum" id="enum"><h4>Enum</h4></a>
 <p>Определяемый пользователем тип для перечисления дискретных значений: enum NAME {LABEL1, LABEL 2, ...}.</p>
-<h4 id="Массивы"><a class="header" href="#Массивы">Массивы</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Массивы" id="Массивы"><h4>Массивы</h4></a>
 <p>Массив любого типа, фиксированный или динамический: uint32[][5] - массив фиксированного размера из пяти динамических массивов целых беззнаковых чисел.</p>
-<h4 id="Структура"><a class="header" href="#Структура">Структура</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Структура" id="Структура"><h4>Структура</h4></a>
 <p>Определяемые пользователем контейнеры данных для группировки переменных: struct NAME {TYPE1 VARIABLE1; TYPE2 VARIABLE2; ...}.</p>
-<h4 id="Составление-карты"><a class="header" href="#Составление-карты">Составление карты</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Составление-карты" id="Составление-карты"><h4>Составление карты</h4></a>
 <p>Таблицы хэш-поиска для пар ключ =&gt; значение: mapping(KEY_TYPE =&gt; VALUE_TYPE) NAME.
 В дополнение к этим типам данных Solidity также предлагает различные литералы значений, которые могут быть использованы для вычисления различных единиц измерения:</p>
-<h4 id="Единицы-времени"><a class="header" href="#Единицы-времени">Единицы времени</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Единицы-времени" id="Единицы-времени"><h4>Единицы времени</h4></a>
 <p>Единицы секунд, минут, часов и дней можно использовать в качестве суффиксов, преобразуя их в кратные единицы секунд.</p>
-<h4 id="Эфирные-единицы"><a class="header" href="#Эфирные-единицы">Эфирные единицы</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Эфирные-единицы" id="Эфирные-единицы"><h4>Эфирные единицы</h4></a>
 <p>Единицы wei, finney, szabo и ether могут использоваться в качестве суффиксов, преобразуясь в кратные значения базовой единицы wei.</p>
 <p>В нашем примере контракта Faucet мы использовали uint (что является псевдонимом uint256) для переменной withdraw_amount. Мы также косвенно использовали переменную address, которую мы задали с помощью msg.sender. Мы будем использовать больше этих типов данных в наших примерах в оставшейся части этой главы.</p>
 <p>Давайте воспользуемся одним из множителей единиц, чтобы улучшить читаемость нашего примера контракта. В функции withdraw мы ограничиваем максимальную сумму снятия, выражая ее в вэях, базовой единице эфира:
 <code>require(withdraw_amount &lt;= 100000000000000000);</code>
 Это не очень удобно для чтения. Мы можем улучшить наш код, используя множитель единицы измерения ether, чтобы выразить значение в ether вместо wei:
 <code>require(withdraw_amount &lt;= 0.1 ether);</code></p>
-<h3 id="Предопределенные-глобальные-переменные-и-функции"><a class="header" href="#Предопределенные-глобальные-переменные-и-функции">Предопределенные глобальные переменные и функции</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Предопределенные-глобальные-переменные-и-функции" id="Предопределенные-глобальные-переменные-и-функции"><h3>Предопределенные глобальные переменные и функции</h3></a>
 <p>Когда контракт выполняется в EVM, он имеет доступ к небольшому набору глобальных объектов. К ним относятся объекты block, msg и tx. Кроме того, Solidity открывает ряд опкодов EVM в виде предопределенных функций. В этом разделе мы рассмотрим переменные и функции, к которым можно получить доступ из смарт-контракта в Solidity.</p>
-<h4 id="Контекст-вызова-транзакциисообщения"><a class="header" href="#Контекст-вызова-транзакциисообщения">Контекст вызова транзакции/сообщения</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Контекст-вызова-транзакциисообщения" id="Контекст-вызова-транзакциисообщения"><h4>Контекст вызова транзакции/сообщения</h4></a>
 <p>Объект msg - это вызов транзакции (при создании EOA) или вызов сообщения (при создании контракта), который запустил выполнение этого контракта. Он содержит ряд полезных атрибутов:</p>
-<h5 id="отправитель"><a class="header" href="#отправитель">отправитель</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#отправитель" id="отправитель"><h5>отправитель</h5></a>
 <p>Мы уже использовали этот параметр. Он представляет собой адрес, который инициировал вызов этого контракта, не обязательно отправителя EOA, который отправил транзакцию. Если наш контракт был вызван непосредственно транзакцией EOA, то это адрес, который подписал транзакцию, но в противном случае это будет адрес контракта.</p>
-<h5 id="значение-msgvalue"><a class="header" href="#значение-msgvalue">значение msg.value</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#значение-msgvalue" id="значение-msgvalue"><h5>значение msg.value</h5></a>
 <p>Значение эфира, отправленного с этим вызовом (в wei).
 газ
 Количество газа, оставшегося в газовом запасе данной среды выполнения. Эта функция была устаревшей в Solidity v0.4.21 и заменена функцией gasleft.</p>
-<h5 id="msgdata"><a class="header" href="#msgdata">msg.data</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#msgdata" id="msgdata"><h5>msg.data</h5></a>
 <p>Полезная нагрузка данных этого вызова в нашем контракте.</p>
-<h5 id="msgsig"><a class="header" href="#msgsig">msg.sig</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#msgsig" id="msgsig"><h5>msg.sig</h5></a>
 <p>Первые четыре байта полезной нагрузки данных, которая является селектором функций.</p>
 <p><strong>Примечание:</strong> Каждый раз, когда контракт вызывает другой контракт, значения всех атрибутов msg изменяются, чтобы отразить информацию о новом вызывающем. Единственным исключением из этого является функция delegatecall, которая выполняет код другого контракта/библиотеки в исходном контексте msg.</p>
-<h4 id="Контекст-транзакции"><a class="header" href="#Контекст-транзакции">Контекст транзакции</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Контекст-транзакции" id="Контекст-транзакции"><h4>Контекст транзакции</h4></a>
 <p>Объект tx предоставляет средства доступа к информации, связанной с транзакцией:</p>
-<h5 id="txgasprice"><a class="header" href="#txgasprice">tx.gasprice</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#txgasprice" id="txgasprice"><h5>tx.gasprice</h5></a>
 <p>Цена газа в вызывающей сделке.</p>
-<h5 id="txorigin"><a class="header" href="#txorigin">tx.origin</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#txorigin" id="txorigin"><h5>tx.origin</h5></a>
 <p>Адрес отправителя EOA для данной транзакции. ВНИМАНИЕ: небезопасно!</p>
-<h4 id="Блочный-контекст"><a class="header" href="#Блочный-контекст">Блочный контекст</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Блочный-контекст" id="Блочный-контекст"><h4>Блочный контекст</h4></a>
 <p>Объект block содержит информацию о текущем блоке:</p>
-<h5 id="blockblockhashblocknumber"><a class="header" href="#blockblockhashblocknumber">block.blockhash(<strong>blockNumber</strong>)</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#blockblockhashblocknumber" id="blockblockhashblocknumber"><h5>block.blockhash(<strong>blockNumber</strong>)</h5></a>
 <p>Хеш блока указанного номера блока, до 256 блоков в прошлом. Исправлена и заменена функцией blockhash в Solidity v0.4.22.</p>
-<h5 id="блокчейнcoinbase"><a class="header" href="#блокчейнcoinbase">блокчейн.coinbase</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#блокчейнcoinbase" id="блокчейнcoinbase"><h5>блокчейн.coinbase</h5></a>
 <p>Адрес получателя вознаграждения за текущий блок и вознаграждения за блок.</p>
-<h5 id="блоксложность"><a class="header" href="#блоксложность">блок.сложность</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#блоксложность" id="блоксложность"><h5>блок.сложность</h5></a>
 <p>Сложность (доказательство работы) текущего блока.</p>
-<h5 id="блоклимит-газа"><a class="header" href="#блоклимит-газа">блок.лимит газа</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#блоклимит-газа" id="блоклимит-газа"><h5>блок.лимит газа</h5></a>
 <p>Максимальное количество газа, которое может быть потрачено по всем транзакциям, включенным в текущий блок.</p>
-<h5 id="блокномер"><a class="header" href="#блокномер">блок.номер</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#блокномер" id="блокномер"><h5>блок.номер</h5></a>
 <p>Номер текущего блока (высота блокчейна).</p>
-<h5 id="блокметка-времени"><a class="header" href="#блокметка-времени">блок.метка времени</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#блокметка-времени" id="блокметка-времени"><h5>блок.метка времени</h5></a>
 <p>Временная метка, помещенная майнером в текущий блок (количество секунд с момента эпохи Unix).</p>
-<h4 id="адресный-объект"><a class="header" href="#адресный-объект">адресный объект</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#адресный-объект" id="адресный-объект"><h4>адресный объект</h4></a>
 <p>Любой адрес, переданный в качестве входных данных или полученный из объекта контракта, имеет ряд атрибутов и методов:</p>
-<h5 id="адресбаланс"><a class="header" href="#адресбаланс">адрес.баланс</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#адресбаланс" id="адресбаланс"><h5>адрес.баланс</h5></a>
 <p>Баланс адреса, в вэй. Например, текущий баланс контракта - address(this).balance.</p>
-<h5 id="addresstransferamount"><a class="header" href="#addresstransferamount">address.transfer(<strong>amount</strong>)</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#addresstransferamount" id="addresstransferamount"><h5>address.transfer(<strong>amount</strong>)</h5></a>
 <p>Переводит сумму (в wei) на этот адрес, выбрасывая исключение при любой ошибке. Мы использовали эту функцию в нашем примере Faucet в качестве метода для адреса msg.sender, как msg.sender.transfer.</p>
-<h5 id="addresssendamount"><a class="header" href="#addresssendamount">address.send(<strong>amount</strong>)</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#addresssendamount" id="addresssendamount"><h5>address.send(<strong>amount</strong>)</h5></a>
 <p>Аналогичен передаче, только вместо исключения возвращает false при ошибке. ПРЕДУПРЕЖДЕНИЕ: всегда проверяйте возвращаемое значение send.</p>
-<h5 id="addresscallpayload"><a class="header" href="#addresscallpayload">address.call(<strong>payload</strong>)</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#addresscallpayload" id="addresscallpayload"><h5>address.call(<strong>payload</strong>)</h5></a>
 <p>Низкоуровневая функция CALL - может сконструировать произвольный вызов сообщения с полезной нагрузкой данных. Возвращает false при ошибке. ПРЕДУПРЕЖДЕНИЕ: небезопасный получатель может (случайно или злонамеренно) израсходовать весь ваш газ, в результате чего ваш контракт остановится с исключением OOG; всегда проверяйте возвращаемое значение вызова.</p>
-<h5 id="addressdelegatecallpayload"><a class="header" href="#addressdelegatecallpayload">address.delegatecall(<strong>payload</strong>)</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#addressdelegatecallpayload" id="addressdelegatecallpayload"><h5>address.delegatecall(<strong>payload</strong>)</h5></a>
 <p>Низкоуровневая функция DELEGATECALL, подобная callcode(...), но с полным контекстом msg, видимым текущим контрактом. Возвращает false при ошибке. ВНИМАНИЕ: только для продвинутого использования!</p>
-<h4 id="Встроенные-функции"><a class="header" href="#Встроенные-функции">Встроенные функции</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Встроенные-функции" id="Встроенные-функции"><h4>Встроенные функции</h4></a>
 <p>Среди других функций стоит отметить следующие:</p>
-<h5 id="addmod-mulmod"><a class="header" href="#addmod-mulmod">addmod, mulmod</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#addmod-mulmod" id="addmod-mulmod"><h5>addmod, mulmod</h5></a>
 <p>Для сложения и умножения по модулю. Например, addmod(x,y,k) вычисляет (x + y) % k.</p>
-<h5 id="keccak256-sha256-sha3-ripemd160"><a class="header" href="#keccak256-sha256-sha3-ripemd160">keccak256, sha256, sha3, ripemd160</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#keccak256-sha256-sha3-ripemd160" id="keccak256-sha256-sha3-ripemd160"><h5>keccak256, sha256, sha3, ripemd160</h5></a>
 <p>Функции для вычисления хэшей с помощью различных стандартных алгоритмов хэширования.</p>
-<h5 id="ecrecover"><a class="header" href="#ecrecover">ecrecover</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#ecrecover" id="ecrecover"><h5>ecrecover</h5></a>
 <p>Восстанавливает адрес, использованный для подписи сообщения, из подписи.</p>
-<h5 id="самоуничтожениеадрес_получателя"><a class="header" href="#самоуничтожениеадрес_получателя">самоуничтожение(<strong>адрес_получателя</strong>)</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#самоуничтожениеадрес_получателя" id="самоуничтожениеадрес_получателя"><h5>самоуничтожение(<strong>адрес_получателя</strong>)</h5></a>
 <p>Удаляет текущий контракт, отправляя все оставшиеся на счету эфиры на адрес получателя.</p>
-<h5 id="this"><a class="header" href="#this">this</a></h5>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#this" id="this"><h5>this</h5></a>
 <p>Адрес счета текущего исполняемого контракта.</p>
-<h3 id="Определение-договора"><a class="header" href="#Определение-договора">Определение договора</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Определение-договора" id="Определение-договора"><h3>Определение договора</h3></a>
 <p>Основным типом данных Solidity является контракт; наш пример с краном просто определяет объект контракта. Подобно любому объекту в объектно-ориентированном языке, контракт - это контейнер, включающий данные и методы.
 Solidity предлагает два других типа объектов, которые похожи на контракт:</p>
-<h4 id="интерфейс"><a class="header" href="#интерфейс">интерфейс</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#интерфейс" id="интерфейс"><h4>интерфейс</h4></a>
 <p>Определение интерфейса структурировано точно так же, как контракт, за исключением того, что ни одна из функций не определена, они только объявлены. Этот тип объявления часто называют заглушкой; он сообщает вам аргументы и возвращаемые типы функций без какой-либо реализации. Интерфейс задает &quot;форму&quot; контракта; при наследовании каждая из функций, объявленных в интерфейсе, должна быть определена в дочерней программе.</p>
-<h4 id="библиотека"><a class="header" href="#библиотека">библиотека</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#библиотека" id="библиотека"><h4>библиотека</h4></a>
 <p>Библиотечный контракт - это контракт, который предназначен для развертывания только один раз и использования другими контрактами с помощью метода delegatecall (см. адрес объекта).</p>
-<h3 id="Функции"><a class="header" href="#Функции">Функции</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Функции" id="Функции"><h3>Функции</h3></a>
 <p>Внутри контракта мы определяем функции, которые могут быть вызваны транзакцией EOA или другим контрактом. В нашем примере с Faucet у нас есть две функции: withdraw и (безымянная) функция fallback.
 Синтаксис, который мы используем для объявления функции в Solidity, следующий:</p>
 <pre><code>function FunctionName([parameters]) {public|private|internal|external}
 [pure|view|payable] [modifiers] [returns (return types)]
 </code></pre>
 <p>Давайте рассмотрим каждый из этих компонентов:</p>
-<h4 id="functionname"><a class="header" href="#functionname">FunctionName</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#functionname" id="functionname"><h4>FunctionName</h4></a>
 <p>Имя функции, которое используется для вызова функции в транзакции (из EOA), из другого контракта или даже внутри одного контракта. Одна функция в каждом контракте может быть определена как функция fallback с помощью ключевого слова &quot;fallback&quot; или функция эфира получения, определенная с помощью ключевого слова &quot;receive&quot;. Если она присутствует, функция получения эфира вызывается всякий раз, когда данные вызова пусты (независимо от того, получен эфир или нет). В противном случае, функция fallback вызывается, когда не названа никакая другая функция. Функция обратного вызова не может иметь аргументов или возвращать что-либо.</p>
-<h4 id="параметры"><a class="header" href="#параметры">параметры</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#параметры" id="параметры"><h4>параметры</h4></a>
 <p>После имени мы указываем аргументы, которые должны быть переданы функции, с их именами и типами. В нашем примере с краном мы определили uint withdraw_amount как единственный аргумент функции withdraw.
 Следующий набор ключевых слов (public, private, internal, external) определяет видимость функции:</p>
-<h4 id="публичный"><a class="header" href="#публичный">публичный</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#публичный" id="публичный"><h4>публичный</h4></a>
 <p>Public - это значение по умолчанию; такие функции могут вызываться другими контрактами или транзакциями EOA, или изнутри контракта. В нашем примере с краном обе функции определены как публичные.</p>
-<h4 id="внешний"><a class="header" href="#внешний">внешний</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#внешний" id="внешний"><h4>внешний</h4></a>
 <p>Внешние функции подобны публичным функциям, за исключением того, что их нельзя вызывать изнутри контракта, если только они явно не снабжены ключевым словом this.</p>
-<h4 id="внутренний"><a class="header" href="#внутренний">внутренний</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#внутренний" id="внутренний"><h4>внутренний</h4></a>
 <p>Внутренние функции доступны только изнутри контракта - они не могут быть вызваны другим контрактом или транзакцией EOA. Они могут быть вызваны производными контрактами (теми, которые наследуют данный контракт).</p>
-<h4 id="частный"><a class="header" href="#частный">частный</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#частный" id="частный"><h4>частный</h4></a>
 <p>Частные функции подобны внутренним функциям, но не могут быть вызваны производными контрактами.</p>
 <p>Следует помнить, что термины &quot;внутренний&quot; и &quot;приватный&quot; несколько вводят в заблуждение. Любая функция или данные внутри контракта всегда видны в публичном блокчейне, то есть любой может увидеть код или данные. Ключевые слова, описанные здесь, влияют только на то, как и когда функция может быть вызвана.</p>
 <p>Второй набор ключевых слов (pure, constant, view, payable) влияет на поведение функции:</p>
-<h4 id="постоянная-или-вид"><a class="header" href="#постоянная-или-вид">постоянная или вид</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#постоянная-или-вид" id="постоянная-или-вид"><h4>постоянная или вид</h4></a>
 <p>Функция, помеченная как view, обещает не изменять никакое состояние. Термин constant - это псевдоним для view, который будет устаревшим в будущем релизе. В настоящее время компилятор не применяет модификатор view, выдавая только предупреждение, но ожидается, что в версии 0.5 Solidity это ключевое слово станет принудительным.</p>
-<h4 id="чистый"><a class="header" href="#чистый">чистый</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#чистый" id="чистый"><h4>чистый</h4></a>
 <p>Чистая функция - это функция, которая не читает и не записывает переменные в хранилище. Она может работать только с аргументами и возвращать данные, не обращаясь ни к каким хранимым данным. Чистые функции предназначены для поощрения программирования в декларативном стиле без побочных эффектов и состояния.</p>
-<h4 id="к-оплате"><a class="header" href="#к-оплате">к оплате</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#к-оплате" id="к-оплате"><h4>к оплате</h4></a>
 <p>Оплачиваемая функция - это функция, которая может принимать входящие платежи. Функции, не объявленные как оплачиваемые, будут отклонять входящие платежи. Есть два исключения, обусловленные дизайнерскими решениями в EVM: платежи coinbase и наследование SELFDESTRUCT будут оплачены, даже если функция отката не объявлена как оплачиваемая, но это имеет смысл, поскольку выполнение кода в любом случае не является частью этих платежей.</p>
 <p>Как вы можете видеть в нашем примере с Faucet, у нас есть одна оплачиваемая функция (функция fallback), которая является единственной функцией, которая может принимать входящие платежи.</p>
-<h3 id="Конструктор-контрактов-и-самоуничтожение"><a class="header" href="#Конструктор-контрактов-и-самоуничтожение">Конструктор контрактов и самоуничтожение</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Конструктор-контрактов-и-самоуничтожение" id="Конструктор-контрактов-и-самоуничтожение"><h3>Конструктор контрактов и самоуничтожение</h3></a>
 <p>Существует специальная функция, которая используется только один раз. При создании контракта также запускается функция конструктора, если таковая существует, для инициализации состояния контракта. Конструктор запускается в той же транзакции, что и создание контракта. Функция конструктора является необязательной; вы заметили, что в нашем примере с краном она отсутствует.</p>
 <p>Конструкторы могут быть заданы двумя способами. До версии Solidity v0.4.21 включительно, конструктор - это функция, имя которой совпадает с именем контракта, как показано здесь:</p>
 <pre><code>contract MEContract {
@@ -401,7 +345,7 @@ contract MEContract {
 <p>Другой конец жизненного цикла контракта - уничтожение контракта. Контракты уничтожаются специальным опкодом EVM под названием SELFDESTRUCT. Раньше он назывался SUICIDE, но это название было упразднено из-за негативных ассоциаций, связанных с этим словом. В Solidity этот опкод представлен в виде высокоуровневой встроенной функции selfdestruct, которая принимает один аргумент: адрес для получения любого остатка эфира, оставшегося на счету контракта. Это выглядит следующим образом:
 <code>selfdestruct(address recipient);</code></p>
 <p>Обратите внимание, что вы должны явно добавить эту команду в ваш контракт, если хотите, чтобы он был удаляемым - это единственный способ удаления контракта, и по умолчанию она отсутствует. Таким образом, пользователи контракта, которые могут рассчитывать на то, что контракт будет существовать вечно, могут быть уверены, что контракт не может быть удален, если он не содержит опкода SELFDESTRUCT.</p>
-<h3 id="Добавление-конструктора-и-самоуничтожения-в-наш-пример-со-смесителем"><a class="header" href="#Добавление-конструктора-и-самоуничтожения-в-наш-пример-со-смесителем">Добавление конструктора и самоуничтожения в наш пример со смесителем</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Добавление-конструктора-и-самоуничтожения-в-наш-пример-со-смесителем" id="Добавление-конструктора-и-самоуничтожения-в-наш-пример-со-смесителем"><h3>Добавление конструктора и самоуничтожения в наш пример со смесителем</h3></a>
 <p>Контракт на примере смесителя, который мы представили в [intro_chapter], не имеет ни конструктора, ни функций самоуничтожения. Это вечный контракт, который не может быть удален. Давайте изменим это, добавив конструктор и функцию самоуничтожения. Вероятно, мы хотим, чтобы функция самоуничтожения могла быть вызвана только тем EOA, который изначально создал контракт. По соглашению, это обычно хранится в адресной переменной, называемой owner. Наш конструктор устанавливает переменную owner, а функция самоуничтожения сначала проверит, что владелец вызвал ее напрямую.
 Во-первых, наш конструктор:</p>
 <pre><code>// Version of Solidity compiler this program was written for
@@ -430,7 +374,7 @@ function destroy() public {
 }
 </code></pre>
 <p>Если кто-либо вызовет эту функцию уничтожения с адреса, отличного от адреса владельца, она завершится неудачей. Но если ее вызовет тот же адрес, который был сохранен в owner конструктором, контракт самоуничтожится и отправит весь оставшийся баланс на адрес владельца. Обратите внимание, что мы не использовали опасную функцию tx.origin для определения того, желает ли владелец уничтожить контракт - использование tx.origin позволило бы злонамеренным контрактам уничтожить ваш контракт без вашего разрешения.</p>
-<h3 id="Модификаторы-функций"><a class="header" href="#Модификаторы-функций">Модификаторы функций</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Модификаторы-функций" id="Модификаторы-функций"><h3>Модификаторы функций</h3></a>
 <p>Solidity предлагает специальный тип функции, называемый модификатором функции. Вы применяете модификаторы к функциям, добавляя имя модификатора в объявление функции. Модификаторы чаще всего используются для создания условий, которые применяются ко многим функциям в рамках контракта. У нас уже есть условие контроля доступа в нашей функции destroy. Давайте создадим модификатор функции, выражающий это условие:</p>
 <pre><code>modifier onlyOwner {
     require(msg.sender == owner);
@@ -448,7 +392,7 @@ function destroy() public {
 <p>Имя модификатора функции (onlyOwner) находится после ключевого слова public и говорит нам, что функция destroy модифицируется модификатором onlyOwner. По сути, вы можете прочитать это как &quot;Только владелец может уничтожить этот контракт&quot;. На практике полученный код эквивалентен &quot;обертыванию&quot; кода из onlyOwner вокруг destroy.</p>
 <p>Модификаторы функций - чрезвычайно полезный инструмент, поскольку они позволяют нам писать предварительные условия для функций и применять их последовательно, делая код более легким для чтения и, как следствие, более легким для аудита безопасности. Чаще всего они используются для контроля доступа, но они достаточно универсальны и могут применяться для множества других целей.</p>
 <p>Внутри модификатора можно получить доступ ко всем значениям (переменным и аргументам), видимым для модифицируемой функции. В данном случае мы можем получить доступ к переменной-владельцу, которая объявлена внутри контракта. Однако обратное не верно: вы не можете получить доступ ни к одной из переменных модификатора внутри модифицированной функции.</p>
-<h3 id="Наследование-по-договору"><a class="header" href="#Наследование-по-договору">Наследование по договору</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Наследование-по-договору" id="Наследование-по-договору"><h3>Наследование по договору</h3></a>
 <p>Объект контракта Solidity поддерживает наследование, которое представляет собой механизм расширения базового контракта дополнительной функциональностью. Чтобы использовать наследование, укажите родительский контракт с помощью ключевого слова is:</p>
 <pre><code>contract Child is Parent {
     ...
@@ -463,26 +407,26 @@ function destroy() public {
 <p>В нашем контракте &quot;Кран&quot; мы представили конструктор и деструктор, а также контроль доступа для владельца, назначаемого при строительстве. Эти возможности являются довольно общими: они будут у многих контрактов. Мы можем определить их как общие контракты, а затем использовать наследование, чтобы распространить их на контракт Faucet.</p>
 <p>Мы начинаем с определения базового контракта Owned, который имеет переменную-владельца, устанавливая ее в конструкторе контракта:</p>
 <pre><code>contract Owned {
-	address owner;
+    address owner;
 
-	// Contract constructor: set owner
-	constructor() {
-		owner = msg.sender;
-	}
+    // Contract constructor: set owner
+    constructor() {
+        owner = msg.sender;
+    }
 
-	// Access control modifier
-	modifier onlyOwner {
-	    require(msg.sender == owner);
-	    _;
-	}
+    // Access control modifier
+    modifier onlyOwner {
+        require(msg.sender == owner);
+        _;
+    }
 }
 </code></pre>
 <p>Далее мы определяем базовый контракт Mortal, который наследует Owned:</p>
 <pre><code>contract Mortal is Owned {
-	// Contract destructor
-	function destroy() public onlyOwner {
-		selfdestruct(owner);
-	}
+    // Contract destructor
+    function destroy() public onlyOwner {
+        selfdestruct(owner);
+    }
 }
 </code></pre>
 <p>Как вы можете видеть, контракт Mortal может использовать модификатор функции onlyOwner, определенный в Owned. Косвенно он также использует адресную переменную owner и конструктор, определенный в Owned. Наследование делает каждый контракт более простым и сфокусированным на его конкретной функциональности, позволяя нам управлять деталями модульным способом.</p>
@@ -500,7 +444,7 @@ function destroy() public {
 }
 </code></pre>
 <p>Наследуя Mortal, который, в свою очередь, наследует Owned, контракт Faucet теперь имеет функции конструктора и уничтожения, а также определенного владельца. Функциональность такая же, как и в случае, когда эти функции были в Faucet, но теперь мы можем повторно использовать эти функции в других контрактах без необходимости писать их заново. Повторное использование кода и модульность делают наш код чище, легче для чтения и аудита.</p>
-<h3 id="Обработка-ошибок-assert-require-revert"><a class="header" href="#Обработка-ошибок-assert-require-revert">Обработка ошибок (assert, require, revert)</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Обработка-ошибок-assert-require-revert" id="Обработка-ошибок-assert-require-revert"><h3>Обработка ошибок (assert, require, revert)</h3></a>
 <p>Вызов контракта может завершиться и вернуть ошибку. Обработка ошибок в Solidity осуществляется с помощью четырех функций: assert, require, revert и throw (теперь устаревшая).</p>
 <p>Когда контракт завершается с ошибкой, все изменения состояния (изменения переменных, баланса и т.д.) отменяются, вплоть до цепочки вызовов контракта, если было вызвано более одного контракта. Это гарантирует, что транзакции являются атомарными, то есть они либо завершаются успешно, либо не влияют на состояние и полностью отменяются.</p>
 <p>Функции assert и require работают одинаково, оценивая условие и прекращая выполнение с ошибкой, если условие ложно. По традиции assert используется, когда ожидается, что результат будет истинным, то есть мы используем assert для проверки внутренних условий. Для сравнения, require используется при тестировании входных данных (таких как аргументы функции или поля транзакции), устанавливая наши ожидания для этих условий.</p>
@@ -518,14 +462,14 @@ function destroy() public {
 msg.sender.transfer(withdraw_amount);
 </code></pre>
 <p>Дополнительный код проверки ошибок, подобный этому, немного увеличит потребление газа, но он обеспечивает лучшее информирование об ошибках, чем если бы он был опущен. Вам нужно найти правильный баланс между потреблением газа и многословной проверкой ошибок, основываясь на предполагаемом использовании вашего контракта. В случае контракта Faucet, предназначенного для тестовой сети, мы, вероятно, сделаем выбор в пользу дополнительных отчетов, даже если это будет стоить больше газа. Возможно, в случае контракта для основной сети мы предпочтем быть экономными в использовании газа.</p>
-<h2 id="События"><a class="header" href="#События">События</a></h2>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#События" id="События"><h2>События</h2></a>
 <p>Когда транзакция завершается (успешно или нет), она выдает квитанцию транзакции, как мы увидим в [evm_chapter]. Квитанция транзакции содержит записи журнала, которые предоставляют информацию о действиях, произошедших во время выполнения транзакции. События - это объекты высокого уровня Solidity, которые используются для создания этих журналов.</p>
 <p>События особенно полезны для легких клиентов и сервисов DApp, которые могут &quot;следить&quot; за определенными событиями и сообщать о них в пользовательский интерфейс или изменять состояние приложения, чтобы отразить событие в базовом контракте.</p>
 <p>Объекты событий принимают аргументы, которые сериализуются и записываются в журналы транзакций, в блокчейн. Перед аргументом можно поставить ключевое слово indexed, чтобы значение стало частью индексированной таблицы (хэш-таблицы), по которой приложение может осуществлять поиск или фильтрацию.
 До сих пор мы не добавили никаких событий в нашем примере с Faucet, поэтому давайте сделаем это. Мы добавим два события, одно для регистрации любых снятий и одно для регистрации любых депозитов. Мы назовем эти события соответственно Withdrawal и Deposit. Сначала мы определим события в контракте Faucet:</p>
 <pre><code>contract Faucet is Mortal {
-	event Withdrawal(address indexed to, uint amount);
-	event Deposit(address indexed from, uint amount);
+    event Withdrawal(address indexed to, uint amount);
+    event Deposit(address indexed from, uint amount);
 
     [...]
 }
@@ -546,7 +490,7 @@ receive () external payable {
 <p>Полученный контракт Faucet.sol выглядит как Faucet8.sol: Переработанный контракт Faucet, с событиями.
 Пример 3. Faucet8.sol: Пересмотренный контракт Faucet, с событиями
 <code>link:code/Solidity/Faucet8.sol[]</code></p>
-<h3 id="Ловля-событий"><a class="header" href="#Ловля-событий">Ловля событий</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Ловля-событий" id="Ловля-событий"><h3>Ловля событий</h3></a>
 <p>Итак, мы настроили наш контракт на испускание событий. Как нам увидеть результаты транзакции и &quot;поймать&quot; события? Библиотека web3.js предоставляет структуру данных, которая содержит журналы транзакции. В них мы можем увидеть события, сгенерированные транзакцией.</p>
 <p>Давайте воспользуемся truffle для запуска тестовой транзакции на пересмотренном контракте Faucet. Следуйте инструкциям в [truffle] для создания каталога проекта и компиляции кода Faucet. Исходный код можно найти в репозитории GitHub книги под code/truffle/FaucetEvents.</p>
 <pre><code>$ truffle develop
@@ -589,12 +533,12 @@ Withdrawal { to: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
 </code></pre>
 <p>Чтобы получить эти события, мы просмотрели массив журналов, возвращенный в результате (res) транзакций. Первая запись журнала (logs[0]) содержит имя события в logs[0].event и аргументы события в logs[0].args. Отобразив их на консоли, мы можем увидеть имя события и аргументы события.
 События являются очень полезным механизмом не только для внутриконтрактного взаимодействия, но и для отладки во время разработки.</p>
-<h2 id="Вызов-других-контрактов-send-call-callcode-delegatecall"><a class="header" href="#Вызов-других-контрактов-send-call-callcode-delegatecall">Вызов других контрактов (send, call, callcode, delegatecall)</a></h2>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Вызов-других-контрактов-send-call-callcode-delegatecall" id="Вызов-других-контрактов-send-call-callcode-delegatecall"><h2>Вызов других контрактов (send, call, callcode, delegatecall)</h2></a>
 <p>Вызов других контрактов изнутри вашего контракта - очень полезная, но потенциально опасная операция. Мы рассмотрим различные способы, которыми вы можете этого добиться, и оценим риски каждого метода. Вкратце, риски возникают из-за того, что вы можете многого не знать о контракте, который вы вызываете, или о контракте, который вызывает ваш контракт. При написании умных контрактов вы должны помнить, что, хотя в основном вы ожидаете иметь дело с EOA, ничто не помешает произвольно сложным и, возможно, вредоносным контрактам вызываться вашим кодом.</p>
-<h3 id="Создание-нового-экземпляра"><a class="header" href="#Создание-нового-экземпляра">Создание нового экземпляра</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Создание-нового-экземпляра" id="Создание-нового-экземпляра"><h3>Создание нового экземпляра</h3></a>
 <p>Самый безопасный способ вызвать другой контракт - это создать его самому. Таким образом, вы будете уверены в его интерфейсах и поведении. Для этого вы можете просто инстанцировать его, используя ключевое слово new, как в других объектно-ориентированных языках. В Solidity ключевое слово new создаст контракт на блокчейне и вернет объект, который вы сможете использовать для ссылки на него. Допустим, вы хотите создать и вызвать контракт Faucet из другого контракта под названием Token:</p>
 <pre><code>contract Token is Mortal {
-	Faucet _faucet;
+    Faucet _faucet;
 
     constructor() {
         _faucet = new Faucet();
@@ -605,7 +549,7 @@ Withdrawal { to: '0x627306090abab3a6e1400e9345bc60c78a8bef57',
 <pre><code>import &quot;Faucet.sol&quot;;
 
 contract Token is Mortal {
-	Faucet _faucet;
+    Faucet _faucet;
 
     constructor() {
         _faucet = new Faucet();
@@ -617,7 +561,7 @@ contract Token is Mortal {
 <pre><code>import &quot;Faucet.sol&quot;;
 
 contract Token is Mortal {
-	Faucet _faucet;
+    Faucet _faucet;
 
     constructor() {
         _faucet = (new Faucet).value(0.5 ether)();
@@ -629,7 +573,7 @@ contract Token is Mortal {
 <pre><code>import &quot;Faucet.sol&quot;;
 
 contract Token is Mortal {
-	Faucet _faucet;
+    Faucet _faucet;
 
     constructor() {
         _faucet = (new Faucet).value(0.5 ether)();
@@ -641,7 +585,7 @@ contract Token is Mortal {
 }
 </code></pre>
 <p>Обратите внимание, что хотя вы являетесь владельцем контракта Token, сам контракт Token владеет новым контрактом Faucet, поэтому только контракт Token может его уничтожить.</p>
-<h4 id="Обращение-к-существующему-экземпляру"><a class="header" href="#Обращение-к-существующему-экземпляру">Обращение к существующему экземпляру</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Обращение-к-существующему-экземпляру" id="Обращение-к-существующему-экземпляру"><h4>Обращение к существующему экземпляру</h4></a>
 <p>Другим способом вызова контракта является приведение адреса существующего экземпляра контракта. С помощью этого метода вы применяете известный интерфейс к существующему экземпляру. Поэтому очень важно, чтобы вы точно знали, что экземпляр, к которому вы обращаетесь, действительно имеет тип, который вы предполагаете. Давайте рассмотрим пример:
 импортировать &quot;Faucet.sol&quot;;</p>
 <pre><code>import &quot;Faucet.sol&quot;;
@@ -657,22 +601,22 @@ contract Token is Mortal {
 }
 </code></pre>
 <p>Здесь мы берем адрес, предоставленный в качестве аргумента конструктора _f, и приводим его к объекту Faucet. Это намного рискованнее, чем предыдущий механизм, потому что мы не знаем наверняка, является ли этот адрес объектом Faucet. Когда мы вызываем функцию withdraw, мы предполагаем, что она принимает те же аргументы и выполняет тот же код, что и наше объявление Faucet, но мы не можем быть уверены. Насколько нам известно, функция withdraw по этому адресу может выполнить что-то совершенно отличное от того, что мы ожидаем, даже если она названа так же. Поэтому использование адресов, переданных в качестве входных данных, и их преобразование в конкретные объекты гораздо опаснее, чем самостоятельное создание контракта.</p>
-<h4 id="Необработанный-вызов-вызов-делегата"><a class="header" href="#Необработанный-вызов-вызов-делегата">Необработанный вызов, вызов делегата</a></h4>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Необработанный-вызов-вызов-делегата" id="Необработанный-вызов-вызов-делегата"><h4>Необработанный вызов, вызов делегата</h4></a>
 <p>Solidity предлагает несколько еще более &quot;низкоуровневых&quot; функций для вызова других контрактов. Они напрямую соответствуют одноименным опкодам EVM и позволяют нам построить вызов контракта на контракт вручную. Как таковые, они представляют собой наиболее гибкий и наиболее опасный механизм вызова других контрактов.</p>
 <p>Вот тот же пример с использованием метода вызова:</p>
 <pre><code>contract Token is Mortal {
-	constructor(address _faucet) {
-		_faucet.call(&quot;withdraw&quot;, 0.1 ether);
-	}
+    constructor(address _faucet) {
+        _faucet.call(&quot;withdraw&quot;, 0.1 ether);
+    }
 }
 </code></pre>
 <p>Как видите, этот тип вызова является слепым вызовом функции, что очень похоже на создание необработанной транзакции, только в контексте контракта. Это может подвергнуть ваш контракт ряду рисков безопасности, главным из которых является реентерабельность, которую мы обсудим более подробно в [reentrancy_security]. Функция вызова вернет false, если возникнет проблема, поэтому вы можете оценить возвращаемое значение для обработки ошибок:</p>
 <pre><code>contract Token is Mortal {
-	constructor(address _faucet) {
-		if !(_faucet.call(&quot;withdraw&quot;, 0.1 ether)) {
-			revert(&quot;Withdrawal from faucet failed&quot;);
-		}
-	}
+    constructor(address _faucet) {
+        if !(_faucet.call(&quot;withdraw&quot;, 0.1 ether)) {
+            revert(&quot;Withdrawal from faucet failed&quot;);
+        }
+    }
 }
 </code></pre>
 <p>Другим вариантом call является delegatecall, который заменил более опасный callcode. Метод callcode скоро будет устаревшим, поэтому его не следует использовать.</p>
@@ -731,7 +675,7 @@ from: '0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f'
 </code></pre>
 <p>На этот раз msg.sender - это не адрес звонящего. Вместо этого он является адресом нашего счета и совпадает с адресом происхождения транзакции. Это происходит потому, что при вызове библиотеки вызов всегда является делегативным и выполняется в контексте вызывающей стороны. Таким образом, когда код вызываемой библиотеки выполнялся, он наследовал контекст выполнения вызывающей стороны, как если бы его код выполнялся внутри вызывающей стороны. Переменная this (показанная как from в испускаемом событии) является адресом вызывающей стороны, даже если доступ к ней осуществляется изнутри вызываемой библиотеки.</p>
 <p>Следующие два вызова, использующие низкоуровневый вызов и вызов делегата, подтверждают наши ожидания, вызывая события, которые отражают то, что мы только что видели.</p>
-<h2 id="Газовые-соображения"><a class="header" href="#Газовые-соображения">Газовые соображения</a></h2>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Газовые-соображения" id="Газовые-соображения"><h2>Газовые соображения</h2></a>
 <p>Газ, более подробно описанный в [gas], является невероятно важным фактором при программировании смарт-контрактов. Газ - это ресурс, ограничивающий максимальный объем вычислений, который Ethereum позволит потреблять транзакции. Если во время вычислений лимит газа будет превышен, произойдет следующая серия событий:</p>
 <ul>
 <li>Возникает исключение &quot;закончился бензин&quot;.</li>
@@ -739,11 +683,11 @@ from: '0x8f0483125fcb9aaaefa9209d8e9d7b9c8b9fb90f'
 <li>Весь эфир, использованный для оплаты газа, берется в качестве платы за транзакцию; он не возвращается.</li>
 </ul>
 <p>Поскольку газ оплачивается пользователем, инициирующим транзакцию, пользователям не рекомендуется вызывать функции, которые имеют высокую стоимость газа. Поэтому в интересах программиста минимизировать стоимость газа для функций контракта. Для этого существуют определенные практики, которые рекомендуется применять при разработке смарт-контрактов, чтобы минимизировать стоимость газа при вызове функции.</p>
-<h3 id="Избегайте-массивов-динамического-размера"><a class="header" href="#Избегайте-массивов-динамического-размера">Избегайте массивов динамического размера</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Избегайте-массивов-динамического-размера" id="Избегайте-массивов-динамического-размера"><h3>Избегайте массивов динамического размера</h3></a>
 <p>Любой цикл по динамически изменяемому массиву, в котором функция выполняет операции над каждым элементом или ищет определенный элемент, создает риск использования слишком большого количества газа. Действительно, контракт может исчерпать свой запас газа до того, как будет найден желаемый результат, или до того, как будет произведено действие над каждым элементом, что приведет к потере времени и эфира без получения какого-либо результата.</p>
-<h3 id="Избегайте-обращений-к-другим-контрактам"><a class="header" href="#Избегайте-обращений-к-другим-контрактам">Избегайте обращений к другим контрактам</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Избегайте-обращений-к-другим-контрактам" id="Избегайте-обращений-к-другим-контрактам"><h3>Избегайте обращений к другим контрактам</h3></a>
 <p>Вызов других контрактов, особенно если стоимость газа их функций неизвестна, создает риск того, что газ закончится. Избегайте использования библиотек, которые недостаточно хорошо протестированы и широко используются. Чем меньше библиотека была проверена другими программистами, тем выше риск ее использования.</p>
-<h3 id="Оценка-стоимости-газа"><a class="header" href="#Оценка-стоимости-газа">Оценка стоимости газа</a></h3>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Оценка-стоимости-газа" id="Оценка-стоимости-газа"><h3>Оценка стоимости газа</h3></a>
 <p>Если вам нужно оценить количество газа, необходимое для выполнения определенного метода контракта с учетом его аргументов, вы можете воспользоваться следующей процедурой:</p>
 <pre><code>var contract = web3.eth.contract(abi).at(address);
 var gasEstimate = contract.myAweSomeMethod.estimateGas(arg1, arg2,
@@ -766,9 +710,9 @@ FaucetContract.web3.eth.getGasPrice(function(error, result) {
     // Get the contract instance
     FaucetContract.deployed().then(function(FaucetContractInstance) {
 
-		// Use the keyword 'estimateGas' after the function name to get the gas
-		// estimation for this particular function (aprove)
-		FaucetContractInstance.send(web3.utils.toWei(1, &quot;ether&quot;));
+        // Use the keyword 'estimateGas' after the function name to get the gas
+        // estimation for this particular function (aprove)
+        FaucetContractInstance.send(web3.utils.toWei(1, &quot;ether&quot;));
         return FaucetContractInstance.withdraw.estimateGas(web3.utils.toWei(0.1, &quot;ether&quot;));
 
     }).then(function(result) {
@@ -793,56 +737,62 @@ gas cost estimation = 627940000000000 wei
 gas cost estimation = 0.00062794 ether
 </code></pre>
 <p>Рекомендуется оценить газовую стоимость функций в рамках рабочего процесса разработки, чтобы избежать неожиданностей при развертывании контрактов в mainnet.</p>
-<h2 id="Выводы"><a class="header" href="#Выводы">Выводы</a></h2>
+<a class="header" href="./kniga/смарт_контракты_на_solidity.html#Выводы" id="Выводы"><h2>Выводы</h2></a>
 <p>В этой главе мы начали подробно работать с умными контрактами и изучили язык программирования контрактов Solidity. Мы взяли простой пример контракта Faucet.sol и постепенно улучшали его и усложняли, используя его для изучения различных аспектов языка Solidity. В [vyper_chap] мы будем работать с Vyper, другим контрактно-ориентированным языком программирования. Мы сравним Vyper с Solidity, показав некоторые различия в дизайне этих двух языков и углубив наше понимание программирования смарт-контрактов.</p>
 
-                    </main>
-
-                    <nav class="nav-wrapper" aria-label="Page navigation">
-                        <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../kniga/tx/multisig.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
-                            </a>
-
-                            <a rel="next" href="../kniga/безопаность_смарт_контрактов.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-
-                        <div style="clear: both"></div>
-                    </nav>
                 </div>
-            </div>
 
-            <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../kniga/tx/multisig.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="./kniga/tx/multisig.html" class="mobile-nav-chapters previous" title="Previous chapter">
                         <i class="fa fa-angle-left"></i>
                     </a>
+                
 
-                    <a rel="next" href="../kniga/безопаность_смарт_контрактов.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                
+                    <a rel="next" href="./kniga/безопаность_смарт_контрактов.html" class="mobile-nav-chapters next" title="Next chapter">
                         <i class="fa fa-angle-right"></i>
                     </a>
-            </nav>
+                
+
+            </div>
+
+            
+                <a href="./kniga/tx/multisig.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="./kniga/безопаность_смарт_контрактов.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
 
         </div>
 
 
-
-
-        <script type="text/javascript">
-            window.playground_copyable = true;
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
         </script>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        
 
-        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
 
-        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+        
 
-        <!-- Custom JS scripts -->
+        
 
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
 
     </body>
 </html>

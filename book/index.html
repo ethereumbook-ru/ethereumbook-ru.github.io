@@ -1,231 +1,175 @@
 <!DOCTYPE HTML>
-<html lang="ru" class="sidebar-visible no-js light">
+<html lang="en">
     <head>
-        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Предисловие - Осваиваем Ethereum - Mastering Ethereum</title>
-
-
-        <!-- Custom HTML head -->
-        
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="Руководство по Ethereum и разработке смарт-контрактов">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="favicon.svg">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
         <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-        <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
-        <!-- Custom theme stylesheets -->
+        <!-- Custom theme -->
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
 
     </head>
-    <body>
-        <!-- Provide site root to javascript -->
-        <script type="text/javascript">
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
-
-        <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
-            try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
-
-                if (theme.startsWith('"') && theme.endsWith('"')) {
-                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
-                }
-
-                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
-                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
-                }
-            } catch (e) { }
-        </script>
-
+    <body class="light">
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
-            var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
-            if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
-            html.classList.remove('light')
-            html.classList.add(theme);
-            html.classList.add('js');
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
-            if (document.body.clientWidth >= 1080) {
-                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
-                sidebar = sidebar || 'visible';
-            }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="1_предисловие.html" class="active">Предисловие</a></li><li class="chapter-item expanded affix "><a href="2_глоссарий.html">Глоссарий</a></li><li class="chapter-item expanded affix "><li class="part-title">Книга</li><li class="chapter-item expanded "><a href="kniga/что_такое_ethereum.html"><strong aria-hidden="true">1.</strong> Что такое Ethereum?</a></li><li class="chapter-item expanded "><a href="kniga/введение.html"><strong aria-hidden="true">2.</strong> Введение</a></li><li class="chapter-item expanded "><a href="kniga/клиенты.html"><strong aria-hidden="true">3.</strong> Клиенты</a></li><li class="chapter-item expanded "><a href="kniga/ключи_и_адреса.html"><strong aria-hidden="true">4.</strong> Ключи и адреса</a></li><li class="chapter-item expanded "><a href="kniga/кошельки.html"><strong aria-hidden="true">5.</strong> Кошельки</a></li><li class="chapter-item expanded "><a href="kniga/транзакции.html"><strong aria-hidden="true">6.</strong> Транзакции</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="kniga/tx/structure.html"><strong aria-hidden="true">6.1.</strong> Структура транзакции</a></li><li class="chapter-item expanded "><a href="kniga/tx/nonce.html"><strong aria-hidden="true">6.2.</strong> Nonce транзакции</a></li><li class="chapter-item expanded "><a href="kniga/tx/gas.html"><strong aria-hidden="true">6.3.</strong> Топливо (Gas)</a></li><li class="chapter-item expanded "><a href="kniga/tx/recipient.html"><strong aria-hidden="true">6.4.</strong> Получатель</a></li><li class="chapter-item expanded "><a href="kniga/tx/value_data.html"><strong aria-hidden="true">6.5.</strong> Value и Data</a></li><li class="chapter-item expanded "><a href="kniga/tx/create_contract_tx.html"><strong aria-hidden="true">6.6.</strong> Тразакция создания контракта</a></li><li class="chapter-item expanded "><a href="kniga/tx/digital_signatures.html"><strong aria-hidden="true">6.7.</strong> Цифровые подписи</a></li><li class="chapter-item expanded "><a href="kniga/tx/sign_prifix_value.html"><strong aria-hidden="true">6.8.</strong> Восстановление открытого ключа</a></li><li class="chapter-item expanded "><a href="kniga/tx/sign_transmission.html"><strong aria-hidden="true">6.9.</strong> Раздельное подписание и передача</a></li><li class="chapter-item expanded "><a href="kniga/tx/tx_propagation.html"><strong aria-hidden="true">6.10.</strong> Распространение транзакций</a></li><li class="chapter-item expanded "><a href="kniga/tx/recording_on_blockchain.html"><strong aria-hidden="true">6.11.</strong> Запись в блокчейне</a></li><li class="chapter-item expanded "><a href="kniga/tx/multisig.html"><strong aria-hidden="true">6.12.</strong> Мультиподпись</a></li></ol></li><li class="chapter-item expanded "><a href="kniga/смарт_контракты_на_solidity.html"><strong aria-hidden="true">7.</strong> Смарт-контракты на Solidity</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Смарт-контракты на Vyper</div></li><li class="chapter-item expanded "><a href="kniga/безопаность_смарт_контрактов.html"><strong aria-hidden="true">9.</strong> Безопаность смарт-контрактов</a></li><li class="chapter-item expanded "><a href="kniga/токены.html"><strong aria-hidden="true">10.</strong> Токены</a></li><li class="chapter-item expanded "><a href="kniga/оракулы.html"><strong aria-hidden="true">11.</strong> Оракулы</a></li><li class="chapter-item expanded "><a href="kniga/децентрализованные_приложения.html"><strong aria-hidden="true">12.</strong> Децентрализованные приложения</a></li><li class="chapter-item expanded "><a href="kniga/виртуальная_машина_ethereum.html"><strong aria-hidden="true">13.</strong> Виртуальная машина Ethereum</a></li><li class="chapter-item expanded "><a href="kniga/консенсус.html"><strong aria-hidden="true">14.</strong> Консенсус</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Доп 1. История ветвлений</div></li><li class="chapter-item expanded "><a href="kniga/дополнение_2_стандарты_eip_erc.html"><strong aria-hidden="true">16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li class="chapter-item expanded "><a href="kniga/дополнение_3_коды_evm_и_gas.html"><strong aria-hidden="true">17.</strong> Доп 3. Коды EVM и газ</a></li><li class="chapter-item expanded "><a href="kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong aria-hidden="true">18.</strong> Доп 4. Инструменты разработчика</a></li><li class="chapter-item expanded "><a href="kniga//дополнение_5_руководство_по_web3js.html"><strong aria-hidden="true">19.</strong> Доп 5. Руководство по web3js</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><a href="support.html">Поддержка проекта</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
-        </nav>
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li class="affix"><a href="./1_предисловие.html" class="active">Предисловие</a></li><li class="affix"><a href="./2_глоссарий.html">Глоссарий</a></li><li><a href="./kniga/что_такое_ethereum.html"><strong>1.</strong> Что такое Ethereum?</a></li><li><a href="./kniga/введение.html"><strong>2.</strong> Введение</a></li><li><a href="./kniga/клиенты.html"><strong>3.</strong> Клиенты</a></li><li><a href="./kniga/ключи_и_адреса.html"><strong>4.</strong> Ключи и адреса</a></li><li><a href="./kniga/кошельки.html"><strong>5.</strong> Кошельки</a></li><li><a href="./kniga/транзакции.html"><strong>6.</strong> Транзакции</a></li><li><ul class="section"><li><a href="./kniga/tx/structure.html"><strong>6.1.</strong> Структура_транзакции</a></li><li><a href="./kniga/tx/nonce.html"><strong>6.2.</strong> Nonce транзакции</a></li><li><a href="./kniga/tx/gas.html"><strong>6.3.</strong> Топливо (Gas)</a></li><li><a href="./kniga/tx/recipient.html"><strong>6.4.</strong> Получатель</a></li><li><a href="./kniga/tx/value_data.html"><strong>6.5.</strong> Value и Data</a></li><li><a href="./kniga/tx/create_contract_tx.html"><strong>6.6.</strong> Тразакция создания контракта</a></li><li><a href="./kniga/tx/digital_signatures.html"><strong>6.7.</strong> Цифровые подписи</a></li><li><a href="./kniga/tx/sign_prifix_value.html"><strong>6.8.</strong> Восстановление открытого ключа</a></li><li><a href="./kniga/tx/sign_transmission.html"><strong>6.9.</strong> Раздельное подписание и передача</a></li><li><a href="./kniga/tx/tx_propagation.html"><strong>6.10.</strong> Распространение транзакций</a></li><li><a href="./kniga/tx/recording_on_blockchain.html"><strong>6.11.</strong> Запись в блокчейне</a></li><li><a href="./kniga/tx/multisig.html"><strong>6.12.</strong> Мультиподпись</a></li></ul></li><li><a href="./kniga/смарт_контракты_на_solidity.html"><strong>7.</strong> Смарт-контракты на Solidity</a></li><li><strong>8.</strong> Смарт-контракты на Vyper</li><li><a href="./kniga/безопаность_смарт_контрактов.html"><strong>9.</strong> Безопаность смарт-контрактов</a></li><li><a href="./kniga/токены.html"><strong>10.</strong> Токены</a></li><li><a href="./kniga/оракулы.html"><strong>11.</strong> Оракулы</a></li><li><a href="./kniga/децентрализованные_приложения.html"><strong>12.</strong> Децентрализованные приложения</a></li><li><a href="./kniga/виртуальная_машина_ethereum.html"><strong>13.</strong> Виртуальная машина Ethereum</a></li><li><a href="./kniga/консенсус.html"><strong>14.</strong> Консенсус</a></li><li><strong>15.</strong> Доп 1. История ветвлений</li><li><a href="./kniga/дополнение_2_стандарты_eip_erc.html"><strong>16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li><a href="./kniga/дополнение_3_коды_evm_и_gas.html"><strong>17.</strong> Доп 3. Коды EVM и газ</a></li><li><a href="./kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong>18.</strong> Доп 4. Инструменты разработчика</a></li><li><a href="./kniga/дополнение_5_руководство_по_web3js.html"><strong>19.</strong> Доп 5. Руководство по web3js</a></li><li class="spacer"></li><li class="affix"><a href="./support.html">Поддержка проекта</a></li></ul>
+        </div>
 
         <div id="page-wrapper" class="page-wrapper">
 
-            <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
-                        </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                        </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
                     </div>
 
                     <h1 class="menu-title">Осваиваем Ethereum - Mastering Ethereum</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
                         </a>
-
                     </div>
                 </div>
-
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                    </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
-                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
-                    });
-                </script>
 
                 <div id="content" class="content">
-                    <main>
-                        <h1 id="Предисловие"><a class="header" href="#Предисловие">Предисловие</a></h1>
-<p>Книга &quot;Освоение Ethereum&quot; является открытой и бесплатной. Английская версия книги лежит по адресу: <a href="https://github.com/ethereumbook">https://github.com/ethereumbook</a>. Русскоязычный вариант этой книги вы можете <strong>бесплатно</strong> прочитать здесь или купить. </p>
+                    <a class="header" href="./1_предисловие.html#Предисловие" id="Предисловие"><h1>Предисловие</h1></a>
+<p>Книга &quot;Освоение Ethereum&quot; является открытой и бесплатной. Английская версия книги лежит по адресу: <a href="https://github.com/ethereumbook">https://github.com/ethereumbook</a>. Русскоязычный вариант этой книги вы можете <strong>бесплатно</strong> прочитать здесь или купить.</p>
+<p>Внимание:</p>
 <ul>
-<li><code>Печатный перевод != перевод ethereumbook.ru</code></li>
+<li>Перевод подготовлен <a href="https://t.me/druzhtech">Druzhinin Technologies</a></li>
+<li>Обсудить перевод: <a href="https://t.me/web3univer">https://t.me/web3univer</a></li>
+<li>В оригинале книги есть <code>вода</code>, которую мы вычистили</li>
+<li>В продаже есть русскоязычная книга, мы не они :)</li>
 </ul>
-<blockquote>
-<p>Этот перевод не является идеальным и требует доработки</p>
-</blockquote>
-<p>Данный перевод подготовлен тг-каналом <a href="https://t.me/druzhcom">Дружининъ</a>, там же <strong>бесплатный</strong> курс по программированию смарт-контрактов и dapp</p>
-<p>Обсудить перевод книги: <a href="https://t.me/+WFFfkVarirOlV80D">https://t.me/+WFFfkVarirOlV80D</a></p>
-<p>Поддержать проект можно здесь: Ethereum: <a href="https://etherscan.io/address/0x00bc77A41E475421c5d83Ac79D463b0399e67D99">0x00bc77A41E475421c5d83Ac79D463b0399e67D99</a></p>
-<p>В оригинальной книге есть некоторое количество <code>воды</code> которую мы вычистили, чтобы вас ничего не отвлекало.</p>
-<h2 id="Как-использовать-эту-книгу"><a class="header" href="#Как-использовать-эту-книгу">Как использовать эту книгу</a></h2>
+<a class="header" href="./1_предисловие.html#Как-использовать-эту-книгу" id="Как-использовать-эту-книгу"><h2>Как использовать эту книгу</h2></a>
 <p>Книга призвана служить как справочным пособием, так и исследованием Ethereum от корки до корки. Первые две главы предлагают мягкое введение, подходящее для начинающих пользователей, а примеры в этих главах могут быть выполнены любым человеком с небольшими техническими навыками. Эти две главы дадут вам хорошее представление об основах и позволят использовать фундаментальные инструменты Ethereum. Глава [ethereum_clients_chapter] и последующие предназначены в основном для программистов и включают в себя множество технических тем и примеров программирования.</p>
 <p>Чтобы служить одновременно справочным руководством и рассказом об Ethereum от корки до корки, книга неизбежно содержит некоторое дублирование. Некоторые темы, такие как газ, должны быть представлены достаточно рано, чтобы остальные темы имели смысл, но при этом они подробно рассматриваются в отдельных разделах.</p>
 <p>Наконец, индекс книги позволяет читателям легко находить очень специфические темы и соответствующие разделы по ключевым словам.</p>
-<h2 id="Предполагаемая-аудитория"><a class="header" href="#Предполагаемая-аудитория">Предполагаемая аудитория</a></h2>
+<a class="header" href="./1_предисловие.html#Предполагаемая-аудитория" id="Предполагаемая-аудитория"><h2>Предполагаемая аудитория</h2></a>
 <p>Эта книга предназначена в основном для кодеров. Если вы владеете языком программирования, эта книга научит вас тому, как работают блокчейн смарт-контракты, как их использовать и как разрабатывать смарт-контракты и децентрализованные приложения на их основе. Первые несколько глав также подходят в качестве углубленного введения в Ethereum для тех, кто не умеет программировать.</p>
-<h2 id="Условные-обозначения-используемые-в-этой-книге"><a class="header" href="#Условные-обозначения-используемые-в-этой-книге">Условные обозначения, используемые в этой книге</a></h2>
+<a class="header" href="./1_предисловие.html#Условные-обозначения-используемые-в-этой-книге" id="Условные-обозначения-используемые-в-этой-книге"><h2>Условные обозначения, используемые в этой книге</h2></a>
 <p>В этой книге используются следующие типографские соглашения:</p>
-<h3 id="Курсив"><a class="header" href="#Курсив">Курсив</a></h3>
+<a class="header" href="./1_предисловие.html#Курсив" id="Курсив"><h3>Курсив</h3></a>
 <p>Указывает на новые термины, URL-адреса, адреса электронной почты, имена файлов и расширения файлов.</p>
-<h3 id="Постоянная-ширина"><a class="header" href="#Постоянная-ширина">Постоянная ширина</a></h3>
+<a class="header" href="./1_предисловие.html#Постоянная-ширина" id="Постоянная-ширина"><h3>Постоянная ширина</h3></a>
 <p>Используется в листингах программ, а также внутри абзацев для обозначения элементов программы, таких как имена переменных или функций, базы данных, типы данных, переменные среды, операторы и ключевые слова.</p>
-<h3 id="Полужирный-шрифт-постоянной-ширины"><a class="header" href="#Полужирный-шрифт-постоянной-ширины">Полужирный шрифт постоянной ширины</a></h3>
+<a class="header" href="./1_предисловие.html#Полужирный-шрифт-постоянной-ширины" id="Полужирный-шрифт-постоянной-ширины"><h3>Полужирный шрифт постоянной ширины</h3></a>
 <p>Указывает команды или другой текст, который должен быть набран пользователем буквально.</p>
-<h3 id="Курсив-постоянной-ширины"><a class="header" href="#Курсив-постоянной-ширины">Курсив постоянной ширины</a></h3>
+<a class="header" href="./1_предисловие.html#Курсив-постоянной-ширины" id="Курсив-постоянной-ширины"><h3>Курсив постоянной ширины</h3></a>
 <p>Показывает текст, который должен быть заменен значениями, предоставленными пользователем, или значениями, определяемыми контекстом.</p>
 <p><strong>Совет</strong>. Этот значок означает совет или предложение.
 <strong>Заметка</strong>. Этот значок означает общее примечание.
 <strong>Предупреждение</strong>. Этот значок означает предупреждение или предостережение.</p>
-<h2 id="Примеры-кода"><a class="header" href="#Примеры-кода">Примеры кода</a></h2>
+<a class="header" href="./1_предисловие.html#Примеры-кода" id="Примеры-кода"><h2>Примеры кода</h2></a>
 <p>Примеры иллюстрируются на Solidity, Vyper и JavaScript, а также с использованием командной строки Unix-подобной операционной системы. Все фрагменты кода доступны в репозитории GitHub в подкаталоге code. Вы можете форкнуть код книги, попробовать примеры кода или отправить исправления через GitHub: https://github.com/ethereumbook/ethereumbook.</p>
 <p>Все фрагменты кода могут быть воспроизведены на большинстве операционных систем с минимальной установкой компиляторов, интерпретаторов и библиотек для соответствующих языков. Там, где это необходимо, мы приводим базовые инструкции по установке и пошаговые примеры результатов выполнения этих инструкций.</p>
 <p>Некоторые фрагменты кода и вывод кода были переформатированы для печати. Во всех таких случаях строки разделены символом обратной косой черты (), за которым следует символ новой строки. При расшифровке примеров удалите эти два символа и снова соедините строки, и вы увидите результаты, идентичные показанным в примере.</p>
 <p>Во всех фрагментах кода используются реальные значения и вычисления, где это возможно, так что вы можете строить пример за примером и видеть те же результаты в любом коде, который вы напишете для вычисления тех же значений. Например, закрытые ключи и соответствующие им открытые ключи и адреса - все реальные. Примеры транзакций, контрактов, блоков и ссылок на блокчейн были внесены в реальный блокчейн Ethereum и являются частью публичной бухгалтерской книги, поэтому вы можете их просмотреть.</p>
-<h2 id="Ссылки-на-компании-и-продукты"><a class="header" href="#Ссылки-на-компании-и-продукты">Ссылки на компании и продукты</a></h2>
+<a class="header" href="./1_предисловие.html#Ссылки-на-компании-и-продукты" id="Ссылки-на-компании-и-продукты"><h2>Ссылки на компании и продукты</h2></a>
 <p>Все ссылки на компании и продукты предназначены для образовательных, демонстрационных и справочных целей. Авторы не поддерживают ни одну из упомянутых компаний или продуктов. Мы не проверяли работу или безопасность продуктов, проектов или сегментов кода, представленных в этой книге. Используйте их на свой страх и риск!</p>
-<h2 id="Адреса-и-транзакции-ethereum-в-этой-книге"><a class="header" href="#Адреса-и-транзакции-ethereum-в-этой-книге">Адреса и транзакции Ethereum в этой книге</a></h2>
+<a class="header" href="./1_предисловие.html#Адреса-и-транзакции-ethereum-в-этой-книге" id="Адреса-и-транзакции-ethereum-в-этой-книге"><h2>Адреса и транзакции Ethereum в этой книге</h2></a>
 <p>Адреса Ethereum, транзакции, ключи, QR-коды и данные блокчейна, используемые в этой книге, по большей части реальны. Это означает, что вы можете просматривать блокчейн, смотреть на транзакции, предлагаемые в качестве примеров, извлекать их с помощью собственных скриптов или программ и т. д.</p>
 <p>Однако обратите внимание, что закрытые ключи, используемые для создания адресов, напечатанных в этой книге, были &quot;сожжены&quot;. Это означает, что если вы отправите деньги на любой из этих адресов, они будут либо потеряны навсегда, либо (что более вероятно) присвоены, поскольку любой, кто прочитает эту книгу, сможет взять их, используя напечатанные в ней закрытые ключи.</p>
 <p><strong>Предупреждение:</strong> НЕ ПОСЫЛАЙТЕ ДЕНЬГИ НИ ПО ОДНОМУ ИЗ АДРЕСОВ, УКАЗАННЫХ В ЭТОЙ КНИГЕ. Ваши деньги будут взяты другим читателем или потеряны навсегда.</p>
 
-                    </main>
-
-                    <nav class="nav-wrapper" aria-label="Page navigation">
-                        <!-- Mobile navigation buttons -->
-
-                            <a rel="next" href="2_глоссарий.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-
-                        <div style="clear: both"></div>
-                    </nav>
                 </div>
-            </div>
 
-            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                <!-- Mobile navigation buttons -->
+                
 
-                    <a rel="next" href="2_глоссарий.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                
+                    <a rel="next" href="./2_глоссарий.html" class="mobile-nav-chapters next" title="Next chapter">
                         <i class="fa fa-angle-right"></i>
                     </a>
-            </nav>
+                
+
+            </div>
+
+            
+
+            
+                <a href="./2_глоссарий.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
 
         </div>
 
 
-
-
-        <script type="text/javascript">
-            window.playground_copyable = true;
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
         </script>
 
+        <!-- Livereload script (if served using the cli tool) -->
+        
 
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        
 
-        <!-- Custom JS scripts -->
+        
 
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
 
     </body>
 </html>
