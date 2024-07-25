@@ -1,94 +1,181 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="ru" class="light" dir="ltr">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Доп 4. Инструменты разработчика - Осваиваем Ethereum - Mastering Ethereum</title>
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+
+        <!-- Custom HTML head -->
+        
         <meta name="description" content="Руководство по Ethereum и разработке смарт-контрактов">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
 
-        <base href="../">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
-        <link rel="stylesheet" href="book.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
-        <link rel="shortcut icon" href="favicon.png">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
-
-        <!-- Custom theme -->
-        
-
-        
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <!-- Fetch JQuery from CDN but have a local fallback -->
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script>
-            if (typeof jQuery == 'undefined') {
-                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
-        <script src="store.js"></script>
+        <!-- Custom theme stylesheets -->
 
     </head>
-    <body class="light">
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme = store.get('mdbook-theme');
-            if (theme === null || theme === undefined) { theme = 'light'; }
-            $('body').removeClass().addClass(theme);
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var sidebar = store.get('mdbook-sidebar');
-            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
-            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
-        <div id="sidebar" class="sidebar">
-            <ul class="chapter"><li class="affix"><a href="./1_предисловие.html">Предисловие</a></li><li class="affix"><a href="./2_глоссарий.html">Глоссарий</a></li><li><a href="./kniga/что_такое_ethereum.html"><strong>1.</strong> Что такое Ethereum?</a></li><li><a href="./kniga/введение.html"><strong>2.</strong> Введение</a></li><li><a href="./kniga/клиенты.html"><strong>3.</strong> Клиенты</a></li><li><a href="./kniga/ключи_и_адреса.html"><strong>4.</strong> Ключи и адреса</a></li><li><a href="./kniga/кошельки.html"><strong>5.</strong> Кошельки</a></li><li><a href="./kniga/транзакции.html"><strong>6.</strong> Транзакции</a></li><li><ul class="section"><li><a href="./kniga/tx/structure.html"><strong>6.1.</strong> Структура_транзакции</a></li><li><a href="./kniga/tx/nonce.html"><strong>6.2.</strong> Nonce транзакции</a></li><li><a href="./kniga/tx/gas.html"><strong>6.3.</strong> Топливо (Gas)</a></li><li><a href="./kniga/tx/recipient.html"><strong>6.4.</strong> Получатель</a></li><li><a href="./kniga/tx/value_data.html"><strong>6.5.</strong> Value и Data</a></li><li><a href="./kniga/tx/create_contract_tx.html"><strong>6.6.</strong> Тразакция создания контракта</a></li><li><a href="./kniga/tx/digital_signatures.html"><strong>6.7.</strong> Цифровые подписи</a></li><li><a href="./kniga/tx/sign_prifix_value.html"><strong>6.8.</strong> Восстановление открытого ключа</a></li><li><a href="./kniga/tx/sign_transmission.html"><strong>6.9.</strong> Раздельное подписание и передача</a></li><li><a href="./kniga/tx/tx_propagation.html"><strong>6.10.</strong> Распространение транзакций</a></li><li><a href="./kniga/tx/recording_on_blockchain.html"><strong>6.11.</strong> Запись в блокчейне</a></li><li><a href="./kniga/tx/multisig.html"><strong>6.12.</strong> Мультиподпись</a></li></ul></li><li><a href="./kniga/смарт_контракты_на_solidity.html"><strong>7.</strong> Смарт-контракты на Solidity</a></li><li><strong>8.</strong> Смарт-контракты на Vyper</li><li><a href="./kniga/безопаность_смарт_контрактов.html"><strong>9.</strong> Безопаность смарт-контрактов</a></li><li><a href="./kniga/токены.html"><strong>10.</strong> Токены</a></li><li><a href="./kniga/оракулы.html"><strong>11.</strong> Оракулы</a></li><li><a href="./kniga/децентрализованные_приложения.html"><strong>12.</strong> Децентрализованные приложения</a></li><li><a href="./kniga/виртуальная_машина_ethereum.html"><strong>13.</strong> Виртуальная машина Ethereum</a></li><li><a href="./kniga/консенсус.html"><strong>14.</strong> Консенсус</a></li><li><strong>15.</strong> Доп 1. История ветвлений</li><li><a href="./kniga/дополнение_2_стандарты_eip_erc.html"><strong>16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li><a href="./kniga/дополнение_3_коды_evm_и_gas.html"><strong>17.</strong> Доп 3. Коды EVM и газ</a></li><li><a href="./kniga/дополнение_4_инструменты_solidity_разработчика.html" class="active"><strong>18.</strong> Доп 4. Инструменты разработчика</a></li><li><a href="./kniga/дополнение_5_руководство_по_web3js.html"><strong>19.</strong> Доп 5. Руководство по web3js</a></li><li class="spacer"></li><li class="affix"><a href="./support.html">Поддержка проекта</a></li></ul>
-        </div>
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../1_предисловие.html">Предисловие</a></li><li class="chapter-item expanded affix "><a href="../2_глоссарий.html">Глоссарий</a></li><li class="chapter-item expanded affix "><li class="part-title">Книга</li><li class="chapter-item expanded "><a href="../kniga/что_такое_ethereum.html"><strong aria-hidden="true">1.</strong> Что такое Ethereum?</a></li><li class="chapter-item expanded "><a href="../kniga/введение.html"><strong aria-hidden="true">2.</strong> Введение</a></li><li class="chapter-item expanded "><a href="../kniga/клиенты.html"><strong aria-hidden="true">3.</strong> Клиенты</a></li><li class="chapter-item expanded "><a href="../kniga/ключи_и_адреса.html"><strong aria-hidden="true">4.</strong> Ключи и адреса</a></li><li class="chapter-item expanded "><a href="../kniga/кошельки.html"><strong aria-hidden="true">5.</strong> Кошельки</a></li><li class="chapter-item expanded "><a href="../kniga/транзакции.html"><strong aria-hidden="true">6.</strong> Транзакции</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../kniga/tx/structure.html"><strong aria-hidden="true">6.1.</strong> Структура_транзакции</a></li><li class="chapter-item expanded "><a href="../kniga/tx/nonce.html"><strong aria-hidden="true">6.2.</strong> Nonce транзакции</a></li><li class="chapter-item expanded "><a href="../kniga/tx/gas.html"><strong aria-hidden="true">6.3.</strong> Топливо (Gas)</a></li><li class="chapter-item expanded "><a href="../kniga/tx/recipient.html"><strong aria-hidden="true">6.4.</strong> Получатель</a></li><li class="chapter-item expanded "><a href="../kniga/tx/value_data.html"><strong aria-hidden="true">6.5.</strong> Value и Data</a></li><li class="chapter-item expanded "><a href="../kniga/tx/create_contract_tx.html"><strong aria-hidden="true">6.6.</strong> Тразакция создания контракта</a></li><li class="chapter-item expanded "><a href="../kniga/tx/digital_signatures.html"><strong aria-hidden="true">6.7.</strong> Цифровые подписи</a></li><li class="chapter-item expanded "><a href="../kniga/tx/sign_prifix_value.html"><strong aria-hidden="true">6.8.</strong> Восстановление открытого ключа</a></li><li class="chapter-item expanded "><a href="../kniga/tx/sign_transmission.html"><strong aria-hidden="true">6.9.</strong> Раздельное подписание и передача</a></li><li class="chapter-item expanded "><a href="../kniga/tx/tx_propagation.html"><strong aria-hidden="true">6.10.</strong> Распространение транзакций</a></li><li class="chapter-item expanded "><a href="../kniga/tx/recording_on_blockchain.html"><strong aria-hidden="true">6.11.</strong> Запись в блокчейне</a></li><li class="chapter-item expanded "><a href="../kniga/tx/multisig.html"><strong aria-hidden="true">6.12.</strong> Мультиподпись</a></li></ol></li><li class="chapter-item expanded "><a href="../kniga/смарт_контракты_на_solidity.html"><strong aria-hidden="true">7.</strong> Смарт-контракты на Solidity</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Смарт-контракты на Vyper</div></li><li class="chapter-item expanded "><a href="../kniga/безопаность_смарт_контрактов.html"><strong aria-hidden="true">9.</strong> Безопаность смарт-контрактов</a></li><li class="chapter-item expanded "><a href="../kniga/токены.html"><strong aria-hidden="true">10.</strong> Токены</a></li><li class="chapter-item expanded "><a href="../kniga/оракулы.html"><strong aria-hidden="true">11.</strong> Оракулы</a></li><li class="chapter-item expanded "><a href="../kniga/децентрализованные_приложения.html"><strong aria-hidden="true">12.</strong> Децентрализованные приложения</a></li><li class="chapter-item expanded "><a href="../kniga/виртуальная_машина_ethereum.html"><strong aria-hidden="true">13.</strong> Виртуальная машина Ethereum</a></li><li class="chapter-item expanded "><a href="../kniga/консенсус.html"><strong aria-hidden="true">14.</strong> Консенсус</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Доп 1. История ветвлений</div></li><li class="chapter-item expanded "><a href="../kniga/дополнение_2_стандарты_eip_erc.html"><strong aria-hidden="true">16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li class="chapter-item expanded "><a href="../kniga/дополнение_3_коды_evm_и_gas.html"><strong aria-hidden="true">17.</strong> Доп 3. Коды EVM и газ</a></li><li class="chapter-item expanded "><a href="../kniga/дополнение_4_инструменты_solidity_разработчика.html" class="active"><strong aria-hidden="true">18.</strong> Доп 4. Инструменты разработчика</a></li><li class="chapter-item expanded "><a href="../kniga//дополнение_5_руководство_по_web3js.html"><strong aria-hidden="true">19.</strong> Доп 5. Руководство по web3js</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../support.html">Поддержка проекта</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
-            <div class="page" tabindex="-1">
-                
-                <div id="menu-bar" class="menu-bar">
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
-                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
 
                     <h1 class="menu-title">Осваиваем Ethereum - Mastering Ethereum</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html">
-                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
                         </a>
+
                     </div>
                 </div>
 
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
                 <div id="content" class="content">
-                    <a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Доп-4-Инструменты-разработчика" id="Доп-4-Инструменты-разработчика"><h1>Доп 4. Инструменты разработчика</h1></a>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Инструменты-разработки" id="Инструменты-разработки"><h2>Инструменты разработки</h2></a>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#alchemy" id="alchemy"><h3>Alchemy</h3></a>
+                    <main>
+                        <h1 id="Доп-4-Инструменты-разработчика"><a class="header" href="#Доп-4-Инструменты-разработчика">Доп 4. Инструменты разработчика</a></h1>
+<h2 id="Инструменты-разработки"><a class="header" href="#Инструменты-разработки">Инструменты разработки</a></h2>
+<h3 id="alchemy"><a class="header" href="#alchemy">Alchemy</a></h3>
 <ul>
 <li>Страница: <a href="https://alchemyapi.io">alchemyapi.io</a></li>
 <li>Документация: <a href="https://docs.alchemyapi.io">docs.alchemyapi.io</a></li>
@@ -97,20 +184,20 @@
 <p>Развертывание самостоятельного узла может быть сопряжено с рядом проблем: это может быть трудоемким и дорогостоящим процессом, требующим значительного инженерного времени для управления, порядка ~7 тыс. долларов США в год на сервер AWS для каждого узла. Кроме того, эти узлы могут быть ненадежными, что чревато такими проблемами, как скачки процессора, сбои в работе пиринга и проблемы с согласованностью, когда узлы не синхронизируются с сетью. Кроме того, определение согласованного состояния сети может стать сложной задачей при масштабировании на несколько узлов, которые в любой момент времени могут видеть несколько разные версии блокчейна.</p>
 <p>Провайдер инфраструктуры блокчейна инкапсулирует все сложности управления узлами Ethereum с помощью интерфейса запросов JSON-RPC, который расширяет web3.js. Направляя запросы узлов в конечную точку пользовательского API, разработчики получают доступ ко всему необходимому для взаимодействия с блокчейном Ethereum, гарантируя при этом, что их запросы обслуживаются надежно, с полной корректностью данных и могут быть масштабированы до любого необходимого размера.</p>
 <p>Alchemy является одним из таких поставщиков инфраструктуры. Помимо этих гарантий, он также предоставляет дополнительные инструменты для разработчиков, такие как:</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#api-explorer" id="api-explorer"><h4>API Explorer</h4></a>
+<h4 id="api-explorer"><a class="header" href="#api-explorer">API Explorer</a></h4>
 <p>Браузерный инструмент, позволяющий разработчикам осуществлять поиск и анализ всех исторических запросов API, отправленных через Alchemy, для отслеживания закономерностей, поиска ошибок и упрощения отладки.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#mempool-visualizer" id="mempool-visualizer"><h4>Mempool Visualizer</h4></a>
+<h4 id="mempool-visualizer"><a class="header" href="#mempool-visualizer">Mempool Visualizer</a></h4>
 <p>Браузерный инструмент, позволяющий разработчикам просматривать и искать добытые, ожидающие и отложенные транзакции в мемпуле Alchemy, чтобы они могли отслеживать статус своих транзакций.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#composer" id="composer"><h4>Composer</h4></a>
+<h4 id="composer"><a class="header" href="#composer">Composer</a></h4>
 <p>Браузерный инструмент, позволяющий разработчикам выполнять вызовы JSON-RPC непосредственно из приборной панели для создания прототипов и исправления неудачных запросов или изучения поведения новых методов.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Расширенные-api" id="Расширенные-api"><h4>Расширенные API</h4></a>
+<h4 id="Расширенные-api"><a class="header" href="#Расширенные-api">Расширенные API</a></h4>
 <p>Набор дополнительных API, предоставляющих инструменты более высокого уровня для помощи разработчикам, такие как возврат баланса токенов, получение метаданных токенов или получение исторических транзакций для любого адреса без необходимости сканирования всего блокчейна.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#notify" id="notify"><h4>Notify</h4></a>
+<h4 id="notify"><a class="header" href="#notify">Notify</a></h4>
 <p>Инструмент, использующий веб-крючки, позволяющий разработчикам получать уведомления всякий раз, когда они видят активность на определенном адресе Ethereum, когда транзакции в их mempool добываются или сбрасываются, или когда цены на газ Ethereum падают ниже определенной суммы.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Настройка" id="Настройка"><h4>Настройка</h4></a>
-<p>Чтобы использовать продукты Alchemy, вам необходим ключ API для аутентификации ваших запросов. Создайте учетную запись Alchemy, создайте свое первое приложение и выберите &quot;Просмотр ключа&quot; на приборной панели выбранного приложения, чтобы получить новый ключ.</p>
+<h4 id="Настройка"><a class="header" href="#Настройка">Настройка</a></h4>
+<p>Чтобы использовать продукты Alchemy, вам необходим ключ API для аутентификации ваших запросов. Создайте учетную запись Alchemy, создайте свое первое приложение и выберите "Просмотр ключа" на приборной панели выбранного приложения, чтобы получить новый ключ.</p>
 <p><img src="./kartinki/alchemy-new-app.gif" alt="Настройка Alchemy" /></p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Выполнение-запросов" id="Выполнение-запросов"><h4>Выполнение запросов</h4></a>
+<h4 id="Выполнение-запросов"><a class="header" href="#Выполнение-запросов">Выполнение запросов</a></h4>
 <p>Для ручных запросов мы рекомендуем взаимодействовать с JSON-RPC через POST-запросы. Просто передайте заголовок <code>Content-Type: application/json</code> и ваш запрос в качестве тела POST со следующими полями.
 <code>jsonrpc</code>: Версия JSON-RPC - в настоящее время поддерживается только 2.0.
 <code>method</code>: Метод API ETH. См. справку по API.
@@ -119,32 +206,32 @@
 <p>Вот пример, который вы можете запустить из командной строки для получения текущей цены на газ, заменив demo на свой собственный ключ API.</p>
 <pre><code>curl https://eth-mainnet.alchemyapi.io/v2/demo \
 -X POST \
--H &quot;Content-Type: application/json&quot; \
--d '{&quot;jsonrpc&quot;:&quot;2.0&quot;,&quot;method&quot;:&quot;eth_gasPrice&quot;,&quot;params&quot;:[],&quot;id&quot;:73}
+-H "Content-Type: application/json" \
+-d '{"jsonrpc":"2.0","method":"eth_gasPrice","params":[],"id":73}
 </code></pre>
 <p>Результаты:</p>
-<pre><code>{ &quot;id&quot;: 73,
-  &quot;jsonrpc&quot;: &quot;2.0&quot;,
-  &quot;result&quot;: &quot;0x09184e72a000&quot; // 10000000000000 
+<pre><code>{ "id": 73,
+  "jsonrpc": "2.0",
+  "result": "0x09184e72a000" // 10000000000000 
 }
 </code></pre>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Настройка-alchemy-в-качестве-клиента" id="Настройка-alchemy-в-качестве-клиента"><h4>Настройка Alchemy в качестве клиента</h4></a>
+<h4 id="Настройка-alchemy-в-качестве-клиента"><a class="header" href="#Настройка-alchemy-в-качестве-клиента">Настройка Alchemy в качестве клиента</a></h4>
 <p>Мы рекомендуем использовать <code>AlchemyWeb3.js</code>, расширенную версию <code>web3.js</code>, которая также включает Alchemy Enhanced APIs. Для получения дополнительной информации обратитесь к руководству по <a href="https://docs.alchemyapi.io/documentation/alchemy-web3">Alchemy Web3</a>.</p>
 <p>Чтобы установить <code>AlchemyWeb3.js</code>, выполните в командной строке:
 С yarn: <code>yarn add @alch/alchemy-web3</code>
 С NPM: <code>npm install @alch/alchemy-web3</code>
 Чтобы использовать инфраструктуру узлов Alchemy, запустите в NodeJS или добавьте это в файл JavaScript:</p>
-<pre><code>const { createAlchemyWeb3 } = require(&quot;@alch/alchemy-web3&quot;);
-const web3 = createAlchemyWeb3(&quot;https://eth-mainnet.alchemyapi.io/v2/your-api-key&quot;);
+<pre><code>const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
+const web3 = createAlchemyWeb3("https://eth-mainnet.alchemyapi.io/v2/your-api-key");
 </code></pre>
 <p>В качестве альтернативы вы можете использовать стандартный <code>web3.js</code>, запустив <code>npm install web3</code> и выполнив приведенный ниже фрагмент кода для использования инфраструктуры Alchemy без расширенных API:</p>
 <pre><code>// JavaScript: web3.js
 const Web3 = require('web3');
-const web3 = new Web3(&quot;https://eth-mainnet.alchemyapi.io/v2/your-api-key&quot;);
+const web3 = new Web3("https://eth-mainnet.alchemyapi.io/v2/your-api-key");
 </code></pre>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#frameworks" id="frameworks"><h2>Frameworks</h2></a>
+<h2 id="frameworks"><a class="header" href="#frameworks">Frameworks</a></h2>
 <p>Для облегчения разработки смарт-контрактов Ethereum можно использовать фреймворки. Делая все самостоятельно, вы лучше понимаете, как все сочетается друг с другом, но это очень утомительная, повторяющаяся работа. Фреймворки, описанные в этом разделе, могут автоматизировать некоторые задачи и облегчить разработку.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#truffle" id="truffle"><h3>Truffle</h3></a>
+<h3 id="truffle"><a class="header" href="#truffle">Truffle</a></h3>
 <ul>
 <li>GitHub: <a href="https://github.com/trufflesuite/truffle">github.com/trufflesuite/truffle</a></li>
 <li>Веб-сайт: <a href="https://trufflesuite.com">trufflesuite.com</a></li>
@@ -152,10 +239,10 @@ const web3 = new Web3(&quot;https://eth-mainnet.alchemyapi.io/v2/your-api-key&qu
 <li>Коробки с трюфелями: <a href="http://trufflesuite.com/boxes/">trufflesuite.com/boxes/</a></li>
 <li>Репозиторий пакетов npm: <a href="https://www.npmjs.com/package/truffle">www.npmjs.com/package/truffle</a></li>
 </ul>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Установка-фреймворка-truffle" id="Установка-фреймворка-truffle"><h4>Установка фреймворка Truffle</h4></a>
+<h4 id="Установка-фреймворка-truffle"><a class="header" href="#Установка-фреймворка-truffle">Установка фреймворка Truffle</a></h4>
 <p>Фреймворк Truffle включает в себя несколько пакетов Node.js. Перед установкой Truffle вам необходимо иметь актуальную и рабочую установку Node.js и менеджера пакетов Node (npm).</p>
 <p>Рекомендуемый способ установки Node.js и npm - это использование менеджера версий Node (nvm). Как только вы установите nvm, он будет обрабатывать все зависимости и обновления за вас. Следуйте инструкциям, приведенным на сайте <a href="http://nvm.sh/">http://nvm.sh</a>.</p>
-<p>После установки nvm на вашу операционную систему установка Node.js проста. Используйте флаг --lts, чтобы указать nvm, что вам нужна самая последняя версия Node.js с &quot;долгосрочной поддержкой&quot; (LTS):</p>
+<p>После установки nvm на вашу операционную систему установка Node.js проста. Используйте флаг --lts, чтобы указать nvm, что вам нужна самая последняя версия Node.js с "долгосрочной поддержкой" (LTS):</p>
 <p><code>$ nvm install --lts</code></p>
 <p>Убедитесь, что у вас установлены node и npm:</p>
 <pre><code>$ node -v
@@ -173,10 +260,10 @@ $ nvm install
 + truffle@5.1.20
 added 26 packages from 438 contributors and updated 1 package in 24.229s
 </code></pre>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Интеграция-готового-проекта-truffle-truffle-box" id="Интеграция-готового-проекта-truffle-truffle-box"><h4>Интеграция готового проекта Truffle (Truffle Box)</h4></a>
+<h4 id="Интеграция-готового-проекта-truffle-truffle-box"><a class="header" href="#Интеграция-готового-проекта-truffle-truffle-box">Интеграция готового проекта Truffle (Truffle Box)</a></h4>
 <p>Если вы хотите использовать или создать DApp, который строится на основе готовых шаблонов, зайдите на сайт Truffle Boxes, выберите существующий проект Truffle, а затем выполните следующую команду, чтобы загрузить и извлечь его:</p>
 <p><code>$ truffle unbox BOX_NAME</code></p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Создание-каталога-проекта-truffle" id="Создание-каталога-проекта-truffle"><h4>Создание каталога проекта Truffle</h4></a>
+<h4 id="Создание-каталога-проекта-truffle"><a class="header" href="#Создание-каталога-проекта-truffle">Создание каталога проекта Truffle</a></h4>
 <p>Для каждого проекта, в котором вы будете использовать Truffle, создайте каталог проекта и инициализируйте Truffle в этом каталоге. Truffle создаст необходимую структуру каталогов внутри каталога проекта. Обычно принято давать каталогу проекта имя, которое описывает проект. В этом примере мы будем использовать Truffle для развертывания нашего контракта Faucet из [simple_contract_example], поэтому мы назовем папку проекта Faucet:</p>
 <pre><code>$ mkdir Faucet
 $ cd Faucet
@@ -208,18 +295,18 @@ license: (ISC)
 About to write to Faucet/package.json:
 
 {
-  &quot;name&quot;: &quot;faucet&quot;,
-  &quot;version&quot;: &quot;1.0.0&quot;,
-  &quot;description&quot;: &quot;&quot;,
-  &quot;main&quot;: &quot;truffle-config.js&quot;,
-  &quot;directories&quot;: {
-    &quot;test&quot;: &quot;test&quot;
+  "name": "faucet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
   },
-  &quot;scripts&quot;: {
-    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
+  "scripts": {
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"
   },
-  &quot;author&quot;: &quot;&quot;,
-  &quot;license&quot;: &quot;ISC&quot;
+  "author": "",
+  "license": "ISC"
 }
 
 
@@ -229,13 +316,13 @@ Is this ok? (yes)
 <p><code>$ npm install dotenv truffle-wallet-provider ethereumjs-wallet</code></p>
 <p>Теперь у нас есть каталог node_modules с несколькими тысячами файлов внутри нашего каталога Faucet.
 Перед развертыванием DApp в облачной производственной среде или среде непрерывной интеграции важно указать поле engines, чтобы ваш DApp был собран с правильной версией Node.js и были установлены связанные с ним зависимости. Подробнее о настройке этого поля см. в <a href="https://docs.npmjs.com/cli/v8/configuring-npm/package-json">документации</a>.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Конфигурирование-трюфеля" id="Конфигурирование-трюфеля"><h4>Конфигурирование трюфеля</h4></a>
+<h4 id="Конфигурирование-трюфеля"><a class="header" href="#Конфигурирование-трюфеля">Конфигурирование трюфеля</a></h4>
 <p>Truffle создает пустой файл конфигурации, truffle-config.js. Теперь мы отредактируем truffle-config.js и заменим его содержимое примером конфигурации, показанным здесь:</p>
 <pre><code>module.exports = {
   networks: {
     localnode: { // Whatever network our local node connects to
-      network_id: &quot;*&quot;, // Match any network ID
-      host: &quot;localhost&quot;,
+      network_id: "*", // Match any network ID
+      host: "localhost",
       port: 8545,
     }
   }
@@ -243,8 +330,8 @@ Is this ok? (yes)
 </code></pre>
 <p>Эта конфигурация является хорошей отправной точкой. Она устанавливает одну сеть Ethereum по умолчанию (с именем localnode), которая предполагает, что мы запускаем клиент Ethereum, такой как Parity, либо как полный узел, либо как легкий клиент. Эта конфигурация предписывает Truffle взаимодействовать с локальным узлом через RPC на порту 8545. Truffle будет использовать любую сеть Ethereum, к которой подключен локальный узел, например, основную сеть Ethereum или тестовую сеть, такую как Ropsten. Локальный узел также будет обеспечивать функциональность кошелька.</p>
 <p>В следующих разделах мы настроим дополнительные сети для использования Truffle, такие как локальный тестовый блокчейн ganache и Infura, поставщик хостинговых сетей. По мере добавления новых сетей конфигурационный файл будет становиться все сложнее, но это также даст нам больше возможностей для рабочего процесса тестирования и разработки.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Использование-truffle-для-развертывания-контракта" id="Использование-truffle-для-развертывания-контракта"><h4>Использование Truffle для развертывания контракта</h4></a>
-<p>Теперь у нас есть основной рабочий каталог для нашего проекта Faucet, и мы настроили Truffle и его зависимости. Контракты находятся в подкаталоге contracts нашего проекта. В каталоге уже содержится &quot;вспомогательный&quot; контракт Migrations.sol, который управляет обновлением контрактов за нас. Мы рассмотрим использование Migrations.sol в следующем разделе.</p>
+<h4 id="Использование-truffle-для-развертывания-контракта"><a class="header" href="#Использование-truffle-для-развертывания-контракта">Использование Truffle для развертывания контракта</a></h4>
+<p>Теперь у нас есть основной рабочий каталог для нашего проекта Faucet, и мы настроили Truffle и его зависимости. Контракты находятся в подкаталоге contracts нашего проекта. В каталоге уже содержится "вспомогательный" контракт Migrations.sol, который управляет обновлением контрактов за нас. Мы рассмотрим использование Migrations.sol в следующем разделе.</p>
 <p>Давайте скопируем контракт Faucet.sol (из [solidity_faucet_example]) в подкаталог contracts, чтобы каталог проекта выглядел следующим образом:</p>
 <pre><code>Faucet
 +---- contracts
@@ -258,7 +345,7 @@ Compiling ./contracts/Faucet.sol...
 Compiling ./contracts/Migrations.sol...
 Writing artifacts to ./build/contracts
 </code></pre>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Миграции-truffle---понимание-сценариев-развертывания" id="Миграции-truffle---понимание-сценариев-развертывания"><h4>Миграции Truffle - понимание сценариев развертывания</h4></a>
+<h4 id="Миграции-truffle---понимание-сценариев-развертывания"><a class="header" href="#Миграции-truffle---понимание-сценариев-развертывания">Миграции Truffle - понимание сценариев развертывания</a></h4>
 <p>Truffle предлагает систему развертывания, называемую миграцией. Если вы работали с другими фреймворками, вы могли видеть нечто подобное: Ruby on Rails, Python Django и многие другие языки и фреймворки имеют команду migrate.</p>
 <p>Во всех этих системах цель миграции заключается в обработке изменений в схеме данных между различными версиями программного обеспечения. Цель миграций в Ethereum несколько иная. Поскольку контракты Ethereum неизменяемы и требуют больших затрат на развертывание, Truffle предлагает механизм миграции для отслеживания того, какие контракты (и какие версии) уже были развернуты. В сложном проекте с десятками контрактов и сложными зависимостями вы не захотите платить за повторное развертывание контрактов, которые не изменились. Вы также не захотите вручную отслеживать, какие версии каких контрактов уже были развернуты. Механизм миграции Truffle делает все это путем развертывания интеллектуального контракта Migrations.sol, который затем отслеживает все остальные развертывания контрактов.</p>
 <p>У нас только один контракт, Faucet.sol, что означает, что система миграции, мягко говоря, излишняя. К сожалению, мы вынуждены ее использовать. Но, научившись использовать ее для одного контракта, мы можем начать практиковать некоторые хорошие привычки для нашего рабочего процесса разработки. Усилия окупятся, когда все усложнится.</p>
@@ -292,7 +379,7 @@ Saving successful migration to network...
   ... 0x11f376bd7307edddfd40dc4a14c3f7cb84b6c921ac2465602060b67d08f9fd8a
 Saving artifacts...
 </code></pre>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Использование-консоли-truffle" id="Использование-консоли-truffle"><h4>Использование консоли Truffle</h4></a>
+<h4 id="Использование-консоли-truffle"><a class="header" href="#Использование-консоли-truffle">Использование консоли Truffle</a></h4>
 <p>Truffle предлагает консоль JavaScript, которую мы можем использовать для взаимодействия с сетью Ethereum (через локальный узел), взаимодействия с развернутыми контрактами и взаимодействия с провайдером кошелька. В нашей текущей конфигурации (localnode) узел и провайдер кошелька - это наш локальный клиент Parity.</p>
 <p>Давайте запустим консоль Truffle и попробуем выполнить несколько команд:</p>
 <pre><code>$ truffle console --network localnode
@@ -347,7 +434,7 @@ truffle(localnode)&gt; Faucet.deployed().then(instance =&gt;
 StatusError: Transaction: 0xe147ae9e3610334...8612b92d3f9c
   exited with an error (status 0).
 </code></pre>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#embark" id="embark"><h3>Embark</h3></a>
+<h3 id="embark"><a class="header" href="#embark">Embark</a></h3>
 <ul>
 <li>GitHub: <a href="https://github.com/embark-framework/embark/">github.com/embark-framework/embark</a></li>
 <li>Документация: <a href="https://embark.status.im/docs/">embark.status.im/docs</a></li>
@@ -366,7 +453,7 @@ StatusError: Transaction: 0xe147ae9e3610334...8612b92d3f9c
 <p>Вы можете установить его с помощью npm:</p>
 <pre><code>$ npm -g install embark
 </code></pre>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#openzeppelin" id="openzeppelin"><h3>OpenZeppelin</h3></a>
+<h3 id="openzeppelin"><a class="header" href="#openzeppelin">OpenZeppelin</a></h3>
 <ul>
 <li>GitHub: <a href="https://github.com/OpenZeppelin/openzeppelin-contracts">github.com/OpenZeppelin/openzeppelin-contracts</a></li>
 <li>Страница: <a href="https://openzeppelin.org/">openzeppelin.org</a></li>
@@ -392,19 +479,19 @@ $ mkdir contracts
 <p>Наконец, когда мы довольны нашим решением и тщательно его протестировали, нам нужно развернуть его. OpenZeppelin хорошо интегрируется с Truffle, поэтому мы можем просто написать файл миграций, подобный следующему (migrations/2_deploy_contracts.js), как объясняется в разделе Миграции Truffle - понимание сценариев развертывания:</p>
 <p><code>link:code/OpenZeppelin/migrations/2_deploy_contracts.js[]</code></p>
 <p><strong>Примечание:</strong> Это был лишь краткий обзор нескольких контрактов, которые являются частью фреймворка OpenZeppelin. Приглашаем вас присоединиться к сообществу разработчиков OpenZeppelin, чтобы учиться и вносить свой вклад.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#zeppelinos" id="zeppelinos"><h3>ZeppelinOS</h3></a>
+<h3 id="zeppelinos"><a class="header" href="#zeppelinos">ZeppelinOS</a></h3>
 <ul>
 <li>GitHub: <a href="https://github.com/zeppelinos">github.com/zeppelinos</a></li>
 <li>Страница: <a href="https://zeppelinos.org">zeppelinos.org</a></li>
 <li>Блог: <a href="https://blog.zeppelinos.org">blog.zeppelinos.org</a></li>
 </ul>
-<p><a href="https://github.com/zeppelinos">ZeppelinOS</a> - это &quot;распределенная платформа инструментов и сервисов с открытым исходным кодом поверх EVM для безопасной разработки и управления приложениями смарт-контрактов&quot;.</p>
+<p><a href="https://github.com/zeppelinos">ZeppelinOS</a> - это "распределенная платформа инструментов и сервисов с открытым исходным кодом поверх EVM для безопасной разработки и управления приложениями смарт-контрактов".</p>
 <p>В отличие от кода OpenZeppelin, который необходимо развертывать с каждым приложением при каждом использовании, код ZeppelinOS живет на цепочке. Приложениям, которым нужна определенная функциональность - например, токен ERC20 - не только не нужно переделывать и перепроверять его реализацию (то, что решает OpenZeppelin), но даже не нужно его развертывать. В ZeppelinOS приложение взаимодействует с реализацией токена на цепочке напрямую, примерно так же, как настольное приложение взаимодействует с компонентами своей базовой ОС.</p>
 <p>В основе ZeppelinOS лежит очень умный контракт, известный как прокси. Прокси - это контракт, который способен обернуть любой другой контракт, раскрыть его интерфейс без необходимости вручную реализовывать для него сеттеры и геттеры, и может обновлять его без потери состояния. В терминах Solidity это можно рассматривать как обычный контракт, бизнес-логика которого содержится в библиотеке, которую в любой момент можно поменять на новую библиотеку без потери состояния. Способ, которым прокси связывается со своей реализацией, полностью автоматизирован и инкапсулирован для разработчика. Практически любой контракт можно сделать обновляемым практически без изменений в его коде. Подробнее о механизме прокси в ZeppelinOS можно прочитать в <a href="https://blog.openzeppelin.com/upgradeability-using-unstructured-storage/">блоге</a>, а пример его использования можно найти на GitHub.</p>
 <p>Разработка приложений с помощью ZeppelinOS похожа на разработку приложений JavaScript с помощью npm. AppManager обрабатывает пакет приложения для каждой версии приложения. Пакет - это просто каталог контрактов, каждый из которых может иметь один или несколько обновляемых прокси. AppManager не только предоставляет прокси для контрактов, специфичных для приложения, но и делает это для реализаций ZeppelinOS в виде стандартной библиотеки. Чтобы увидеть полный пример этого, пожалуйста, посетите examples/complex.</p>
 <p>Хотя в настоящее время ZeppelinOS находится в стадии разработки, она стремится предоставить широкий набор дополнительных функций, таких как инструменты разработчика, планировщик, автоматизирующий фоновые операции в рамках контрактов, вознаграждения за разработку, рынок, облегчающий общение и обмен ценностями между приложениями, и многое другое. Все это описано в техническом документе ZeppelinOS.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Утилиты" id="Утилиты"><h2>Утилиты</h2></a>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#ethereumjs-helpeth-Утилита-командной-строки" id="ethereumjs-helpeth-Утилита-командной-строки"><h3>EthereumJS helpeth: Утилита командной строки</h3></a>
+<h2 id="Утилиты"><a class="header" href="#Утилиты">Утилиты</a></h2>
+<h3 id="ethereumjs-helpeth-Утилита-командной-строки"><a class="header" href="#ethereumjs-helpeth-Утилита-командной-строки">EthereumJS helpeth: Утилита командной строки</a></h3>
 <ul>
 <li>GitHub: <a href="https://github.com/ethereumjs/helpeth">github.com/ethereumjs/helpeth</a></li>
 </ul>
@@ -438,23 +525,23 @@ Options:
   --version          Show version number                               [boolean]
   --help             Show help                                         [boolean]
 </code></pre>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#dapptools" id="dapptools"><h3>dapp.tools</h3></a>
+<h3 id="dapptools"><a class="header" href="#dapptools">dapp.tools</a></h3>
 <ul>
 <li>Страница: <a href="https://dapp.tools/">dapp.tools/</a></li>
 </ul>
 <p>dapp.tools - это полный набор инструментов для разработчиков блокчейна, созданный в духе философии Unix. В него входят следующие инструменты:</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#dapp" id="dapp"><h4>Dapp</h4></a>
+<h4 id="dapp"><a class="header" href="#dapp">Dapp</a></h4>
 <p>Dapp - это основной пользовательский инструмент для создания новых DApps, запуска модульных тестов Solidity, отладки и развертывания контрактов, запуска тестовых сетей и многого другого.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#seth" id="seth"><h4>Seth</h4></a>
+<h4 id="seth"><a class="header" href="#seth">Seth</a></h4>
 <p>Seth используется для составления транзакций, запросов к блокчейну, конвертации между форматами данных, выполнения удаленных вызовов и подобных повседневных задач.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#hevm" id="hevm"><h4>Hevm</h4></a>
+<h4 id="hevm"><a class="header" href="#hevm">Hevm</a></h4>
 <p>Hevm - это реализация EVM на языке Haskell с удобным терминальным отладчиком Solidity. Он используется для тестирования и отладки DApps.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#evmdis" id="evmdis"><h4>evmdis</h4></a>
+<h4 id="evmdis"><a class="header" href="#evmdis">evmdis</a></h4>
 <p>evmdis - это дизассемблер EVM; он выполняет статический анализ байткода для обеспечения более высокого уровня абстракции, чем необработанные операции EVM.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#sputnikvm" id="sputnikvm"><h3>SputnikVM</h3></a>
+<h3 id="sputnikvm"><a class="header" href="#sputnikvm">SputnikVM</a></h3>
 <p><a href="https://github.com/etcdevteam/sputnikvm">SputnikVM</a> - это автономная подключаемая виртуальная машина для различных блокчейнов на базе Ethereum. Она написана на языке Rust и может использоваться как двоичный файл, карго-крейт, общая библиотека или интегрироваться через интерфейсы FFI, Protobuf и JSON. У него есть отдельный бинарник, sputnikvm-dev, предназначенный для тестирования, который эмулирует большую часть JSON-RPC API и блокчейн.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Библиотеки" id="Библиотеки"><h2>Библиотеки</h2></a>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#web3js" id="web3js"><h3>web3.js</h3></a>
+<h2 id="Библиотеки"><a class="header" href="#Библиотеки">Библиотеки</a></h2>
+<h3 id="web3js"><a class="header" href="#web3js">web3.js</a></h3>
 <p>web3.js - это совместимый с Ethereum JavaScript API для связи с клиентами через JSON-RPC, разработанный Ethereum Foundation.</p>
 <ul>
 <li>GitHub: <a href="https://github.com/ethereum/web3.js">github.com/ethereum/web3.js</a></li>
@@ -462,64 +549,65 @@ Options:
 <li>Документация для web3.js API 0.2x.x: <a href="https://github.com/ethereum/wiki/wiki/JavaScript-API">github.com/ethereum/wiki/wiki/JavaScript-API</a></li>
 <li>Документация для web3.js API 1.0.0-beta.xx: <a href="https://web3js.readthedocs.io/en/v1.7.5/">web3js.readthedocs.io/en/v1.7.5/</a>.</li>
 </ul>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#web3py" id="web3py"><h3>web3.py</h3></a>
+<h3 id="web3py"><a class="header" href="#web3py">web3.py</a></h3>
 <p>web3.py - это библиотека Python для взаимодействия с блокчейном Ethereum, поддерживаемая Ethereum Foundation.</p>
 <ul>
 <li>GitHub: <a href="https://github.com/ethereum/web3.py">github.com/ethereum/web3.py</a></li>
 <li>PyPi: <a href="https://pypi.python.org/pypi/web3/4.0.0b9">pypi.python.org/pypi/web3/4.0.0b9</a></li>
 <li>Документация: <a href="https://web3py.readthedocs.io/">web3py.readthedocs.io/</a></li>
 </ul>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#ethereumjs" id="ethereumjs"><h3>EthereumJS</h3></a>
+<h3 id="ethereumjs"><a class="header" href="#ethereumjs">EthereumJS</a></h3>
 <p>EthereumJS - это коллекция библиотек и утилит для Ethereum.</p>
 <ul>
 <li>GitHub: <a href="https://github.com/ethereumjs">github.com/ethereumjs</a></li>
 <li>Страница: <a href="https://ethereumjs.github.io/">ethereumjs.github.io/</a></li>
 </ul>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#web3j" id="web3j"><h3>web3j</h3></a>
+<h3 id="web3j"><a class="header" href="#web3j">web3j</a></h3>
 <p>web3j - это библиотека для Java и Android для интеграции с клиентами Ethereum и работы со смарт-контрактами.</p>
 <ul>
 <li>GitHub: <a href="https://github.com/web3j/web3j">github.com/web3j/web3j</a></li>
 <li>Страница: <a href="https://web3j.io">web3j.io</a></li>
 <li>Документация: <a href="https://docs.web3j.io">docs.web3j.io</a></li>
 </ul>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#etherjar" id="etherjar"><h3>EtherJar</h3></a>
+<h3 id="etherjar"><a class="header" href="#etherjar">EtherJar</a></h3>
 <p>EtherJar - это еще одна библиотека Java для интеграции с Ethereum и работы со смарт-контрактами. Она предназначена для серверных проектов на базе Java 8+ и обеспечивает низкоуровневый доступ и высокоуровневую обертку вокруг RPC, структур данных Ethereum и доступа к смарт-контрактам.</p>
 <ul>
 <li>GitHub: <a href="https://github.com/infinitape/etherjar">github.com/infinitape/etherjar</a></li>
 </ul>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#nethereum" id="nethereum"><h3>Nethereum</h3></a>
+<h3 id="nethereum"><a class="header" href="#nethereum">Nethereum</a></h3>
 <p>Nethereum - это библиотека интеграции .Net для Ethereum.</p>
 <ul>
 <li>GitHub: <a href="https://github.com/Nethereum/Nethereum">github.com/Nethereum/Nethereum</a></li>
 <li>Страница: <a href="http://nethereum.com/">nethereum.com/</a></li>
 <li>Документация: <a href="https://nethereum.readthedocs.io/en/latest/">nethereum.readthedocs.io/en/latest/</a></li>
 </ul>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#ethersjs" id="ethersjs"><h3>ethers.js</h3></a>
+<h3 id="ethersjs"><a class="header" href="#ethersjs">ethers.js</a></h3>
 <p>Библиотека ethers.js - это компактная, полная, полнофункциональная, тщательно протестированная библиотека Ethereum с лицензией MIT, которая получила грант DevEx от Ethereum Foundation на ее расширение и поддержку.</p>
 <ul>
 <li>GitHub: <a href="https://github.com/ethers-io/ethers.js">github.com/ethers-io/ethers.js</a></li>
 <li>Документация: <a href="https://docs.ethers.io">docs.ethers.io</a></li>
 </ul>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Изумрудная-платформа" id="Изумрудная-платформа"><h3>Изумрудная платформа</h3></a>
+<h3 id="Изумрудная-платформа"><a class="header" href="#Изумрудная-платформа">Изумрудная платформа</a></h3>
 <p>Emerald Platform предоставляет библиотеки и компоненты пользовательского интерфейса для создания DApps поверх Ethereum. Emerald JS и Emerald JS UI предоставляют наборы модулей и компонентов React для создания приложений и веб-сайтов на JavaScript; Emerald SVG Icons - набор иконок, связанных с блокчейном. В дополнение к библиотекам JavaScript Emerald имеет библиотеку Rust для работы с закрытыми ключами и подписями транзакций. Все библиотеки и компоненты Emerald лицензированы по лицензии Apache License, версия 2.0.</p>
 <ul>
 <li>GitHub: <a href="https://github.com/etcdevteam/emerald-platform">github.com/etcdevteam/emerald-platform</a></li>
 <li>Документация: <a href="https://docs.etcdevteam.com">docs.etcdevteam.com</a></li>
 </ul>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Тестирование-смарт-контрактов" id="Тестирование-смарт-контрактов"><h2>Тестирование смарт-контрактов</h2></a>
+<h2 id="Тестирование-смарт-контрактов"><a class="header" href="#Тестирование-смарт-контрактов">Тестирование смарт-контрактов</a></h2>
 <p>Для разработки смарт-контрактов существует несколько широко используемых тестовых фреймворков, которые приведены в кратком обзоре тестовых фреймворков для смарт-контрактов:</p>
 <p>Таблица 1. Сводная информация о механизмах тестирования смарт-контрактов</p>
-<table><thead><tr><th align="center"> Framework  </th><th align="center"> Языки тестирования  </th><th> Система тестирования </th><th align="center"> Эмулятор цепи </th><th align="center"> Страница </th></tr></thead><tbody>
-<tr><td align="center"> Truffle </td><td align="center"> JavaScript/Solidity </td><td> Mocha </td><td align="center"> TestRPC/Ganache </td><td align="center">  <a href="https://trufflesuite.com/">trufflesuite.com/</a> </td></tr>
-<tr><td align="center">Embark</td><td align="center">JavaScript</td><td>Mocha</td><td align="center">TestRPC/Ganache</td><td align="center"><a href="https://embark.status.im/docs/">embark.status.im/docs/</a></td></tr>
-<tr><td align="center">Dapp</td><td align="center">Solidity</td><td>ds-test (custom)</td><td align="center">ethrun (Parity)</td><td align="center"><a href="https://dapp.tools/dapp/">dapp.tools/dapp/</a></td></tr>
-<tr><td align="center">Populus</td><td align="center">Python</td><td>pytest</td><td align="center">Python chain emulator</td><td align="center"><a href="https://populus.readthedocs.io">populus.readthedocs.io</a></td></tr>
+<div class="table-wrapper"><table><thead><tr><th style="text-align: center">Framework</th><th style="text-align: center">Языки тестирования</th><th>Система тестирования</th><th style="text-align: center">Эмулятор цепи</th><th style="text-align: center">Страница</th></tr></thead><tbody>
+<tr><td style="text-align: center">Truffle</td><td style="text-align: center">JavaScript/Solidity</td><td>Mocha</td><td style="text-align: center">TestRPC/Ganache</td><td style="text-align: center"><a href="https://trufflesuite.com/">trufflesuite.com/</a></td></tr>
+<tr><td style="text-align: center">Embark</td><td style="text-align: center">JavaScript</td><td>Mocha</td><td style="text-align: center">TestRPC/Ganache</td><td style="text-align: center"><a href="https://embark.status.im/docs/">embark.status.im/docs/</a></td></tr>
+<tr><td style="text-align: center">Dapp</td><td style="text-align: center">Solidity</td><td>ds-test (custom)</td><td style="text-align: center">ethrun (Parity)</td><td style="text-align: center"><a href="https://dapp.tools/dapp/">dapp.tools/dapp/</a></td></tr>
+<tr><td style="text-align: center">Populus</td><td style="text-align: center">Python</td><td>pytest</td><td style="text-align: center">Python chain emulator</td><td style="text-align: center"><a href="https://populus.readthedocs.io">populus.readthedocs.io</a></td></tr>
 </tbody></table>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Трюфель" id="Трюфель"><h4>Трюфель</h4></a>
+</div>
+<h4 id="Трюфель"><a class="header" href="#Трюфель">Трюфель</a></h4>
 <p>Truffle позволяет писать модульные тесты на JavaScript (на основе Mocha) или Solidity. Эти тесты запускаются на Ganache.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#embark-1" id="embark-1"><h4>Embark</h4></a>
+<h4 id="embark-1"><a class="header" href="#embark-1">Embark</a></h4>
 <p>Embark интегрируется с Mocha для запуска модульных тестов, написанных на JavaScript. Тесты, в свою очередь, запускаются против контрактов, развернутых на Ganache (ранее называвшемся TestRPC). Фреймворк Embark автоматически развертывает смарт-контракты и автоматически перераспределяет контракты при их изменении. Он также отслеживает развернутые контракты и развертывает их только тогда, когда это действительно необходимо. Embark включает библиотеку тестирования для быстрого запуска и проверки ваших контрактов в EVM, с такими функциями, как assert.equal. Команда embark test запустит все тестовые файлы в каталоге test.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#dapp-1" id="dapp-1"><h4>Dapp</h4></a>
+<h4 id="dapp-1"><a class="header" href="#dapp-1">Dapp</a></h4>
 <p>Dapp использует собственный код Solidity (библиотека под названием ds-test) и созданную Parity библиотеку Rust под названием ethrun для выполнения байткода Ethereum и последующего подтверждения корректности. Библиотека ds-test предоставляет функции assertion для проверки корректности и события для регистрации данных в консоли.</p>
 <p>Функции утверждения включают:</p>
 <pre><code>assert(bool condition)
@@ -540,9 +628,9 @@ log_named_uint(bytes32 key, uint val)
 log_named_decimal_int(bytes32 key, int val, uint decimals)
 log_named_decimal_uint(bytes32 key, uint val, uint decimals)
 </code></pre>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#populus" id="populus"><h4>Populus</h4></a>
+<h4 id="populus"><a class="header" href="#populus">Populus</a></h4>
 <p>Populus использует Python и собственный эмулятор цепочки для выполнения контрактов, написанных на Solidity. Юнит-тесты пишутся на Python с помощью библиотеки pytest. Populus поддерживает написание контрактов специально для тестирования. Имена этих контрактов должны соответствовать шаблону glob Test*.sol и располагаться в любом месте каталога тестов проекта, tests.</p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Тестирование-на-блокчейне" id="Тестирование-на-блокчейне"><h3>Тестирование на блокчейне</h3></a>
+<h3 id="Тестирование-на-блокчейне"><a class="header" href="#Тестирование-на-блокчейне">Тестирование на блокчейне</a></h3>
 <p>Хотя большинство тестов не должно проводиться на развернутых контрактах, поведение контракта можно проверить с помощью клиентов Ethereum. Для оценки состояния смарт-контракта можно использовать следующие команды. Эти команды следует набирать в терминале geth, хотя любая консоль web3 также поддерживает их.</p>
 <p>Чтобы получить адрес контракта в txhash, используйте:</p>
 <p><code>web3.eth.getTransactionReceipt(txhash);</code></p>
@@ -552,7 +640,7 @@ log_named_decimal_uint(bytes32 key, uint val, uint decimals)
 <p><code>web3.eth.getPastLogs(options)</code></p>
 <p>Наконец, эта команда получает хранилище, расположенное по адресу со смещением позиции:</p>
 <p><code>web3.eth.getStorageAt(address, position)</code></p>
-<a class="header" href="./kniga/дополнение_4_инструменты_solidity_разработчика.html#Ганаш-локальный-тестовый-блокчейн" id="Ганаш-локальный-тестовый-блокчейн"><h3>Ганаш: локальный тестовый блокчейн</h3></a>
+<h3 id="Ганаш-локальный-тестовый-блокчейн"><a class="header" href="#Ганаш-локальный-тестовый-блокчейн">Ганаш: локальный тестовый блокчейн</a></h3>
 <p>Ganache - это локальный тестовый блокчейн, который можно использовать для развертывания контрактов, разработки приложений и проведения тестов. Он доступен в виде настольного приложения (с графическим интерфейсом пользователя) для Windows, macOS и Linux. Он также доступен в виде утилиты командной строки под названием ganache-cli. Более подробную информацию и инструкции по установке настольного приложения Ganache можно найти на сайте <a href="https://trufflesuite.com/ganache">trufflesuite.com/ganache</a>.
 Код ganache-cli можно найти по адресу <a href="https://github.com/trufflesuite/ganache-cli/">github.com/trufflesuite/ganache-cli/</a>.
 Чтобы установить ganache-cli из командной строки, используйте npm:</p>
@@ -561,7 +649,7 @@ log_named_decimal_uint(bytes32 key, uint val, uint decimals)
 <p>Вы можете использовать ganache-cli для запуска локального блокчейна для тестирования следующим образом:</p>
 <pre><code>$ ganache-cli \
   --networkId=3 \
-  --port=&quot;8545&quot; \
+  --port="8545" \
   --verbose \
   --gasLimit=8000000 \
   --gasPrice=4000000000;
@@ -569,63 +657,58 @@ log_named_decimal_uint(bytes32 key, uint val, uint decimals)
 <p>Несколько замечаний по этой командной строке:</p>
 <ul>
 <li>Проверьте, что значения флагов --networkId и --port соответствуют вашей конфигурации в файле truffle-config.js.</li>
-<li>Убедитесь, что значение флага --gasLimit соответствует последнему лимиту газа в сети (например, 8,000,000 газа), показанному на сайте <a href="https://ethstats.net">ethstats.net</a>, чтобы избежать ненужных исключений &quot;закончился газ&quot;. Обратите внимание, что значение --gasPrice 4000000000 означает цену газа в 4 гвея.</li>
+<li>Убедитесь, что значение флага --gasLimit соответствует последнему лимиту газа в сети (например, 8,000,000 газа), показанному на сайте <a href="https://ethstats.net">ethstats.net</a>, чтобы избежать ненужных исключений "закончился газ". Обратите внимание, что значение --gasPrice 4000000000 означает цену газа в 4 гвея.</li>
 <li>При желании можно ввести значение флага --mnemonic, чтобы восстановить предыдущий кошелек HD и связанные с ним адреса.</li>
 </ul>
 
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../kniga/дополнение_3_коды_evm_и_gas.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../kniga//дополнение_5_руководство_по_web3js.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
                 </div>
-
-                <!-- Mobile navigation buttons -->
-                
-                    <a rel="prev" href="./kniga/дополнение_3_коды_evm_и_gas.html" class="mobile-nav-chapters previous" title="Previous chapter">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                
-
-                
-                    <a rel="next" href="./kniga/дополнение_5_руководство_по_web3js.html" class="mobile-nav-chapters next" title="Next chapter">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                
-
             </div>
 
-            
-                <a href="./kniga/дополнение_3_коды_evm_и_gas.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../kniga/дополнение_3_коды_evm_и_gas.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-            
-                <a href="./kniga/дополнение_5_руководство_по_web3js.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            
+                    <a rel="next prefetch" href="../kniga//дополнение_5_руководство_по_web3js.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
 
         </div>
 
 
-        <!-- Local fallback for Font Awesome -->
+
+
         <script>
-            if ($(".fa").css("font-family") !== "FontAwesome") {
-                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
-            }
+            window.playground_copyable = true;
         </script>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        
 
-        
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
-        
+        <!-- Custom JS scripts -->
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
 
-        <!-- Custom JS script -->
-        
-
+    </div>
     </body>
 </html>

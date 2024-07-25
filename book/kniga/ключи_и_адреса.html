@@ -1,104 +1,191 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="ru" class="light" dir="ltr">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Ключи и адреса - Осваиваем Ethereum - Mastering Ethereum</title>
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+
+        <!-- Custom HTML head -->
+        
         <meta name="description" content="Руководство по Ethereum и разработке смарт-контрактов">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
 
-        <base href="../">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
-        <link rel="stylesheet" href="book.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
-        <link rel="shortcut icon" href="favicon.png">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
-
-        <!-- Custom theme -->
-        
-
-        
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <!-- Fetch JQuery from CDN but have a local fallback -->
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script>
-            if (typeof jQuery == 'undefined') {
-                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
-        <script src="store.js"></script>
+        <!-- Custom theme stylesheets -->
 
     </head>
-    <body class="light">
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme = store.get('mdbook-theme');
-            if (theme === null || theme === undefined) { theme = 'light'; }
-            $('body').removeClass().addClass(theme);
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var sidebar = store.get('mdbook-sidebar');
-            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
-            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
-        <div id="sidebar" class="sidebar">
-            <ul class="chapter"><li class="affix"><a href="./1_предисловие.html">Предисловие</a></li><li class="affix"><a href="./2_глоссарий.html">Глоссарий</a></li><li><a href="./kniga/что_такое_ethereum.html"><strong>1.</strong> Что такое Ethereum?</a></li><li><a href="./kniga/введение.html"><strong>2.</strong> Введение</a></li><li><a href="./kniga/клиенты.html"><strong>3.</strong> Клиенты</a></li><li><a href="./kniga/ключи_и_адреса.html" class="active"><strong>4.</strong> Ключи и адреса</a></li><li><a href="./kniga/кошельки.html"><strong>5.</strong> Кошельки</a></li><li><a href="./kniga/транзакции.html"><strong>6.</strong> Транзакции</a></li><li><ul class="section"><li><a href="./kniga/tx/structure.html"><strong>6.1.</strong> Структура_транзакции</a></li><li><a href="./kniga/tx/nonce.html"><strong>6.2.</strong> Nonce транзакции</a></li><li><a href="./kniga/tx/gas.html"><strong>6.3.</strong> Топливо (Gas)</a></li><li><a href="./kniga/tx/recipient.html"><strong>6.4.</strong> Получатель</a></li><li><a href="./kniga/tx/value_data.html"><strong>6.5.</strong> Value и Data</a></li><li><a href="./kniga/tx/create_contract_tx.html"><strong>6.6.</strong> Тразакция создания контракта</a></li><li><a href="./kniga/tx/digital_signatures.html"><strong>6.7.</strong> Цифровые подписи</a></li><li><a href="./kniga/tx/sign_prifix_value.html"><strong>6.8.</strong> Восстановление открытого ключа</a></li><li><a href="./kniga/tx/sign_transmission.html"><strong>6.9.</strong> Раздельное подписание и передача</a></li><li><a href="./kniga/tx/tx_propagation.html"><strong>6.10.</strong> Распространение транзакций</a></li><li><a href="./kniga/tx/recording_on_blockchain.html"><strong>6.11.</strong> Запись в блокчейне</a></li><li><a href="./kniga/tx/multisig.html"><strong>6.12.</strong> Мультиподпись</a></li></ul></li><li><a href="./kniga/смарт_контракты_на_solidity.html"><strong>7.</strong> Смарт-контракты на Solidity</a></li><li><strong>8.</strong> Смарт-контракты на Vyper</li><li><a href="./kniga/безопаность_смарт_контрактов.html"><strong>9.</strong> Безопаность смарт-контрактов</a></li><li><a href="./kniga/токены.html"><strong>10.</strong> Токены</a></li><li><a href="./kniga/оракулы.html"><strong>11.</strong> Оракулы</a></li><li><a href="./kniga/децентрализованные_приложения.html"><strong>12.</strong> Децентрализованные приложения</a></li><li><a href="./kniga/виртуальная_машина_ethereum.html"><strong>13.</strong> Виртуальная машина Ethereum</a></li><li><a href="./kniga/консенсус.html"><strong>14.</strong> Консенсус</a></li><li><strong>15.</strong> Доп 1. История ветвлений</li><li><a href="./kniga/дополнение_2_стандарты_eip_erc.html"><strong>16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li><a href="./kniga/дополнение_3_коды_evm_и_gas.html"><strong>17.</strong> Доп 3. Коды EVM и газ</a></li><li><a href="./kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong>18.</strong> Доп 4. Инструменты разработчика</a></li><li><a href="./kniga/дополнение_5_руководство_по_web3js.html"><strong>19.</strong> Доп 5. Руководство по web3js</a></li><li class="spacer"></li><li class="affix"><a href="./support.html">Поддержка проекта</a></li></ul>
-        </div>
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../1_предисловие.html">Предисловие</a></li><li class="chapter-item expanded affix "><a href="../2_глоссарий.html">Глоссарий</a></li><li class="chapter-item expanded affix "><li class="part-title">Книга</li><li class="chapter-item expanded "><a href="../kniga/что_такое_ethereum.html"><strong aria-hidden="true">1.</strong> Что такое Ethereum?</a></li><li class="chapter-item expanded "><a href="../kniga/введение.html"><strong aria-hidden="true">2.</strong> Введение</a></li><li class="chapter-item expanded "><a href="../kniga/клиенты.html"><strong aria-hidden="true">3.</strong> Клиенты</a></li><li class="chapter-item expanded "><a href="../kniga/ключи_и_адреса.html" class="active"><strong aria-hidden="true">4.</strong> Ключи и адреса</a></li><li class="chapter-item expanded "><a href="../kniga/кошельки.html"><strong aria-hidden="true">5.</strong> Кошельки</a></li><li class="chapter-item expanded "><a href="../kniga/транзакции.html"><strong aria-hidden="true">6.</strong> Транзакции</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../kniga/tx/structure.html"><strong aria-hidden="true">6.1.</strong> Структура_транзакции</a></li><li class="chapter-item expanded "><a href="../kniga/tx/nonce.html"><strong aria-hidden="true">6.2.</strong> Nonce транзакции</a></li><li class="chapter-item expanded "><a href="../kniga/tx/gas.html"><strong aria-hidden="true">6.3.</strong> Топливо (Gas)</a></li><li class="chapter-item expanded "><a href="../kniga/tx/recipient.html"><strong aria-hidden="true">6.4.</strong> Получатель</a></li><li class="chapter-item expanded "><a href="../kniga/tx/value_data.html"><strong aria-hidden="true">6.5.</strong> Value и Data</a></li><li class="chapter-item expanded "><a href="../kniga/tx/create_contract_tx.html"><strong aria-hidden="true">6.6.</strong> Тразакция создания контракта</a></li><li class="chapter-item expanded "><a href="../kniga/tx/digital_signatures.html"><strong aria-hidden="true">6.7.</strong> Цифровые подписи</a></li><li class="chapter-item expanded "><a href="../kniga/tx/sign_prifix_value.html"><strong aria-hidden="true">6.8.</strong> Восстановление открытого ключа</a></li><li class="chapter-item expanded "><a href="../kniga/tx/sign_transmission.html"><strong aria-hidden="true">6.9.</strong> Раздельное подписание и передача</a></li><li class="chapter-item expanded "><a href="../kniga/tx/tx_propagation.html"><strong aria-hidden="true">6.10.</strong> Распространение транзакций</a></li><li class="chapter-item expanded "><a href="../kniga/tx/recording_on_blockchain.html"><strong aria-hidden="true">6.11.</strong> Запись в блокчейне</a></li><li class="chapter-item expanded "><a href="../kniga/tx/multisig.html"><strong aria-hidden="true">6.12.</strong> Мультиподпись</a></li></ol></li><li class="chapter-item expanded "><a href="../kniga/смарт_контракты_на_solidity.html"><strong aria-hidden="true">7.</strong> Смарт-контракты на Solidity</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Смарт-контракты на Vyper</div></li><li class="chapter-item expanded "><a href="../kniga/безопаность_смарт_контрактов.html"><strong aria-hidden="true">9.</strong> Безопаность смарт-контрактов</a></li><li class="chapter-item expanded "><a href="../kniga/токены.html"><strong aria-hidden="true">10.</strong> Токены</a></li><li class="chapter-item expanded "><a href="../kniga/оракулы.html"><strong aria-hidden="true">11.</strong> Оракулы</a></li><li class="chapter-item expanded "><a href="../kniga/децентрализованные_приложения.html"><strong aria-hidden="true">12.</strong> Децентрализованные приложения</a></li><li class="chapter-item expanded "><a href="../kniga/виртуальная_машина_ethereum.html"><strong aria-hidden="true">13.</strong> Виртуальная машина Ethereum</a></li><li class="chapter-item expanded "><a href="../kniga/консенсус.html"><strong aria-hidden="true">14.</strong> Консенсус</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Доп 1. История ветвлений</div></li><li class="chapter-item expanded "><a href="../kniga/дополнение_2_стандарты_eip_erc.html"><strong aria-hidden="true">16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li class="chapter-item expanded "><a href="../kniga/дополнение_3_коды_evm_и_gas.html"><strong aria-hidden="true">17.</strong> Доп 3. Коды EVM и газ</a></li><li class="chapter-item expanded "><a href="../kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong aria-hidden="true">18.</strong> Доп 4. Инструменты разработчика</a></li><li class="chapter-item expanded "><a href="../kniga//дополнение_5_руководство_по_web3js.html"><strong aria-hidden="true">19.</strong> Доп 5. Руководство по web3js</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../support.html">Поддержка проекта</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
-            <div class="page" tabindex="-1">
-                
-                <div id="menu-bar" class="menu-bar">
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
-                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
 
                     <h1 class="menu-title">Осваиваем Ethereum - Mastering Ethereum</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html">
-                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
                         </a>
+
                     </div>
                 </div>
 
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
                 <div id="content" class="content">
-                    <a class="header" href="./kniga/ключи_и_адреса.html#Ключи-и-адреса" id="Ключи-и-адреса"><h1>Ключи и адреса</h1></a>
-<p>Одной из основополагающих технологий Ethereum является криптография, которая представляет собой отрасль математики, широко используемую в компьютерной безопасности. Криптография в переводе с греческого означает &quot;тайнопись&quot;, но изучение криптографии включает в себя не только тайнопись, которую называют шифрованием. Криптография может, например, использоваться для доказательства знания секрета без раскрытия этого секрета (например, с помощью цифровой подписи) или для доказательства подлинности данных (например, с помощью цифровых отпечатков пальцев, также известных как &quot;хэши&quot;). Эти типы криптографических доказательств являются математическими инструментами, критически важными для работы платформы Ethereum (и, по сути, всех систем блокчейн), а также широко используются в приложениях Ethereum.</p>
+                    <main>
+                        <h1 id="Ключи-и-адреса"><a class="header" href="#Ключи-и-адреса">Ключи и адреса</a></h1>
+<p>Одной из основополагающих технологий Ethereum является криптография, которая представляет собой отрасль математики, широко используемую в компьютерной безопасности. Криптография в переводе с греческого означает "тайнопись", но изучение криптографии включает в себя не только тайнопись, которую называют шифрованием. Криптография может, например, использоваться для доказательства знания секрета без раскрытия этого секрета (например, с помощью цифровой подписи) или для доказательства подлинности данных (например, с помощью цифровых отпечатков пальцев, также известных как "хэши"). Эти типы криптографических доказательств являются математическими инструментами, критически важными для работы платформы Ethereum (и, по сути, всех систем блокчейн), а также широко используются в приложениях Ethereum.</p>
 <p>Обратите внимание, что на момент публикации ни одна часть протокола Ethereum не включает шифрование; то есть все коммуникации с платформой Ethereum и между узлами (включая данные транзакций) не зашифрованы и могут (обязательно) быть прочитаны любым человеком. Это делается для того, чтобы каждый мог проверить корректность обновлений состояния и достичь консенсуса. В будущем появятся усовершенствованные криптографические инструменты, такие как доказательства нулевого знания и гомоморфное шифрование, которые позволят записывать некоторые зашифрованные вычисления в блокчейн, сохраняя при этом возможность консенсуса; однако, несмотря на то, что они уже предусмотрены, их еще предстоит внедрить.</p>
 <p>В этой главе мы познакомимся с некоторыми видами криптографии, используемыми в Ethereum: а именно с криптографией с открытым ключом (PKC), которая используется для контроля за владением средствами в виде закрытых ключей и адресов.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Ключи-и-адреса-1" id="Ключи-и-адреса-1"><h2>Ключи и адреса</h2></a>
+<h2 id="Ключи-и-адреса-1"><a class="header" href="#Ключи-и-адреса-1">Ключи и адреса</a></h2>
 <p>Как мы видели ранее в этой книге, в Ethereum существует два различных типа счетов: счета, принадлежащие внешним владельцам (EOA), и контракты. Право собственности на эфир для EOA устанавливается с помощью цифровых закрытых ключей, адресов Ethereum и цифровых подписей. Закрытые ключи лежат в основе всего взаимодействия пользователей с Ethereum. Фактически, адреса аккаунтов определяются непосредственно из закрытых ключей: закрытый ключ однозначно определяет один адрес Ethereum, также известный как аккаунт.</p>
 <p>Приватные ключи никак не используются непосредственно в системе Ethereum; они никогда не передаются и не хранятся в Ethereum. Иными словами, закрытые ключи должны оставаться приватными и никогда не появляться в сообщениях, передаваемых в сеть, а также не должны храниться на цепи; в системе Ethereum передаются и хранятся только адреса счетов и цифровые подписи. Более подробную информацию о том, как обеспечить безопасность и сохранность закрытых ключей, см. в разделах [control_responsibility] и [wallets_chapter].</p>
 <p>Доступ к средствам и контроль над ними осуществляется с помощью цифровых подписей, которые также создаются с использованием закрытого ключа. Для включения транзакций Ethereum в блокчейн требуется действующая цифровая подпись. Любой человек, обладающий копией закрытого ключа, имеет контроль над соответствующим счетом и всеми хранящимися на нем эфириумами. При условии, что пользователь хранит свой закрытый ключ в безопасности, цифровые подписи в транзакциях Ethereum доказывают истинного владельца средств, поскольку они подтверждают владение закрытым ключом.</p>
 <p>В системах, основанных на криптографии с открытым ключом, таких как та, что используется в Ethereum, ключи поставляются в виде пар, состоящих из закрытого (секретного) и открытого ключей. Считайте, что открытый ключ похож на номер банковского счета, а закрытый ключ - на секретный PIN-код; последний обеспечивает контроль над счетом, а первый идентифицирует его для других. Сами закрытые ключи пользователи Ethereum видят очень редко; в основном они хранятся (в зашифрованном виде) в специальных файлах и управляются программным обеспечением кошелька Ethereum.</p>
 <p>В платежной части транзакции Ethereum предполагаемый получатель представлен адресом Ethereum, который используется так же, как реквизиты счета получателя банковского перевода. Как мы вскоре увидим более подробно, Ethereum-адрес для EOA генерируется из части открытого ключа пары ключей. Однако не все адреса Ethereum представляют собой пары открытых и закрытых ключей; они также могут представлять собой контракты, которые, как мы увидим в главе [smart_contracts_chapter], не подкреплены закрытыми ключами.</p>
 <p>В оставшейся части этой главы мы сначала немного подробнее рассмотрим основы криптографии и объясним математику, используемую в Ethereum. Затем мы рассмотрим, как генерируются, хранятся и управляются ключи. Наконец, мы рассмотрим различные форматы кодирования, используемые для представления закрытых ключей, открытых ключей и адресов.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Криптография-с-открытым-ключом-и-криптовалюта" id="Криптография-с-открытым-ключом-и-криптовалюта"><h2>Криптография с открытым ключом и криптовалюта</h2></a>
-<p>Криптография с открытым ключом (также называемая &quot;асимметричной криптографией&quot;) является основной частью современной информационной безопасности. Протокол обмена ключами, впервые опубликованный в 1970-х годах Мартином Хеллманом, Уитфилдом Диффи и Ральфом Мерклом, стал монументальным прорывом, вызвавшим первую большую волну общественного интереса к области криптографии. До 1970-х годов сильные криптографические знания держались в секрете правительствами.</p>
+<h2 id="Криптография-с-открытым-ключом-и-криптовалюта"><a class="header" href="#Криптография-с-открытым-ключом-и-криптовалюта">Криптография с открытым ключом и криптовалюта</a></h2>
+<p>Криптография с открытым ключом (также называемая "асимметричной криптографией") является основной частью современной информационной безопасности. Протокол обмена ключами, впервые опубликованный в 1970-х годах Мартином Хеллманом, Уитфилдом Диффи и Ральфом Мерклом, стал монументальным прорывом, вызвавшим первую большую волну общественного интереса к области криптографии. До 1970-х годов сильные криптографические знания держались в секрете правительствами.</p>
 <p>Криптография с открытым ключом использует уникальные ключи для защиты информации. Эти ключи основаны на математических функциях, которые обладают особым свойством: их легко вычислить, но трудно вычислить их обратную величину. На основе этих функций криптография позволяет создавать цифровые секреты и неподделываемые цифровые подписи, которые защищены законами математики.</p>
 <p>Например, умножение двух больших простых чисел тривиально. Но если задано произведение двух больших простых чисел, то очень трудно найти простые множители (эта проблема называется простой факторизацией). Допустим, мы представим вам число 8 018 009 и скажем, что оно является произведением двух простых чисел. Найти эти два простых числа для вас гораздо сложнее, чем для меня перемножить их, чтобы получить 8,018,009.</p>
 <p>Некоторые из этих математических функций могут быть легко перевернуты, если вы знаете некоторую секретную информацию. В предыдущем примере, если я скажу вам, что один из простых факторов равен 2,003, вы сможете тривиально найти второй с помощью простого деления: 8,018,009 ÷ 2,003 = 4,003. Такие функции часто называют функциями-ловушками, поскольку их очень трудно инвертировать, если только вам не предоставлена часть секретной информации, которая может быть использована в качестве короткого пути для обращения функции.</p>
@@ -112,32 +199,32 @@
 <li>Дискретный логарифм(https://en.wikipedia.org/wiki/Discrete_logarithm)</li>
 <li>Криптография эллиптической кривой(https://en.wikipedia.org/wiki/Elliptic-curve_cryptography)</li>
 </ul>
-<p>В Ethereum мы используем криптографию с открытым ключом (также известную как асимметричная криптография) для создания пары открытый-частный ключ, о которой мы говорили в этой главе. Они считаются &quot;парой&quot;, поскольку открытый ключ является производным от закрытого ключа. Вместе они представляют учетную запись Ethereum, обеспечивая, соответственно, общедоступный дескриптор учетной записи (адрес) и частный контроль над доступом к любому эфиру на этой учетной записи и над любой аутентификацией, необходимой учетной записи при использовании смарт-контрактов. Закрытый ключ контролирует доступ, являясь уникальной частью информации, необходимой для создания цифровых подписей, которые требуются для подписания транзакций по расходованию любых средств на счете. Цифровые подписи также используются для аутентификации владельцев или пользователей контрактов, как мы увидим в [smart_contracts_chapter].</p>
+<p>В Ethereum мы используем криптографию с открытым ключом (также известную как асимметричная криптография) для создания пары открытый-частный ключ, о которой мы говорили в этой главе. Они считаются "парой", поскольку открытый ключ является производным от закрытого ключа. Вместе они представляют учетную запись Ethereum, обеспечивая, соответственно, общедоступный дескриптор учетной записи (адрес) и частный контроль над доступом к любому эфиру на этой учетной записи и над любой аутентификацией, необходимой учетной записи при использовании смарт-контрактов. Закрытый ключ контролирует доступ, являясь уникальной частью информации, необходимой для создания цифровых подписей, которые требуются для подписания транзакций по расходованию любых средств на счете. Цифровые подписи также используются для аутентификации владельцев или пользователей контрактов, как мы увидим в [smart_contracts_chapter].</p>
 <p><strong>Совет:</strong> В большинстве реализаций кошельков закрытый и открытый ключи для удобства хранятся вместе как пара ключей. Однако открытый ключ может быть тривиально вычислен из закрытого ключа, поэтому хранение только закрытого ключа также возможно.</p>
-<p>Для подписания любого сообщения может быть создана цифровая подпись. Для транзакций Ethereum в качестве сообщения используются детали самой транзакции. Математика криптографии - в данном случае криптография эллиптических кривых - позволяет объединить сообщение (т. е. детали транзакции) с закрытым ключом и создать код, который может быть получен только при знании закрытого ключа. Этот код называется цифровой подписью. Обратите внимание, что транзакция Ethereum - это, по сути, запрос на доступ к определенному счету с определенным адресом Ethereum. Когда транзакция отправляется в сеть Ethereum для перемещения средств или взаимодействия со смарт-контрактами, она должна быть отправлена с цифровой подписью, созданной с помощью закрытого ключа, соответствующего данному адресу Ethereum. Математика эллиптических кривых означает, что любой человек может проверить действительность транзакции, проверив соответствие цифровой подписи деталям транзакции и адресу Ethereum, к которому запрашивается доступ. Проверка вообще не затрагивает закрытый ключ; он остается закрытым. Однако в процессе проверки можно с уверенностью сказать, что транзакция могла быть осуществлена только человеком с закрытым ключом, соответствующим открытому ключу адреса Ethereum. В этом и заключается &quot;магия&quot; криптографии с открытым ключом.</p>
+<p>Для подписания любого сообщения может быть создана цифровая подпись. Для транзакций Ethereum в качестве сообщения используются детали самой транзакции. Математика криптографии - в данном случае криптография эллиптических кривых - позволяет объединить сообщение (т. е. детали транзакции) с закрытым ключом и создать код, который может быть получен только при знании закрытого ключа. Этот код называется цифровой подписью. Обратите внимание, что транзакция Ethereum - это, по сути, запрос на доступ к определенному счету с определенным адресом Ethereum. Когда транзакция отправляется в сеть Ethereum для перемещения средств или взаимодействия со смарт-контрактами, она должна быть отправлена с цифровой подписью, созданной с помощью закрытого ключа, соответствующего данному адресу Ethereum. Математика эллиптических кривых означает, что любой человек может проверить действительность транзакции, проверив соответствие цифровой подписи деталям транзакции и адресу Ethereum, к которому запрашивается доступ. Проверка вообще не затрагивает закрытый ключ; он остается закрытым. Однако в процессе проверки можно с уверенностью сказать, что транзакция могла быть осуществлена только человеком с закрытым ключом, соответствующим открытому ключу адреса Ethereum. В этом и заключается "магия" криптографии с открытым ключом.</p>
 <p><strong>Совет:</strong> В протоколе Ethereum нет шифрования - все сообщения, которые отправляются в рамках работы сети Ethereum, могут (обязательно) быть прочитаны всеми. Таким образом, закрытые ключи используются только для создания цифровых подписей для аутентификации транзакций.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Закрытые-ключи" id="Закрытые-ключи"><h2>Закрытые ключи</h2></a>
+<h2 id="Закрытые-ключи"><a class="header" href="#Закрытые-ключи">Закрытые ключи</a></h2>
 <p>Закрытый ключ - это просто число, выбранное случайным образом. Владение и контроль над закрытым ключом является основой контроля пользователя над всеми средствами, связанными с соответствующим адресом Ethereum, а также доступа к контрактам, авторизующим этот адрес. Закрытый ключ используется для создания подписей, необходимых для расходования эфира, подтверждая право собственности на средства, используемые в транзакции. Закрытый ключ должен всегда оставаться секретным, поскольку раскрытие его третьим лицам равносильно передаче им контроля над эфиром и контрактами, обеспеченными этим закрытым ключом. Закрытый ключ также должен быть резервным и защищен от случайной потери. Если он потерян, его невозможно восстановить, и средства, обеспеченные им, также потеряны навсегда.</p>
 <p><strong>Совет:</strong>
 Закрытый ключ Ethereum - это просто номер. Один из способов случайного подбора закрытых ключей - просто использовать монету, карандаш и бумагу: подбросьте монету 256 раз, и вы получите двоичные цифры случайного закрытого ключа, который можно использовать в кошельке Ethereum (возможно - см. следующий раздел). Открытый ключ и адрес могут быть сгенерированы из закрытого ключа.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Генерация-закрытого-ключа-из-случайного-числа" id="Генерация-закрытого-ключа-из-случайного-числа"><h3>Генерация закрытого ключа из случайного числа</h3></a>
+<h3 id="Генерация-закрытого-ключа-из-случайного-числа"><a class="header" href="#Генерация-закрытого-ключа-из-случайного-числа">Генерация закрытого ключа из случайного числа</a></h3>
 <p>Первый и самый важный шаг в генерации ключей - найти надежный источник энтропии, или случайности. Создание закрытого ключа Ethereum заключается в выборе числа от 1 до 2256. Точный метод, который вы используете для выбора этого числа, не имеет значения, если он не является предсказуемым или детерминированным. Программное обеспечение Ethereum использует генератор случайных чисел операционной системы для получения 256 случайных битов. Обычно генератор случайных чисел ОС инициализируется человеческим источником случайности, поэтому вас могут попросить несколько секунд поводить мышкой или нажать случайные клавиши на клавиатуре. Альтернативой может быть шум космического излучения на канале микрофона компьютера.</p>
-<p>Более точно, закрытым ключом может быть любое ненулевое число вплоть до очень большого числа, которое немного меньше 2256 - огромного 78-значного числа, примерно 1,158 * 1077. Точное число имеет общие первые 38 цифр с 2256 и определяется как порядок эллиптической кривой, используемой в Ethereum (см. раздел &quot;Криптография на эллиптической кривой: объяснение&quot;). Чтобы создать закрытый ключ, мы случайным образом выбираем 256-битное число и проверяем, что оно находится в допустимом диапазоне. В терминах программирования это обычно достигается путем подачи еще большей строки случайных битов (собранных из криптографически безопасного источника случайности) в 256-битный алгоритм хэширования, такой как Keccak-256 или SHA-256, оба из которых удобно выдают 256-битное число. Если результат находится в допустимом диапазоне, у нас есть подходящий закрытый ключ. В противном случае мы просто повторим попытку с другим случайным числом.</p>
+<p>Более точно, закрытым ключом может быть любое ненулевое число вплоть до очень большого числа, которое немного меньше 2256 - огромного 78-значного числа, примерно 1,158 * 1077. Точное число имеет общие первые 38 цифр с 2256 и определяется как порядок эллиптической кривой, используемой в Ethereum (см. раздел "Криптография на эллиптической кривой: объяснение"). Чтобы создать закрытый ключ, мы случайным образом выбираем 256-битное число и проверяем, что оно находится в допустимом диапазоне. В терминах программирования это обычно достигается путем подачи еще большей строки случайных битов (собранных из криптографически безопасного источника случайности) в 256-битный алгоритм хэширования, такой как Keccak-256 или SHA-256, оба из которых удобно выдают 256-битное число. Если результат находится в допустимом диапазоне, у нас есть подходящий закрытый ключ. В противном случае мы просто повторим попытку с другим случайным числом.</p>
 <p><strong>Совет:</strong>
 2^256 - размер пространства закрытых ключей Ethereum - непостижимо большое число. В десятичной системе счисления оно равно примерно 1077, то есть числу с 77 цифрами. Для сравнения, видимая Вселенная, по оценкам, содержит от 10^77 до 10^80 атомов. Таким образом, в нижнем диапазоне существует достаточно закрытых ключей, чтобы каждый атом во Вселенной мог получить счет в Ethereum. Если вы выберете закрытый ключ случайным образом, то не существует никакой мыслимой возможности, что кто-то сможет угадать его или выбрать самостоятельно.</p>
 <p>Обратите внимание, что процесс генерации закрытого ключа происходит в автономном режиме; он не требует связи с сетью Ethereum или вообще какой-либо связи с кем-либо. Поэтому, чтобы выбрать число, которое никто другой никогда не выберет, оно должно быть действительно случайным. Если вы выбираете число сами, вероятность того, что кто-то другой попробует его выбрать (а затем сбежит с вашими эфирами), слишком высока. Использование плохого генератора случайных чисел (например, псевдослучайной функции rand в большинстве языков программирования) еще хуже, потому что это еще более очевидно и еще легче воспроизвести. Как и в случае с паролями для учетных записей в Интернете, закрытый ключ должен быть неугадываемым. К счастью, вам никогда не придется помнить свой закрытый ключ, поэтому вы можете использовать наилучший возможный подход для его подбора: а именно, истинную случайность.</p>
-<p><strong>Предупреждение:</strong> Не пишите свой собственный код для создания случайного числа и не используйте &quot;простой&quot; генератор случайных чисел, предлагаемый вашим языком программирования. Очень важно использовать криптографически защищенный генератор псевдослучайных чисел (например, CSPRNG) с затравкой из источника с достаточной энтропией. Изучите документацию выбранной вами библиотеки генератора случайных чисел, чтобы убедиться, что она криптографически безопасна. Правильная реализация библиотеки CSPRNG имеет решающее значение для безопасности ключей.</p>
+<p><strong>Предупреждение:</strong> Не пишите свой собственный код для создания случайного числа и не используйте "простой" генератор случайных чисел, предлагаемый вашим языком программирования. Очень важно использовать криптографически защищенный генератор псевдослучайных чисел (например, CSPRNG) с затравкой из источника с достаточной энтропией. Изучите документацию выбранной вами библиотеки генератора случайных чисел, чтобы убедиться, что она криптографически безопасна. Правильная реализация библиотеки CSPRNG имеет решающее значение для безопасности ключей.</p>
 <p>Ниже приведен случайно сгенерированный закрытый ключ, представленный в шестнадцатеричном формате (256 бит представлены в виде 64 шестнадцатеричных цифр, каждая по 4 бита):</p>
 <p><code>f8f8a2f43c8376ccb0871305060d7b27b0554d2cc72bccf41b2705608452f315</code></p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Открытые-ключи" id="Открытые-ключи"><h2>Открытые ключи</h2></a>
+<h2 id="Открытые-ключи"><a class="header" href="#Открытые-ключи">Открытые ключи</a></h2>
 <p>Открытый ключ Ethereum - это точка на эллиптической кривой, то есть набор координат x и y, удовлетворяющих уравнению эллиптической кривой.</p>
 <p>Проще говоря, открытый ключ Ethereum - это два числа, соединенные вместе. Эти числа получаются из закрытого ключа путем вычисления, которое может идти только в одну сторону. Это означает, что вычислить открытый ключ тривиально, если у вас есть закрытый ключ, но вы не можете вычислить закрытый ключ из открытого ключа.</p>
 <p><strong>Предупреждение:</strong> Сейчас будет математика! Не паникуйте. Если вы начнете теряться в каком-либо месте следующих параграфов, вы можете пропустить следующие несколько разделов. Существует множество инструментов и библиотек, которые выполнят все вычисления за вас.</p>
-<p>Открытый ключ вычисляется из закрытого ключа с помощью умножения эллиптической кривой, которое практически необратимо: K = k * G, где k - закрытый ключ, G - постоянная точка, называемая точкой генератора, K - результирующий открытый ключ, а * - специальный оператор &quot;умножения&quot; эллиптической кривой. Обратите внимание, что умножение эллиптической кривой не похоже на обычное умножение. Оно имеет общие функциональные признаки с обычным умножением, но это все. Например, обратная операция (которая для обычных чисел была бы делением), известная как &quot;нахождение дискретного логарифма&quot; - т.е. вычисление k, если вы знаете K - настолько же сложна, как и перебор всех возможных значений k (поиск &quot;грубой силой&quot;, который, вероятно, займет больше времени, чем позволяет эта вселенная).</p>
-<p>Проще говоря, арифметика на эллиптической кривой отличается от &quot;обычной&quot; целочисленной арифметики. Точка (G) может быть умножена на целое число (k), чтобы получить другую точку (K). Но не существует такого понятия, как деление, поэтому невозможно просто &quot;разделить&quot; открытый ключ K на точку G, чтобы вычислить закрытый ключ k. Это и есть односторонняя математическая функция, описанная в &quot;Криптографии с открытым ключом и криптовалюте&quot;.</p>
-<p><strong>Примечание:</strong> Умножение на эллиптической кривой - это тип функции, которую криптографы называют &quot;односторонней&quot;: ее легко выполнить в одном направлении (умножение) и невозможно в обратном направлении (деление). Владелец закрытого ключа может легко создать открытый ключ, а затем поделиться им со всем миром, зная, что никто не сможет обратить функцию и вычислить закрытый ключ по открытому. Этот математический трюк становится основой для непередаваемых и надежных цифровых подписей, которые подтверждают владение средствами Ethereum и контроль над контрактами.</p>
+<p>Открытый ключ вычисляется из закрытого ключа с помощью умножения эллиптической кривой, которое практически необратимо: K = k * G, где k - закрытый ключ, G - постоянная точка, называемая точкой генератора, K - результирующий открытый ключ, а * - специальный оператор "умножения" эллиптической кривой. Обратите внимание, что умножение эллиптической кривой не похоже на обычное умножение. Оно имеет общие функциональные признаки с обычным умножением, но это все. Например, обратная операция (которая для обычных чисел была бы делением), известная как "нахождение дискретного логарифма" - т.е. вычисление k, если вы знаете K - настолько же сложна, как и перебор всех возможных значений k (поиск "грубой силой", который, вероятно, займет больше времени, чем позволяет эта вселенная).</p>
+<p>Проще говоря, арифметика на эллиптической кривой отличается от "обычной" целочисленной арифметики. Точка (G) может быть умножена на целое число (k), чтобы получить другую точку (K). Но не существует такого понятия, как деление, поэтому невозможно просто "разделить" открытый ключ K на точку G, чтобы вычислить закрытый ключ k. Это и есть односторонняя математическая функция, описанная в "Криптографии с открытым ключом и криптовалюте".</p>
+<p><strong>Примечание:</strong> Умножение на эллиптической кривой - это тип функции, которую криптографы называют "односторонней": ее легко выполнить в одном направлении (умножение) и невозможно в обратном направлении (деление). Владелец закрытого ключа может легко создать открытый ключ, а затем поделиться им со всем миром, зная, что никто не сможет обратить функцию и вычислить закрытый ключ по открытому. Этот математический трюк становится основой для непередаваемых и надежных цифровых подписей, которые подтверждают владение средствами Ethereum и контроль над контрактами.</p>
 <p>Прежде чем мы продемонстрируем, как генерировать открытый ключ из закрытого, давайте рассмотрим криптографию эллиптических кривых немного подробнее.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Криптография-эллиптических-кривых-с-пояснениями" id="Криптография-эллиптических-кривых-с-пояснениями"><h3>Криптография эллиптических кривых с пояснениями</h3></a>
+<h3 id="Криптография-эллиптических-кривых-с-пояснениями"><a class="header" href="#Криптография-эллиптических-кривых-с-пояснениями">Криптография эллиптических кривых с пояснениями</a></h3>
 <p>Криптография на эллиптических кривых - это тип асимметричной криптографии или криптографии с открытым ключом, основанный на проблеме дискретного логарифма, выраженного сложением и умножением в точках эллиптической кривой.</p>
 <p>Визуализация эллиптической кривой - пример эллиптической кривой, аналогичной той, что используется в Ethereum.</p>
 <p><strong>Примечание:</strong> .
@@ -161,7 +248,7 @@ Ethereum использует точно такую же эллиптическ�
 <p><strong>Использование Python для подтверждения того, что данная точка находится на эллиптической кривой</strong></p>
 <pre><code>Python 3.4.0 (default, Mar 30 2014, 19:23:13)
 [GCC 4.2.1 Compatible Apple LLVM 5.1 (clang-503.0.38)] on darwin
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+Type "help", "copyright", "credits" or "license" for more information.
 &gt;&gt;&gt; p = 115792089237316195423570985008687907853269984665640564039457584007908834 \
 671663
 &gt;&gt;&gt; x = 49790390825249384486033144355916864607616083520101638681403973749255924539515
@@ -169,23 +256,23 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 &gt;&gt;&gt; (x ** 3 + 7 - y**2) % p
 0L
 </code></pre>
-<a class="header" href="./kniga/ключи_и_адреса.html#Арифметические-операции-с-эллиптическими-кривыми" id="Арифметические-операции-с-эллиптическими-кривыми"><h3>Арифметические операции с эллиптическими кривыми</h3></a>
+<h3 id="Арифметические-операции-с-эллиптическими-кривыми"><a class="header" href="#Арифметические-операции-с-эллиптическими-кривыми">Арифметические операции с эллиптическими кривыми</a></h3>
 <p>Многие математические операции с эллиптическими кривыми выглядят и работают очень похоже на целочисленную арифметику, которую мы изучали в школе. В частности, мы можем определить оператор сложения, который вместо прыжка по числовой линии прыгает в другие точки кривой. Получив оператор сложения, мы также можем определить умножение точки и целого числа, что эквивалентно повторному сложению.</p>
 <p>Сложение на эллиптической кривой определяется так, что если даны две точки P1 и P2 на эллиптической кривой, то существует третья точка P3 = P1 + P2, также находящаяся на эллиптической кривой.</p>
 <p>Геометрически эта третья точка P3 вычисляется путем проведения прямой между P1 и P2. Эта линия пересечет эллиптическую кривую ровно в одном дополнительном месте (удивительным образом). Назовем эту точку P3' = (x, y). Затем отразите по оси x, чтобы получить P3 = (x, -y).</p>
-<p>Если P1 и P2 - одна и та же точка, то линия &quot;между&quot; P1 и P2 должна быть касательной к кривой в этой точке P1. Эта касательная будет пересекать кривую ровно в одной новой точке. Для определения наклона касательной линии можно использовать приемы из математики. Любопытно, что эти методы работают, даже если мы ограничиваем свой интерес точками на кривой с двумя целыми координатами!</p>
-<p>В математике эллиптических кривых также существует точка, называемая &quot;точкой на бесконечности&quot;, которая примерно соответствует роли числа ноль в сложении. На компьютерах ее иногда представляют в виде x = y = 0 (что не удовлетворяет уравнению эллиптической кривой, но это простой отдельный случай, который можно проверить). Есть несколько особых случаев, которые объясняют необходимость точки на бесконечности.</p>
+<p>Если P1 и P2 - одна и та же точка, то линия "между" P1 и P2 должна быть касательной к кривой в этой точке P1. Эта касательная будет пересекать кривую ровно в одной новой точке. Для определения наклона касательной линии можно использовать приемы из математики. Любопытно, что эти методы работают, даже если мы ограничиваем свой интерес точками на кривой с двумя целыми координатами!</p>
+<p>В математике эллиптических кривых также существует точка, называемая "точкой на бесконечности", которая примерно соответствует роли числа ноль в сложении. На компьютерах ее иногда представляют в виде x = y = 0 (что не удовлетворяет уравнению эллиптической кривой, но это простой отдельный случай, который можно проверить). Есть несколько особых случаев, которые объясняют необходимость точки на бесконечности.</p>
 <p>В некоторых случаях (например, если P1 и P2 имеют одинаковые значения x, но разные значения y), линия будет точно вертикальной, в этом случае P3 = точка на бесконечности.</p>
-<p>Если P1 - точка на бесконечности, то P1 + P2 = P2. Аналогично, если P2 - точка на бесконечности, то P1 + P2 = P1. Это показывает, что точка на бесконечности играет роль, которую ноль играет в &quot;нормальной&quot; арифметике.</p>
+<p>Если P1 - точка на бесконечности, то P1 + P2 = P2. Аналогично, если P2 - точка на бесконечности, то P1 + P2 = P1. Это показывает, что точка на бесконечности играет роль, которую ноль играет в "нормальной" арифметике.</p>
 <p>Оказывается, что + ассоциативен, что означает, что (A + B) + C = A + (B + C). Это означает, что мы можем писать A + B + C (без скобок) без двусмысленности.</p>
-<p>Теперь, когда мы определили сложение, мы можем определить умножение стандартным способом, который расширяет сложение. Для точки P на эллиптической кривой, если k - целое число, то k * P = P + P + P + P + ... + P (k раз). Обратите внимание, что k в этом случае иногда (возможно, путано) называют &quot;экспонентой&quot;.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Генерация-открытого-ключа" id="Генерация-открытого-ключа"><h3>Генерация открытого ключа</h3></a>
+<p>Теперь, когда мы определили сложение, мы можем определить умножение стандартным способом, который расширяет сложение. Для точки P на эллиптической кривой, если k - целое число, то k * P = P + P + P + P + ... + P (k раз). Обратите внимание, что k в этом случае иногда (возможно, путано) называют "экспонентой".</p>
+<h3 id="Генерация-открытого-ключа"><a class="header" href="#Генерация-открытого-ключа">Генерация открытого ключа</a></h3>
 <p>Начиная с закрытого ключа в виде случайно сгенерированного числа k, мы умножаем его на заранее определенную точку на кривой, называемую точкой генератора G, чтобы получить другую точку в другом месте кривой, которая и является соответствующим открытым ключом K:</p>
 <p>K = k * G
 Точка генератора задается в рамках стандарта secp256k1; она одинакова для всех реализаций secp256k1, и все ключи, получаемые из этой кривой, используют одну и ту же точку G. Поскольку точка генератора всегда одинакова для всех пользователей Ethereum, частный ключ k, умноженный на G, всегда будет приводить к одному и тому же открытому ключу K. Связь между k и K фиксирована, но может быть вычислена только в одном направлении - от k к K. Именно поэтому адрес Ethereum (полученный из K) может быть передан кому угодно и не раскрывает закрытый ключ пользователя (k).</p>
 <p>Как мы описали в предыдущем разделе, умножение k * G эквивалентно повторному сложению, поэтому G + G + G + ... + G, повторенному k раз. В общем, чтобы получить открытый ключ K из закрытого ключа k, мы добавляем точку генератора G к самой себе k раз.</p>
 <p><strong>Совет:</strong> Закрытый ключ можно преобразовать в открытый, но открытый ключ нельзя преобразовать обратно в закрытый, потому что математика работает только в одну сторону.</p>
-<p>Давайте применим это вычисление, чтобы найти открытый ключ для конкретного закрытого ключа, который мы показали вам в разделе &quot;Закрытые ключи&quot;:</p>
+<p>Давайте применим это вычисление, чтобы найти открытый ключ для конкретного закрытого ключа, который мы показали вам в разделе "Закрытые ключи":</p>
 <p>Пример преобразования закрытого ключа в открытый
 <code>K = f8f8a2f43c8376ccb0871305060d7b27b0554d2cc72bccf41b2705608452f315 * G</code>
 Криптографическая библиотека может помочь нам вычислить K, используя умножение эллиптической кривой. Полученный открытый ключ K определяется как точка:</p>
@@ -196,39 +283,40 @@ y = 83b5c38e5e2b0c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0
 </code></pre>
 <p>В Ethereum вы можете увидеть открытые ключи, представленные в виде сериализации из 130 шестнадцатеричных символов (65 байт). Этот формат заимствован из стандартного формата сериализации, предложенного отраслевым консорциумом Standards for Efficient Cryptography Group (SECG) и задокументированного в Standards for Efficient Cryptography (SEC1). Стандарт определяет четыре возможных префикса, которые могут быть использованы для идентификации точек на эллиптической кривой, перечисленных в Serialized EC public key prefixes.</p>
 <p>Таблица 1. Сериализованные префиксы открытого ключа EC</p>
-<table><thead><tr><th> Префикс </th><th> Значение                  </th><th> Длина (байты с учетом префикса) </th></tr></thead><tbody>
-<tr><td> 0x00    </td><td> Точка на бесконечности    </td><td> 1                               </td></tr>
-<tr><td> 0x02    </td><td> Сжатая точка с четным y   </td><td> 33                              </td></tr>
-<tr><td> 0x03    </td><td> Сжатая точка с нечетным y </td><td> 33                              </td></tr>
-<tr><td> 0x04    </td><td> Точка без сжатия          </td><td> 65                              </td></tr>
+<div class="table-wrapper"><table><thead><tr><th>Префикс</th><th>Значение</th><th>Длина (байты с учетом префикса)</th></tr></thead><tbody>
+<tr><td>0x00</td><td>Точка на бесконечности</td><td>1</td></tr>
+<tr><td>0x02</td><td>Сжатая точка с четным y</td><td>33</td></tr>
+<tr><td>0x03</td><td>Сжатая точка с нечетным y</td><td>33</td></tr>
+<tr><td>0x04</td><td>Точка без сжатия</td><td>65</td></tr>
 </tbody></table>
+</div>
 <p>Ethereum использует только несжатые открытые ключи; поэтому единственный префикс, который имеет значение, - это (hex) 04. Сериализация объединяет координаты x и y открытого ключа:</p>
 <p><code>04 + x-coordinate (32 bytes/64 hex) + y-coordinate (32 bytes/64 hex)</code></p>
 <p>Таким образом, открытый ключ, который мы вычислили ранее, сериализуется как:</p>
 <pre><code>046e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b83b5c38e5e2b0 \
 c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0
 </code></pre>
-<a class="header" href="./kniga/ключи_и_адреса.html#Библиотеки-эллиптических-кривых" id="Библиотеки-эллиптических-кривых"><h3>Библиотеки эллиптических кривых</h3></a>
+<h3 id="Библиотеки-эллиптических-кривых"><a class="header" href="#Библиотеки-эллиптических-кривых">Библиотеки эллиптических кривых</a></h3>
 <p>Существует несколько реализаций эллиптической кривой secp256k1, которые используются в проектах, связанных с криптовалютами:</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#opensslhttpswwwopensslorg" id="opensslhttpswwwopensslorg"><h4>OpenSSL(https://www.openssl.org/)</h4></a>
+<h4 id="opensslhttpswwwopensslorg"><a class="header" href="#opensslhttpswwwopensslorg">OpenSSL(https://www.openssl.org/)</a></h4>
 <p>Библиотека OpenSSL предлагает полный набор криптографических примитивов, включая полную реализацию secp256k1. Например, для получения открытого ключа можно использовать функцию EC_POINT_mul.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#libsecp256k1httpsgithubcombitcoin-coresecp256k1" id="libsecp256k1httpsgithubcombitcoin-coresecp256k1"><h4>libsecp256k1(https://github.com/bitcoin-core/secp256k1)</h4></a>
+<h4 id="libsecp256k1httpsgithubcombitcoin-coresecp256k1"><a class="header" href="#libsecp256k1httpsgithubcombitcoin-coresecp256k1">libsecp256k1(https://github.com/bitcoin-core/secp256k1)</a></h4>
 <p>libsecp256k1 в Bitcoin Core - это реализация эллиптической кривой secp256k1 и других криптографических примитивов на языке Си. Она была написана с нуля, чтобы заменить OpenSSL в программном обеспечении Bitcoin Core, и считается более совершенной как по производительности, так и по безопасности.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Криптографические-хэш-функции" id="Криптографические-хэш-функции"><h2>Криптографические хэш-функции</h2></a>
-<p>Криптографические хэш-функции используются во всей системе Ethereum. Фактически, хэш-функции широко используются почти во всех криптографических системах - этот факт подтвердил криптограф Брюс Шнайер, который сказал: &quot;Гораздо больше, чем алгоритмы шифрования, односторонние хэш-функции являются рабочими лошадками современной криптографии&quot;.</p>
+<h2 id="Криптографические-хэш-функции"><a class="header" href="#Криптографические-хэш-функции">Криптографические хэш-функции</a></h2>
+<p>Криптографические хэш-функции используются во всей системе Ethereum. Фактически, хэш-функции широко используются почти во всех криптографических системах - этот факт подтвердил криптограф Брюс Шнайер, который сказал: "Гораздо больше, чем алгоритмы шифрования, односторонние хэш-функции являются рабочими лошадками современной криптографии".</p>
 <p>В этом разделе мы обсудим хэш-функции, изучим их основные свойства и посмотрим, как эти свойства делают их столь полезными во многих областях современной криптографии. Мы рассматриваем хэш-функции здесь потому, что они являются частью преобразования открытых ключей Ethereum в адреса. Они также могут использоваться для создания цифровых отпечатков пальцев, которые помогают в проверке данных.</p>
-<p>Проще говоря, хэш-функция - это &quot;любая функция, которая может быть использована для преобразования данных произвольного размера в данные фиксированного размера&quot;. Входные данные хэш-функции называются предварительным образом, сообщением или просто входными данными. Выходные данные называются хэшем. Криптографические хэш-функции - это особая подкатегория, обладающая специфическими свойствами, полезными для безопасных платформ, таких как Ethereum.</p>
-<p>Криптографическая хэш-функция - это односторонняя хэш-функция, которая отображает данные произвольного размера в строку битов фиксированного размера. Односторонний&quot; характер означает, что воссоздать входные данные вычислительно невозможно, если знать только выходной хэш. Единственный способ определить возможный вход - провести перебор, проверяя каждого кандидата на соответствие выходу; учитывая, что пространство поиска практически бесконечно, легко понять практическую невыполнимость этой задачи. Даже если вы найдете некоторые входные данные, которые создают совпадающий хэш, это могут быть не исходные входные данные: хэш-функции являются функциями &quot;многие-к-одному&quot;. Нахождение двух наборов входных данных, которые хэшируют один и тот же выход, называется хэш-коллизией. Грубо говоря, чем лучше хэш-функция, тем реже происходят хэш-коллизии. Для Ethereum они фактически невозможны.</p>
+<p>Проще говоря, хэш-функция - это "любая функция, которая может быть использована для преобразования данных произвольного размера в данные фиксированного размера". Входные данные хэш-функции называются предварительным образом, сообщением или просто входными данными. Выходные данные называются хэшем. Криптографические хэш-функции - это особая подкатегория, обладающая специфическими свойствами, полезными для безопасных платформ, таких как Ethereum.</p>
+<p>Криптографическая хэш-функция - это односторонняя хэш-функция, которая отображает данные произвольного размера в строку битов фиксированного размера. Односторонний" характер означает, что воссоздать входные данные вычислительно невозможно, если знать только выходной хэш. Единственный способ определить возможный вход - провести перебор, проверяя каждого кандидата на соответствие выходу; учитывая, что пространство поиска практически бесконечно, легко понять практическую невыполнимость этой задачи. Даже если вы найдете некоторые входные данные, которые создают совпадающий хэш, это могут быть не исходные входные данные: хэш-функции являются функциями "многие-к-одному". Нахождение двух наборов входных данных, которые хэшируют один и тот же выход, называется хэш-коллизией. Грубо говоря, чем лучше хэш-функция, тем реже происходят хэш-коллизии. Для Ethereum они фактически невозможны.</p>
 <p>Давайте подробнее рассмотрим основные свойства криптографических хэш-функций. К ним относятся:</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Детерминизм" id="Детерминизм"><h4>Детерминизм</h4></a>
+<h4 id="Детерминизм"><a class="header" href="#Детерминизм">Детерминизм</a></h4>
 <p>При заданном входном сообщении всегда получается один и тот же хэш-выход.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Верифицируемость" id="Верифицируемость"><h4>Верифицируемость</h4></a>
+<h4 id="Верифицируемость"><a class="header" href="#Верифицируемость">Верифицируемость</a></h4>
 <p>Вычисление хэша сообщения является эффективным (линейная сложность).</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Некорреляция" id="Некорреляция"><h4>Некорреляция</h4></a>
+<h4 id="Некорреляция"><a class="header" href="#Некорреляция">Некорреляция</a></h4>
 <p>Небольшое изменение сообщения (например, изменение на 1 бит) должно настолько сильно изменить хэш-вывод, что он не может быть соотнесен с хэшем исходного сообщения.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Необратимость" id="Необратимость"><h4>Необратимость</h4></a>
+<h4 id="Необратимость"><a class="header" href="#Необратимость">Необратимость</a></h4>
 <p>Вычисление сообщения по его хэшу является невыполнимой задачей, эквивалентной перебору всех возможных сообщений.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Защита-от-коллизий" id="Защита-от-коллизий"><h4>Защита от коллизий</h4></a>
+<h4 id="Защита-от-коллизий"><a class="header" href="#Защита-от-коллизий">Защита от коллизий</a></h4>
 <p>Вычисление двух различных сообщений, дающих одинаковый хэш, должно быть невыполнимым.</p>
 <p>Устойчивость к коллизиям хэша особенно важна для предотвращения подделки цифровой подписи в Ethereum.</p>
 <p>Сочетание этих свойств делает криптографические хэш-функции полезными для широкого спектра приложений безопасности, включая:</p>
@@ -242,23 +330,23 @@ c8529d7fa3f64d46daa1ece2d9ac14cab9477d042c84c32ccd0
 <li>Уникальные идентификаторы</li>
 </ul>
 <p>Многие из них мы найдем в Ethereum по мере продвижения по различным уровням системы.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Криптографическая-хэш-функция-ethereum-keccak-256" id="Криптографическая-хэш-функция-ethereum-keccak-256"><h3>Криптографическая хэш-функция Ethereum: Keccak-256</h3></a>
+<h3 id="Криптографическая-хэш-функция-ethereum-keccak-256"><a class="header" href="#Криптографическая-хэш-функция-ethereum-keccak-256">Криптографическая хэш-функция Ethereum: Keccak-256</a></h3>
 <p>Ethereum во многих местах использует криптографическую хэш-функцию Keccak-256. Keccak-256 была разработана как кандидат на участие в конкурсе криптографических хэш-функций SHA-3, проведенном в 2007 году Национальным институтом стандартов и технологий. Победителем стал алгоритм Keccak, который в 2015 году был стандартизирован как Федеральный стандарт обработки информации (FIPS) 202.</p>
 <p>Однако в период, когда разрабатывался Ethereum, стандартизация NIST еще не была завершена. NIST скорректировал некоторые параметры Keccak после завершения процесса стандартизации, якобы для повышения его эффективности. Это происходило в то же время, когда героический разоблачитель Эдвард Сноуден обнародовал документы, из которых следовало, что на NIST могло оказывать неправомерное влияние Агентство национальной безопасности, чтобы намеренно ослабить стандарт генератора случайных чисел Dual_EC_DRBG, фактически поместив черный ход в стандартный генератор случайных чисел. Результатом этих разногласий стала обратная реакция против предложенных изменений и значительная задержка в стандартизации SHA-3. В то время Ethereum Foundation решила использовать оригинальный алгоритм Keccak, предложенный его изобретателями, а не стандарт SHA-3, измененный NIST.</p>
-<p><strong>Предупреждение:</strong> Хотя вы можете встретить упоминание &quot;SHA-3&quot; в документах и коде Ethereum, во многих, если не во всех, случаях речь идет о Keccak-256, а не об окончательно утвержденном стандарте SHA-3 FIPS-202. Различия в реализации незначительны и связаны с параметрами подстановки, но они существенны, поскольку при одинаковых входных данных Keccak-256 выдает хэш-выходы, отличные от FIPS-202 SHA-3.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Какую-хэш-функцию-я-использую" id="Какую-хэш-функцию-я-использую"><h3>Какую хэш-функцию я использую?</h3></a>
-<p>Как определить, реализует ли используемая вами программная библиотека FIPS-202 SHA-3 или Keccak-256, если обе они могут называться &quot;SHA-3&quot;?</p>
+<p><strong>Предупреждение:</strong> Хотя вы можете встретить упоминание "SHA-3" в документах и коде Ethereum, во многих, если не во всех, случаях речь идет о Keccak-256, а не об окончательно утвержденном стандарте SHA-3 FIPS-202. Различия в реализации незначительны и связаны с параметрами подстановки, но они существенны, поскольку при одинаковых входных данных Keccak-256 выдает хэш-выходы, отличные от FIPS-202 SHA-3.</p>
+<h3 id="Какую-хэш-функцию-я-использую"><a class="header" href="#Какую-хэш-функцию-я-использую">Какую хэш-функцию я использую?</a></h3>
+<p>Как определить, реализует ли используемая вами программная библиотека FIPS-202 SHA-3 или Keccak-256, если обе они могут называться "SHA-3"?</p>
 <p>Простой способ определить это - использовать тестовый вектор, ожидаемый выход для заданного входа. Тест, наиболее часто используемый для хэш-функции, - это пустой вход. Если вы запустите хэш-функцию с пустой строкой в качестве входных данных, вы увидите следующие результаты:</p>
-<pre><code>Keccak256(&quot;&quot;) =
+<pre><code>Keccak256("") =
   c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470
 
-SHA3(&quot;&quot;) =
+SHA3("") =
   a7ffc6f8bf1ed76651c14756a061d662f580ff4de43b49fa82d80a4b80f8434a
 </code></pre>
 <p>Независимо от того, как называется функция, вы можете проверить, является ли она оригинальным Keccak-256 или окончательным стандартом NIST FIPS-202 SHA-3, выполнив этот простой тест. Помните, что в Ethereum используется Keccak-256, хотя в коде он часто называется SHA-3.</p>
 <p><strong>Примечание:</strong> Из-за путаницы, вызванной различием между хэш-функцией, используемой в Ethereum (Keccak-256) и доработанным стандартом (FIP-202 SHA-3), предпринимаются усилия по переименованию всех экземпляров sha3 во всех кодах, операционных кодах и библиотеках в keccak256. Подробности см. в EIP-59.</p>
 <p>Далее рассмотрим первое применение Keccak-256 в Ethereum, которое заключается в создании адресов Ethereum из открытых ключей.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Адреса-ethereum" id="Адреса-ethereum"><h2>Адреса Ethereum</h2></a>
+<h2 id="Адреса-ethereum"><a class="header" href="#Адреса-ethereum">Адреса Ethereum</a></h2>
 <p>Адреса Ethereum - это уникальные идентификаторы, получаемые из открытых ключей или контрактов с помощью односторонней хэш-функции Keccak-256.</p>
 <p>В наших предыдущих примерах мы начали с закрытого ключа и использовали умножение эллиптической кривой для получения открытого ключа:</p>
 <p>Закрытый ключ k:</p>
@@ -272,21 +360,21 @@ SHA3(&quot;&quot;) =
 <p><code>001d3f1ef827552ae1114027bd3ecf1f086ba0f9</code></p>
 <p>Чаще всего вы видите адреса Ethereum с префиксом 0x, который указывает на то, что они имеют шестнадцатеричную кодировку, например, так:</p>
 <p><code>0x001d3f1ef827552ae1114027bd3ecf1f086ba0f9</code></p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Форматы-адресов-ethereum" id="Форматы-адресов-ethereum"><h3>Форматы адресов Ethereum</h3></a>
+<h3 id="Форматы-адресов-ethereum"><a class="header" href="#Форматы-адресов-ethereum">Форматы адресов Ethereum</a></h3>
 <p>Адреса Ethereum - это шестнадцатеричные числа, идентификаторы, получаемые из последних 20 байт хэша открытого ключа Keccak-256.</p>
 <p>В отличие от адресов Bitcoin, которые закодированы в пользовательском интерфейсе всех клиентов и содержат встроенную контрольную сумму для защиты от ошибочных адресов, адреса Ethereum представлены в виде необработанных шестнадцатеричных чисел без какой-либо контрольной суммы.</p>
 <p>Это решение было обосновано тем, что адреса Ethereum со временем будут скрыты за абстракциями (такими как службы имен) на более высоких уровнях системы и что контрольные суммы должны быть добавлены на более высоких уровнях, если это необходимо.</p>
 <p>В действительности эти более высокие уровни разрабатывались слишком медленно, и такой выбор дизайна привел к ряду проблем на ранних этапах развития экосистемы, включая потерю средств из-за неправильно введенных адресов и ошибок проверки ввода. Кроме того, поскольку службы имен Ethereum разрабатывались медленнее, чем ожидалось изначально, альтернативные кодировки принимались разработчиками кошельков очень медленно. Далее мы рассмотрим несколько вариантов кодировок.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Протокол-адреса-клиента-межбиржевого-обмена" id="Протокол-адреса-клиента-межбиржевого-обмена"><h3>Протокол адреса клиента межбиржевого обмена</h3></a>
+<h3 id="Протокол-адреса-клиента-межбиржевого-обмена"><a class="header" href="#Протокол-адреса-клиента-межбиржевого-обмена">Протокол адреса клиента межбиржевого обмена</a></h3>
 <p>Протокол межбиржевых клиентских адресов (ICAP) - это кодировка адресов Ethereum, частично совместимая с кодировкой международного номера банковского счета (IBAN), обеспечивающая универсальность, контрольную сумму и совместимость кодировок для адресов Ethereum. Адреса ICAP могут кодировать адреса Ethereum или общие имена, зарегистрированные в реестре имен Ethereum. Подробнее об ICAP можно прочитать в Ethereum Wiki.</p>
 <p>IBAN - это международный стандарт для идентификации номеров банковских счетов, используемый в основном для электронных переводов. Он широко принят в Европейской единой зоне европлатежей (SEPA) и за ее пределами. IBAN - это централизованная и сильно регулируемая служба. ICAP - децентрализованная, но совместимая реализация для адресов Ethereum.</p>
 <p>IBAN состоит из строки до 34 буквенно-цифровых символов (без учета регистра), включающей код страны, контрольную сумму и идентификатор банковского счета (который зависит от конкретной страны).</p>
-<p>ICAP использует ту же структуру, вводя нестандартный код страны &quot;XE&quot;, который обозначает &quot;Ethereum&quot;, затем контрольную сумму из двух символов и три возможных варианта идентификатора счета:</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Прямой" id="Прямой"><h4>Прямой</h4></a>
+<p>ICAP использует ту же структуру, вводя нестандартный код страны "XE", который обозначает "Ethereum", затем контрольную сумму из двух символов и три возможных варианта идентификатора счета:</p>
+<h4 id="Прямой"><a class="header" href="#Прямой">Прямой</a></h4>
 <p>Целое число big-endian base-36, состоящее из 30 буквенно-цифровых символов и представляющее собой 155 младших битов адреса Ethereum. Поскольку эта кодировка вмещает меньше, чем полные 160 бит общего адреса Ethereum, она подходит только для адресов Ethereum, начинающихся с одного или нескольких нулевых байтов. Преимущество заключается в том, что она совместима с IBAN с точки зрения длины поля и контрольной суммы. Пример: XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD (длина 33 символа).</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Базовый" id="Базовый"><h4>Базовый</h4></a>
+<h4 id="Базовый"><a class="header" href="#Базовый">Базовый</a></h4>
 <p>То же самое, что и кодировка Direct, за исключением того, что ее длина составляет 31 символ. Это позволяет кодировать любой адрес Ethereum, но делает его несовместимым с проверкой поля IBAN. Пример: XE18CHDJBPLTBCJ03FE9O2NS0BPOJVQCU2P (длина 35 символов).</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Косвенный" id="Косвенный"><h4>Косвенный</h4></a>
+<h4 id="Косвенный"><a class="header" href="#Косвенный">Косвенный</a></h4>
 <p>Кодирует идентификатор, который разрешается в адрес Ethereum через провайдера реестра имен. В нем используется 16 буквенно-цифровых символов, включающих идентификатор актива (например, ETH), службу имен (например, XREG) и 9-символьное человекочитаемое имя (например, KITTYCATS). Пример: XE##ETHXREGKITTYCATS (длина 20 символов), где ## должен быть заменен двумя символами вычисленной контрольной суммы.</p>
 <p>Мы можем использовать инструмент командной строки helpeth для создания ICAP-адресов. Вы можете получить helpeth, установив его с помощью:</p>
 <p><code>$ npm install -g helpeth</code>
@@ -303,9 +391,9 @@ Public key: 0x6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b..
 <p><code>XE60HAMICDXSV5QXVJA7TJW47Q9CHWKJD</code></p>
 <p>Поскольку наш пример адреса Ethereum начинается с нулевого байта, его можно закодировать с помощью метода прямого ICAP-кодирования, который действителен в формате IBAN. Это видно по тому, что его длина составляет 33 символа.</p>
 <p>Если бы наш адрес не начинался с нуля, он был бы закодирован с помощью кодировки Basic, длина которой составила бы 35 символов и была бы недействительна в качестве IBAN.</p>
-<p><strong>Совет:</strong> Вероятность того, что любой адрес Ethereum начинается с нулевого байта, составляет 1 к 256. Чтобы сгенерировать такой адрес, потребуется в среднем 256 попыток с 256 различными случайными закрытыми ключами, прежде чем мы найдем такой, который будет работать как IBAN-совместимый ICAP-адрес с кодировкой &quot;Direct&quot;.</p>
+<p><strong>Совет:</strong> Вероятность того, что любой адрес Ethereum начинается с нулевого байта, составляет 1 к 256. Чтобы сгенерировать такой адрес, потребуется в среднем 256 попыток с 256 различными случайными закрытыми ключами, прежде чем мы найдем такой, который будет работать как IBAN-совместимый ICAP-адрес с кодировкой "Direct".</p>
 <p>В настоящее время ICAP, к сожалению, поддерживается только несколькими кошельками.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Шестнадцатеричное-кодирование-с-контрольной-суммой-в-капитализации-eip-55" id="Шестнадцатеричное-кодирование-с-контрольной-суммой-в-капитализации-eip-55"><h4>Шестнадцатеричное кодирование с контрольной суммой в капитализации (EIP-55)</h4></a>
+<h4 id="Шестнадцатеричное-кодирование-с-контрольной-суммой-в-капитализации-eip-55"><a class="header" href="#Шестнадцатеричное-кодирование-с-контрольной-суммой-в-капитализации-eip-55">Шестнадцатеричное кодирование с контрольной суммой в капитализации (EIP-55)</a></h4>
 <p>В связи с медленным развертыванием ICAP и служб имен был предложен стандарт Ethereum Improvement Proposal 55 (EIP-55). EIP-55 предлагает обратно совместимую контрольную сумму для адресов Ethereum путем изменения капитализации шестнадцатеричного адреса. Идея заключается в том, что адреса Ethereum не чувствительны к регистру, и все кошельки должны принимать адреса Ethereum, выраженные заглавными или строчными буквами, без разницы в интерпретации.</p>
 <p>Изменяя капитализацию буквенных символов в адресе, мы можем передать контрольную сумму, которая может быть использована для защиты целостности адреса от ошибок при вводе или чтении. Кошельки, которые не поддерживают контрольные суммы EIP-55, просто игнорируют тот факт, что адрес содержит смешанную капитализацию, но те, которые поддерживают, могут проверить его и обнаружить ошибки с точностью 99,986%.</p>
 <p>Кодировка со смешанными заглавными буквами очень тонкая, и поначалу вы можете ее не заметить. Наш пример адреса:</p>
@@ -317,7 +405,7 @@ Public key: 0x6e145ccef1033dea239875dd00dfb4fee6e3348b84985c92f103444683bae07b..
 <ol>
 <li>Хешируем адрес в нижнем регистре, без префикса 0x:</li>
 </ol>
-<pre><code>Keccak256(&quot;001d3f1ef827552ae1114027bd3ecf1f086ba0f9&quot;) =
+<pre><code>Keccak256("001d3f1ef827552ae1114027bd3ecf1f086ba0f9") =
 23a69c1653e4ebbb619b0b2cb8a9bad49892a8b9695d9a19d8f673ca991deae1
 </code></pre>
 <ol start="2">
@@ -331,13 +419,13 @@ Hash   : 23a69c1653e4ebbb619b0b2cb8a9bad49892a8b9...
 <pre><code>Address: 001d3F1ef827552Ae1114027BD3ECF1f086bA0F9
 Hash   : 23a69c1653e4ebbb619b0b2cb8a9bad49892a8b9...
 </code></pre>
-<a class="header" href="./kniga/ключи_и_адреса.html#Обнаружение-ошибки-в-кодированном-адресе-eip-55" id="Обнаружение-ошибки-в-кодированном-адресе-eip-55"><h4>Обнаружение ошибки в кодированном адресе EIP-55</h4></a>
+<h4 id="Обнаружение-ошибки-в-кодированном-адресе-eip-55"><a class="header" href="#Обнаружение-ошибки-в-кодированном-адресе-eip-55">Обнаружение ошибки в кодированном адресе EIP-55</a></h4>
 <p>Теперь давайте рассмотрим, как адреса EIP-55 помогут нам найти ошибку. Предположим, что мы распечатали адрес Ethereum, который имеет кодировку EIP-55:</p>
 <p><code>0x001d3F1ef827552Ae1114027BD3ECF1f086bA0F9</code></p>
 <p>Теперь допустим основную ошибку при чтении этого адреса. Символ перед последней буквой - заглавная F. Для примера предположим, что мы ошибочно прочитали ее как заглавную E, и ввели в кошелек следующий (неправильный) адрес:</p>
 <p><code>0x001d3F1ef827552Ae1114027BD3ECF1f086bA0E9</code></p>
 <p>К счастью, наш кошелек совместим с EIP-55! Он замечает смешанную капитализацию и пытается проверить адрес. Он преобразует его в нижний регистр и вычисляет хэш контрольной суммы:</p>
-<pre><code>Keccak256(&quot;001d3f1ef827552ae1114027bd3ecf1f086ba0e9&quot;) =
+<pre><code>Keccak256("001d3f1ef827552ae1114027bd3ecf1f086ba0e9") =
 5429b5d9460122fb4b11af9cb88b7bb76d8928862e0a57d46dd18dd8e08a6927
 </code></pre>
 <p>Как видите, несмотря на то, что адрес изменился всего на один символ (фактически, всего на один бит, так как e и f находятся на расстоянии одного бита друг от друга), хэш адреса изменился радикально. Именно это свойство хэш-функций делает их столь полезными для контрольных сумм!</p>
@@ -347,62 +435,57 @@ Hash   : 23a69c1653e4ebbb619b0b2cb8a9bad49892a8b9...
 </code></pre>
 <p>Это все неправильно! Несколько буквенных символов неправильно набраны. Помните, что капитализация - это кодировка правильной контрольной суммы.</p>
 <p>Капитализация введенного нами адреса не совпадает с только что рассчитанной контрольной суммой, значит, в адресе что-то изменилось, и была допущена ошибка.</p>
-<a class="header" href="./kniga/ключи_и_адреса.html#Выводы" id="Выводы"><h2>Выводы</h2></a>
+<h2 id="Выводы"><a class="header" href="#Выводы">Выводы</a></h2>
 <p>В этой главе мы представили краткий обзор криптографии с открытым ключом и сосредоточились на использовании открытых и закрытых ключей в Ethereum и применении криптографических инструментов, таких как хэш-функции, при создании и проверке адресов Ethereum. Мы также рассмотрели цифровые подписи и то, как они могут продемонстрировать владение закрытым ключом без раскрытия этого закрытого ключа. В главе [wallets_chapter] мы объединим эти идеи и рассмотрим, как можно использовать кошельки для управления коллекциями ключей.</p>
 
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../kniga/клиенты.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../kniga/кошельки.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
                 </div>
-
-                <!-- Mobile navigation buttons -->
-                
-                    <a rel="prev" href="./kniga/клиенты.html" class="mobile-nav-chapters previous" title="Previous chapter">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                
-
-                
-                    <a rel="next" href="./kniga/кошельки.html" class="mobile-nav-chapters next" title="Next chapter">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                
-
             </div>
 
-            
-                <a href="./kniga/клиенты.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../kniga/клиенты.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-            
-                <a href="./kniga/кошельки.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            
+                    <a rel="next prefetch" href="../kniga/кошельки.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
 
         </div>
 
 
-        <!-- Local fallback for Font Awesome -->
+
+
         <script>
-            if ($(".fa").css("font-family") !== "FontAwesome") {
-                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
-            }
+            window.playground_copyable = true;
         </script>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        
 
-        
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
-        
+        <!-- Custom JS scripts -->
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
 
-        <!-- Custom JS script -->
-        
-
+    </div>
     </body>
 </html>

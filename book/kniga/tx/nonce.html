@@ -1,92 +1,179 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="ru" class="light" dir="ltr">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Nonce транзакции - Осваиваем Ethereum - Mastering Ethereum</title>
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+
+        <!-- Custom HTML head -->
+        
         <meta name="description" content="Руководство по Ethereum и разработке смарт-контрактов">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
 
-        <base href="../../">
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
 
-        <link rel="stylesheet" href="book.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
 
-        <link rel="shortcut icon" href="favicon.png">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
-
-        <!-- Custom theme -->
-        
-
-        
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <!-- Fetch JQuery from CDN but have a local fallback -->
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script>
-            if (typeof jQuery == 'undefined') {
-                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
-        <script src="store.js"></script>
+        <!-- Custom theme stylesheets -->
 
     </head>
-    <body class="light">
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme = store.get('mdbook-theme');
-            if (theme === null || theme === undefined) { theme = 'light'; }
-            $('body').removeClass().addClass(theme);
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var sidebar = store.get('mdbook-sidebar');
-            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
-            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
-        <div id="sidebar" class="sidebar">
-            <ul class="chapter"><li class="affix"><a href="./1_предисловие.html">Предисловие</a></li><li class="affix"><a href="./2_глоссарий.html">Глоссарий</a></li><li><a href="./kniga/что_такое_ethereum.html"><strong>1.</strong> Что такое Ethereum?</a></li><li><a href="./kniga/введение.html"><strong>2.</strong> Введение</a></li><li><a href="./kniga/клиенты.html"><strong>3.</strong> Клиенты</a></li><li><a href="./kniga/ключи_и_адреса.html"><strong>4.</strong> Ключи и адреса</a></li><li><a href="./kniga/кошельки.html"><strong>5.</strong> Кошельки</a></li><li><a href="./kniga/транзакции.html"><strong>6.</strong> Транзакции</a></li><li><ul class="section"><li><a href="./kniga/tx/structure.html"><strong>6.1.</strong> Структура_транзакции</a></li><li><a href="./kniga/tx/nonce.html" class="active"><strong>6.2.</strong> Nonce транзакции</a></li><li><a href="./kniga/tx/gas.html"><strong>6.3.</strong> Топливо (Gas)</a></li><li><a href="./kniga/tx/recipient.html"><strong>6.4.</strong> Получатель</a></li><li><a href="./kniga/tx/value_data.html"><strong>6.5.</strong> Value и Data</a></li><li><a href="./kniga/tx/create_contract_tx.html"><strong>6.6.</strong> Тразакция создания контракта</a></li><li><a href="./kniga/tx/digital_signatures.html"><strong>6.7.</strong> Цифровые подписи</a></li><li><a href="./kniga/tx/sign_prifix_value.html"><strong>6.8.</strong> Восстановление открытого ключа</a></li><li><a href="./kniga/tx/sign_transmission.html"><strong>6.9.</strong> Раздельное подписание и передача</a></li><li><a href="./kniga/tx/tx_propagation.html"><strong>6.10.</strong> Распространение транзакций</a></li><li><a href="./kniga/tx/recording_on_blockchain.html"><strong>6.11.</strong> Запись в блокчейне</a></li><li><a href="./kniga/tx/multisig.html"><strong>6.12.</strong> Мультиподпись</a></li></ul></li><li><a href="./kniga/смарт_контракты_на_solidity.html"><strong>7.</strong> Смарт-контракты на Solidity</a></li><li><strong>8.</strong> Смарт-контракты на Vyper</li><li><a href="./kniga/безопаность_смарт_контрактов.html"><strong>9.</strong> Безопаность смарт-контрактов</a></li><li><a href="./kniga/токены.html"><strong>10.</strong> Токены</a></li><li><a href="./kniga/оракулы.html"><strong>11.</strong> Оракулы</a></li><li><a href="./kniga/децентрализованные_приложения.html"><strong>12.</strong> Децентрализованные приложения</a></li><li><a href="./kniga/виртуальная_машина_ethereum.html"><strong>13.</strong> Виртуальная машина Ethereum</a></li><li><a href="./kniga/консенсус.html"><strong>14.</strong> Консенсус</a></li><li><strong>15.</strong> Доп 1. История ветвлений</li><li><a href="./kniga/дополнение_2_стандарты_eip_erc.html"><strong>16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li><a href="./kniga/дополнение_3_коды_evm_и_gas.html"><strong>17.</strong> Доп 3. Коды EVM и газ</a></li><li><a href="./kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong>18.</strong> Доп 4. Инструменты разработчика</a></li><li><a href="./kniga/дополнение_5_руководство_по_web3js.html"><strong>19.</strong> Доп 5. Руководство по web3js</a></li><li class="spacer"></li><li class="affix"><a href="./support.html">Поддержка проекта</a></li></ul>
-        </div>
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../1_предисловие.html">Предисловие</a></li><li class="chapter-item expanded affix "><a href="../../2_глоссарий.html">Глоссарий</a></li><li class="chapter-item expanded affix "><li class="part-title">Книга</li><li class="chapter-item expanded "><a href="../../kniga/что_такое_ethereum.html"><strong aria-hidden="true">1.</strong> Что такое Ethereum?</a></li><li class="chapter-item expanded "><a href="../../kniga/введение.html"><strong aria-hidden="true">2.</strong> Введение</a></li><li class="chapter-item expanded "><a href="../../kniga/клиенты.html"><strong aria-hidden="true">3.</strong> Клиенты</a></li><li class="chapter-item expanded "><a href="../../kniga/ключи_и_адреса.html"><strong aria-hidden="true">4.</strong> Ключи и адреса</a></li><li class="chapter-item expanded "><a href="../../kniga/кошельки.html"><strong aria-hidden="true">5.</strong> Кошельки</a></li><li class="chapter-item expanded "><a href="../../kniga/транзакции.html"><strong aria-hidden="true">6.</strong> Транзакции</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kniga/tx/structure.html"><strong aria-hidden="true">6.1.</strong> Структура_транзакции</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/nonce.html" class="active"><strong aria-hidden="true">6.2.</strong> Nonce транзакции</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/gas.html"><strong aria-hidden="true">6.3.</strong> Топливо (Gas)</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/recipient.html"><strong aria-hidden="true">6.4.</strong> Получатель</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/value_data.html"><strong aria-hidden="true">6.5.</strong> Value и Data</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/create_contract_tx.html"><strong aria-hidden="true">6.6.</strong> Тразакция создания контракта</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/digital_signatures.html"><strong aria-hidden="true">6.7.</strong> Цифровые подписи</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/sign_prifix_value.html"><strong aria-hidden="true">6.8.</strong> Восстановление открытого ключа</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/sign_transmission.html"><strong aria-hidden="true">6.9.</strong> Раздельное подписание и передача</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/tx_propagation.html"><strong aria-hidden="true">6.10.</strong> Распространение транзакций</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/recording_on_blockchain.html"><strong aria-hidden="true">6.11.</strong> Запись в блокчейне</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/multisig.html"><strong aria-hidden="true">6.12.</strong> Мультиподпись</a></li></ol></li><li class="chapter-item expanded "><a href="../../kniga/смарт_контракты_на_solidity.html"><strong aria-hidden="true">7.</strong> Смарт-контракты на Solidity</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Смарт-контракты на Vyper</div></li><li class="chapter-item expanded "><a href="../../kniga/безопаность_смарт_контрактов.html"><strong aria-hidden="true">9.</strong> Безопаность смарт-контрактов</a></li><li class="chapter-item expanded "><a href="../../kniga/токены.html"><strong aria-hidden="true">10.</strong> Токены</a></li><li class="chapter-item expanded "><a href="../../kniga/оракулы.html"><strong aria-hidden="true">11.</strong> Оракулы</a></li><li class="chapter-item expanded "><a href="../../kniga/децентрализованные_приложения.html"><strong aria-hidden="true">12.</strong> Децентрализованные приложения</a></li><li class="chapter-item expanded "><a href="../../kniga/виртуальная_машина_ethereum.html"><strong aria-hidden="true">13.</strong> Виртуальная машина Ethereum</a></li><li class="chapter-item expanded "><a href="../../kniga/консенсус.html"><strong aria-hidden="true">14.</strong> Консенсус</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Доп 1. История ветвлений</div></li><li class="chapter-item expanded "><a href="../../kniga/дополнение_2_стандарты_eip_erc.html"><strong aria-hidden="true">16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li class="chapter-item expanded "><a href="../../kniga/дополнение_3_коды_evm_и_gas.html"><strong aria-hidden="true">17.</strong> Доп 3. Коды EVM и газ</a></li><li class="chapter-item expanded "><a href="../../kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong aria-hidden="true">18.</strong> Доп 4. Инструменты разработчика</a></li><li class="chapter-item expanded "><a href="../../kniga//дополнение_5_руководство_по_web3js.html"><strong aria-hidden="true">19.</strong> Доп 5. Руководство по web3js</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../../support.html">Поддержка проекта</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
-            <div class="page" tabindex="-1">
-                
-                <div id="menu-bar" class="menu-bar">
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
-                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
 
                     <h1 class="menu-title">Осваиваем Ethereum - Mastering Ethereum</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html">
-                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
                         </a>
+
                     </div>
                 </div>
 
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
                 <div id="content" class="content">
-                    <a class="header" href="./kniga/tx/nonce.html#nonce-транзакции" id="nonce-транзакции"><h2>Nonce транзакции</h2></a>
+                    <main>
+                        <h2 id="nonce-транзакции"><a class="header" href="#nonce-транзакции">Nonce транзакции</a></h2>
 <p>Nonce является одним из наиболее важных и наименее понятных компонентов транзакции. Определение в Желтой книге (см. [ссылки]) гласит:</p>
 <p>nonce: Скалярное значение, равное количеству транзакций, отправленных с этого адреса, или, в случае счетов с ассоциированным кодом, количеству контрактов-созданий, выполненных этим счетом.</p>
 <p>Строго говоря, nonce является атрибутом адреса отправителя; то есть он имеет значение только в контексте адреса отправителя. Однако nonce не хранится в явном виде как часть состояния счета в блокчейне. Вместо этого он вычисляется динамически, путем подсчета количества подтвержденных транзакций, которые исходили от адреса.</p>
@@ -96,14 +183,14 @@
 <p>Представьте, что вы хотите совершить две транзакции. Вам нужно совершить важный платеж в размере 6 ether, а также другой платеж в размере 8 ether. Вы подписываете и отправляете сначала транзакцию на 6 ether, потому что она важнее, а затем подписываете и транслируете вторую, на 8 ether. К сожалению, вы упустили из виду тот факт, что на вашем счету всего 10 ether, поэтому сеть не может принять обе транзакции: одна из них не пройдет. Поскольку вы отправили сначала более важную транзакцию на 6 ether, вы, понятно, ожидаете, что она пройдет, а транзакция на 8 ether будет отклонена. Однако в такой децентрализованной системе, как Ethereum, узлы могут получать транзакции в любом порядке; нет никакой гарантии, что конкретный узел получит одну транзакцию раньше другой. Поэтому почти наверняка некоторые узлы получат сначала транзакцию на 6 ether, а другие - на 8 ether. Если не включать nonce, то будет случайным, какая транзакция будет принята, а какая отклонена. Однако с включенным nonce первая отправленная вами транзакция будет иметь nonce, допустим, 3, в то время как транзакция на 8 ether будет иметь следующее значение nonce (т.е. 4). Таким образом, эта транзакция будет игнорироваться до тех пор, пока не будут обработаны транзакции с кодами от 0 до 3, даже если она будет получена первой.</p>
 </li>
 <li>
-<p>Теперь представьте, что у вас есть счет со 100 ether. Вы находите в Интернете человека, который принимает оплату в ether за Алатырь-камень, который вы очень хотите купить. Вы посылаете ему 2 ether, и он высылает вам Алатырь-камень. Прекрасно. Чтобы осуществить этот платеж в 2 ether, вы подписали транзакцию, отправив 2 ether со своего счета на его счет, а затем передали ее в сеть Ethereum для проверки и включения в блокчейн. Теперь, без значения nonce в транзакции, вторая транзакция, отправляющая 2 ether на тот же адрес во второй раз, будет выглядеть точно так же, как и первая. Это означает, что любой, кто увидит вашу транзакцию в сети Ethereum (а это значит, что каждый, включая получателя или ваших врагов), может &quot;воспроизвести&quot; транзакцию снова, снова и снова, пока все ваши эфиры не исчезнут, просто скопировав и вставив вашу оригинальную транзакцию и повторно отправив ее в сеть. Однако благодаря значению nonce, включенному в данные транзакции, каждая транзакция уникальна, даже при многократной отправке одного и того же количества ether на один и тот же адрес получателя. Таким образом, благодаря тому, что увеличивающееся значение nonce является частью транзакции, никто не сможет &quot;продублировать&quot; совершенный вами платеж.</p>
+<p>Теперь представьте, что у вас есть счет со 100 ether. Вы находите в Интернете человека, который принимает оплату в ether за Алатырь-камень, который вы очень хотите купить. Вы посылаете ему 2 ether, и он высылает вам Алатырь-камень. Прекрасно. Чтобы осуществить этот платеж в 2 ether, вы подписали транзакцию, отправив 2 ether со своего счета на его счет, а затем передали ее в сеть Ethereum для проверки и включения в блокчейн. Теперь, без значения nonce в транзакции, вторая транзакция, отправляющая 2 ether на тот же адрес во второй раз, будет выглядеть точно так же, как и первая. Это означает, что любой, кто увидит вашу транзакцию в сети Ethereum (а это значит, что каждый, включая получателя или ваших врагов), может "воспроизвести" транзакцию снова, снова и снова, пока все ваши эфиры не исчезнут, просто скопировав и вставив вашу оригинальную транзакцию и повторно отправив ее в сеть. Однако благодаря значению nonce, включенному в данные транзакции, каждая транзакция уникальна, даже при многократной отправке одного и того же количества ether на один и тот же адрес получателя. Таким образом, благодаря тому, что увеличивающееся значение nonce является частью транзакции, никто не сможет "продублировать" совершенный вами платеж.</p>
 </li>
 </ol>
-<p>Подводя итог, важно отметить, что использование nonce фактически жизненно необходимо для протокола, основанного на счетах, в отличие от механизма &quot;выхода неизрасходованных транзакций&quot; (UTXO) протокола Bitcoin.</p>
-<a class="header" href="./kniga/tx/nonce.html#Отслеживание-нецелочисленных-данных" id="Отслеживание-нецелочисленных-данных"><h3>Отслеживание нецелочисленных данных</h3></a>
+<p>Подводя итог, важно отметить, что использование nonce фактически жизненно необходимо для протокола, основанного на счетах, в отличие от механизма "выхода неизрасходованных транзакций" (UTXO) протокола Bitcoin.</p>
+<h3 id="Отслеживание-нецелочисленных-данных"><a class="header" href="#Отслеживание-нецелочисленных-данных">Отслеживание нецелочисленных данных</a></h3>
 <p>С практической точки зрения, nonce - это актуальный подсчет количества подтвержденных (т.е. находящихся на цепи) транзакций, которые были произведены со счета. Чтобы узнать значение nonce для адреса, вы можете опросить блокчейн, например, через интерфейс web3.</p>
 <p>Откройте консоль JavaScript в Geth (или предпочитаемом вами интерфейсе web3) в тестовой сети Ropsten, затем введите:</p>
-<pre><code>&gt; web3.eth.getTransactionCount(&quot;0x9e713963a92c02317a681b9bb3065a8249de124f&quot;)
+<pre><code>&gt; web3.eth.getTransactionCount("0x9e713963a92c02317a681b9bb3065a8249de124f")
 40
 </code></pre>
 <p><strong>Совет:</strong> Nonce - это счетчик, первое значение которого 0. В нашем примере количество транзакций равно 40, то есть были просмотрены nonce с 0 по 39. Nonce следующей транзакции должен быть равен 40.</p>
@@ -111,94 +198,89 @@
 <p>Когда вы создаете новую транзакцию, вы назначаете следующий nonce в последовательности. Но пока она не подтверждена, она не будет учитываться при подсчете <strong>getTransactionCount</strong>.</p>
 <p><strong>Предупреждение:</strong> Будьте осторожны при использовании функции <strong>getTransactionCount</strong> для подсчета отложенных транзакций, поскольку вы можете столкнуться с некоторыми проблемами, если отправите несколько транзакций подряд.</p>
 <p>Давайте рассмотрим пример:</p>
-<pre><code>&gt; web3.eth.getTransactionCount(&quot;0x9e713963a92c02317a681b9bb3065a8249de124f&quot;, &quot;pending&quot;)
+<pre><code>&gt; web3.eth.getTransactionCount("0x9e713963a92c02317a681b9bb3065a8249de124f", "pending")
 40
 &gt; web3.eth.sendTransaction({from: web3.eth.accounts[0], to: \
-&quot;0xB0920c523d582040f2BCB1bD7FB1c7C1ECEbdB34&quot;, value: web3.utils.toWei(0.01, &quot;ether&quot;)});
-&gt; web3.eth.getTransactionCount(&quot;0x9e713963a92c02317a681b9bb3065a8249de124f&quot;, \
-&quot;pending&quot;)
+"0xB0920c523d582040f2BCB1bD7FB1c7C1ECEbdB34", value: web3.utils.toWei(0.01, "ether")});
+&gt; web3.eth.getTransactionCount("0x9e713963a92c02317a681b9bb3065a8249de124f", \
+"pending")
 41
 &gt; web3.eth.sendTransaction({from: web3.eth.accounts[0], to: \
-&quot;0xB0920c523d582040f2BCB1bD7FB1c7C1ECEbdB34&quot;, value: web3.utils.toWei(0.01, &quot;ether&quot;)});
-&gt; web3.eth.getTransactionCount(&quot;0x9e713963a92c02317a681b9bb3065a8249de124f&quot;, \
-&quot;pending&quot;)
+"0xB0920c523d582040f2BCB1bD7FB1c7C1ECEbdB34", value: web3.utils.toWei(0.01, "ether")});
+&gt; web3.eth.getTransactionCount("0x9e713963a92c02317a681b9bb3065a8249de124f", \
+"pending")
 41
 &gt; web3.eth.sendTransaction({from: web3.eth.accounts[0], to: \
-&quot;0xB0920c523d582040f2BCB1bD7FB1c7C1ECEbdB34&quot;, value: web3.utils.toWei(0.01, &quot;ether&quot;)});
-&gt; web3.eth.getTransactionCount(&quot;0x9e713963a92c02317a681b9bb3065a8249de124f&quot;, \
-&quot;pending&quot;)
+"0xB0920c523d582040f2BCB1bD7FB1c7C1ECEbdB34", value: web3.utils.toWei(0.01, "ether")});
+&gt; web3.eth.getTransactionCount("0x9e713963a92c02317a681b9bb3065a8249de124f", \
+"pending")
 41
 </code></pre>
 <p>Как вы можете видеть, первая отправленная нами транзакция увеличила счетчик транзакций до 41, показывая ожидающую транзакцию. Но когда мы быстро отправили еще три транзакции, вызов <strong>getTransactionCount</strong> не засчитал их. Он посчитал только одну, хотя можно было бы ожидать, что в пуле mempool ожидают три транзакции. Если мы подождем несколько секунд, чтобы сетевые взаимодействия успокоились, вызов <strong>getTransactionCount</strong> вернет ожидаемое число. Но в промежутке, пока ожидает выполнения более одной транзакции, это может нам не помочь.</p>
 <p>Когда вы создаете приложение, которое конструирует транзакции, оно не может полагаться на getTransactionCount для отложенных транзакций. Только когда количество ожидающих и подтвержденных транзакций равно (все незавершенные транзакции подтверждены), вы можете доверять результату getTransactionCount для запуска вашего счетчика nonce. После этого отслеживайте nonce в своем приложении до тех пор, пока каждая транзакция не подтвердится.</p>
-<a class="header" href="./kniga/tx/nonce.html#Пробелы-в-nonce-дублирование-nonce-и-подтверждение" id="Пробелы-в-nonce-дублирование-nonce-и-подтверждение"><h3>Пробелы в nonce, дублирование nonce и подтверждение</h3></a>
+<h3 id="Пробелы-в-nonce-дублирование-nonce-и-подтверждение"><a class="header" href="#Пробелы-в-nonce-дублирование-nonce-и-подтверждение">Пробелы в nonce, дублирование nonce и подтверждение</a></h3>
 <p>Важно отслеживать nonce, если вы создаете транзакции программно, особенно если вы делаете это из нескольких независимых процессов одновременно.</p>
 <p>Сеть Ethereum обрабатывает транзакции последовательно, на основе nonce. Это означает, что если вы передадите транзакцию с nonce 0, а затем передадите транзакцию с nonce 2, вторая транзакция не будет включена ни в один блок. Она будет храниться в mempool, в то время как сеть Ethereum будет ждать появления недостающего nonce. Все узлы будут считать, что недостающий nonce просто задержался и что транзакция с nonce 2 была получена не по порядку.</p>
 <p>Если вы затем передадите транзакцию с отсутствующим nonce 1, обе транзакции (nonces 1 и 2) будут обработаны и включены (если они действительны, конечно). Как только вы заполните пробел, сеть сможет добыть транзакцию, не соответствующую последовательности, которую она хранила в mempool.</p>
-<p>Это означает, что если вы последовательно создадите несколько транзакций и одна из них не будет официально включена ни в один блок, все последующие транзакции &quot;застрянут&quot;, ожидая недостающий nonce. Транзакция может создать непреднамеренный &quot;пробел&quot; в последовательности nonce, потому что она например недействительна или имеет недостаточное количество газа. Чтобы возобновить работу, необходимо передать действительную транзакцию с недостающим nonce. Следует также помнить, что как только транзакция с &quot;недостающим&quot; nonce будет подтверждена сетью, все транзакции с последующими nonce будут постепенно становиться действительными; &quot;отозвать&quot; транзакцию невозможно!</p>
+<p>Это означает, что если вы последовательно создадите несколько транзакций и одна из них не будет официально включена ни в один блок, все последующие транзакции "застрянут", ожидая недостающий nonce. Транзакция может создать непреднамеренный "пробел" в последовательности nonce, потому что она например недействительна или имеет недостаточное количество газа. Чтобы возобновить работу, необходимо передать действительную транзакцию с недостающим nonce. Следует также помнить, что как только транзакция с "недостающим" nonce будет подтверждена сетью, все транзакции с последующими nonce будут постепенно становиться действительными; "отозвать" транзакцию невозможно!</p>
 <p>С другой стороны, если вы случайно продублируете nonce, например, передадите две транзакции с одинаковым nonce, но разными получателями или значениями, то одна из них будет подтверждена, а другая отклонена. Какая из них будет подтверждена, определяется последовательностью, в которой они приходят на первый проверяющий узел, который их получает - т.е. это будет достаточно случайным.</p>
 <p>Как вы видите, учет nonce необходим, и если ваше приложение не будет правильно управлять этим процессом, вы столкнетесь с проблемами. К сожалению, все становится еще сложнее, если вы пытаетесь делать это одновременно, как мы увидим в следующем разделе.</p>
-<a class="header" href="./kniga/tx/nonce.html#Параллельность-возникновение-транзакций-и-нераспространенные-данные" id="Параллельность-возникновение-транзакций-и-нераспространенные-данные"><h4>Параллельность, возникновение транзакций и нераспространенные данные</h4></a>
+<h4 id="Параллельность-возникновение-транзакций-и-нераспространенные-данные"><a class="header" href="#Параллельность-возникновение-транзакций-и-нераспространенные-данные">Параллельность, возникновение транзакций и нераспространенные данные</a></h4>
 <p>Параллелизм - сложный аспект в компьютерной науке, и иногда он возникает неожиданно, особенно в децентрализованных и распределенных системах реального времени, таких как Ethereum.</p>
 <p>Проще говоря, параллелизм - это одновременное выполнение вычислений несколькими независимыми системами. Они могут быть в одной программе (например, многопоточность), на одном процессоре (например, многопроцессорность) или на разных компьютерах (т.е. распределенные системы). Ethereum, по определению, является системой, допускающей параллельность операций (узлы, клиенты, DApps), но обеспечивающей единое состояние посредством консенсуса.</p>
-<p>Теперь представьте, что у вас есть несколько независимых приложений кошельков, которые генерируют транзакции с одного и того же адреса или адресов. Одним из примеров такой ситуации может быть биржа, обрабатывающая снятие средств с горячего кошелька биржи (кошелек, ключи которого хранятся онлайн, в отличие от холодного кошелька, где ключи никогда не находятся онлайн). В идеале необходимо иметь несколько компьютеров, обрабатывающих снятие средств, чтобы они не стали узким местом или единой точкой отказа. Однако это быстро становится проблематичным, поскольку наличие более одного компьютера, производящего изъятия, приведет к некоторым сложным проблемам параллелизма, не последней из которых является выбор nonce. Как координируются несколько компьютеров, генерирующих, подписывающих и транслирующих транзакции с одного и того же счета &quot;горячего&quot; кошелька?</p>
+<p>Теперь представьте, что у вас есть несколько независимых приложений кошельков, которые генерируют транзакции с одного и того же адреса или адресов. Одним из примеров такой ситуации может быть биржа, обрабатывающая снятие средств с горячего кошелька биржи (кошелек, ключи которого хранятся онлайн, в отличие от холодного кошелька, где ключи никогда не находятся онлайн). В идеале необходимо иметь несколько компьютеров, обрабатывающих снятие средств, чтобы они не стали узким местом или единой точкой отказа. Однако это быстро становится проблематичным, поскольку наличие более одного компьютера, производящего изъятия, приведет к некоторым сложным проблемам параллелизма, не последней из которых является выбор nonce. Как координируются несколько компьютеров, генерирующих, подписывающих и транслирующих транзакции с одного и того же счета "горячего" кошелька?</p>
 <p>Вы можете использовать один компьютер для назначения nonce в порядке очереди компьютерам, подписывающим транзакции. Однако теперь этот компьютер является единой точкой отказа. Хуже того, если назначено несколько nonce и один из них никогда не будет использован (из-за сбоя в компьютере, обрабатывающем транзакцию с этим nonce), все последующие транзакции застревают.</p>
 <p>Другой подход заключается в том, чтобы генерировать транзакции, но не присваивать им nonce (и, следовательно, оставлять их неподписанными - помните, что nonce является неотъемлемой частью данных транзакции и поэтому должен быть включен в цифровую подпись, подтверждающую подлинность транзакции). Затем их можно поставить в очередь на один узел, который подписывает их, а также отслеживает nonce. Хотя, опять же, это было бы узким местом в процессе: подписание и отслеживание nonce - это та часть вашей операции, которая, скорее всего, будет перегружена под нагрузкой, в то время как генерация неподписанной транзакции - это та часть, которую вам не нужно распараллеливать. У вас будет некоторый параллелизм, но он будет отсутствовать в критической части процесса.</p>
 <p>В конечном итоге, эти проблемы параллелизма, а также сложность отслеживания баланса счетов и подтверждения транзакций в независимых процессах, заставляют большинство реализаций избегать параллелизма и создавать узкие места, такие как единый процесс, обрабатывающий все транзакции вывода средств на бирже, или создание нескольких горячих кошельков, которые могут работать совершенно независимо для вывода средств и нуждаются только в периодической ребалансировке.</p>
 
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../kniga/tx/structure.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../kniga/tx/gas.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
                 </div>
-
-                <!-- Mobile navigation buttons -->
-                
-                    <a rel="prev" href="./kniga/tx/structure.html" class="mobile-nav-chapters previous" title="Previous chapter">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                
-
-                
-                    <a rel="next" href="./kniga/tx/gas.html" class="mobile-nav-chapters next" title="Next chapter">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                
-
             </div>
 
-            
-                <a href="./kniga/tx/structure.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../kniga/tx/structure.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-            
-                <a href="./kniga/tx/gas.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            
+                    <a rel="next prefetch" href="../../kniga/tx/gas.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
 
         </div>
 
 
-        <!-- Local fallback for Font Awesome -->
+
+
         <script>
-            if ($(".fa").css("font-family") !== "FontAwesome") {
-                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
-            }
+            window.playground_copyable = true;
         </script>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        
 
-        
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
 
-        
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
 
-        
+        <!-- Custom JS scripts -->
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
 
-        <!-- Custom JS script -->
-        
-
+    </div>
     </body>
 </html>

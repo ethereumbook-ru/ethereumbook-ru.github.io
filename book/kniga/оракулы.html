@@ -1,100 +1,187 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="ru" class="light" dir="ltr">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Оракулы - Осваиваем Ethereum - Mastering Ethereum</title>
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+
+        <!-- Custom HTML head -->
+        
         <meta name="description" content="Руководство по Ethereum и разработке смарт-контрактов">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
 
-        <base href="../">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
-        <link rel="stylesheet" href="book.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
-        <link rel="shortcut icon" href="favicon.png">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
-
-        <!-- Custom theme -->
-        
-
-        
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <!-- Fetch JQuery from CDN but have a local fallback -->
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script>
-            if (typeof jQuery == 'undefined') {
-                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
-        <script src="store.js"></script>
+        <!-- Custom theme stylesheets -->
 
     </head>
-    <body class="light">
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme = store.get('mdbook-theme');
-            if (theme === null || theme === undefined) { theme = 'light'; }
-            $('body').removeClass().addClass(theme);
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var sidebar = store.get('mdbook-sidebar');
-            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
-            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
-        <div id="sidebar" class="sidebar">
-            <ul class="chapter"><li class="affix"><a href="./1_предисловие.html">Предисловие</a></li><li class="affix"><a href="./2_глоссарий.html">Глоссарий</a></li><li><a href="./kniga/что_такое_ethereum.html"><strong>1.</strong> Что такое Ethereum?</a></li><li><a href="./kniga/введение.html"><strong>2.</strong> Введение</a></li><li><a href="./kniga/клиенты.html"><strong>3.</strong> Клиенты</a></li><li><a href="./kniga/ключи_и_адреса.html"><strong>4.</strong> Ключи и адреса</a></li><li><a href="./kniga/кошельки.html"><strong>5.</strong> Кошельки</a></li><li><a href="./kniga/транзакции.html"><strong>6.</strong> Транзакции</a></li><li><ul class="section"><li><a href="./kniga/tx/structure.html"><strong>6.1.</strong> Структура_транзакции</a></li><li><a href="./kniga/tx/nonce.html"><strong>6.2.</strong> Nonce транзакции</a></li><li><a href="./kniga/tx/gas.html"><strong>6.3.</strong> Топливо (Gas)</a></li><li><a href="./kniga/tx/recipient.html"><strong>6.4.</strong> Получатель</a></li><li><a href="./kniga/tx/value_data.html"><strong>6.5.</strong> Value и Data</a></li><li><a href="./kniga/tx/create_contract_tx.html"><strong>6.6.</strong> Тразакция создания контракта</a></li><li><a href="./kniga/tx/digital_signatures.html"><strong>6.7.</strong> Цифровые подписи</a></li><li><a href="./kniga/tx/sign_prifix_value.html"><strong>6.8.</strong> Восстановление открытого ключа</a></li><li><a href="./kniga/tx/sign_transmission.html"><strong>6.9.</strong> Раздельное подписание и передача</a></li><li><a href="./kniga/tx/tx_propagation.html"><strong>6.10.</strong> Распространение транзакций</a></li><li><a href="./kniga/tx/recording_on_blockchain.html"><strong>6.11.</strong> Запись в блокчейне</a></li><li><a href="./kniga/tx/multisig.html"><strong>6.12.</strong> Мультиподпись</a></li></ul></li><li><a href="./kniga/смарт_контракты_на_solidity.html"><strong>7.</strong> Смарт-контракты на Solidity</a></li><li><strong>8.</strong> Смарт-контракты на Vyper</li><li><a href="./kniga/безопаность_смарт_контрактов.html"><strong>9.</strong> Безопаность смарт-контрактов</a></li><li><a href="./kniga/токены.html"><strong>10.</strong> Токены</a></li><li><a href="./kniga/оракулы.html" class="active"><strong>11.</strong> Оракулы</a></li><li><a href="./kniga/децентрализованные_приложения.html"><strong>12.</strong> Децентрализованные приложения</a></li><li><a href="./kniga/виртуальная_машина_ethereum.html"><strong>13.</strong> Виртуальная машина Ethereum</a></li><li><a href="./kniga/консенсус.html"><strong>14.</strong> Консенсус</a></li><li><strong>15.</strong> Доп 1. История ветвлений</li><li><a href="./kniga/дополнение_2_стандарты_eip_erc.html"><strong>16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li><a href="./kniga/дополнение_3_коды_evm_и_gas.html"><strong>17.</strong> Доп 3. Коды EVM и газ</a></li><li><a href="./kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong>18.</strong> Доп 4. Инструменты разработчика</a></li><li><a href="./kniga/дополнение_5_руководство_по_web3js.html"><strong>19.</strong> Доп 5. Руководство по web3js</a></li><li class="spacer"></li><li class="affix"><a href="./support.html">Поддержка проекта</a></li></ul>
-        </div>
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../1_предисловие.html">Предисловие</a></li><li class="chapter-item expanded affix "><a href="../2_глоссарий.html">Глоссарий</a></li><li class="chapter-item expanded affix "><li class="part-title">Книга</li><li class="chapter-item expanded "><a href="../kniga/что_такое_ethereum.html"><strong aria-hidden="true">1.</strong> Что такое Ethereum?</a></li><li class="chapter-item expanded "><a href="../kniga/введение.html"><strong aria-hidden="true">2.</strong> Введение</a></li><li class="chapter-item expanded "><a href="../kniga/клиенты.html"><strong aria-hidden="true">3.</strong> Клиенты</a></li><li class="chapter-item expanded "><a href="../kniga/ключи_и_адреса.html"><strong aria-hidden="true">4.</strong> Ключи и адреса</a></li><li class="chapter-item expanded "><a href="../kniga/кошельки.html"><strong aria-hidden="true">5.</strong> Кошельки</a></li><li class="chapter-item expanded "><a href="../kniga/транзакции.html"><strong aria-hidden="true">6.</strong> Транзакции</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../kniga/tx/structure.html"><strong aria-hidden="true">6.1.</strong> Структура_транзакции</a></li><li class="chapter-item expanded "><a href="../kniga/tx/nonce.html"><strong aria-hidden="true">6.2.</strong> Nonce транзакции</a></li><li class="chapter-item expanded "><a href="../kniga/tx/gas.html"><strong aria-hidden="true">6.3.</strong> Топливо (Gas)</a></li><li class="chapter-item expanded "><a href="../kniga/tx/recipient.html"><strong aria-hidden="true">6.4.</strong> Получатель</a></li><li class="chapter-item expanded "><a href="../kniga/tx/value_data.html"><strong aria-hidden="true">6.5.</strong> Value и Data</a></li><li class="chapter-item expanded "><a href="../kniga/tx/create_contract_tx.html"><strong aria-hidden="true">6.6.</strong> Тразакция создания контракта</a></li><li class="chapter-item expanded "><a href="../kniga/tx/digital_signatures.html"><strong aria-hidden="true">6.7.</strong> Цифровые подписи</a></li><li class="chapter-item expanded "><a href="../kniga/tx/sign_prifix_value.html"><strong aria-hidden="true">6.8.</strong> Восстановление открытого ключа</a></li><li class="chapter-item expanded "><a href="../kniga/tx/sign_transmission.html"><strong aria-hidden="true">6.9.</strong> Раздельное подписание и передача</a></li><li class="chapter-item expanded "><a href="../kniga/tx/tx_propagation.html"><strong aria-hidden="true">6.10.</strong> Распространение транзакций</a></li><li class="chapter-item expanded "><a href="../kniga/tx/recording_on_blockchain.html"><strong aria-hidden="true">6.11.</strong> Запись в блокчейне</a></li><li class="chapter-item expanded "><a href="../kniga/tx/multisig.html"><strong aria-hidden="true">6.12.</strong> Мультиподпись</a></li></ol></li><li class="chapter-item expanded "><a href="../kniga/смарт_контракты_на_solidity.html"><strong aria-hidden="true">7.</strong> Смарт-контракты на Solidity</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Смарт-контракты на Vyper</div></li><li class="chapter-item expanded "><a href="../kniga/безопаность_смарт_контрактов.html"><strong aria-hidden="true">9.</strong> Безопаность смарт-контрактов</a></li><li class="chapter-item expanded "><a href="../kniga/токены.html"><strong aria-hidden="true">10.</strong> Токены</a></li><li class="chapter-item expanded "><a href="../kniga/оракулы.html" class="active"><strong aria-hidden="true">11.</strong> Оракулы</a></li><li class="chapter-item expanded "><a href="../kniga/децентрализованные_приложения.html"><strong aria-hidden="true">12.</strong> Децентрализованные приложения</a></li><li class="chapter-item expanded "><a href="../kniga/виртуальная_машина_ethereum.html"><strong aria-hidden="true">13.</strong> Виртуальная машина Ethereum</a></li><li class="chapter-item expanded "><a href="../kniga/консенсус.html"><strong aria-hidden="true">14.</strong> Консенсус</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Доп 1. История ветвлений</div></li><li class="chapter-item expanded "><a href="../kniga/дополнение_2_стандарты_eip_erc.html"><strong aria-hidden="true">16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li class="chapter-item expanded "><a href="../kniga/дополнение_3_коды_evm_и_gas.html"><strong aria-hidden="true">17.</strong> Доп 3. Коды EVM и газ</a></li><li class="chapter-item expanded "><a href="../kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong aria-hidden="true">18.</strong> Доп 4. Инструменты разработчика</a></li><li class="chapter-item expanded "><a href="../kniga//дополнение_5_руководство_по_web3js.html"><strong aria-hidden="true">19.</strong> Доп 5. Руководство по web3js</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../support.html">Поддержка проекта</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
-            <div class="page" tabindex="-1">
-                
-                <div id="menu-bar" class="menu-bar">
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
-                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
 
                     <h1 class="menu-title">Осваиваем Ethereum - Mastering Ethereum</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html">
-                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
                         </a>
+
                     </div>
                 </div>
 
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
                 <div id="content" class="content">
-                    <a class="header" href="./kniga/оракулы.html#Оракулы" id="Оракулы"><h1>Оракулы</h1></a>
-<p>В этой главе мы обсудим оракулы - системы, которые могут предоставлять внешние источники данных для смарт-контрактов Ethereum. Термин &quot;оракул&quot; пришел из греческой мифологии, где он обозначал человека, общающегося с богами, который мог видеть видения будущего. В контексте блокчейн оракул - это система, которая может отвечать на вопросы, внешние по отношению к Ethereum. В идеале оракулы - это системы без доверия, то есть им не нужно доверять, поскольку они работают на децентрализованных принципах.</p>
-<a class="header" href="./kniga/оракулы.html#Зачем-нужны-оракулы" id="Зачем-нужны-оракулы"><h2>Зачем нужны оракулы</h2></a>
+                    <main>
+                        <h1 id="Оракулы"><a class="header" href="#Оракулы">Оракулы</a></h1>
+<p>В этой главе мы обсудим оракулы - системы, которые могут предоставлять внешние источники данных для смарт-контрактов Ethereum. Термин "оракул" пришел из греческой мифологии, где он обозначал человека, общающегося с богами, который мог видеть видения будущего. В контексте блокчейн оракул - это система, которая может отвечать на вопросы, внешние по отношению к Ethereum. В идеале оракулы - это системы без доверия, то есть им не нужно доверять, поскольку они работают на децентрализованных принципах.</p>
+<h2 id="Зачем-нужны-оракулы"><a class="header" href="#Зачем-нужны-оракулы">Зачем нужны оракулы</a></h2>
 <p>Ключевым компонентом платформы Ethereum является виртуальная машина Ethereum Virtual Machine, способная выполнять программы и обновлять состояние Ethereum, ограниченное правилами консенсуса, на любом узле децентрализованной сети. Для поддержания консенсуса выполнение EVM должно быть полностью детерминированным и основываться только на общем контексте состояния Ethereum и подписанных транзакций. Это имеет два особенно важных последствия: во-первых, для EVM и смарт-контрактов не может быть никакого внутреннего источника случайности; во-вторых, внешние данные могут быть введены только в качестве полезной нагрузки транзакции.</p>
 <p>Давайте подробнее рассмотрим эти два последствия. Чтобы понять запрет на использование истинно случайной функции в EVM для обеспечения случайности смарт-контрактов, рассмотрим эффект на попытки достижения консенсуса после выполнения такой функции: узел A выполнит команду и сохранит в своем хранилище 3 от имени смарт-контракта, а узел B, выполняющий тот же смарт-контракт, вместо этого сохранит 7. Таким образом, узлы A и B придут к разным выводам о том, каким должно быть результирующее состояние, несмотря на выполнение абсолютно одинакового кода в одном и том же контексте. Действительно, может случиться так, что каждый раз при оценке смарт-контракта будет достигаться разное результирующее состояние. Таким образом, сеть с ее множеством узлов, работающих независимо по всему миру, никак не сможет прийти к децентрализованному консенсусу относительно того, каким должно быть результирующее состояние. На практике ситуация очень быстро станет намного хуже, чем в данном примере, поскольку побочные эффекты, включая переводы эфира, будут нарастать экспоненциально.</p>
 <p>Обратите внимание, что псевдослучайных функций, таких как криптографически защищенные хэш-функции (которые являются детерминированными и поэтому могут быть и даже являются частью EVM), недостаточно для многих приложений. Возьмем, к примеру, азартную игру, имитирующую подбрасывание монет для определения выплат по ставкам, в которой необходимо случайное определение голов или решек - майнер может получить преимущество, играя в эту игру и включая свои транзакции только в те блоки, в которых он выиграет. Как обойти эту проблему? Поскольку все узлы могут договориться о содержании подписанных транзакций, посторонняя информация, включая источники случайности, информацию о ценах, прогнозы погоды и т.д., может быть представлена в качестве части данных транзакций, отправляемых в сеть. Однако таким данным просто нельзя доверять, поскольку они поступают из непроверяемых источников. Таким образом, мы просто отложили решение этой проблемы. Для решения этих проблем мы используем оракулы, которые мы подробно обсудим в оставшейся части этой главы.</p>
-<a class="header" href="./kniga/оракулы.html#Примеры-и-примеры-использования-oracle" id="Примеры-и-примеры-использования-oracle"><h2>Примеры и примеры использования Oracle</h2></a>
-<p>Оракулы, в идеале, обеспечивают беспричинный (или, по крайней мере, почти беспричинный) способ получения внешней (то есть &quot;реальной&quot; или внецепочечной) информации, такой как результаты футбольных матчей, цена золота или действительно случайные числа, на платформу Ethereum для использования смарт-контрактами. Они также могут использоваться для безопасной передачи данных непосредственно фронтендам DApp. Поэтому оракулы можно рассматривать как механизм для преодоления разрыва между внецепочечным миром и смарт-контрактами. Позволяя смарт-контрактам обеспечивать соблюдение договорных отношений на основе событий и данных реального мира, они значительно расширяют сферу применения. Однако это также может привнести внешние риски в модель безопасности Ethereum. Рассмотрим контракт &quot;умного завещания&quot;, который распределяет активы после смерти человека. Этот вопрос часто обсуждается в сфере смарт-контрактов и подчеркивает риски, связанные с доверенным оракулом. Если сумма наследства, контролируемая таким контрактом, достаточно велика, то стимул взломать оракул и инициировать распределение активов до смерти владельца очень высок.</p>
-<p>Обратите внимание, что некоторые оракулы предоставляют данные, которые относятся к определенному частному источнику данных, например, академические сертификаты или государственные удостоверения личности. Источник таких данных, например, университет или правительственный департамент, пользуется полным доверием, а истинность данных субъективна (истина определяется только путем обращения к авторитету источника). Поэтому такие данные нельзя предоставлять без доверия - то есть без доверия к источнику, так как не существует объективной истины, которую можно проверить независимо. Таким образом, мы включаем эти источники данных в наше определение того, что считается &quot;оракулами&quot;, поскольку они также обеспечивают мост данных для смарт-контрактов. Данные, которые они предоставляют, обычно принимают форму аттестатов, таких как паспорта или записи о достижениях. Аттестаты станут важной составляющей успеха блокчейн-платформ в будущем, особенно в связи с сопутствующими вопросами проверки личности или репутации, поэтому важно изучить, как они могут быть использованы блокчейн-платформами.
+<h2 id="Примеры-и-примеры-использования-oracle"><a class="header" href="#Примеры-и-примеры-использования-oracle">Примеры и примеры использования Oracle</a></h2>
+<p>Оракулы, в идеале, обеспечивают беспричинный (или, по крайней мере, почти беспричинный) способ получения внешней (то есть "реальной" или внецепочечной) информации, такой как результаты футбольных матчей, цена золота или действительно случайные числа, на платформу Ethereum для использования смарт-контрактами. Они также могут использоваться для безопасной передачи данных непосредственно фронтендам DApp. Поэтому оракулы можно рассматривать как механизм для преодоления разрыва между внецепочечным миром и смарт-контрактами. Позволяя смарт-контрактам обеспечивать соблюдение договорных отношений на основе событий и данных реального мира, они значительно расширяют сферу применения. Однако это также может привнести внешние риски в модель безопасности Ethereum. Рассмотрим контракт "умного завещания", который распределяет активы после смерти человека. Этот вопрос часто обсуждается в сфере смарт-контрактов и подчеркивает риски, связанные с доверенным оракулом. Если сумма наследства, контролируемая таким контрактом, достаточно велика, то стимул взломать оракул и инициировать распределение активов до смерти владельца очень высок.</p>
+<p>Обратите внимание, что некоторые оракулы предоставляют данные, которые относятся к определенному частному источнику данных, например, академические сертификаты или государственные удостоверения личности. Источник таких данных, например, университет или правительственный департамент, пользуется полным доверием, а истинность данных субъективна (истина определяется только путем обращения к авторитету источника). Поэтому такие данные нельзя предоставлять без доверия - то есть без доверия к источнику, так как не существует объективной истины, которую можно проверить независимо. Таким образом, мы включаем эти источники данных в наше определение того, что считается "оракулами", поскольку они также обеспечивают мост данных для смарт-контрактов. Данные, которые они предоставляют, обычно принимают форму аттестатов, таких как паспорта или записи о достижениях. Аттестаты станут важной составляющей успеха блокчейн-платформ в будущем, особенно в связи с сопутствующими вопросами проверки личности или репутации, поэтому важно изучить, как они могут быть использованы блокчейн-платформами.
 Некоторые другие примеры данных, которые могут быть предоставлены оракулами, включают:</p>
 <ul>
 <li>Случайные числа/энтропия из физических источников, таких как квантовые/тепловые процессы: например, для справедливого выбора победителя в лотерее смарт-контракта</li>
@@ -114,19 +201,19 @@
 <li>Статистика полетов: например, используется группами и клубами для объединения билетов на рейсы</li>
 </ul>
 <p>В следующих разделах мы рассмотрим некоторые способы реализации оракулов, включая основные шаблоны оракулов, вычислительные оракулы, децентрализованные оракулы и реализацию клиента оракула в Solidity.</p>
-<a class="header" href="./kniga/оракулы.html#Паттерны-проектирования-oracle" id="Паттерны-проектирования-oracle"><h2>Паттерны проектирования Oracle</h2></a>
+<h2 id="Паттерны-проектирования-oracle"><a class="header" href="#Паттерны-проектирования-oracle">Паттерны проектирования Oracle</a></h2>
 <p>Все оракулы по определению обеспечивают несколько ключевых функций. К ним относятся:</p>
 <ul>
 <li>Сбор данных из источника вне цепи.</li>
 <li>Передача данных по цепочке с помощью подписанного сообщения.</li>
 <li>Сделайте данные доступными, поместив их в хранилище смарт-контракта.</li>
 </ul>
-<p>Как только данные оказываются в хранилище смарт-контракта, доступ к ним могут получить другие смарт-контракты через вызовы сообщений, которые вызывают функцию &quot;извлечь&quot; смарт-контракта оракула; доступ к ним также могут получить узлы Ethereum или клиенты с поддержкой сети напрямую, &quot;заглянув&quot; в хранилище оракула.</p>
+<p>Как только данные оказываются в хранилище смарт-контракта, доступ к ним могут получить другие смарт-контракты через вызовы сообщений, которые вызывают функцию "извлечь" смарт-контракта оракула; доступ к ним также могут получить узлы Ethereum или клиенты с поддержкой сети напрямую, "заглянув" в хранилище оракула.</p>
 <p>Три основных способа создания оракула можно разделить на три категории: запрос-ответ, публикация-подписка и немедленное чтение.</p>
-<p>Начиная с самых простых, оракулы немедленного чтения - это те, которые предоставляют данные, необходимые только для принятия немедленного решения, например, &quot;Какой адрес у сайта ethereumbook.info?&quot; или &quot;Этому человеку больше 18 лет?&quot;. Желающие запросить такие данные, как правило, делают это на основе принципа &quot;только во время&quot;; поиск выполняется, когда информация нужна, и, возможно, больше никогда. Примерами таких оракулов являются оракулы, хранящие данные об организациях или выданные ими, такие как академические сертификаты, телефонные коды, членство в институтах, идентификаторы аэропортов, удостоверения личности суверена и т.п. Этот тип оракула хранит данные один раз в своем хранилище контрактов, после чего любой другой смарт-контракт может найти их, используя вызов запроса к контракту оракула. Он может быть обновлен. Данные в хранилище оракула также доступны для прямого поиска приложениями, поддерживающими блокчейн (то есть подключенными к клиенту Ethereum), без необходимости проходить через всю процедуру и нести газовые издержки, связанные с проведением транзакции. Магазин, желающий проверить возраст клиента, желающего приобрести алкоголь, может использовать оракул таким образом. Этот тип оракула привлекателен для организации или компании, которым в противном случае пришлось бы запускать и обслуживать серверы для ответа на такие запросы данных. Обратите внимание, что данные, хранящиеся в оракуле, скорее всего, не будут исходными данными, которые оракул обслуживает, например, по соображениям эффективности или конфиденциальности. Университет может создать оракул для хранения свидетельств об успеваемости студентов прошлых лет. Однако хранение полной информации о сертификатах (которая может состоять из страниц с указанием пройденных курсов и полученных оценок) было бы чрезмерным. Вместо этого достаточно хэша сертификата. Аналогичным образом, правительство может захотеть разместить идентификаторы граждан на платформе Ethereum, где, очевидно, необходимо сохранить конфиденциальность включенных в них данных. Опять же, хэширование данных (более тщательно, в деревьях Меркла с солями) и хранение только корневого хэша в хранилище смарт-контракта было бы эффективным способом организации такой услуги.</p>
-<p>Следующая схема - публикация-подписка, когда оракул, эффективно предоставляющий широковещательный сервис для данных, которые, как ожидается, будут меняться (возможно, регулярно и часто), либо опрашивается смарт-контрактом на цепочке, либо отслеживается демоном вне цепочки на предмет обновлений. Эта категория имеет схему, подобную RSS-каналам, WebSub и т.п., где оракул обновляется новой информацией, а флаг сигнализирует, что новые данные доступны тем, кто считает себя &quot;подписанным&quot;. Заинтересованные стороны должны либо опрашивать оракул, чтобы проверить, изменилась ли последняя информация, либо слушать обновления контрактов оракула и действовать, когда они происходят. В качестве примера можно привести информацию о ценах, погоде, экономическую или социальную статистику, данные о дорожном движении и т.д. Опрос очень неэффективен в мире веб-серверов, но не так в одноранговом контексте блокчейн-платформ: Клиенты Ethereum должны следить за всеми изменениями состояния, включая изменения в хранилище контрактов, поэтому опрос об изменении данных - это локальный вызов синхронизированного клиента. Журналы событий Ethereum позволяют приложениям особенно легко следить за обновлениями оракула, поэтому данный паттерн в некотором смысле можно даже считать &quot;push&quot; сервисом. Однако если опрос выполняется из смарт-контракта, что может потребоваться для некоторых децентрализованных приложений (например, где невозможна активация стимулов), то могут возникнуть значительные затраты газа.</p>
-<p>Категория &quot;запрос-ответ&quot; является наиболее сложной: в этом случае объем данных слишком велик для хранения в смарт-контракте, и предполагается, что пользователям одновременно нужна лишь небольшая часть общего набора данных. Эта модель также применима для предприятий, предоставляющих данные. На практике такой оракул может быть реализован как система смарт-контрактов на цепочке и внецепочечной инфраструктуры, используемой для отслеживания запросов, получения и возврата данных. Запрос данных из децентрализованного приложения обычно представляет собой асинхронный процесс, состоящий из нескольких этапов. В этой схеме, во-первых, EOA совершает транзакцию с децентрализованным приложением, в результате чего происходит взаимодействие с функцией, определенной в смарт-контракте oracle. Эта функция инициирует запрос к оракулу, с соответствующими аргументами, детализирующими запрашиваемые данные в дополнение к дополнительной информации, которая может включать функции обратного вызова и параметры планирования. После подтверждения этой транзакции запрос оракула может наблюдаться как событие EVM, испускаемое контрактом оракула, или как изменение состояния; аргументы могут быть извлечены и использованы для выполнения фактического запроса к внецепочечному источнику данных. Оракул также может потребовать оплату за обработку запроса, оплату газа за обратный звонок и разрешения на доступ к запрошенным данным. Наконец, полученные данные подписываются владельцем оракула, подтверждающим достоверность данных на определенный момент времени, и передаются в транзакции децентрализованному приложению, сделавшему запрос - либо напрямую, либо через контракт с оракулом. В зависимости от параметров планирования оракул может транслировать дальнейшие транзакции, обновляющие данные через регулярные промежутки времени (например, информацию о ценах на конец дня).</p>
-<p>Шаги для оракула &quot;запрос-ответ&quot; можно обобщить следующим образом:</p>
+<p>Начиная с самых простых, оракулы немедленного чтения - это те, которые предоставляют данные, необходимые только для принятия немедленного решения, например, "Какой адрес у сайта ethereumbook.info?" или "Этому человеку больше 18 лет?". Желающие запросить такие данные, как правило, делают это на основе принципа "только во время"; поиск выполняется, когда информация нужна, и, возможно, больше никогда. Примерами таких оракулов являются оракулы, хранящие данные об организациях или выданные ими, такие как академические сертификаты, телефонные коды, членство в институтах, идентификаторы аэропортов, удостоверения личности суверена и т.п. Этот тип оракула хранит данные один раз в своем хранилище контрактов, после чего любой другой смарт-контракт может найти их, используя вызов запроса к контракту оракула. Он может быть обновлен. Данные в хранилище оракула также доступны для прямого поиска приложениями, поддерживающими блокчейн (то есть подключенными к клиенту Ethereum), без необходимости проходить через всю процедуру и нести газовые издержки, связанные с проведением транзакции. Магазин, желающий проверить возраст клиента, желающего приобрести алкоголь, может использовать оракул таким образом. Этот тип оракула привлекателен для организации или компании, которым в противном случае пришлось бы запускать и обслуживать серверы для ответа на такие запросы данных. Обратите внимание, что данные, хранящиеся в оракуле, скорее всего, не будут исходными данными, которые оракул обслуживает, например, по соображениям эффективности или конфиденциальности. Университет может создать оракул для хранения свидетельств об успеваемости студентов прошлых лет. Однако хранение полной информации о сертификатах (которая может состоять из страниц с указанием пройденных курсов и полученных оценок) было бы чрезмерным. Вместо этого достаточно хэша сертификата. Аналогичным образом, правительство может захотеть разместить идентификаторы граждан на платформе Ethereum, где, очевидно, необходимо сохранить конфиденциальность включенных в них данных. Опять же, хэширование данных (более тщательно, в деревьях Меркла с солями) и хранение только корневого хэша в хранилище смарт-контракта было бы эффективным способом организации такой услуги.</p>
+<p>Следующая схема - публикация-подписка, когда оракул, эффективно предоставляющий широковещательный сервис для данных, которые, как ожидается, будут меняться (возможно, регулярно и часто), либо опрашивается смарт-контрактом на цепочке, либо отслеживается демоном вне цепочки на предмет обновлений. Эта категория имеет схему, подобную RSS-каналам, WebSub и т.п., где оракул обновляется новой информацией, а флаг сигнализирует, что новые данные доступны тем, кто считает себя "подписанным". Заинтересованные стороны должны либо опрашивать оракул, чтобы проверить, изменилась ли последняя информация, либо слушать обновления контрактов оракула и действовать, когда они происходят. В качестве примера можно привести информацию о ценах, погоде, экономическую или социальную статистику, данные о дорожном движении и т.д. Опрос очень неэффективен в мире веб-серверов, но не так в одноранговом контексте блокчейн-платформ: Клиенты Ethereum должны следить за всеми изменениями состояния, включая изменения в хранилище контрактов, поэтому опрос об изменении данных - это локальный вызов синхронизированного клиента. Журналы событий Ethereum позволяют приложениям особенно легко следить за обновлениями оракула, поэтому данный паттерн в некотором смысле можно даже считать "push" сервисом. Однако если опрос выполняется из смарт-контракта, что может потребоваться для некоторых децентрализованных приложений (например, где невозможна активация стимулов), то могут возникнуть значительные затраты газа.</p>
+<p>Категория "запрос-ответ" является наиболее сложной: в этом случае объем данных слишком велик для хранения в смарт-контракте, и предполагается, что пользователям одновременно нужна лишь небольшая часть общего набора данных. Эта модель также применима для предприятий, предоставляющих данные. На практике такой оракул может быть реализован как система смарт-контрактов на цепочке и внецепочечной инфраструктуры, используемой для отслеживания запросов, получения и возврата данных. Запрос данных из децентрализованного приложения обычно представляет собой асинхронный процесс, состоящий из нескольких этапов. В этой схеме, во-первых, EOA совершает транзакцию с децентрализованным приложением, в результате чего происходит взаимодействие с функцией, определенной в смарт-контракте oracle. Эта функция инициирует запрос к оракулу, с соответствующими аргументами, детализирующими запрашиваемые данные в дополнение к дополнительной информации, которая может включать функции обратного вызова и параметры планирования. После подтверждения этой транзакции запрос оракула может наблюдаться как событие EVM, испускаемое контрактом оракула, или как изменение состояния; аргументы могут быть извлечены и использованы для выполнения фактического запроса к внецепочечному источнику данных. Оракул также может потребовать оплату за обработку запроса, оплату газа за обратный звонок и разрешения на доступ к запрошенным данным. Наконец, полученные данные подписываются владельцем оракула, подтверждающим достоверность данных на определенный момент времени, и передаются в транзакции децентрализованному приложению, сделавшему запрос - либо напрямую, либо через контракт с оракулом. В зависимости от параметров планирования оракул может транслировать дальнейшие транзакции, обновляющие данные через регулярные промежутки времени (например, информацию о ценах на конец дня).</p>
+<p>Шаги для оракула "запрос-ответ" можно обобщить следующим образом:</p>
 <ol>
 <li>Получение запроса от DApp.</li>
 <li>Разберите запрос.</li>
@@ -137,17 +224,17 @@
 <li>Запланируйте все дальнейшие необходимые операции, такие как уведомления и т.д.</li>
 </ol>
 <p>Возможен и ряд других схем; например, данные могут быть запрошены у EOA и возвращены непосредственно им, что устраняет необходимость в смарт-контракте с оракулом. Аналогичным образом, запрос и ответ могут быть направлены к аппаратному датчику с поддержкой Интернета вещей и от него. Таким образом, оракулы могут быть человеческими, программными или аппаратными.</p>
-<p>Описанная здесь схема &quot;запрос-ответ&quot; часто встречается в архитектурах клиент-сервер. Хотя это полезная схема обмена сообщениями, позволяющая приложениям вести двусторонний диалог, в определенных условиях она, возможно, неуместна. Например, интеллектуальная облигация, требующая процентную ставку от оракула, должна ежедневно запрашивать данные по схеме &quot;запрос-ответ&quot;, чтобы гарантировать, что ставка всегда верна. Учитывая, что процентные ставки меняются нечасто, здесь может быть более уместна схема публикации-подписки - особенно если принять во внимание ограниченную пропускную способность Ethereum.</p>
+<p>Описанная здесь схема "запрос-ответ" часто встречается в архитектурах клиент-сервер. Хотя это полезная схема обмена сообщениями, позволяющая приложениям вести двусторонний диалог, в определенных условиях она, возможно, неуместна. Например, интеллектуальная облигация, требующая процентную ставку от оракула, должна ежедневно запрашивать данные по схеме "запрос-ответ", чтобы гарантировать, что ставка всегда верна. Учитывая, что процентные ставки меняются нечасто, здесь может быть более уместна схема публикации-подписки - особенно если принять во внимание ограниченную пропускную способность Ethereum.</p>
 <p>Publish-subscribe - это схема, в которой издатели (в данном контексте оракулы) не отправляют сообщения непосредственно получателям, а вместо этого распределяют опубликованные сообщения по отдельным классам. Подписчики могут проявлять интерес к одному или нескольким классам и получать только те сообщения, которые их интересуют. При такой схеме оракул может записывать процентную ставку в собственное внутреннее хранилище при каждом ее изменении. Несколько подписавшихся DApps могут просто считывать ее из контракта оракула, тем самым снижая влияние на пропускную способность сети и минимизируя затраты на хранение.</p>
 <p>При широковещательной или многоадресной схеме оракул публикует все сообщения в канал, а контракты-подписчики прослушивают канал в различных режимах подписки. Например, оракул может публиковать сообщения в канал курса криптовалюты. Подписавшийся смарт-контракт может запросить полное содержимое канала, если ему нужен временной ряд, например, для расчета скользящего среднего; другой может запросить только последний курс для расчета спотовой цены. Широковещательный шаблон подходит в тех случаях, когда оракулу не нужно знать личность подписавшегося контракта.</p>
-<a class="header" href="./kniga/оракулы.html#Аутентификация-данных" id="Аутентификация-данных"><h2>Аутентификация данных</h2></a>
+<h2 id="Аутентификация-данных"><a class="header" href="#Аутентификация-данных">Аутентификация данных</a></h2>
 <p>Если предположить, что источник данных, запрашиваемых DApp, является авторитетным и заслуживающим доверия (немаловажное предположение), остается нерешенный вопрос: учитывая, что оракул и механизм запроса-ответа могут управляться разными сущностями, как мы можем доверять этому механизму? Существует большая вероятность того, что данные могут быть подделаны при передаче, поэтому очень важно, чтобы внецепочечные методы могли подтвердить целостность возвращаемых данных. Двумя распространенными подходами к проверке подлинности данных являются доказательства подлинности и доверенные среды выполнения (TEE).</p>
-<p>Доказательства подлинности - это криптографические гарантии того, что данные не были подделаны. Основанные на различных методах подтверждения подлинности (например, доказательства с цифровой подписью), они эффективно переносят доверие с носителя данных на подтверждающее лицо (т.е. поставщика подтверждения). Проверяя доказательство подлинности на цепи, смарт-контракты могут убедиться в целостности данных, прежде чем работать с ними. Oraclize - это пример ораклового сервиса, использующего различные доказательства подлинности. Одним из таких доказательств, которое в настоящее время доступно для запросов данных из основной сети Ethereum, является доказательство TLSNotary. Доказательства TLSNotary позволяют клиенту предоставить третьей стороне доказательства того, что между клиентом и сервером происходил веб-трафик HTTPS. Хотя HTTPS сам по себе безопасен, он не поддерживает подписание данных. В результате, доказательства TLSNotary полагаются на подписи TLSNotary (через PageSigner). Доказательства TLSNotary используют протокол Transport Layer Security (TLS), что позволяет разделить главный ключ TLS, которым подписываются данные после доступа к ним, между тремя сторонами: сервером (оракулом), проверяющим (Oraclize) и аудитором. В качестве аудитора Oraclize использует экземпляр виртуальной машины Amazon Web Services (AWS), который может быть проверен на неизменность с момента создания. Этот экземпляр AWS хранит секрет TLSNotary, что позволяет ему предоставлять доказательства честности. Хотя этот подход обеспечивает более высокие гарантии против фальсификации данных, чем механизм &quot;запрос-ответ&quot;, он требует предположения, что Amazon сама не будет вмешиваться в работу экземпляра виртуальной машины.</p>
+<p>Доказательства подлинности - это криптографические гарантии того, что данные не были подделаны. Основанные на различных методах подтверждения подлинности (например, доказательства с цифровой подписью), они эффективно переносят доверие с носителя данных на подтверждающее лицо (т.е. поставщика подтверждения). Проверяя доказательство подлинности на цепи, смарт-контракты могут убедиться в целостности данных, прежде чем работать с ними. Oraclize - это пример ораклового сервиса, использующего различные доказательства подлинности. Одним из таких доказательств, которое в настоящее время доступно для запросов данных из основной сети Ethereum, является доказательство TLSNotary. Доказательства TLSNotary позволяют клиенту предоставить третьей стороне доказательства того, что между клиентом и сервером происходил веб-трафик HTTPS. Хотя HTTPS сам по себе безопасен, он не поддерживает подписание данных. В результате, доказательства TLSNotary полагаются на подписи TLSNotary (через PageSigner). Доказательства TLSNotary используют протокол Transport Layer Security (TLS), что позволяет разделить главный ключ TLS, которым подписываются данные после доступа к ним, между тремя сторонами: сервером (оракулом), проверяющим (Oraclize) и аудитором. В качестве аудитора Oraclize использует экземпляр виртуальной машины Amazon Web Services (AWS), который может быть проверен на неизменность с момента создания. Этот экземпляр AWS хранит секрет TLSNotary, что позволяет ему предоставлять доказательства честности. Хотя этот подход обеспечивает более высокие гарантии против фальсификации данных, чем механизм "запрос-ответ", он требует предположения, что Amazon сама не будет вмешиваться в работу экземпляра виртуальной машины.</p>
 <p>Town Crier - это аутентифицированная система оракула для передачи данных, основанная на подходе TEE; в таких методах для обеспечения целостности данных используются аппаратные защищенные оболочки. Town Crier использует программные расширения Intel Software Guard eXtensions (SGX), чтобы гарантировать, что ответы на HTTPS-запросы могут быть проверены на подлинность. SGX обеспечивает гарантии целостности, гарантируя, что приложения, работающие в анклаве, защищены процессором от несанкционированного вмешательства любого другого процесса. Он также обеспечивает конфиденциальность, гарантируя, что состояние приложения непрозрачно для других процессов при работе внутри анклава. И, наконец, SGX позволяет проводить аттестацию, генерируя подписанное цифровой подписью доказательство того, что приложение - надежно идентифицированное хэшем его сборки - действительно запущено в анклаве. Проверяя эту цифровую подпись, децентрализованное приложение может доказать, что экземпляр Town Crier безопасно работает в анклаве SGX. Это, в свою очередь, доказывает, что экземпляр не был подделан и что данные, испускаемые Town Crier, являются подлинными. Свойство конфиденциальности дополнительно позволяет Town Crier работать с частными данными, позволяя шифровать запросы данных с помощью открытого ключа экземпляра Town Crier. Работа механизма запросов/ответов оракула внутри анклава, такого как SGX, позволяет нам считать, что он работает в безопасном режиме на доверенном оборудовании третьей стороны, гарантируя, что запрошенные данные будут возвращены без вмешательства (при условии, что мы доверяем Intel/SGX).</p>
-<a class="header" href="./kniga/оракулы.html#Вычислительные-оракулы" id="Вычислительные-оракулы"><h2>Вычислительные оракулы</h2></a>
+<h2 id="Вычислительные-оракулы"><a class="header" href="#Вычислительные-оракулы">Вычислительные оракулы</a></h2>
 <p>До сих пор мы обсуждали оракулы только в контексте запроса и доставки данных. Однако оракулы также могут использоваться для выполнения произвольных вычислений - функция, которая может быть особенно полезной, учитывая присущий Ethereum лимит газа блоков и сравнительно дорогие затраты на вычисления. Вместо того чтобы просто передавать результаты запроса, оракулы вычислений могут использоваться для выполнения вычислений над набором входных данных и возвращать результат, который, возможно, было невозможно вычислить на цепочке. Например, можно использовать вычислительный оракул для выполнения регрессионного расчета, требующего больших вычислительных затрат, чтобы оценить доходность облигационного контракта.</p>
 <p>Если вы готовы довериться централизованной, но проверяемой службе, вы можете снова обратиться к Oraclize. Они предоставляют услугу, которая позволяет децентрализованным приложениям запрашивать результаты вычислений, выполняемых на виртуальной машине AWS в песочнице. Экземпляр AWS создает исполняемый контейнер из настроенного пользователем файла Docker, упакованного в архив, который загружается в Межпланетную файловую систему (IPFS; см. [data_storage_sec]). По запросу Oraclize извлекает этот архив, используя его хэш, а затем инициализирует и выполняет Docker-контейнер на AWS, передавая любые аргументы, которые предоставляются приложению в качестве переменных окружения. Контейнерное приложение выполняет вычисления с учетом ограничения по времени и записывает результат на стандартный вывод, откуда он может быть извлечен Oraclize и возвращен децентрализованному приложению. В настоящее время Oraclize предлагает эту услугу на проверяемом экземпляре t2.micro AWS, поэтому, если вычисления имеют какую-то нетривиальную ценность, можно проверить, что был выполнен правильный контейнер Docker. Тем не менее, это не является по-настоящему децентрализованным решением.</p>
-<p>Концепция &quot;криплета&quot; как стандарта для проверяемых истин оракула была формализована как часть более широкого ESC Framework от Microsoft. Криплеты выполняются в зашифрованной капсуле, которая абстрагируется от инфраструктуры, такой как ввод-вывод, и имеет подключенный CryptoDelegate, чтобы входящие и исходящие сообщения подписывались, проверялись и подтверждались автоматически. Криплеты поддерживают распределенные транзакции, так что логика контрактов может принимать сложные многоэтапные, многоблочные и внешние системные транзакции в ACID-манере. Это позволяет разработчикам создавать переносимые, изолированные и приватные резолюции истины для использования в смарт-контрактах. Криплеты имеют формат, показанный здесь:</p>
+<p>Концепция "криплета" как стандарта для проверяемых истин оракула была формализована как часть более широкого ESC Framework от Microsoft. Криплеты выполняются в зашифрованной капсуле, которая абстрагируется от инфраструктуры, такой как ввод-вывод, и имеет подключенный CryptoDelegate, чтобы входящие и исходящие сообщения подписывались, проверялись и подтверждались автоматически. Криплеты поддерживают распределенные транзакции, так что логика контрактов может принимать сложные многоэтапные, многоблочные и внешние системные транзакции в ACID-манере. Это позволяет разработчикам создавать переносимые, изолированные и приватные резолюции истины для использования в смарт-контрактах. Криплеты имеют формат, показанный здесь:</p>
 <pre><code>public class SampleContractCryptlet : Cryptlet
   {
         public SampleContractCryptlet(Guid id, Guid bindingId, string name,
@@ -157,15 +244,15 @@
             MessageApi = new CryptletMessageApi(GetType().FullName,
                 new SampleContractConstructor())
 </code></pre>
-<p>Для более децентрализованного решения мы можем обратиться к компании TrueBit, которая предлагает решение для масштабируемых и проверяемых вычислений вне цепочки. Они используют систему решателей и проверяющих, которые стимулируются для выполнения вычислений и проверки этих вычислений, соответственно. Если решение оспаривается, итерационный процесс проверки подмножеств вычислений выполняется на цепи - своего рода &quot;игра в верификацию&quot;. Игра проходит через серию раундов, каждый из которых рекурсивно проверяет все меньшее и меньшее подмножество вычислений. В конечном итоге игра доходит до финального раунда, где задача становится достаточно тривиальной, чтобы судьи - майнеры Ethereum - могли вынести окончательное решение о том, была ли задача решена, на цепочке. По сути, TrueBit - это реализация рынка вычислений, позволяющая децентрализованным приложениям платить за верифицируемые вычисления, выполняемые вне сети, но полагающаяся на Ethereum для обеспечения соблюдения правил верификационной игры. Теоретически это позволяет смарт-контрактам без доверия безопасно выполнять любые вычислительные задачи.</p>
+<p>Для более децентрализованного решения мы можем обратиться к компании TrueBit, которая предлагает решение для масштабируемых и проверяемых вычислений вне цепочки. Они используют систему решателей и проверяющих, которые стимулируются для выполнения вычислений и проверки этих вычислений, соответственно. Если решение оспаривается, итерационный процесс проверки подмножеств вычислений выполняется на цепи - своего рода "игра в верификацию". Игра проходит через серию раундов, каждый из которых рекурсивно проверяет все меньшее и меньшее подмножество вычислений. В конечном итоге игра доходит до финального раунда, где задача становится достаточно тривиальной, чтобы судьи - майнеры Ethereum - могли вынести окончательное решение о том, была ли задача решена, на цепочке. По сути, TrueBit - это реализация рынка вычислений, позволяющая децентрализованным приложениям платить за верифицируемые вычисления, выполняемые вне сети, но полагающаяся на Ethereum для обеспечения соблюдения правил верификационной игры. Теоретически это позволяет смарт-контрактам без доверия безопасно выполнять любые вычислительные задачи.</p>
 <p>Для систем, подобных TrueBit, существует широкий спектр приложений, начиная от машинного обучения и заканчивая проверкой доказательств работы. Примером последнего является мост Doge-Ethereum, который использует TrueBit для проверки доказательства работы Dogecoin (Scrypt), которая является функцией, занимающей много памяти и требующей больших вычислительных затрат, и которую невозможно вычислить в пределах лимита газа блока Ethereum. Выполняя эту проверку на TrueBit, стало возможным безопасно проверять транзакции Dogecoin в рамках смарт-контракта в тестовой сети Ethereum Rinkeby.</p>
-<a class="header" href="./kniga/оракулы.html#Децентрализованные-оракулы" id="Децентрализованные-оракулы"><h2>Децентрализованные оракулы</h2></a>
+<h2 id="Децентрализованные-оракулы"><a class="header" href="#Децентрализованные-оракулы">Децентрализованные оракулы</a></h2>
 <p>Хотя централизованные оракулы данных или вычислений достаточны для многих приложений, они представляют собой единые точки отказа в сети Ethereum. Был предложен ряд схем, основанных на идее децентрализованных оракулов как средства обеспечения доступности данных и создания сети индивидуальных поставщиков данных с системой агрегации данных на цепочке.</p>
 <p>ChainLink предложила децентрализованную оракловую сеть, состоящую из трех ключевых смарт-контрактов - репутационного контракта, контракта на согласование заказов и агрегационного контракта - и внецепочечного реестра поставщиков данных. Репутационный контракт используется для отслеживания эффективности работы поставщиков данных. Оценки в репутационном контракте используются для пополнения внецепочечного реестра. Контракт по подбору заказов выбирает предложения от оракулов, используя репутационный контракт. Затем он заключает соглашение об уровне обслуживания, которое включает параметры запроса и количество необходимых оракулов. Это означает, что покупателю не нужно напрямую взаимодействовать с отдельными оракулами. Контракт агрегации собирает ответы (представленные с использованием схемы фиксации-раскрытия) от нескольких оракулов, вычисляет окончательный коллективный результат запроса и, наконец, передает результаты обратно в контракт репутации.</p>
-<p>Одной из основных проблем такого децентрализованного подхода является формулировка агрегирующей функции. ChainLink предлагает вычислять взвешенный ответ, позволяющий получить оценку достоверности для каждого ответа оракула. Определение &quot;недействительного&quot; балла здесь нетривиально, поскольку оно основывается на предпосылке, что отклоняющиеся точки данных, измеряемые отклонениями от ответов, предоставленных коллегами, являются неправильными. Вычисление оценки достоверности на основе расположения оракульного ответа среди распределения ответов рискует наказать правильные ответы по сравнению со средними. Поэтому ChainLink предлагает стандартный набор контрактов агрегации, но также позволяет задавать индивидуальные контракты агрегации.
-Родственной идеей является протокол SchellingCoin. Здесь несколько участников сообщают значения, а в качестве &quot;правильного&quot; ответа принимается медиана. От респондентов требуется внести депозит, который перераспределяется в пользу значений, которые ближе к медиане, таким образом стимулируя сообщение значений, которые похожи на другие. Ожидается, что общее значение, также известное как точка Шеллинга, которое респонденты могут рассматривать как естественную и очевидную цель, вокруг которой следует координировать свои действия, будет близко к фактическому значению.</p>
+<p>Одной из основных проблем такого децентрализованного подхода является формулировка агрегирующей функции. ChainLink предлагает вычислять взвешенный ответ, позволяющий получить оценку достоверности для каждого ответа оракула. Определение "недействительного" балла здесь нетривиально, поскольку оно основывается на предпосылке, что отклоняющиеся точки данных, измеряемые отклонениями от ответов, предоставленных коллегами, являются неправильными. Вычисление оценки достоверности на основе расположения оракульного ответа среди распределения ответов рискует наказать правильные ответы по сравнению со средними. Поэтому ChainLink предлагает стандартный набор контрактов агрегации, но также позволяет задавать индивидуальные контракты агрегации.
+Родственной идеей является протокол SchellingCoin. Здесь несколько участников сообщают значения, а в качестве "правильного" ответа принимается медиана. От респондентов требуется внести депозит, который перераспределяется в пользу значений, которые ближе к медиане, таким образом стимулируя сообщение значений, которые похожи на другие. Ожидается, что общее значение, также известное как точка Шеллинга, которое респонденты могут рассматривать как естественную и очевидную цель, вокруг которой следует координировать свои действия, будет близко к фактическому значению.</p>
 <p>Джейсон Тутш из TrueBit недавно предложил новый дизайн децентрализованного оракула доступности данных вне цепочки. Эта конструкция использует специальный блокчейн с доказательством работы, который способен правильно сообщать о том, доступны ли зарегистрированные данные в определенную эпоху. Майнеры пытаются загрузить, сохранить и распространить все зарегистрированные на данный момент данные, гарантируя тем самым их локальную доступность. Хотя такая система является дорогостоящей в том смысле, что каждый майнинговый узел хранит и распространяет все зарегистрированные данные, система позволяет повторно использовать хранилище, освобождая данные после окончания периода регистрации.</p>
-<a class="header" href="./kniga/оракулы.html#Клиентские-интерфейсы-oracle-в-solidity" id="Клиентские-интерфейсы-oracle-в-solidity"><h2>Клиентские интерфейсы Oracle в Solidity</h2></a>
+<h2 id="Клиентские-интерфейсы-oracle-в-solidity"><a class="header" href="#Клиентские-интерфейсы-oracle-в-solidity">Клиентские интерфейсы Oracle в Solidity</a></h2>
 <p>Использование Oraclize для обновления курса ETH/USD из внешнего источника - это пример Solidity, демонстрирующий, как Oraclize можно использовать для постоянного опроса цены ETH/USD из API и хранения результата в удобном для использования виде.</p>
 <p>Пример 1. Использование Oraclize для обновления курса ETH/USD из внешнего источника</p>
 <pre><code>/*
@@ -176,10 +263,10 @@
  */
 
 pragma solidity ^0.4.1;
-import &quot;github.com/oraclize/ethereum-api/oraclizeAPI.sol&quot;;
+import "github.com/oraclize/ethereum-api/oraclizeAPI.sol";
 
 /*
-   Методы с префиксом &quot;oraclize_&quot; указывают на наследование от &quot;usingOraclize&quot;
+   Методы с префиксом "oraclize_" указывают на наследование от "usingOraclize"
  */
 контракт EthUsdPriceTicker используетсяOraclize {
 
@@ -202,8 +289,8 @@ import &quot;github.com/oraclize/ethereum-api/oraclizeAPI.sol&quot;;
 
         /*
          * Разберите строку результата в целое число без знака для использования в цепи.
-         * Использует унаследованный помощник &quot;parseInt&quot; из &quot;usingOraclize&quot;, позволяя
-         * строковый результат, такой как &quot;123.45&quot;, должен быть преобразован в uint 12345.
+         * Использует унаследованный помощник "parseInt" из "usingOraclize", позволяя
+         * строковый результат, такой как "123.45", должен быть преобразован в uint 12345.
          */
         ethUsd = parseInt(_result, 2);
 
@@ -212,19 +299,19 @@ import &quot;github.com/oraclize/ethereum-api/oraclizeAPI.sol&quot;;
     }
 
     function queryTicker() external payable {
-        if (oraclize_getPrice(&quot;URL&quot;) &gt; this.balance) {
-            newOraclizeQuery(&quot;Запрос Oraclize НЕ был отправлен, пожалуйста, добавьте немного ETH
-                чтобы покрыть плату за запрос&quot;);
+        if (oraclize_getPrice("URL") &gt; this.balance) {
+            newOraclizeQuery("Запрос Oraclize НЕ был отправлен, пожалуйста, добавьте немного ETH
+                чтобы покрыть плату за запрос");
         } else {
-            newOraclizeQuery(&quot;Запрос Oraclize был отправлен, ожидаем ответа для
-                ответ...&quot;);
+            newOraclizeQuery("Запрос Oraclize был отправлен, ожидаем ответа для
+                ответ...");
 
             // параметрами запроса являются (задержка в секундах, тип источника данных,
             // аргумент источника данных)
             // указывает JSONPath, чтобы получить определенную часть результата JSON API
-            oraclize_query(60 * 10, &quot;URL&quot;,
-                &quot;json(https://min-api.cryptocompare.com/data/price?\
-                fsym=ETH&amp;tsyms=USD,EUR,GBP).USD&quot;);
+            oraclize_query(60 * 10, "URL",
+                "json(https://min-api.cryptocompare.com/data/price?\
+                fsym=ETH&amp;tsyms=USD,EUR,GBP).USD");
         }
     }
 }
@@ -264,26 +351,26 @@ contract OracleB1IQClient {
 
     function OracleB1IQClient(address addr) external payable {
         oracle = Oracle(addr);
-        getIntraday(&quot;IBM&quot;, now);
+        getIntraday("IBM", now);
     }
 
     function getIntraday(bytes32 ric, uint256 timestamp) public {
         uint256 id = oracle.initRequest(0, this.handleSuccess, this.handleFailure);
-        oracle.addArgumentToRequestString(id, &quot;symbol&quot;, ric);
-        oracle.addArgumentToRequestUint(id, &quot;timestamp&quot;, timestamp);
+        oracle.addArgumentToRequestString(id, "symbol", ric);
+        oracle.addArgumentToRequestUint(id, "timestamp", timestamp);
         oracle.executeRequest(id);
     }
 
     function handleSuccess(uint256 id) public {
         assert(msg.sender == address(oracle));
-        bytes32 ric = oracle.getResponseString(id, &quot;symbol&quot;);
-        uint256 open = oracle.getResponseUint(id, &quot;open&quot;);
-        uint256 high = oracle.getResponseUint(id, &quot;high&quot;);
-        uint256 low = oracle.getResponseUint(id, &quot;low&quot;);
-        uint256 close = oracle.getResponseUint(id, &quot;close&quot;);
-        uint256 bid = oracle.getResponseUint(id, &quot;bid&quot;);
-        uint256 ask = oracle.getResponseUint(id, &quot;ask&quot;);
-        uint256 timestamp = oracle.getResponseUint(id, &quot;timestamp&quot;);
+        bytes32 ric = oracle.getResponseString(id, "symbol");
+        uint256 open = oracle.getResponseUint(id, "open");
+        uint256 high = oracle.getResponseUint(id, "high");
+        uint256 low = oracle.getResponseUint(id, "low");
+        uint256 close = oracle.getResponseUint(id, "close");
+        uint256 bid = oracle.getResponseUint(id, "bid");
+        uint256 ask = oracle.getResponseUint(id, "ask");
+        uint256 timestamp = oracle.getResponseUint(id, "timestamp");
         oracle.deleteResponse(id);
         // Do something with the price data
     }
@@ -298,64 +385,59 @@ contract OracleB1IQClient {
 }
 </code></pre>
 <p>Запрос данных инициируется с помощью функции initRequest, которая позволяет указать тип запроса (в данном примере запрос внутридневной цены), а также две функции обратного вызова. Функция возвращает идентификатор uint256, который затем может быть использован для ввода дополнительных аргументов. Функция addArgumentToRequestString используется для указания кода инструмента Reuters (RIC), здесь для акций IBM, а addArgumentToRequestUint позволяет указать временную метку. Теперь, передав псевдоним block.timestamp, вы получите текущую цену для IBM. Затем запрос выполняется функцией executeRequest. После обработки запроса контракт oracle вызывает функцию обратного вызова onSuccess с идентификатором запроса, позволяя получить результирующие данные; в случае неудачи обратный вызов onFailure возвращает код ошибки. Доступные поля, которые могут быть получены в случае успеха, включают цены открытия, максимума, минимума, закрытия (OHLC), а также цены покупки/продажи.</p>
-<a class="header" href="./kniga/оракулы.html#Выводы" id="Выводы"><h2>Выводы</h2></a>
+<h2 id="Выводы"><a class="header" href="#Выводы">Выводы</a></h2>
 <p>Как видите, оракулы предоставляют смарт-контрактам важнейшую услугу: они привносят внешние факты в исполнение контракта. При этом, конечно, оракулы также вносят значительный риск - если они являются доверенными источниками и могут быть скомпрометированы, они могут привести к нарушению исполнения смарт-контрактов, которые они питают.</p>
 <p>В целом, при рассмотрении вопроса об использовании оракула будьте очень внимательны к модели доверия. Если вы предполагаете, что оракулу можно доверять, вы можете подорвать безопасность вашего смарт-контракта, подвергая его потенциально ложным входным данным. Тем не менее, оракулы могут быть очень полезны, если предположения о безопасности тщательно продуманы.</p>
-<p>Децентрализованные оракулы могут решить некоторые из этих проблем и предложить смарт-контрактам Ethereum надежные внешние данные. Выбирайте тщательно, и вы сможете начать исследовать мост между Ethereum и &quot;реальным миром&quot;, который предлагают оракулы.</p>
+<p>Децентрализованные оракулы могут решить некоторые из этих проблем и предложить смарт-контрактам Ethereum надежные внешние данные. Выбирайте тщательно, и вы сможете начать исследовать мост между Ethereum и "реальным миром", который предлагают оракулы.</p>
 
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../kniga/токены.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../kniga/децентрализованные_приложения.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
                 </div>
-
-                <!-- Mobile navigation buttons -->
-                
-                    <a rel="prev" href="./kniga/токены.html" class="mobile-nav-chapters previous" title="Previous chapter">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                
-
-                
-                    <a rel="next" href="./kniga/децентрализованные_приложения.html" class="mobile-nav-chapters next" title="Next chapter">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                
-
             </div>
 
-            
-                <a href="./kniga/токены.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../kniga/токены.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-            
-                <a href="./kniga/децентрализованные_приложения.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            
+                    <a rel="next prefetch" href="../kniga/децентрализованные_приложения.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
 
         </div>
 
 
-        <!-- Local fallback for Font Awesome -->
+
+
         <script>
-            if ($(".fa").css("font-family") !== "FontAwesome") {
-                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
-            }
+            window.playground_copyable = true;
         </script>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        
 
-        
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
-        
+        <!-- Custom JS scripts -->
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
 
-        <!-- Custom JS script -->
-        
-
+    </div>
     </body>
 </html>

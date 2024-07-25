@@ -1,200 +1,282 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="ru" class="light" dir="ltr">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Доп 2. Стандарты EIP, ERC - Осваиваем Ethereum - Mastering Ethereum</title>
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+
+        <!-- Custom HTML head -->
+        
         <meta name="description" content="Руководство по Ethereum и разработке смарт-контрактов">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
 
-        <base href="../">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
-        <link rel="stylesheet" href="book.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
-        <link rel="shortcut icon" href="favicon.png">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
-
-        <!-- Custom theme -->
-        
-
-        
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <!-- Fetch JQuery from CDN but have a local fallback -->
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script>
-            if (typeof jQuery == 'undefined') {
-                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
-        <script src="store.js"></script>
+        <!-- Custom theme stylesheets -->
 
     </head>
-    <body class="light">
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme = store.get('mdbook-theme');
-            if (theme === null || theme === undefined) { theme = 'light'; }
-            $('body').removeClass().addClass(theme);
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var sidebar = store.get('mdbook-sidebar');
-            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
-            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
-        <div id="sidebar" class="sidebar">
-            <ul class="chapter"><li class="affix"><a href="./1_предисловие.html">Предисловие</a></li><li class="affix"><a href="./2_глоссарий.html">Глоссарий</a></li><li><a href="./kniga/что_такое_ethereum.html"><strong>1.</strong> Что такое Ethereum?</a></li><li><a href="./kniga/введение.html"><strong>2.</strong> Введение</a></li><li><a href="./kniga/клиенты.html"><strong>3.</strong> Клиенты</a></li><li><a href="./kniga/ключи_и_адреса.html"><strong>4.</strong> Ключи и адреса</a></li><li><a href="./kniga/кошельки.html"><strong>5.</strong> Кошельки</a></li><li><a href="./kniga/транзакции.html"><strong>6.</strong> Транзакции</a></li><li><ul class="section"><li><a href="./kniga/tx/structure.html"><strong>6.1.</strong> Структура_транзакции</a></li><li><a href="./kniga/tx/nonce.html"><strong>6.2.</strong> Nonce транзакции</a></li><li><a href="./kniga/tx/gas.html"><strong>6.3.</strong> Топливо (Gas)</a></li><li><a href="./kniga/tx/recipient.html"><strong>6.4.</strong> Получатель</a></li><li><a href="./kniga/tx/value_data.html"><strong>6.5.</strong> Value и Data</a></li><li><a href="./kniga/tx/create_contract_tx.html"><strong>6.6.</strong> Тразакция создания контракта</a></li><li><a href="./kniga/tx/digital_signatures.html"><strong>6.7.</strong> Цифровые подписи</a></li><li><a href="./kniga/tx/sign_prifix_value.html"><strong>6.8.</strong> Восстановление открытого ключа</a></li><li><a href="./kniga/tx/sign_transmission.html"><strong>6.9.</strong> Раздельное подписание и передача</a></li><li><a href="./kniga/tx/tx_propagation.html"><strong>6.10.</strong> Распространение транзакций</a></li><li><a href="./kniga/tx/recording_on_blockchain.html"><strong>6.11.</strong> Запись в блокчейне</a></li><li><a href="./kniga/tx/multisig.html"><strong>6.12.</strong> Мультиподпись</a></li></ul></li><li><a href="./kniga/смарт_контракты_на_solidity.html"><strong>7.</strong> Смарт-контракты на Solidity</a></li><li><strong>8.</strong> Смарт-контракты на Vyper</li><li><a href="./kniga/безопаность_смарт_контрактов.html"><strong>9.</strong> Безопаность смарт-контрактов</a></li><li><a href="./kniga/токены.html"><strong>10.</strong> Токены</a></li><li><a href="./kniga/оракулы.html"><strong>11.</strong> Оракулы</a></li><li><a href="./kniga/децентрализованные_приложения.html"><strong>12.</strong> Децентрализованные приложения</a></li><li><a href="./kniga/виртуальная_машина_ethereum.html"><strong>13.</strong> Виртуальная машина Ethereum</a></li><li><a href="./kniga/консенсус.html"><strong>14.</strong> Консенсус</a></li><li><strong>15.</strong> Доп 1. История ветвлений</li><li><a href="./kniga/дополнение_2_стандарты_eip_erc.html" class="active"><strong>16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li><a href="./kniga/дополнение_3_коды_evm_и_gas.html"><strong>17.</strong> Доп 3. Коды EVM и газ</a></li><li><a href="./kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong>18.</strong> Доп 4. Инструменты разработчика</a></li><li><a href="./kniga/дополнение_5_руководство_по_web3js.html"><strong>19.</strong> Доп 5. Руководство по web3js</a></li><li class="spacer"></li><li class="affix"><a href="./support.html">Поддержка проекта</a></li></ul>
-        </div>
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../1_предисловие.html">Предисловие</a></li><li class="chapter-item expanded affix "><a href="../2_глоссарий.html">Глоссарий</a></li><li class="chapter-item expanded affix "><li class="part-title">Книга</li><li class="chapter-item expanded "><a href="../kniga/что_такое_ethereum.html"><strong aria-hidden="true">1.</strong> Что такое Ethereum?</a></li><li class="chapter-item expanded "><a href="../kniga/введение.html"><strong aria-hidden="true">2.</strong> Введение</a></li><li class="chapter-item expanded "><a href="../kniga/клиенты.html"><strong aria-hidden="true">3.</strong> Клиенты</a></li><li class="chapter-item expanded "><a href="../kniga/ключи_и_адреса.html"><strong aria-hidden="true">4.</strong> Ключи и адреса</a></li><li class="chapter-item expanded "><a href="../kniga/кошельки.html"><strong aria-hidden="true">5.</strong> Кошельки</a></li><li class="chapter-item expanded "><a href="../kniga/транзакции.html"><strong aria-hidden="true">6.</strong> Транзакции</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../kniga/tx/structure.html"><strong aria-hidden="true">6.1.</strong> Структура_транзакции</a></li><li class="chapter-item expanded "><a href="../kniga/tx/nonce.html"><strong aria-hidden="true">6.2.</strong> Nonce транзакции</a></li><li class="chapter-item expanded "><a href="../kniga/tx/gas.html"><strong aria-hidden="true">6.3.</strong> Топливо (Gas)</a></li><li class="chapter-item expanded "><a href="../kniga/tx/recipient.html"><strong aria-hidden="true">6.4.</strong> Получатель</a></li><li class="chapter-item expanded "><a href="../kniga/tx/value_data.html"><strong aria-hidden="true">6.5.</strong> Value и Data</a></li><li class="chapter-item expanded "><a href="../kniga/tx/create_contract_tx.html"><strong aria-hidden="true">6.6.</strong> Тразакция создания контракта</a></li><li class="chapter-item expanded "><a href="../kniga/tx/digital_signatures.html"><strong aria-hidden="true">6.7.</strong> Цифровые подписи</a></li><li class="chapter-item expanded "><a href="../kniga/tx/sign_prifix_value.html"><strong aria-hidden="true">6.8.</strong> Восстановление открытого ключа</a></li><li class="chapter-item expanded "><a href="../kniga/tx/sign_transmission.html"><strong aria-hidden="true">6.9.</strong> Раздельное подписание и передача</a></li><li class="chapter-item expanded "><a href="../kniga/tx/tx_propagation.html"><strong aria-hidden="true">6.10.</strong> Распространение транзакций</a></li><li class="chapter-item expanded "><a href="../kniga/tx/recording_on_blockchain.html"><strong aria-hidden="true">6.11.</strong> Запись в блокчейне</a></li><li class="chapter-item expanded "><a href="../kniga/tx/multisig.html"><strong aria-hidden="true">6.12.</strong> Мультиподпись</a></li></ol></li><li class="chapter-item expanded "><a href="../kniga/смарт_контракты_на_solidity.html"><strong aria-hidden="true">7.</strong> Смарт-контракты на Solidity</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Смарт-контракты на Vyper</div></li><li class="chapter-item expanded "><a href="../kniga/безопаность_смарт_контрактов.html"><strong aria-hidden="true">9.</strong> Безопаность смарт-контрактов</a></li><li class="chapter-item expanded "><a href="../kniga/токены.html"><strong aria-hidden="true">10.</strong> Токены</a></li><li class="chapter-item expanded "><a href="../kniga/оракулы.html"><strong aria-hidden="true">11.</strong> Оракулы</a></li><li class="chapter-item expanded "><a href="../kniga/децентрализованные_приложения.html"><strong aria-hidden="true">12.</strong> Децентрализованные приложения</a></li><li class="chapter-item expanded "><a href="../kniga/виртуальная_машина_ethereum.html"><strong aria-hidden="true">13.</strong> Виртуальная машина Ethereum</a></li><li class="chapter-item expanded "><a href="../kniga/консенсус.html"><strong aria-hidden="true">14.</strong> Консенсус</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Доп 1. История ветвлений</div></li><li class="chapter-item expanded "><a href="../kniga/дополнение_2_стандарты_eip_erc.html" class="active"><strong aria-hidden="true">16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li class="chapter-item expanded "><a href="../kniga/дополнение_3_коды_evm_и_gas.html"><strong aria-hidden="true">17.</strong> Доп 3. Коды EVM и газ</a></li><li class="chapter-item expanded "><a href="../kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong aria-hidden="true">18.</strong> Доп 4. Инструменты разработчика</a></li><li class="chapter-item expanded "><a href="../kniga//дополнение_5_руководство_по_web3js.html"><strong aria-hidden="true">19.</strong> Доп 5. Руководство по web3js</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../support.html">Поддержка проекта</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
-            <div class="page" tabindex="-1">
-                
-                <div id="menu-bar" class="menu-bar">
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
-                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
 
                     <h1 class="menu-title">Осваиваем Ethereum - Mastering Ethereum</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html">
-                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
                         </a>
+
                     </div>
                 </div>
 
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
                 <div id="content" class="content">
-                    <a class="header" href="./kniga/дополнение_2_стандарты_eip_erc.html#Доп-2-Стандарты-eip-erc" id="Доп-2-Стандарты-eip-erc"><h1>Доп 2. Стандарты EIP, ERC</h1></a>
-<a class="header" href="./kniga/дополнение_2_стандарты_eip_erc.html#Предложения-по-усовершенствованию-ethereum-eips" id="Предложения-по-усовершенствованию-ethereum-eips"><h2>Предложения по усовершенствованию Ethereum (EIPs)</h2></a>
-<p>Репозиторий Ethereum Improvement Proposal находится по адресу <a href="https://github.com/ethereum/EIPs/">github.com/ethereum/EIPs</a>. Рабочий процесс проиллюстрирован в документе &quot;Рабочий процесс предложения по улучшению Ethereum&quot;.</p>
+                    <main>
+                        <h1 id="Доп-2-Стандарты-eip-erc"><a class="header" href="#Доп-2-Стандарты-eip-erc">Доп 2. Стандарты EIP, ERC</a></h1>
+<h2 id="Предложения-по-усовершенствованию-ethereum-eips"><a class="header" href="#Предложения-по-усовершенствованию-ethereum-eips">Предложения по усовершенствованию Ethereum (EIPs)</a></h2>
+<p>Репозиторий Ethereum Improvement Proposal находится по адресу <a href="https://github.com/ethereum/EIPs/">github.com/ethereum/EIPs</a>. Рабочий процесс проиллюстрирован в документе "Рабочий процесс предложения по улучшению Ethereum".</p>
 <p><strong>Из EIP-1:</strong> EIP расшифровывается как Ethereum Improvement Proposal. EIP - это проектный документ, предоставляющий информацию сообществу Ethereum или описывающий новую функцию для Ethereum, его процессов или среды. EIP должен содержать краткую техническую спецификацию функции и ее обоснование. Автор EIP отвечает за достижение консенсуса в сообществе и документирование особых мнений.</p>
 <p><img src="./kartinki//eip_workflow.png" alt="Рабочий процесс предложения по улучшению Ethereum" />
 Рисунок 1. Рабочий процесс предложения по улучшению Ethereum</p>
-<a class="header" href="./kniga/дополнение_2_стандарты_eip_erc.html#Таблица-наиболее-важных-eip-и-erc" id="Таблица-наиболее-важных-eip-и-erc"><h2>Таблица наиболее важных EIP и ERC</h2></a>
+<h2 id="Таблица-наиболее-важных-eip-и-erc"><a class="header" href="#Таблица-наиболее-важных-eip-и-erc">Таблица наиболее важных EIP и ERC</a></h2>
 <p>Таблица 1. Важные EIP и ERC</p>
-<table><thead><tr><th> EIP/ERC # </th><th> Title/Description </th></tr></thead><tbody>
-<tr><td> <a href="http://bit.ly/2OVq6qa">EIP-1</a> </td><td> Цель и руководящие принципы EIP </td></tr>
-<tr><td> <a href="http://bit.ly/2yJtTNa">EIP-2</a> </td><td> Изменения, связанные с хард-форком </td></tr>
-<tr><td> <a href="http://bit.ly/2Jrx93V">EIP-5</a> </td><td> Gas Usage for <code>RETURN</code> and <code>CALL*</code> </td></tr>
-<tr><td> <a href="http://bit.ly/2OYbc2t">EIP-6</a> </td><td> Renaming +SUICIDE+ Opcode </td></tr>
-<tr><td> <a href="http://bit.ly/2JxdBeN">EIP-7</a> </td><td> <code>DELEGATECALL</code> </td></tr>
-<tr><td> <a href="http://bit.ly/2Q6Oly6">EIP-8</a> </td><td> devp2p Forward Compatibility Requirements for Homestead </td></tr>
-<tr><td> <a href="http://bit.ly/2CUf7WG">EIP-20</a> </td><td> ERC-20 Token Standard. Describes standard functions a token contract may implement to allow DApps and wallets to handle tokens across multiple interfaces/DApps. Methods include: <code>totalSupply</code>, +balanceOf(address)+, <code>transfer</code>, <code>transferFrom</code>, <code>approve</code>, <code>allowance</code>. Events include: <code>Transfer</code> (triggered when tokens are transferred), pass:[<span class="keep-together"><code>Approval</code></span>] (triggered when <code>approve</code> is called). </td></tr>
-<tr><td> <a href="http://bit.ly/2Q6R4YB">EIP-55</a></td><td> Кодирование адреса контрольной суммы в смешанном регистре </td></tr>
-<tr><td> <a href="http://bit.ly/2OgE5la">EIP-86</a></td><td> Абстракция происхождения и подписи транзакций. Закладывает основу для &quot;абстрагирования&quot; безопасности аккаунта и позволяет пользователям создавать &quot;контракты аккаунта&quot;, двигаясь к модели, в которой в долгосрочной перспективе все счета являются контрактами, которые могут оплачивать газ, и пользователи могут свободно определять свои собственные модели безопасности, которые выполняют любую желаемую проверку подписи и проверку nonce (вместо использования внутрипротокольного механизма, где ECDSA и схема nonce по умолчанию являются единственным &quot;стандартным&quot; способом защиты аккаунта, который в настоящее время жестко закодирован в обработке транзакций). </td></tr>
-<tr><td> <a href="http://bit.ly/2QedSFC">EIP-96</a></td><td> Изменения корня блокхэша и состояния. Хранит блокхеши в состоянии, чтобы уменьшить сложность протокола и необходимость в сложных клиентских реализациях для обработки опкода <code>BLOCKHASH</code>. Расширяет диапазон того, как далеко назад может уходить проверка блокчейна, с побочным эффектом создания прямых связей между блоками с очень удаленными номерами блоков для более эффективной начальной синхронизации клиентов. </td></tr>
-<tr><td><a href="http://bit.ly/2AC05DM">EIP-100</a> </td><td> Изменить настройку сложности на целевое среднее время блока и включение дядек. </td></tr>
-<tr><td><a href="http://bit.ly/2Jr1zDv">EIP-101</a> </td><td> Валюта спокойствия и криптовалюта абстракции. Абстрагирует эфир на более высокий уровень, позволяя эфиру и субтокенам одинаково обращаться с контрактами, снижает уровень косвенности, необходимый для пользовательских политик, таких как мультисиги, и очищает основной протокол Ethereum, снижая минимальную сложность реализации консенсуса. </td></tr>
-<tr><td><a href="http://bit.ly/2Q5sdEv">EIP-105</a> </td><td> Бинарный шардинг плюс семантика вызова контрактов. &quot;Лесенка для шардинга&quot; EIP, позволяющая распараллеливать транзакции Ethereum с помощью механизма шардинга двоичного дерева и создающая основу для последующей схемы шардинга. Исследования в процессе; см. https://github.com/ethereum/sharding[]. </td></tr>
-<tr><td><a href="http://bit.ly/2yG2Dzi">EIP-137</a> </td><td> Служба доменных имен Ethereum - спецификация </td></tr>
-<tr><td><a href="http://bit.ly/2yJtWZm">EIP-140</a> </td><td> Новый опкод: +REVERT+. Добавляет опкод <code>REVERT</code>, который останавливает выполнение и откатывает изменения состояния выполнения EVM без потребления всего предоставленного газа (вместо этого контракт должен платить только за память) или потери логов, и возвращает вызывающей стороне указатель на участок памяти с кодом ошибки или сообщением. </td></tr>
-<tr><td><a href="http://bit.ly/2CQMXfe">EIP-141</a> </td><td> Designated invalid EVM instruction </td></tr>
-<tr><td><a href="http://bit.ly/2qhKz9Y">EIP-145</a> </td><td> Инструкции побитового сдвига в EVM </td></tr>
-<tr><td><a href="http://bit.ly/2qhxflQ">EIP-150</a> </td><td> Изменение стоимости газа для операций с большим объемом ввода-вывода </td></tr>
-<tr><td><a href="http://bit.ly/2CQUgne">EIP-155</a> </td><td> Простая защита от атаки повторного воспроизведения. Атака повторного воспроизведения позволяет любой транзакции, использующей узел или клиент Ethereum до EIP-155, стать подписанной, чтобы она была действительной и выполнялась как в цепочке Ethereum, так и в Ethereum Classic. </td></tr>
-<tr><td><a href="http://bit.ly/2JryBmT">EIP-158</a> </td><td> Государственный клиринг </td></tr>
-<tr><td><a href="http://bit.ly/2CR6VGY">EIP-160</a> </td><td> Увеличение стоимости EXP </td></tr>
-<tr><td><a href="http://bit.ly/2OfU96M">EIP-161</a> </td><td> Расчистка тройки штатов (инвариантно-сохраняющая альтернатива) </td></tr>
-<tr><td><a href="http://bit.ly/2JxdKil">EIP-162</a></td><td> Начальный регистратор хэша ENS </td></tr>
-<tr><td><a href="http://bit.ly/2OgsOkO">EIP-165</a> </td><td> Обнаружение стандартного интерфейса ERC-165 </td></tr>
-<tr><td><a href="http://bit.ly/2OgCWu1">EIP-170</a> </td><td> Ограничение размера кода контракта </td></tr>
-<tr><td><a href="http://bit.ly/2ERNv7g">EIP-181</a></td><td> Поддержка ENS для обратного разрешения адресов Ethereum </td></tr>
-<tr><td><a href="http://bit.ly/2P0wPz5">EIP-190</a></td><td> Стандарт упаковки смарт-контрактов Ethereum </td></tr>
-<tr><td><a href="http://bit.ly/2SwNQiz">EIP-196</a> </td><td> Предварительно скомпилированные контракты для сложения и скалярного умножения на эллиптической кривой +alt_bn128+. Требуется для выполнения верификации zkSNARK в пределах лимита блочного газа.</td></tr>
-<tr><td><a href="http://bit.ly/2ETDC9a">EIP-197</a> </td><td> Предварительно скомпилированные контракты для оптимальной проверки парности на эллиптической кривой +alt_bn128+. Объединен с EIP-196. </td></tr>
-<tr><td><a href="http://bit.ly/2DdTCRN">EIP-198</a> </td><td> Большая целочисленная модульная экспоненция. Прекомпиляция, позволяющая проверять подпись RSA и другие криптографические приложения. </td></tr>
-<tr><td><a href="http://bit.ly/2qjYJr3">EIP-211</a> </td><td> Новые опкоды: <code>RETURNDATASIZE</code> и <code>RETURNDATACOPY</code>. Добавляет поддержку возврата значений переменной длины внутри EVM с простым газовым зарядом и минимальными изменениями в вызывающих опкодах, используя новые опкоды <code>RETURNDATASIZE</code> и <code>RETURNDATACOPY</code>. Обработка аналогична существующей <code>calldata</code>, при которой после вызова возвращаемые данные сохраняются в виртуальном буфере, из которого вызывающая сторона может скопировать их (или их части) в память, а при следующем вызове буфер перезаписывается. </td></tr>
-<tr><td><a href="http://bit.ly/2OgV0Eb">EIP-214</a> </td><td> Новый опкод: <code>STATICCALL</code>. Разрешает не изменяющие состояние вызовы самого себя или других контрактов, запрещая любые изменения состояния во время вызова (и его подвызовов, если они есть), чтобы повысить безопасность смарт-контракта и гарантировать разработчикам, что ошибки реентерабельности не могут возникнуть в результате вызова. Вызывает дочерний контракт с флагом <code>STATIC</code>, установленным в <code>true</code> для выполнения дочернего контракта, вызывая исключение при любых попытках выполнить операции по изменению состояния внутри экземпляра выполнения, где <code>STATIC</code> равен <code>true</code>, и сбрасывает флаг после возвращения вызова.</td></tr>
-<tr><td><a href="http://bit.ly/2JssHlJ">EIP-225</a> </td><td> Rinkeby testnet, использующий доказательство полномочий, где блоки добываются только доверенными подписчиками. </td></tr>
-<tr><td><a href="http://bit.ly/2yPBavd">EIP-234</a></td><td> Добавить <code>blockHash</code> в опции фильтра JSON-RPC </td></tr>
-<tr><td><a href="http://bit.ly/2yKrBNM">EIP-615</a> </td><td> Подпрограммы и статические переходы для EVM </td></tr>
-<tr><td><a href="http://bit.ly/2AzGX99">EIP-616</a> </td><td> SIMD-операции для EVM </td></tr>
-<tr><td><a href="http://bit.ly/2qjYX1n">EIP-681</a> </td><td> Формат URL для транзакционных запросов </td></tr>
-<tr><td><a href="http://bit.ly/2OYgE5n">EIP-649</a> </td><td> Metropolis Задержка бомбы сложности и уменьшение награды за блок. Задержка Ледникового периода (он же Бомба сложности) на 1 год и снижение награды за блок с 5 до 3 эфиров. </td></tr>
-<tr><td><a href="http://bit.ly/2RoGCvH">EIP-658</a> </td><td> Встраивание кода статуса транзакции в квитанции. Находит и встраивает поле статуса, указывающее на состояние успеха или неудачи, в квитанции транзакции для вызывающих, так как больше нельзя считать, что транзакция не удалась, если и только если она израсходовала весь газ после введения опкода <code>REVERT</code> в EIP-140.</td></tr>
-<tr><td><a href="http://bit.ly/2Ogwpzs">EIP-706</a> </td><td> DEVp2p snappy compression </td></tr>
-<tr><td><a href="http://bit.ly/2AAkCIP">EIP-721</a> </td><td> ERC-721 Non-Fungible Token Standard. Стандартный API, позволяющий смарт-контрактам работать в качестве уникальных торгуемых нефункциональных токенов (NFT), которые можно отслеживать в стандартизированных кошельках и торговать на биржах как ценные активы, аналогично ERC20. CryptoKitties стал первой популярной реализацией цифрового NFT в экосистеме Ethereum.</td></tr>
-<tr><td> <a href="http://bit.ly/2qmuDmJ">EIP-758</a> </td><td> Подписки и фильтры для завершенных транзакций </td></tr>
-<tr><td> <a href="http://bit.ly/2RnqlHy">EIP-801</a> </td><td> ERC-801 Canary Standard </td></tr>
-<tr><td> <a href="http://bit.ly/2DdTKkf">EIP-827</a> </td><td> ERC827 Token Standard. Расширение стандартного интерфейса ERC20 для токенов с методами, позволяющими выполнять вызовы внутри +передача+ и утверждения. Этот стандарт предоставляет базовую функциональность для передачи токенов, а также позволяет одобрить токены, чтобы они могли быть потрачены другой третьей стороной на цепочке. Кроме того, он позволяет разработчику выполнять вызовы по переводам и утверждениям</td></tr>
-<tr><td> <a href="http://bit.ly/2Jq2hAM">EIP-930</a> </td><td> ERC930 Вечное хранение. Контракт ES (Eternal Storage) принадлежит адресу, который имеет права на запись. Хранилище является общедоступным, что означает, что все имеют права на чтение. Оно хранит данные в отображениях, используя одно отображение для каждого типа переменных. Использование этого контракта позволяет разработчику при необходимости легко перенести хранилище на другой контракт</td></tr>
+<div class="table-wrapper"><table><thead><tr><th>EIP/ERC #</th><th>Title/Description</th></tr></thead><tbody>
+<tr><td><a href="http://bit.ly/2OVq6qa">EIP-1</a></td><td>Цель и руководящие принципы EIP</td></tr>
+<tr><td><a href="http://bit.ly/2yJtTNa">EIP-2</a></td><td>Изменения, связанные с хард-форком</td></tr>
+<tr><td><a href="http://bit.ly/2Jrx93V">EIP-5</a></td><td>Gas Usage for <code>RETURN</code> and <code>CALL*</code></td></tr>
+<tr><td><a href="http://bit.ly/2OYbc2t">EIP-6</a></td><td>Renaming +SUICIDE+ Opcode</td></tr>
+<tr><td><a href="http://bit.ly/2JxdBeN">EIP-7</a></td><td><code>DELEGATECALL</code></td></tr>
+<tr><td><a href="http://bit.ly/2Q6Oly6">EIP-8</a></td><td>devp2p Forward Compatibility Requirements for Homestead</td></tr>
+<tr><td><a href="http://bit.ly/2CUf7WG">EIP-20</a></td><td>ERC-20 Token Standard. Describes standard functions a token contract may implement to allow DApps and wallets to handle tokens across multiple interfaces/DApps. Methods include: <code>totalSupply</code>, +balanceOf(address)+, <code>transfer</code>, <code>transferFrom</code>, <code>approve</code>, <code>allowance</code>. Events include: <code>Transfer</code> (triggered when tokens are transferred), pass:[<span class="keep-together"><code>Approval</code></span>] (triggered when <code>approve</code> is called).</td></tr>
+<tr><td><a href="http://bit.ly/2Q6R4YB">EIP-55</a></td><td>Кодирование адреса контрольной суммы в смешанном регистре</td></tr>
+<tr><td><a href="http://bit.ly/2OgE5la">EIP-86</a></td><td>Абстракция происхождения и подписи транзакций. Закладывает основу для "абстрагирования" безопасности аккаунта и позволяет пользователям создавать "контракты аккаунта", двигаясь к модели, в которой в долгосрочной перспективе все счета являются контрактами, которые могут оплачивать газ, и пользователи могут свободно определять свои собственные модели безопасности, которые выполняют любую желаемую проверку подписи и проверку nonce (вместо использования внутрипротокольного механизма, где ECDSA и схема nonce по умолчанию являются единственным "стандартным" способом защиты аккаунта, который в настоящее время жестко закодирован в обработке транзакций).</td></tr>
+<tr><td><a href="http://bit.ly/2QedSFC">EIP-96</a></td><td>Изменения корня блокхэша и состояния. Хранит блокхеши в состоянии, чтобы уменьшить сложность протокола и необходимость в сложных клиентских реализациях для обработки опкода <code>BLOCKHASH</code>. Расширяет диапазон того, как далеко назад может уходить проверка блокчейна, с побочным эффектом создания прямых связей между блоками с очень удаленными номерами блоков для более эффективной начальной синхронизации клиентов.</td></tr>
+<tr><td><a href="http://bit.ly/2AC05DM">EIP-100</a></td><td>Изменить настройку сложности на целевое среднее время блока и включение дядек.</td></tr>
+<tr><td><a href="http://bit.ly/2Jr1zDv">EIP-101</a></td><td>Валюта спокойствия и криптовалюта абстракции. Абстрагирует эфир на более высокий уровень, позволяя эфиру и субтокенам одинаково обращаться с контрактами, снижает уровень косвенности, необходимый для пользовательских политик, таких как мультисиги, и очищает основной протокол Ethereum, снижая минимальную сложность реализации консенсуса.</td></tr>
+<tr><td><a href="http://bit.ly/2Q5sdEv">EIP-105</a></td><td>Бинарный шардинг плюс семантика вызова контрактов. "Лесенка для шардинга" EIP, позволяющая распараллеливать транзакции Ethereum с помощью механизма шардинга двоичного дерева и создающая основу для последующей схемы шардинга. Исследования в процессе; см. https://github.com/ethereum/sharding[].</td></tr>
+<tr><td><a href="http://bit.ly/2yG2Dzi">EIP-137</a></td><td>Служба доменных имен Ethereum - спецификация</td></tr>
+<tr><td><a href="http://bit.ly/2yJtWZm">EIP-140</a></td><td>Новый опкод: +REVERT+. Добавляет опкод <code>REVERT</code>, который останавливает выполнение и откатывает изменения состояния выполнения EVM без потребления всего предоставленного газа (вместо этого контракт должен платить только за память) или потери логов, и возвращает вызывающей стороне указатель на участок памяти с кодом ошибки или сообщением.</td></tr>
+<tr><td><a href="http://bit.ly/2CQMXfe">EIP-141</a></td><td>Designated invalid EVM instruction</td></tr>
+<tr><td><a href="http://bit.ly/2qhKz9Y">EIP-145</a></td><td>Инструкции побитового сдвига в EVM</td></tr>
+<tr><td><a href="http://bit.ly/2qhxflQ">EIP-150</a></td><td>Изменение стоимости газа для операций с большим объемом ввода-вывода</td></tr>
+<tr><td><a href="http://bit.ly/2CQUgne">EIP-155</a></td><td>Простая защита от атаки повторного воспроизведения. Атака повторного воспроизведения позволяет любой транзакции, использующей узел или клиент Ethereum до EIP-155, стать подписанной, чтобы она была действительной и выполнялась как в цепочке Ethereum, так и в Ethereum Classic.</td></tr>
+<tr><td><a href="http://bit.ly/2JryBmT">EIP-158</a></td><td>Государственный клиринг</td></tr>
+<tr><td><a href="http://bit.ly/2CR6VGY">EIP-160</a></td><td>Увеличение стоимости EXP</td></tr>
+<tr><td><a href="http://bit.ly/2OfU96M">EIP-161</a></td><td>Расчистка тройки штатов (инвариантно-сохраняющая альтернатива)</td></tr>
+<tr><td><a href="http://bit.ly/2JxdKil">EIP-162</a></td><td>Начальный регистратор хэша ENS</td></tr>
+<tr><td><a href="http://bit.ly/2OgsOkO">EIP-165</a></td><td>Обнаружение стандартного интерфейса ERC-165</td></tr>
+<tr><td><a href="http://bit.ly/2OgCWu1">EIP-170</a></td><td>Ограничение размера кода контракта</td></tr>
+<tr><td><a href="http://bit.ly/2ERNv7g">EIP-181</a></td><td>Поддержка ENS для обратного разрешения адресов Ethereum</td></tr>
+<tr><td><a href="http://bit.ly/2P0wPz5">EIP-190</a></td><td>Стандарт упаковки смарт-контрактов Ethereum</td></tr>
+<tr><td><a href="http://bit.ly/2SwNQiz">EIP-196</a></td><td>Предварительно скомпилированные контракты для сложения и скалярного умножения на эллиптической кривой +alt_bn128+. Требуется для выполнения верификации zkSNARK в пределах лимита блочного газа.</td></tr>
+<tr><td><a href="http://bit.ly/2ETDC9a">EIP-197</a></td><td>Предварительно скомпилированные контракты для оптимальной проверки парности на эллиптической кривой +alt_bn128+. Объединен с EIP-196.</td></tr>
+<tr><td><a href="http://bit.ly/2DdTCRN">EIP-198</a></td><td>Большая целочисленная модульная экспоненция. Прекомпиляция, позволяющая проверять подпись RSA и другие криптографические приложения.</td></tr>
+<tr><td><a href="http://bit.ly/2qjYJr3">EIP-211</a></td><td>Новые опкоды: <code>RETURNDATASIZE</code> и <code>RETURNDATACOPY</code>. Добавляет поддержку возврата значений переменной длины внутри EVM с простым газовым зарядом и минимальными изменениями в вызывающих опкодах, используя новые опкоды <code>RETURNDATASIZE</code> и <code>RETURNDATACOPY</code>. Обработка аналогична существующей <code>calldata</code>, при которой после вызова возвращаемые данные сохраняются в виртуальном буфере, из которого вызывающая сторона может скопировать их (или их части) в память, а при следующем вызове буфер перезаписывается.</td></tr>
+<tr><td><a href="http://bit.ly/2OgV0Eb">EIP-214</a></td><td>Новый опкод: <code>STATICCALL</code>. Разрешает не изменяющие состояние вызовы самого себя или других контрактов, запрещая любые изменения состояния во время вызова (и его подвызовов, если они есть), чтобы повысить безопасность смарт-контракта и гарантировать разработчикам, что ошибки реентерабельности не могут возникнуть в результате вызова. Вызывает дочерний контракт с флагом <code>STATIC</code>, установленным в <code>true</code> для выполнения дочернего контракта, вызывая исключение при любых попытках выполнить операции по изменению состояния внутри экземпляра выполнения, где <code>STATIC</code> равен <code>true</code>, и сбрасывает флаг после возвращения вызова.</td></tr>
+<tr><td><a href="http://bit.ly/2JssHlJ">EIP-225</a></td><td>Rinkeby testnet, использующий доказательство полномочий, где блоки добываются только доверенными подписчиками.</td></tr>
+<tr><td><a href="http://bit.ly/2yPBavd">EIP-234</a></td><td>Добавить <code>blockHash</code> в опции фильтра JSON-RPC</td></tr>
+<tr><td><a href="http://bit.ly/2yKrBNM">EIP-615</a></td><td>Подпрограммы и статические переходы для EVM</td></tr>
+<tr><td><a href="http://bit.ly/2AzGX99">EIP-616</a></td><td>SIMD-операции для EVM</td></tr>
+<tr><td><a href="http://bit.ly/2qjYX1n">EIP-681</a></td><td>Формат URL для транзакционных запросов</td></tr>
+<tr><td><a href="http://bit.ly/2OYgE5n">EIP-649</a></td><td>Metropolis Задержка бомбы сложности и уменьшение награды за блок. Задержка Ледникового периода (он же Бомба сложности) на 1 год и снижение награды за блок с 5 до 3 эфиров.</td></tr>
+<tr><td><a href="http://bit.ly/2RoGCvH">EIP-658</a></td><td>Встраивание кода статуса транзакции в квитанции. Находит и встраивает поле статуса, указывающее на состояние успеха или неудачи, в квитанции транзакции для вызывающих, так как больше нельзя считать, что транзакция не удалась, если и только если она израсходовала весь газ после введения опкода <code>REVERT</code> в EIP-140.</td></tr>
+<tr><td><a href="http://bit.ly/2Ogwpzs">EIP-706</a></td><td>DEVp2p snappy compression</td></tr>
+<tr><td><a href="http://bit.ly/2AAkCIP">EIP-721</a></td><td>ERC-721 Non-Fungible Token Standard. Стандартный API, позволяющий смарт-контрактам работать в качестве уникальных торгуемых нефункциональных токенов (NFT), которые можно отслеживать в стандартизированных кошельках и торговать на биржах как ценные активы, аналогично ERC20. CryptoKitties стал первой популярной реализацией цифрового NFT в экосистеме Ethereum.</td></tr>
+<tr><td><a href="http://bit.ly/2qmuDmJ">EIP-758</a></td><td>Подписки и фильтры для завершенных транзакций</td></tr>
+<tr><td><a href="http://bit.ly/2RnqlHy">EIP-801</a></td><td>ERC-801 Canary Standard</td></tr>
+<tr><td><a href="http://bit.ly/2DdTKkf">EIP-827</a></td><td>ERC827 Token Standard. Расширение стандартного интерфейса ERC20 для токенов с методами, позволяющими выполнять вызовы внутри +передача+ и утверждения. Этот стандарт предоставляет базовую функциональность для передачи токенов, а также позволяет одобрить токены, чтобы они могли быть потрачены другой третьей стороной на цепочке. Кроме того, он позволяет разработчику выполнять вызовы по переводам и утверждениям</td></tr>
+<tr><td><a href="http://bit.ly/2Jq2hAM">EIP-930</a></td><td>ERC930 Вечное хранение. Контракт ES (Eternal Storage) принадлежит адресу, который имеет права на запись. Хранилище является общедоступным, что означает, что все имеют права на чтение. Оно хранит данные в отображениях, используя одно отображение для каждого типа переменных. Использование этого контракта позволяет разработчику при необходимости легко перенести хранилище на другой контракт</td></tr>
 </tbody></table>
+</div>
+                    </main>
 
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../kniga/консенсус.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../kniga/дополнение_3_коды_evm_и_gas.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
                 </div>
-
-                <!-- Mobile navigation buttons -->
-                
-                    <a rel="prev" href="./kniga/консенсус.html" class="mobile-nav-chapters previous" title="Previous chapter">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                
-
-                
-                    <a rel="next" href="./kniga/дополнение_3_коды_evm_и_gas.html" class="mobile-nav-chapters next" title="Next chapter">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                
-
             </div>
 
-            
-                <a href="./kniga/консенсус.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../kniga/консенсус.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-            
-                <a href="./kniga/дополнение_3_коды_evm_и_gas.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            
+                    <a rel="next prefetch" href="../kniga/дополнение_3_коды_evm_и_gas.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
 
         </div>
 
 
-        <!-- Local fallback for Font Awesome -->
+
+
         <script>
-            if ($(".fa").css("font-family") !== "FontAwesome") {
-                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
-            }
+            window.playground_copyable = true;
         </script>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        
 
-        
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
-        
+        <!-- Custom JS scripts -->
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
 
-        <!-- Custom JS script -->
-        
-
+    </div>
     </body>
 </html>

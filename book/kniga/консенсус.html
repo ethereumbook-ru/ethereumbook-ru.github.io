@@ -1,117 +1,204 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="ru" class="light" dir="ltr">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Консенсус - Осваиваем Ethereum - Mastering Ethereum</title>
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+
+        <!-- Custom HTML head -->
+        
         <meta name="description" content="Руководство по Ethereum и разработке смарт-контрактов">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
 
-        <base href="../">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
-        <link rel="stylesheet" href="book.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
-        <link rel="shortcut icon" href="favicon.png">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
-
-        <!-- Custom theme -->
-        
-
-        
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <!-- Fetch JQuery from CDN but have a local fallback -->
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-        <script>
-            if (typeof jQuery == 'undefined') {
-                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
-        <script src="store.js"></script>
+        <!-- Custom theme stylesheets -->
 
     </head>
-    <body class="light">
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme = store.get('mdbook-theme');
-            if (theme === null || theme === undefined) { theme = 'light'; }
-            $('body').removeClass().addClass(theme);
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var sidebar = store.get('mdbook-sidebar');
-            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
-            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
-        <div id="sidebar" class="sidebar">
-            <ul class="chapter"><li class="affix"><a href="./1_предисловие.html">Предисловие</a></li><li class="affix"><a href="./2_глоссарий.html">Глоссарий</a></li><li><a href="./kniga/что_такое_ethereum.html"><strong>1.</strong> Что такое Ethereum?</a></li><li><a href="./kniga/введение.html"><strong>2.</strong> Введение</a></li><li><a href="./kniga/клиенты.html"><strong>3.</strong> Клиенты</a></li><li><a href="./kniga/ключи_и_адреса.html"><strong>4.</strong> Ключи и адреса</a></li><li><a href="./kniga/кошельки.html"><strong>5.</strong> Кошельки</a></li><li><a href="./kniga/транзакции.html"><strong>6.</strong> Транзакции</a></li><li><ul class="section"><li><a href="./kniga/tx/structure.html"><strong>6.1.</strong> Структура_транзакции</a></li><li><a href="./kniga/tx/nonce.html"><strong>6.2.</strong> Nonce транзакции</a></li><li><a href="./kniga/tx/gas.html"><strong>6.3.</strong> Топливо (Gas)</a></li><li><a href="./kniga/tx/recipient.html"><strong>6.4.</strong> Получатель</a></li><li><a href="./kniga/tx/value_data.html"><strong>6.5.</strong> Value и Data</a></li><li><a href="./kniga/tx/create_contract_tx.html"><strong>6.6.</strong> Тразакция создания контракта</a></li><li><a href="./kniga/tx/digital_signatures.html"><strong>6.7.</strong> Цифровые подписи</a></li><li><a href="./kniga/tx/sign_prifix_value.html"><strong>6.8.</strong> Восстановление открытого ключа</a></li><li><a href="./kniga/tx/sign_transmission.html"><strong>6.9.</strong> Раздельное подписание и передача</a></li><li><a href="./kniga/tx/tx_propagation.html"><strong>6.10.</strong> Распространение транзакций</a></li><li><a href="./kniga/tx/recording_on_blockchain.html"><strong>6.11.</strong> Запись в блокчейне</a></li><li><a href="./kniga/tx/multisig.html"><strong>6.12.</strong> Мультиподпись</a></li></ul></li><li><a href="./kniga/смарт_контракты_на_solidity.html"><strong>7.</strong> Смарт-контракты на Solidity</a></li><li><strong>8.</strong> Смарт-контракты на Vyper</li><li><a href="./kniga/безопаность_смарт_контрактов.html"><strong>9.</strong> Безопаность смарт-контрактов</a></li><li><a href="./kniga/токены.html"><strong>10.</strong> Токены</a></li><li><a href="./kniga/оракулы.html"><strong>11.</strong> Оракулы</a></li><li><a href="./kniga/децентрализованные_приложения.html"><strong>12.</strong> Децентрализованные приложения</a></li><li><a href="./kniga/виртуальная_машина_ethereum.html"><strong>13.</strong> Виртуальная машина Ethereum</a></li><li><a href="./kniga/консенсус.html" class="active"><strong>14.</strong> Консенсус</a></li><li><strong>15.</strong> Доп 1. История ветвлений</li><li><a href="./kniga/дополнение_2_стандарты_eip_erc.html"><strong>16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li><a href="./kniga/дополнение_3_коды_evm_и_gas.html"><strong>17.</strong> Доп 3. Коды EVM и газ</a></li><li><a href="./kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong>18.</strong> Доп 4. Инструменты разработчика</a></li><li><a href="./kniga/дополнение_5_руководство_по_web3js.html"><strong>19.</strong> Доп 5. Руководство по web3js</a></li><li class="spacer"></li><li class="affix"><a href="./support.html">Поддержка проекта</a></li></ul>
-        </div>
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../1_предисловие.html">Предисловие</a></li><li class="chapter-item expanded affix "><a href="../2_глоссарий.html">Глоссарий</a></li><li class="chapter-item expanded affix "><li class="part-title">Книга</li><li class="chapter-item expanded "><a href="../kniga/что_такое_ethereum.html"><strong aria-hidden="true">1.</strong> Что такое Ethereum?</a></li><li class="chapter-item expanded "><a href="../kniga/введение.html"><strong aria-hidden="true">2.</strong> Введение</a></li><li class="chapter-item expanded "><a href="../kniga/клиенты.html"><strong aria-hidden="true">3.</strong> Клиенты</a></li><li class="chapter-item expanded "><a href="../kniga/ключи_и_адреса.html"><strong aria-hidden="true">4.</strong> Ключи и адреса</a></li><li class="chapter-item expanded "><a href="../kniga/кошельки.html"><strong aria-hidden="true">5.</strong> Кошельки</a></li><li class="chapter-item expanded "><a href="../kniga/транзакции.html"><strong aria-hidden="true">6.</strong> Транзакции</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../kniga/tx/structure.html"><strong aria-hidden="true">6.1.</strong> Структура_транзакции</a></li><li class="chapter-item expanded "><a href="../kniga/tx/nonce.html"><strong aria-hidden="true">6.2.</strong> Nonce транзакции</a></li><li class="chapter-item expanded "><a href="../kniga/tx/gas.html"><strong aria-hidden="true">6.3.</strong> Топливо (Gas)</a></li><li class="chapter-item expanded "><a href="../kniga/tx/recipient.html"><strong aria-hidden="true">6.4.</strong> Получатель</a></li><li class="chapter-item expanded "><a href="../kniga/tx/value_data.html"><strong aria-hidden="true">6.5.</strong> Value и Data</a></li><li class="chapter-item expanded "><a href="../kniga/tx/create_contract_tx.html"><strong aria-hidden="true">6.6.</strong> Тразакция создания контракта</a></li><li class="chapter-item expanded "><a href="../kniga/tx/digital_signatures.html"><strong aria-hidden="true">6.7.</strong> Цифровые подписи</a></li><li class="chapter-item expanded "><a href="../kniga/tx/sign_prifix_value.html"><strong aria-hidden="true">6.8.</strong> Восстановление открытого ключа</a></li><li class="chapter-item expanded "><a href="../kniga/tx/sign_transmission.html"><strong aria-hidden="true">6.9.</strong> Раздельное подписание и передача</a></li><li class="chapter-item expanded "><a href="../kniga/tx/tx_propagation.html"><strong aria-hidden="true">6.10.</strong> Распространение транзакций</a></li><li class="chapter-item expanded "><a href="../kniga/tx/recording_on_blockchain.html"><strong aria-hidden="true">6.11.</strong> Запись в блокчейне</a></li><li class="chapter-item expanded "><a href="../kniga/tx/multisig.html"><strong aria-hidden="true">6.12.</strong> Мультиподпись</a></li></ol></li><li class="chapter-item expanded "><a href="../kniga/смарт_контракты_на_solidity.html"><strong aria-hidden="true">7.</strong> Смарт-контракты на Solidity</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Смарт-контракты на Vyper</div></li><li class="chapter-item expanded "><a href="../kniga/безопаность_смарт_контрактов.html"><strong aria-hidden="true">9.</strong> Безопаность смарт-контрактов</a></li><li class="chapter-item expanded "><a href="../kniga/токены.html"><strong aria-hidden="true">10.</strong> Токены</a></li><li class="chapter-item expanded "><a href="../kniga/оракулы.html"><strong aria-hidden="true">11.</strong> Оракулы</a></li><li class="chapter-item expanded "><a href="../kniga/децентрализованные_приложения.html"><strong aria-hidden="true">12.</strong> Децентрализованные приложения</a></li><li class="chapter-item expanded "><a href="../kniga/виртуальная_машина_ethereum.html"><strong aria-hidden="true">13.</strong> Виртуальная машина Ethereum</a></li><li class="chapter-item expanded "><a href="../kniga/консенсус.html" class="active"><strong aria-hidden="true">14.</strong> Консенсус</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Доп 1. История ветвлений</div></li><li class="chapter-item expanded "><a href="../kniga/дополнение_2_стандарты_eip_erc.html"><strong aria-hidden="true">16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li class="chapter-item expanded "><a href="../kniga/дополнение_3_коды_evm_и_gas.html"><strong aria-hidden="true">17.</strong> Доп 3. Коды EVM и газ</a></li><li class="chapter-item expanded "><a href="../kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong aria-hidden="true">18.</strong> Доп 4. Инструменты разработчика</a></li><li class="chapter-item expanded "><a href="../kniga//дополнение_5_руководство_по_web3js.html"><strong aria-hidden="true">19.</strong> Доп 5. Руководство по web3js</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../support.html">Поддержка проекта</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
-            <div class="page" tabindex="-1">
-                
-                <div id="menu-bar" class="menu-bar">
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
-                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
                     </div>
 
                     <h1 class="menu-title">Осваиваем Ethereum - Mastering Ethereum</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html">
-                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
                         </a>
+
                     </div>
                 </div>
 
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
                 <div id="content" class="content">
-                    <a class="header" href="./kniga/консенсус.html#Консенсус" id="Консенсус"><h1>Консенсус</h1></a>
-<p>На протяжении всей этой книги мы говорили о &quot;правилах консенсуса&quot; - правилах, с которыми все узлы должны согласиться, чтобы система работала децентрализованно, но детерминированно. В компьютерной науке термин &quot;консенсус&quot; появился еще до блокчейн и связан с более широкой проблемой синхронизации состояния в распределенных системах, когда различные участники распределенной системы соглашаются (в конечном итоге)  с единым общесистемным состоянием. Это называется &quot;достижением консенсуса&quot;.</p>
+                    <main>
+                        <h1 id="Консенсус"><a class="header" href="#Консенсус">Консенсус</a></h1>
+<p>На протяжении всей этой книги мы говорили о "правилах консенсуса" - правилах, с которыми все узлы должны согласиться, чтобы система работала децентрализованно, но детерминированно. В компьютерной науке термин "консенсус" появился еще до блокчейн и связан с более широкой проблемой синхронизации состояния в распределенных системах, когда различные участники распределенной системы соглашаются (в конечном итоге)  с единым общесистемным состоянием. Это называется "достижением консенсуса".</p>
 <p>Когда дело доходит до основной функции децентрализованного ведения записей и проверки, может стать проблематичным полагаться только на доверие к участникам, чтобы гарантировать, что информация, полученная из обновлений состояния, верна. Эта проблема особенно ярко проявляется в децентрализованных сетях, поскольку нет центрального органа, который бы решал, что является правдой. Отсутствие центрального органа, принимающего решения, является одной из главных привлекательных черт блокчейн-платформ, поскольку в результате они способны противостоять цензуре и не зависят от авторитетов в вопросах получения разрешения на доступ к информации. Однако за эти преимущества приходится платить: без доверенного стоооны любые разногласия или обманы должны быть урегулированы иными способами. Алгоритмы консенсуса - это механизм, используемый для безопасного и децентрализованного согласования.</p>
-<p>В блокчейн консенсус является важнейшим свойством системы. Поэтому в контексте блокчейн консенсус - это возможность прийти к общему состоянию, сохраняя при этом децентрализацию. Другими словами, консенсус призван создать систему строгих правил без управляющих. В ней нет одного человека, организации или группы &quot;во главе&quot;; власть и контроль распределены между широкой сетью участников, чьи собственные интересы удовлетворяются соблюдением правил и честным поведением.</p>
+<p>В блокчейн консенсус является важнейшим свойством системы. Поэтому в контексте блокчейн консенсус - это возможность прийти к общему состоянию, сохраняя при этом децентрализацию. Другими словами, консенсус призван создать систему строгих правил без управляющих. В ней нет одного человека, организации или группы "во главе"; власть и контроль распределены между широкой сетью участников, чьи собственные интересы удовлетворяются соблюдением правил и честным поведением.</p>
 <p>Способность прийти к консенсусу в распределенной сети, в неблагоприятных условиях, без централизованного контроля является основным принципом всех открытых публичных блокчейнов. Чтобы решить эту проблему и сохранить ценное свойство децентрализации, сообщество продолжает экспериментировать с различными моделями консенсуса. В этой главе рассматриваются эти модели консенсуса и их ожидаемое влияние на блокчейн.</p>
 <p><strong>Примечание:</strong> Хотя алгоритмы консенсуса являются важной частью работы блокчейн, они работают на фундаментальном уровне, гораздо ниже абстракции смарт-контрактов. Другими словами, большинство деталей консенсуса скрыты от разработчиков смарт-контрактов. Для использования Ethereum вам не нужно знать, как они работают, так же как для использования Интернета вам нужно знать, как работает маршрутизация.</p>
-<a class="header" href="./kniga/консенсус.html#Консенсус-через-proof-of-work" id="Консенсус-через-proof-of-work"><h2>Консенсус через Proof of Work</h2></a>
-<p>Создатель оригинального блокчейна Bitcoin изобрел алгоритм консенсуса под названием &quot;доказательство работы&quot; (PoW). Пожалуй, PoW является самым важным изобретением, лежащим в основе Биткойна. Разговорный термин для PoW - &quot;майнинг&quot;, что создает неверное представление о главной цели консенсуса. Часто люди полагают, что целью майнинга является создание новой валюты, поскольку в реальном мире целью майнинга является добыча драгоценных металлов или других ресурсов. Напротив, реальная цель майнинга (и всех других моделей консенсуса) - обеспечить безопасность блокчейна, сохраняя контроль над системой децентрализованным и распределенным между максимально возможным количеством участников. Вознаграждение в виде вновь добытой валюты - это стимул для тех, кто вносит свой вклад в безопасность системы: средство достижения цели. В этом смысле вознаграждение - это средство, а децентрализованная безопасность - цель. При консенсусе PoW существует также соответствующее &quot;наказание&quot;, которое представляет собой стоимость энергии, необходимой для участия в майнинге. Если участники не следуют правилам и не получают вознаграждение, они рискуют средствами, которые они уже потратили на электроэнергию для майнинга. Таким образом, консенсус PoW - это тщательный баланс риска и вознаграждения, который побуждает участников вести себя честно, исходя из собственных интересов.</p>
+<h2 id="Консенсус-через-proof-of-work"><a class="header" href="#Консенсус-через-proof-of-work">Консенсус через Proof of Work</a></h2>
+<p>Создатель оригинального блокчейна Bitcoin изобрел алгоритм консенсуса под названием "доказательство работы" (PoW). Пожалуй, PoW является самым важным изобретением, лежащим в основе Биткойна. Разговорный термин для PoW - "майнинг", что создает неверное представление о главной цели консенсуса. Часто люди полагают, что целью майнинга является создание новой валюты, поскольку в реальном мире целью майнинга является добыча драгоценных металлов или других ресурсов. Напротив, реальная цель майнинга (и всех других моделей консенсуса) - обеспечить безопасность блокчейна, сохраняя контроль над системой децентрализованным и распределенным между максимально возможным количеством участников. Вознаграждение в виде вновь добытой валюты - это стимул для тех, кто вносит свой вклад в безопасность системы: средство достижения цели. В этом смысле вознаграждение - это средство, а децентрализованная безопасность - цель. При консенсусе PoW существует также соответствующее "наказание", которое представляет собой стоимость энергии, необходимой для участия в майнинге. Если участники не следуют правилам и не получают вознаграждение, они рискуют средствами, которые они уже потратили на электроэнергию для майнинга. Таким образом, консенсус PoW - это тщательный баланс риска и вознаграждения, который побуждает участников вести себя честно, исходя из собственных интересов.</p>
 <p>В настоящее время Ethereum является блокчейном PoW, поскольку в нем используется алгоритм PoW с той же базовой системой поощрений для достижения той же основной цели: обеспечения безопасности блокчейна при децентрализации управления. Алгоритм PoW в Ethereum немного отличается от алгоритма Биткойна и называется Ethash. Мы рассмотрим функции и конструктивные особенности алгоритма в Ethash: Ethereum's Proof-of-Work Algorithm.</p>
 <p>Ethereum также рассматривает возможность перехода на ProgPOW, более устойчивый к ASIC алгоритм PoW, который на момент написания статьи все еще находится в стадии разработки.</p>
-<a class="header" href="./kniga/консенсус.html#Консенсус-через-proof-of-stake-pos" id="Консенсус-через-proof-of-stake-pos"><h2>Консенсус через Proof of Stake (PoS)</h2></a>
-<p>Исторически доказательство работы не было первым предложенным алгоритмом консенсуса. До появления доказательства работы многие исследователи предлагали варианты алгоритмов консенсуса на основе финансовых ставок, которые сейчас называются доказательством ставки (PoS). В некоторых отношениях доказательство работы было изобретено как альтернатива доказательству ставки. После успеха Биткойна многие блокчейны подражали доказательству работы. Однако бурное развитие исследований алгоритмов консенсуса также воскресило доказательство доли, значительно продвинув состояние технологии. С самого начала основатели Ethereum надеялись в конечном итоге перевести алгоритм консенсуса на доказательство доли. На самом деле, в алгоритме доказательства работы Ethereum существует преднамеренное препятствие под названием &quot;бомба сложности&quot;, предназначенное для того, чтобы постепенно сделать добычу Ethereum с помощью алгоритма доказательства работы все более и более сложной, тем самым вынуждая перейти к алгоритму доказательства доли.</p>
+<h2 id="Консенсус-через-proof-of-stake-pos"><a class="header" href="#Консенсус-через-proof-of-stake-pos">Консенсус через Proof of Stake (PoS)</a></h2>
+<p>Исторически доказательство работы не было первым предложенным алгоритмом консенсуса. До появления доказательства работы многие исследователи предлагали варианты алгоритмов консенсуса на основе финансовых ставок, которые сейчас называются доказательством ставки (PoS). В некоторых отношениях доказательство работы было изобретено как альтернатива доказательству ставки. После успеха Биткойна многие блокчейны подражали доказательству работы. Однако бурное развитие исследований алгоритмов консенсуса также воскресило доказательство доли, значительно продвинув состояние технологии. С самого начала основатели Ethereum надеялись в конечном итоге перевести алгоритм консенсуса на доказательство доли. На самом деле, в алгоритме доказательства работы Ethereum существует преднамеренное препятствие под названием "бомба сложности", предназначенное для того, чтобы постепенно сделать добычу Ethereum с помощью алгоритма доказательства работы все более и более сложной, тем самым вынуждая перейти к алгоритму доказательства доли.</p>
 <p>На момент публикации этой книги Ethereum все еще использует доказательство работы, но текущие исследования по созданию альтернативы доказательству ставки близки к завершению. Планируемый алгоритм PoS в Ethereum называется Casper. Внедрение Casper в качестве замены Ethash откладывалось несколько раз за последние два года, что требовало вмешательства, чтобы обезвредить бомбу сложности и отсрочить вынужденное устаревание доказательства работы.</p>
-<p>В целом, алгоритм PoS работает следующим образом. Блокчейн отслеживает набор валидаторов, и каждый, кто владеет базовой криптовалютой блокчейна (в случае Ethereum - эфиром), может стать валидатором, отправив транзакцию особого типа, которая фиксирует его эфир в депозит. Валидаторы по очереди предлагают и голосуют за следующий действительный блок, причем вес голоса каждого валидатора зависит от размера его депозита (т.е. ставки). Важно отметить, что валидатор рискует потерять свой депозит, т.е. &quot;быть зарезанным&quot;, если блок, на который он сделал ставку, будет отвергнут большинством валидаторов. И наоборот, валидаторы зарабатывают небольшое вознаграждение, пропорциональное их вкладу, за каждый блок, который принимается большинством. Таким образом, PoS заставляет валидаторов действовать честно и следовать правилам консенсуса, используя систему поощрений и наказаний. Основное различие между PoS и PoW заключается в том, что наказание в PoS является внутренним для блокчейна (например, потеря поставленного эфира), в то время как в PoW наказание является внешним (например, потеря средств, потраченных на электроэнергию).</p>
-<a class="header" href="./kniga/консенсус.html#ethash-Алгоритм-доказательства-работы-в-ethereum" id="ethash-Алгоритм-доказательства-работы-в-ethereum"><h2>Ethash: Алгоритм доказательства работы в Ethereum</h2></a>
-<p>Ethash - это алгоритм PoW для Ethereum. Он использует эволюцию алгоритма Dagger-Hashimoto, который представляет собой комбинацию алгоритма Dagger Виталика Бутерина и алгоритма Hashimoto Таддеуса Дриджа. Ethash зависит от генерации и анализа большого набора данных, известного как направленный ациклический граф (или, проще говоря, &quot;DAG&quot;). Начальный размер DAG составляет около 1 ГБ, и он будет продолжать медленно и линейно увеличиваться в размере, обновляясь раз в эпоху (30 000 блоков, или примерно 125 часов).</p>
-<p>Цель DAG - сделать алгоритм Ethash PoW зависимым от поддержания большой, часто доступной структуры данных. Это, в свою очередь, призвано сделать Ethash &quot;устойчивым к ASIC&quot;, что означает, что сложнее сделать оборудование для майнинга на основе специализированных интегральных схем (ASIC), которое на порядки быстрее быстрого графического процессора (GPU). Создатели Ethereum хотели избежать централизации в майнинге PoW, когда те, кто имеет доступ к специализированным фабрикам по производству кремния и большие бюджеты, могли бы доминировать в инфраструктуре майнинга и подорвать безопасность алгоритма консенсуса.</p>
+<p>В целом, алгоритм PoS работает следующим образом. Блокчейн отслеживает набор валидаторов, и каждый, кто владеет базовой криптовалютой блокчейна (в случае Ethereum - эфиром), может стать валидатором, отправив транзакцию особого типа, которая фиксирует его эфир в депозит. Валидаторы по очереди предлагают и голосуют за следующий действительный блок, причем вес голоса каждого валидатора зависит от размера его депозита (т.е. ставки). Важно отметить, что валидатор рискует потерять свой депозит, т.е. "быть зарезанным", если блок, на который он сделал ставку, будет отвергнут большинством валидаторов. И наоборот, валидаторы зарабатывают небольшое вознаграждение, пропорциональное их вкладу, за каждый блок, который принимается большинством. Таким образом, PoS заставляет валидаторов действовать честно и следовать правилам консенсуса, используя систему поощрений и наказаний. Основное различие между PoS и PoW заключается в том, что наказание в PoS является внутренним для блокчейна (например, потеря поставленного эфира), в то время как в PoW наказание является внешним (например, потеря средств, потраченных на электроэнергию).</p>
+<h2 id="ethash-Алгоритм-доказательства-работы-в-ethereum"><a class="header" href="#ethash-Алгоритм-доказательства-работы-в-ethereum">Ethash: Алгоритм доказательства работы в Ethereum</a></h2>
+<p>Ethash - это алгоритм PoW для Ethereum. Он использует эволюцию алгоритма Dagger-Hashimoto, который представляет собой комбинацию алгоритма Dagger Виталика Бутерина и алгоритма Hashimoto Таддеуса Дриджа. Ethash зависит от генерации и анализа большого набора данных, известного как направленный ациклический граф (или, проще говоря, "DAG"). Начальный размер DAG составляет около 1 ГБ, и он будет продолжать медленно и линейно увеличиваться в размере, обновляясь раз в эпоху (30 000 блоков, или примерно 125 часов).</p>
+<p>Цель DAG - сделать алгоритм Ethash PoW зависимым от поддержания большой, часто доступной структуры данных. Это, в свою очередь, призвано сделать Ethash "устойчивым к ASIC", что означает, что сложнее сделать оборудование для майнинга на основе специализированных интегральных схем (ASIC), которое на порядки быстрее быстрого графического процессора (GPU). Создатели Ethereum хотели избежать централизации в майнинге PoW, когда те, кто имеет доступ к специализированным фабрикам по производству кремния и большие бюджеты, могли бы доминировать в инфраструктуре майнинга и подорвать безопасность алгоритма консенсуса.</p>
 <p>Использование графических процессоров потребительского уровня для проведения PoW в сети Ethereum означает, что в процессе майнинга может участвовать больше людей по всему миру. Чем больше независимых майнеров, тем более децентрализована мощность майнинга, а значит, мы сможем избежать ситуации, подобной той, что сложилась в Биткойне, где большая часть мощности майнинга сосредоточена в руках нескольких крупных промышленных майнеров. Недостатком использования графических процессоров для майнинга является то, что это вызвало всемирный дефицит графических процессоров в 2017 году, что привело к резкому росту их цены и возмущению геймеров. Это привело к ограничениям на покупку в розничной торговле, ограничивая покупателей одним или двумя GPU на одного покупателя.</p>
 <p>До недавнего времени угроза ASIC-майнеров для сети Ethereum практически не существовала. Использование ASIC для Ethereum требует разработки, производства и распространения высокоспециализированного оборудования. Их производство требует значительных затрат времени и денег. Давно озвученные планы разработчиков Ethereum перейти на алгоритм консенсуса PoS, вероятно, долгое время удерживали поставщиков ASIC от ориентации на сеть Ethereum. Как только Ethereum перейдет на PoS, ASIC, разработанные для алгоритма PoW, станут бесполезными - если только майнеры не смогут использовать их для добычи других криптовалют. Последняя возможность стала реальностью с появлением ряда других консенсусных монет на основе Ethash, таких как PIRL и Ubiq, а Ethereum Classic пообещал оставаться блокчейном PoW в обозримом будущем. Это означает, что мы, скорее всего, увидим, как ASIC-майнинг начнет становиться силой в сети Ethereum, пока она все еще работает на консенсусе PoW.</p>
-<a class="header" href="./kniga/консенсус.html#casper-Алгоритм-доказательного-залога-ethereum" id="casper-Алгоритм-доказательного-залога-ethereum"><h2>Casper: Алгоритм доказательного залога Ethereum</h2></a>
-<p>Casper - это предложенное название алгоритма консенсуса PoS в Ethereum. Он все еще находится в стадии активных исследований и разработок и на момент публикации этой книги не реализован в блокчейне Ethereum. Casper разрабатывается в двух конкурирующих &quot;вкусах&quot;:</p>
+<h2 id="casper-Алгоритм-доказательного-залога-ethereum"><a class="header" href="#casper-Алгоритм-доказательного-залога-ethereum">Casper: Алгоритм доказательного залога Ethereum</a></h2>
+<p>Casper - это предложенное название алгоритма консенсуса PoS в Ethereum. Он все еще находится в стадии активных исследований и разработок и на момент публикации этой книги не реализован в блокчейне Ethereum. Casper разрабатывается в двух конкурирующих "вкусах":</p>
 <ul>
-<li>Casper FFG: &quot;Дружественный гаджет финальности&quot;</li>
-<li>Casper CBC: &quot;Дружелюбный призрак/Коррекция строительства&quot;</li>
+<li>Casper FFG: "Дружественный гаджет финальности"</li>
+<li>Casper CBC: "Дружелюбный призрак/Коррекция строительства"</li>
 </ul>
-<p>Первоначально Casper FFG был предложен как гибридный PoW/PoS алгоритм, который должен был быть реализован в качестве перехода к более постоянному &quot;чистому PoS&quot; алгоритму. Но в июне 2018 года Виталик Бутерин, руководивший исследовательской работой над Casper FFG, решил &quot;списать&quot; гибридную модель в пользу чистого PoS-алгоритма. Сейчас Casper FFG и Casper CBC разрабатываются параллельно. Как объясняет Виталик:</p>
+<p>Первоначально Casper FFG был предложен как гибридный PoW/PoS алгоритм, который должен был быть реализован в качестве перехода к более постоянному "чистому PoS" алгоритму. Но в июне 2018 года Виталик Бутерин, руководивший исследовательской работой над Casper FFG, решил "списать" гибридную модель в пользу чистого PoS-алгоритма. Сейчас Casper FFG и Casper CBC разрабатываются параллельно. Как объясняет Виталик:</p>
 <blockquote>
 <p>Основной компромисс между FFG и CBC заключается в том, что CBC, похоже, имеет более приятные теоретические свойства, но FFG, похоже, легче реализовать.</p>
 </blockquote>
@@ -124,7 +211,7 @@
 <li><a href="https://medium.com/@Vlad_Zamfir/the-history-of-casper-chapter-4-3855638b5f0e">История Каспера, часть 4</a></li>
 <li><a href="https://medium.com/@Vlad_Zamfir/the-history-of-casper-chapter-5-8652959cef58">История Каспера, часть 5</a></li>
 </ul>
-<a class="header" href="./kniga/консенсус.html#Принципы-консенсуса" id="Принципы-консенсуса"><h2>Принципы консенсуса</h2></a>
+<h2 id="Принципы-консенсуса"><a class="header" href="#Принципы-консенсуса">Принципы консенсуса</a></h2>
 <p>Принципы и предположения алгоритмов консенсуса можно более четко понять, задав несколько ключевых вопросов:</p>
 <ul>
 <li>Кто и как может изменить прошлое? (Это также известно как неизменность).</li>
@@ -134,66 +221,61 @@
 <li>Кто и как узнает, что что-то изменилось?</li>
 </ul>
 <p>Алгоритмы консенсуса быстро развиваются, пытаясь ответить на эти вопросы все более инновационными способами.</p>
-<a class="header" href="./kniga/консенсус.html#Противоречия-и-конкуренция" id="Противоречия-и-конкуренция"><h2>Противоречия и конкуренция</h2></a>
-<p>В этот момент вы можете задаться вопросом: Почему нам нужно так много различных алгоритмов консенсуса? Какой из них работает лучше? Ответ на последний вопрос находится в центре самой захватывающей области исследований в распределенных системах за последнее десятилетие. Все сводится к тому, что вы считаете &quot;лучше&quot; - что в контексте компьютерной науки связано с предположениями, целями и неизбежными компромиссами.</p>
-<p>Вполне вероятно, что ни один алгоритм не может оптимизировать все аспекты проблемы децентрализованного консенсуса. Когда кто-то говорит, что один алгоритм консенсуса &quot;лучше&quot; других, вы должны начать задавать уточняющие вопросы: лучше в чем? Неизменность, окончательность, децентрализация, стоимость? На эти вопросы нет четкого ответа, по крайней мере, пока. Более того, разработка алгоритмов консенсуса находится в центре многомиллиардной индустрии и вызывает огромные разногласия и жаркие споры. В конце концов, &quot;правильного&quot; ответа может и не быть, так же как и разных ответов для разных приложений.</p>
+<h2 id="Противоречия-и-конкуренция"><a class="header" href="#Противоречия-и-конкуренция">Противоречия и конкуренция</a></h2>
+<p>В этот момент вы можете задаться вопросом: Почему нам нужно так много различных алгоритмов консенсуса? Какой из них работает лучше? Ответ на последний вопрос находится в центре самой захватывающей области исследований в распределенных системах за последнее десятилетие. Все сводится к тому, что вы считаете "лучше" - что в контексте компьютерной науки связано с предположениями, целями и неизбежными компромиссами.</p>
+<p>Вполне вероятно, что ни один алгоритм не может оптимизировать все аспекты проблемы децентрализованного консенсуса. Когда кто-то говорит, что один алгоритм консенсуса "лучше" других, вы должны начать задавать уточняющие вопросы: лучше в чем? Неизменность, окончательность, децентрализация, стоимость? На эти вопросы нет четкого ответа, по крайней мере, пока. Более того, разработка алгоритмов консенсуса находится в центре многомиллиардной индустрии и вызывает огромные разногласия и жаркие споры. В конце концов, "правильного" ответа может и не быть, так же как и разных ответов для разных приложений.</p>
 <p>Вся индустрия блокчейна - это один гигантский эксперимент, в котором эти вопросы будут проверяться в состязательных условиях, причем на кону будет стоять огромная денежная стоимость. В конце концов, история даст ответ на эти споры.</p>
-<a class="header" href="./kniga/консенсус.html#Выводы" id="Выводы"><h2>Выводы</h2></a>
-<p>Алгоритм консенсуса Ethereum все еще находится в процессе разработки на момент завершения этой книги. В одном из следующих изданий мы, вероятно, добавим более подробную информацию о Casper и других связанных с ним технологиях по мере их развития и внедрения в Ethereum. Эта глава представляет собой конец нашего путешествия, завершающего &quot;Освоение Ethereum&quot;. Дополнительные справочные материалы приведены в приложениях. Спасибо, что прочитали эту книгу, и поздравляем вас с завершением!</p>
+<h2 id="Выводы"><a class="header" href="#Выводы">Выводы</a></h2>
+<p>Алгоритм консенсуса Ethereum все еще находится в процессе разработки на момент завершения этой книги. В одном из следующих изданий мы, вероятно, добавим более подробную информацию о Casper и других связанных с ним технологиях по мере их развития и внедрения в Ethereum. Эта глава представляет собой конец нашего путешествия, завершающего "Освоение Ethereum". Дополнительные справочные материалы приведены в приложениях. Спасибо, что прочитали эту книгу, и поздравляем вас с завершением!</p>
 
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../kniga/виртуальная_машина_ethereum.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../kniga/дополнение_2_стандарты_eip_erc.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
                 </div>
-
-                <!-- Mobile navigation buttons -->
-                
-                    <a rel="prev" href="./kniga/виртуальная_машина_ethereum.html" class="mobile-nav-chapters previous" title="Previous chapter">
-                        <i class="fa fa-angle-left"></i>
-                    </a>
-                
-
-                
-                    <a rel="next" href="./kniga/дополнение_2_стандарты_eip_erc.html" class="mobile-nav-chapters next" title="Next chapter">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
-                
-
             </div>
 
-            
-                <a href="./kniga/виртуальная_машина_ethereum.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-            
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../kniga/виртуальная_машина_ethereum.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-            
-                <a href="./kniga/дополнение_2_стандарты_eip_erc.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-            
+                    <a rel="next prefetch" href="../kniga/дополнение_2_стандарты_eip_erc.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
 
         </div>
 
 
-        <!-- Local fallback for Font Awesome -->
+
+
         <script>
-            if ($(".fa").css("font-family") !== "FontAwesome") {
-                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
-            }
+            window.playground_copyable = true;
         </script>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        
 
-        
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
-        
+        <!-- Custom JS scripts -->
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
 
-        <!-- Custom JS script -->
-        
-
+    </div>
     </body>
 </html>
