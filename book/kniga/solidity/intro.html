@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Ввдение - Осваиваем Ethereum - Mastering Ethereum</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Руководство по Ethereum и разработке смарт-контрактов">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../1_предисловие.html">Предисловие</a></li><li class="chapter-item expanded affix "><a href="../../2_глоссарий.html">Глоссарий</a></li><li class="chapter-item expanded affix "><li class="part-title">Книга</li><li class="chapter-item expanded "><a href="../../kniga/что_такое_ethereum.html"><strong aria-hidden="true">1.</strong> Что такое Ethereum?</a></li><li class="chapter-item expanded "><a href="../../kniga/введение.html"><strong aria-hidden="true">2.</strong> Введение</a></li><li class="chapter-item expanded "><a href="../../kniga/клиенты.html"><strong aria-hidden="true">3.</strong> Клиенты</a></li><li class="chapter-item expanded "><a href="../../kniga/ключи_и_адреса.html"><strong aria-hidden="true">4.</strong> Ключи и адреса</a></li><li class="chapter-item expanded "><a href="../../kniga/кошельки.html"><strong aria-hidden="true">5.</strong> Кошельки</a></li><li class="chapter-item expanded "><a href="../../kniga/транзакции.html"><strong aria-hidden="true">6.</strong> Транзакции</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kniga/tx/structure.html"><strong aria-hidden="true">6.1.</strong> Структура_транзакции</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/nonce.html"><strong aria-hidden="true">6.2.</strong> Nonce транзакции</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/gas.html"><strong aria-hidden="true">6.3.</strong> Топливо (Gas)</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/recipient.html"><strong aria-hidden="true">6.4.</strong> Получатель</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/value_data.html"><strong aria-hidden="true">6.5.</strong> Value и Data</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/create_contract_tx.html"><strong aria-hidden="true">6.6.</strong> Тразакция создания контракта</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/digital_signatures.html"><strong aria-hidden="true">6.7.</strong> Цифровые подписи</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/sign_prifix_value.html"><strong aria-hidden="true">6.8.</strong> Восстановление открытого ключа</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/sign_transmission.html"><strong aria-hidden="true">6.9.</strong> Раздельное подписание и передача</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/tx_propagation.html"><strong aria-hidden="true">6.10.</strong> Распространение транзакций</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/recording_on_blockchain.html"><strong aria-hidden="true">6.11.</strong> Запись в блокчейне</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/multisig.html"><strong aria-hidden="true">6.12.</strong> Мультиподпись</a></li></ol></li><li class="chapter-item expanded "><a href="../../kniga/solidity.html"><strong aria-hidden="true">7.</strong> Solidity</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kniga/solidity/intro.html" class="active"><strong aria-hidden="true">7.1.</strong> Ввдение</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/env.html"><strong aria-hidden="true">7.2.</strong> Подготовка окружения</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/types.html"><strong aria-hidden="true">7.3.</strong> Типы данных</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/context.html"><strong aria-hidden="true">7.4.</strong> Контекст</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/internal_func.html"><strong aria-hidden="true">7.5.</strong> Встроенные функции</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/contract_types.html"><strong aria-hidden="true">7.6.</strong> Виды контрактов</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/functions.html"><strong aria-hidden="true">7.7.</strong> Функции</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/constructor.html"><strong aria-hidden="true">7.8.</strong> Конструктор контрактов</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/create.html"><strong aria-hidden="true">7.9.</strong> Создание экземпляра</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/inhertance.html"><strong aria-hidden="true">7.10.</strong> Наследование</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/handle_errors.html"><strong aria-hidden="true">7.11.</strong> Обработка ошибок</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/recording_on_blockchain.html"><strong aria-hidden="true">7.12.</strong> События</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/call_delegatecall.html"><strong aria-hidden="true">7.13.</strong> Вызов других контрактов</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/gas.html"><strong aria-hidden="true">7.14.</strong> Вопросы учёта газа</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/final.html"><strong aria-hidden="true">7.15.</strong> Выводы</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Смарт-контракты на Vyper</div></li><li class="chapter-item expanded "><a href="../../kniga/безопаность_смарт_контрактов.html"><strong aria-hidden="true">9.</strong> Безопаность смарт-контрактов</a></li><li class="chapter-item expanded "><a href="../../kniga/токены.html"><strong aria-hidden="true">10.</strong> Токены</a></li><li class="chapter-item expanded "><a href="../../kniga/оракулы.html"><strong aria-hidden="true">11.</strong> Оракулы</a></li><li class="chapter-item expanded "><a href="../../kniga/децентрализованные_приложения.html"><strong aria-hidden="true">12.</strong> Децентрализованные приложения</a></li><li class="chapter-item expanded "><a href="../../kniga/виртуальная_машина_ethereum.html"><strong aria-hidden="true">13.</strong> Виртуальная машина Ethereum</a></li><li class="chapter-item expanded "><a href="../../kniga/консенсус.html"><strong aria-hidden="true">14.</strong> Консенсус</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Доп 1. История ветвлений</div></li><li class="chapter-item expanded "><a href="../../kniga/дополнение_2_стандарты_eip_erc.html"><strong aria-hidden="true">16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li class="chapter-item expanded "><a href="../../kniga/дополнение_3_коды_evm_и_gas.html"><strong aria-hidden="true">17.</strong> Доп 3. Коды EVM и газ</a></li><li class="chapter-item expanded "><a href="../../kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong aria-hidden="true">18.</strong> Доп 4. Инструменты разработчика</a></li><li class="chapter-item expanded "><a href="../../kniga//дополнение_5_руководство_по_web3js.html"><strong aria-hidden="true">19.</strong> Доп 5. Руководство по web3js</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../../support.html">Поддержка проекта</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Осваиваем Ethereum - Mastering Ethereum</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="Введение-в-языки-ethereum"><a class="header" href="#Введение-в-языки-ethereum">Введение в языки Ethereum</a></h2>
+<p>EVM - это виртуальная машина, которая выполняет специальную форму кода, называемую EVM bytecode, аналогично процессору вашего компьютера, который выполняет машинный код, такой как x86_64. Мы рассмотрим работу и язык EVM гораздо более подробно в [evm_chapter]. В этом разделе мы рассмотрим, как пишутся смарт-контракты для запуска на EVM.</p>
+<p>Хотя можно программировать смарт-контракты непосредственно в байткоде, байткод EVM довольно громоздкий и очень сложный для чтения и понимания программистами. Вместо этого большинство разработчиков Ethereum используют язык высокого уровня для написания программ и компилятор для их преобразования в байткод.</p>
+<p>Хотя любой язык высокого уровня может быть адаптирован для написания смарт-контрактов, адаптация произвольного языка для компиляции в байткод EVM является довольно громоздким занятием и в целом приведет к некоторой путанице. Смарт-контракты работают в сильно ограниченной и минималистичной среде исполнения (EVM). Кроме того, необходимо иметь специальный набор системных переменных и функций, специфичных для EVM. Поэтому проще создать язык смарт-контрактов с нуля, чем язык общего назначения, подходящий для написания смарт-контрактов. В результате появилось несколько специализированных языков для программирования смарт-контрактов. В Ethereum есть несколько таких языков, а также компиляторы, необходимые для создания байткода, исполняемого EVM.</p>
+<p>В целом, языки программирования можно разделить на две парадигмы: декларативную и императивную, также известные как функциональная и процедурная, соответственно. В декларативном программировании мы пишем функции, которые выражают логику программы, но не ее ход. Декларативное программирование используется для создания программ, в которых отсутствуют побочные эффекты, что означает отсутствие изменений состояния за пределами функции. К языкам декларативного программирования относятся Haskell и SQL. Императивное программирование, напротив, заключается в том, что программист пишет набор процедур, которые объединяют логику и поток программы. К императивным языкам программирования относятся C++ и Java. Некоторые языки являются "гибридными", то есть они поощряют декларативное программирование, но также могут быть использованы для выражения императивной парадигмы программирования. К таким гибридам относятся Lisp, JavaScript и Python. В целом, любой императивный язык можно использовать для написания в декларативной парадигме, но это часто приводит к неэлегантному коду. Для сравнения, чисто декларативные языки не могут быть использованы для написания в императивной парадигме. В чисто декларативных языках нет "переменных".</p>
+<p>Хотя императивное программирование чаще всего используется программистами, бывает очень трудно писать программы, которые выполняются именно так, как ожидается. Способность любой части программы изменять состояние любой другой части затрудняет рассуждения о выполнении программы и создает множество возможностей для ошибок. Декларативное программирование, для сравнения, позволяет легче понять, как поведет себя программа: поскольку оно не имеет побочных эффектов, любую часть программы можно понять изолированно.</p>
+<p>В смарт-контрактах ошибки буквально стоят денег. Поэтому критически важно составлять смарт-контракты без непредвиденных последствий. Для этого вы должны быть в состоянии четко сформулировать ожидаемое поведение программы. Таким образом, декларативные языки играют гораздо большую роль в смарт-контрактах, чем в программах общего назначения. Тем не менее, как вы увидите, наиболее широко используемый язык для смарт-контрактов (Solidity) является императивным. Программисты, как и большинство людей, сопротивляются изменениям!</p>
+<p>В настоящее время поддерживаются следующие языки программирования высокого уровня для смарт-контрактов (в порядке возрастания):</p>
+<h4 id="lll"><a class="header" href="#lll">LLL</a></h4>
+<p>Функциональный (декларативный) язык программирования с синтаксисом, похожим на Lisp. Это был первый язык высокого уровня для смарт-контрактов Ethereum, но сегодня он используется редко.</p>
+<h4 id="serpent"><a class="header" href="#serpent">Serpent</a></h4>
+<p>Процедурный (императивный) язык программирования с синтаксисом, похожим на Python. Может также использоваться для написания функционального (декларативного) кода, хотя он не полностью свободен от побочных эффектов.</p>
+<h4 id="solidity"><a class="header" href="#solidity">Solidity</a></h4>
+<p>Процедурный (императивный) язык программирования с синтаксисом, похожим на JavaScript, C++ или Java. Самый популярный и часто используемый язык для смарт-контрактов Ethereum.</p>
+<h4 id="vyper"><a class="header" href="#vyper">Vyper</a></h4>
+<p>Недавно разработанный язык, похожий на Serpent и снова с Python-подобным синтаксисом. Предназначен для приближения к чисто функциональному Python-подобному языку, чем Serpent, но не для замены Serpent.</p>
+<h4 id="bamboo"><a class="header" href="#bamboo">Bamboo</a></h4>
+<p>Новый язык, разработанный под влиянием Erlang, с явными переходами состояний и без итеративных потоков (циклов). Предназначен для уменьшения побочных эффектов и повышения проверяемости. Очень новый и еще не получил широкого распространения.</p>
+<p>Как видите, существует множество языков, из которых можно выбирать. Однако из всех них Solidity, безусловно, является самым популярным, вплоть до того, что де-факто является языком высокого уровня Ethereum и даже других EVM-подобных блокчейнов. Мы проведем большую часть нашего времени, используя Solidity, но также изучим некоторые примеры на других языках высокого уровня, чтобы получить представление об их различных философиях.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../kniga/solidity.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../kniga/solidity/env.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../kniga/solidity.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../kniga/solidity/env.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Конструктор контрактов - Осваиваем Ethereum - Mastering Ethereum</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="Руководство по Ethereum и разработке смарт-контрактов">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../1_предисловие.html">Предисловие</a></li><li class="chapter-item expanded affix "><a href="../../2_глоссарий.html">Глоссарий</a></li><li class="chapter-item expanded affix "><li class="part-title">Книга</li><li class="chapter-item expanded "><a href="../../kniga/что_такое_ethereum.html"><strong aria-hidden="true">1.</strong> Что такое Ethereum?</a></li><li class="chapter-item expanded "><a href="../../kniga/введение.html"><strong aria-hidden="true">2.</strong> Введение</a></li><li class="chapter-item expanded "><a href="../../kniga/клиенты.html"><strong aria-hidden="true">3.</strong> Клиенты</a></li><li class="chapter-item expanded "><a href="../../kniga/ключи_и_адреса.html"><strong aria-hidden="true">4.</strong> Ключи и адреса</a></li><li class="chapter-item expanded "><a href="../../kniga/кошельки.html"><strong aria-hidden="true">5.</strong> Кошельки</a></li><li class="chapter-item expanded "><a href="../../kniga/транзакции.html"><strong aria-hidden="true">6.</strong> Транзакции</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kniga/tx/structure.html"><strong aria-hidden="true">6.1.</strong> Структура_транзакции</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/nonce.html"><strong aria-hidden="true">6.2.</strong> Nonce транзакции</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/gas.html"><strong aria-hidden="true">6.3.</strong> Топливо (Gas)</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/recipient.html"><strong aria-hidden="true">6.4.</strong> Получатель</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/value_data.html"><strong aria-hidden="true">6.5.</strong> Value и Data</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/create_contract_tx.html"><strong aria-hidden="true">6.6.</strong> Тразакция создания контракта</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/digital_signatures.html"><strong aria-hidden="true">6.7.</strong> Цифровые подписи</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/sign_prifix_value.html"><strong aria-hidden="true">6.8.</strong> Восстановление открытого ключа</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/sign_transmission.html"><strong aria-hidden="true">6.9.</strong> Раздельное подписание и передача</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/tx_propagation.html"><strong aria-hidden="true">6.10.</strong> Распространение транзакций</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/recording_on_blockchain.html"><strong aria-hidden="true">6.11.</strong> Запись в блокчейне</a></li><li class="chapter-item expanded "><a href="../../kniga/tx/multisig.html"><strong aria-hidden="true">6.12.</strong> Мультиподпись</a></li></ol></li><li class="chapter-item expanded "><a href="../../kniga/solidity.html"><strong aria-hidden="true">7.</strong> Solidity</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../kniga/solidity/intro.html"><strong aria-hidden="true">7.1.</strong> Ввдение</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/env.html"><strong aria-hidden="true">7.2.</strong> Подготовка окружения</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/types.html"><strong aria-hidden="true">7.3.</strong> Типы данных</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/context.html"><strong aria-hidden="true">7.4.</strong> Контекст</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/internal_func.html"><strong aria-hidden="true">7.5.</strong> Встроенные функции</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/contract_types.html"><strong aria-hidden="true">7.6.</strong> Виды контрактов</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/functions.html"><strong aria-hidden="true">7.7.</strong> Функции</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/constructor.html" class="active"><strong aria-hidden="true">7.8.</strong> Конструктор контрактов</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/create.html"><strong aria-hidden="true">7.9.</strong> Создание экземпляра</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/inhertance.html"><strong aria-hidden="true">7.10.</strong> Наследование</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/handle_errors.html"><strong aria-hidden="true">7.11.</strong> Обработка ошибок</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/recording_on_blockchain.html"><strong aria-hidden="true">7.12.</strong> События</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/call_delegatecall.html"><strong aria-hidden="true">7.13.</strong> Вызов других контрактов</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/gas.html"><strong aria-hidden="true">7.14.</strong> Вопросы учёта газа</a></li><li class="chapter-item expanded "><a href="../../kniga/solidity/final.html"><strong aria-hidden="true">7.15.</strong> Выводы</a></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">8.</strong> Смарт-контракты на Vyper</div></li><li class="chapter-item expanded "><a href="../../kniga/безопаность_смарт_контрактов.html"><strong aria-hidden="true">9.</strong> Безопаность смарт-контрактов</a></li><li class="chapter-item expanded "><a href="../../kniga/токены.html"><strong aria-hidden="true">10.</strong> Токены</a></li><li class="chapter-item expanded "><a href="../../kniga/оракулы.html"><strong aria-hidden="true">11.</strong> Оракулы</a></li><li class="chapter-item expanded "><a href="../../kniga/децентрализованные_приложения.html"><strong aria-hidden="true">12.</strong> Децентрализованные приложения</a></li><li class="chapter-item expanded "><a href="../../kniga/виртуальная_машина_ethereum.html"><strong aria-hidden="true">13.</strong> Виртуальная машина Ethereum</a></li><li class="chapter-item expanded "><a href="../../kniga/консенсус.html"><strong aria-hidden="true">14.</strong> Консенсус</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">15.</strong> Доп 1. История ветвлений</div></li><li class="chapter-item expanded "><a href="../../kniga/дополнение_2_стандарты_eip_erc.html"><strong aria-hidden="true">16.</strong> Доп 2. Стандарты EIP, ERC</a></li><li class="chapter-item expanded "><a href="../../kniga/дополнение_3_коды_evm_и_gas.html"><strong aria-hidden="true">17.</strong> Доп 3. Коды EVM и газ</a></li><li class="chapter-item expanded "><a href="../../kniga/дополнение_4_инструменты_solidity_разработчика.html"><strong aria-hidden="true">18.</strong> Доп 4. Инструменты разработчика</a></li><li class="chapter-item expanded "><a href="../../kniga//дополнение_5_руководство_по_web3js.html"><strong aria-hidden="true">19.</strong> Доп 5. Руководство по web3js</a></li><li class="chapter-item expanded affix "><li class="spacer"></li><li class="chapter-item expanded affix "><a href="../../support.html">Поддержка проекта</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Осваиваем Ethereum - Mastering Ethereum</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h3 id="Конструктор-контрактов-и-самоуничтожение"><a class="header" href="#Конструктор-контрактов-и-самоуничтожение">Конструктор контрактов и самоуничтожение</a></h3>
+<p>Существует специальная функция, которая используется только один раз. При создании контракта также запускается функция конструктора, если таковая существует, для инициализации состояния контракта. Конструктор запускается в той же транзакции, что и создание контракта. Функция конструктора является необязательной; вы заметили, что в нашем примере с краном она отсутствует.</p>
+<p>Конструкторы могут быть заданы двумя способами. До версии Solidity v0.4.21 включительно, конструктор - это функция, имя которой совпадает с именем контракта, как показано здесь:</p>
+<pre><code>contract MEContract {
+    function MEContract() {
+        // This is the constructor
+    }
+}
+</code></pre>
+<p>Сложность этого формата заключается в том, что если имя контракта изменено, а имя функции-конструктора не изменено, то это уже не конструктор. Аналогично, если в названии контракта и/или конструктора случайно допущена опечатка, функция снова перестает быть конструктором. Это может привести к довольно неприятным, неожиданным и труднообнаруживаемым ошибкам. Представьте, например, что конструктор устанавливает владельца контракта для целей контроля. Если функция на самом деле не является конструктором из-за ошибки в именовании, то владелец не только останется неустановленным во время создания контракта, но и функция может быть развернута как постоянная и "вызываемая" часть контракта, как обычная функция, что позволит любой третьей стороне взломать контракт и стать "владельцем" после создания контракта.</p>
+<p>Для решения потенциальных проблем, связанных с тем, что функции-конструкторы могут быть основаны на идентичном имени контракта, в Solidity v0.4.22 введено ключевое слово constructor, которое работает как функция-конструктор, но не имеет имени. Переименование контракта никак не влияет на конструктор. Кроме того, теперь легче определить, какая функция является конструктором. Это выглядит следующим образом:</p>
+<pre><code>pragma ^0.4.22
+contract MEContract {
+    constructor () {
+        // This is the constructor
+    }
+}
+</code></pre>
+<p>Подводя итог, можно сказать, что жизненный цикл контракта начинается с транзакции создания из EOA или аккаунта контракта. Если есть конструктор, он выполняется как часть создания контракта, чтобы инициализировать состояние контракта в процессе его создания, а затем отбрасывается.</p>
+<p>Другой конец жизненного цикла контракта - уничтожение контракта. Контракты уничтожаются специальным опкодом EVM под названием SELFDESTRUCT. Раньше он назывался SUICIDE, но это название было упразднено из-за негативных ассоциаций, связанных с этим словом. В Solidity этот опкод представлен в виде высокоуровневой встроенной функции selfdestruct, которая принимает один аргумент: адрес для получения любого остатка эфира, оставшегося на аккаунте контракта. Это выглядит следующим образом:
+<code>selfdestruct(address recipient);</code></p>
+<p>Обратите внимание, что вы должны явно добавить эту команду в ваш контракт, если хотите, чтобы он был удаляемым - это единственный способ удаления контракта, и по умолчанию она отсутствует. Таким образом, пользователи контракта, которые могут рассчитывать на то, что контракт будет существовать вечно, могут быть уверены, что контракт не может быть удален, если он не содержит опкода SELFDESTRUCT.</p>
+<h3 id="Добавление-конструктора-и-самоуничтожения-в-наш-пример-со-смесителем"><a class="header" href="#Добавление-конструктора-и-самоуничтожения-в-наш-пример-со-смесителем">Добавление конструктора и самоуничтожения в наш пример со смесителем</a></h3>
+<p>Контракт на примере смесителя, который мы представили в [intro_chapter], не имеет ни конструктора, ни функций самоуничтожения. Это вечный контракт, который не может быть удален. Давайте изменим это, добавив конструктор и функцию самоуничтожения. Вероятно, мы хотим, чтобы функция самоуничтожения могла быть вызвана только тем EOA, который изначально создал контракт. По соглашению, это обычно хранится в адресной переменной, называемой owner. Наш конструктор устанавливает переменную owner, а функция самоуничтожения сначала проверит, что владелец вызвал ее напрямую.
+Во-первых, наш конструктор:</p>
+<pre><code>// Version of Solidity compiler this program was written for
+pragma solidity ^0.6.0;
+
+// Our first contract is a faucet!
+contract Faucet {
+
+    address owner;
+
+    // Initialize Faucet contract: set owner
+    constructor() {
+        owner = msg.sender;
+    }
+
+    [...]
+}
+</code></pre>
+<p>В нашем контракте теперь есть переменная типа адреса с именем "владелец". Имя "владелец" не является каким-либо особенным. Мы могли бы назвать эту адресную переменную "potato" и использовать ее точно так же. Имя owner просто делает понятным ее назначение.
+Далее наш конструктор, который выполняется как часть транзакции создания контракта, присваивает адрес из msg.sender переменной owner. Мы использовали msg.sender в функции withdraw для идентификации инициатора запроса на вывод средств. В конструкторе, однако, msg.sender - это адрес EOA или контракта, который инициировал создание контракта. Мы знаем, что это так, потому что это функция конструктора: она выполняется только один раз, во время создания контракта.</p>
+<p>Теперь мы можем добавить функцию для уничтожения контракта. Нам нужно убедиться, что только владелец может запустить эту функцию, поэтому мы используем оператор require для контроля доступа. Вот как это будет выглядеть:</p>
+<pre><code>// Contract destructor
+function destroy() public {
+    require(msg.sender == owner);
+    selfdestruct(owner);
+}
+</code></pre>
+<p>Если кто-либо вызовет эту функцию уничтожения с адреса, отличного от адреса владельца, она завершится неудачей. Но если ее вызовет тот же адрес, который был сохранен в owner конструктором, контракт самоуничтожится и отправит весь оставшийся баланс на адрес владельца. Обратите внимание, что мы не использовали опасную функцию tx.origin для определения того, желает ли владелец уничтожить контракт - использование tx.origin позволило бы злонамеренным контрактам уничтожить ваш контракт без вашего разрешения.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../kniga/solidity/functions.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../../kniga/solidity/create.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../kniga/solidity/functions.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../../kniga/solidity/create.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
+
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
